@@ -1,0 +1,22 @@
+{
+  "name": "Tally",
+  "version": "1.0.0",
+  "authors": [
+    "jerboa88 <iamjerboa88+Tally@gmail.com>"
+  ],
+  "description": "The most beautiful character counter on the planet.",
+  "main": "index.html",
+  "keywords": [
+    "jerboa88"
+  ],
+  "license": "MIT",
+  "homepage": "jerboa88.github.io",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

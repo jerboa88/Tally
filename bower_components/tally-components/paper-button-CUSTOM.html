@@ -1,0 +1,115 @@
+<!--
+paper-button
+
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE
+-->
+
+<link href="../polymer/polymer.html" rel="import">
+<link href="../paper-shadow/paper-shadow.html" rel="import">
+<link href="../core-a11y-keys/core-a11y-keys.html" rel="import">
+<link href="paper-button-base-CUSTOM.html" rel="import">
+
+<polymer-element name="paper-button" extends="paper-button-base" attributes="raised recenteringTouch fill"
+role="button">
+	<template>
+		<style>
+			:host {
+				display: inline-block;
+				position: relative;
+				box-sizing: border-box;
+				min-width: 5.14em;
+				margin: 0 .29em;
+				background: transparent;
+				text-align: center;
+				font: inherit;
+				text-transform: uppercase;
+				outline: none;
+				border-radius: 3px;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				-webkit-user-select: none;
+				user-select: none;
+				cursor: pointer;
+				z-index: 0
+			}
+
+			:host([disabled]) {
+				background: #eaeaea;
+				color: #a8a8a8;
+				cursor: auto;
+				pointer-events: none
+			}
+
+			::content * {text-transform: inherit}
+
+			#bg, #shadow {border-radius: inherit}
+
+			#ripple {
+				pointer-events: none;
+				z-index: -1
+			}
+
+			.button-content {padding: .7em .57em}
+
+			polyfill-next-selector { content: '.button-content > a'; }
+			::content > a {
+				height: 100%;
+				padding: .7em .57em;
+				margin: -.7em -.57em;
+				/* flex */
+				-ms-flex: 1 1 .000000001px;
+				-webkit-flex: 1;
+				flex: 1;
+				-webkit-flex-basis: .000000001px;
+				flex-basis: .000000001px
+			}
+		</style>
+
+		<template if="{{raised}}">
+			<paper-shadow id="shadow" fit animated></paper-shadow>
+		</template>
+
+		<!-- This div is needed to position the ripple behind text content -->
+		<div class="button-content" relative layout horizontal center-center>
+			<content></content>
+		</div>
+
+		<core-a11y-keys keys="space enter" target="{{}}" on-keys-pressed="{{_activate}}"></core-a11y-keys>
+	</template>
+
+	<script>
+		Polymer({
+			publish: {
+
+				/* Button styled with a shadow if true.
+					@attribute raised, @type boolean, @default false */
+				raised: false,
+
+				/* Is ripple centered?
+					@attribute recenteringTouch, @type boolean, @default false */
+				recenteringTouch: false,
+
+				/* Ripple covers whole button if true.
+					@attribute fill, @type boolean, @default true */
+				fill: true
+			},
+
+			_activate: function() {
+				this.click();
+				this.fire('tap');
+				if (!this.pressed) {
+					var bcr = this.getBoundingClientRect();
+					var x = bcr.left + (bcr.width / 2);
+					var y = bcr.top + (bcr.height / 2);
+					this.downAction({x: x, y: y});
+					var fn = function fn() {
+						this.upAction();
+						this.removeEventListener('keyup', fn);
+					}.bind(this);
+					this.addEventListener('keyup', fn);
+				}
+			}
+		});
+	</script>
+</polymer-element>

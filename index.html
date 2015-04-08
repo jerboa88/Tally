@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<!-- ┬┌──┌─┐┌─┐┌─┐┌─┐┌─┐┌─┐
+     │├─ ├┬┘├─┤│ │├─┤├─┤├─┤
+   └─┘└──╵└─└─┘└─┘╵ ╵└─┘└─┘
+iamjerboa88+Tally@gmail.com -->
+
+<html lang="en" prefix="og:http://ogp.me/ns#">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title property="og:title">Tally - The most beautiful character counter on the planet</title>
+		<meta name="author" content="jerboa88">
+		<meta name="description" property="og:description" content="The most beautiful character counter on the planet.">
+		<meta property="og:image" content="img/logo.png">
+		<meta property="og:url" content="index.html">
+		<meta property="og:type" content="website">
+
+		<link rel="apple-touch-icon" sizes="152x152" href="img/ios152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="img/ios180.png">
+		<link rel="icon" href="img/android192.png" sizes="192x192">
+		<meta name="theme-color" content="#212121">
+		<meta name="msapplication-TileImage" content="img/ms144.png">
+		<meta name="msapplication-TileColor" content="#212121">
+		<link rel="icon" href="/img/favicon32.png" sizes="32x32">
+		<link rel="shortcut icon" href="img/favicon.ico" sizes="16x16 32x32 48x48">
+
+		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<link rel="stylesheet" type="text/css" href="css/shadow.css" shim-shadowdom>
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:300&text=Themostbauiflcrnp.|Roboto|Roboto+Slab&text=Tally.">
+
+		<script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+		<link rel="import" href="bower_components/tally-components/paper-input-decorator-CUSTOM.html">
+		<link rel="import" href="bower_components/tally-components/paper-char-counter-CUSTOM.html">
+		<link rel="import" href="bower_components/tally-components/paper-button-CUSTOM.html">
+		<link rel="import" href="bower_components/tally-components/paper-action-dialog-CUSTOM.html">
+	</head>
+	<body itemscope="" itemtype="http://schema.org/WebPage">
+		<div class="stripe"></div>
+
+		<header>
+			<h1 itemprop="name">Tally.</h1>
+			<h2 itemprop="description">The most beautiful character counter on the planet.</h2>
+		</header>
+
+		<div id="content">
+			<paper-input-decorator label="Count my characters!">
+				<input id="input" is="core-input" class="test">
+				<paper-char-counter class="counter" target="input"></paper-char-counter>
+			</paper-input-decorator>
+		</div>
+
+		<footer>
+			<paper-button class="b1" onclick="document.getElementById('dialog').toggle()">about</paper-button>
+			<paper-button class="b2" onclick="window.location.href = 'https://jerboa88.github.io/'" rel="author" itemprop="author" itemprop="url">jerboa88</paper-button>
+		</footer>
+
+		<paper-action-dialog id="dialog" heading="Tally - v1" transition="core-transition-center" backdrop>
+			<p>
+				Created with<span class="heart">&hearts;</span>by jerboa88.<br>
+				<script>
+					var a = "iamjerboa88+Tally", b = "gmail.com", text = a + "@" + b;
+					document.write("<a href='mailto:" + a + "@" + b + "' itemprop='email'>" + text + "</a>")
+				</script>
+			</p>
+			<p>
+				Works best in Chrome, sorry.<br>
+				Special thanks to <a href="https://pages.github.com/">Github Pages</a> for hosting and to the <a href="https://www.polymer-project.org/">Polymer Project</a> for their Paper Elements.<br>
+				<a href="LICENSE.md" rel="license" itemprop="license">MIT</a>
+			</p>
+			<paper-button class="close" affirmative autofocus>Awesome</paper-button>
+		</paper-action-dialog>
+
+		<div class="stripe"></div>
+	</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "tally-components",
+  "version": "1",
+  "authors": [
+    "jerboa88 <iamjerboa88+Tally@gmail.com>"
+  ],
+  "description": "Custom web components for Tally.",
+  "keywords": [
+    "jerboa88"
+  ],
+  "license": "none",
+  "homepage": "jerboa88.github.io",
+  "ignore": []
+}
