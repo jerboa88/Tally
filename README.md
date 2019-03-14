@@ -1,7 +1,11 @@
-# README
-Tally - The most beautiful character counter on the planet. Made by jerboa88.
+# Tally
+![](https://img.shields.io/badge/type-HTML-orange.svg "Project type")
+![](https://img.shields.io/github/repo-size/jerboa88/Tally.svg "Repository size")
+[![](https://img.shields.io/github/license/jerboa88/Tally.svg "Project license")](LICENSE.md)
 
-Changelog [here]. Licensed under [the MIT license].
 
-[here]: CHANGELOG.md
-[the MIT license]: LICENSE.md
+Your favorite character counter! Count the number of words, sentences, and paragraphs in your text.
+
+
+## License
+This project is licensed under the MIT License. See [LICENSE.md](LICENSE.md) for details.
