@@ -1,4 +1,4 @@
-# Tally
+# Tally [Web]
 ![](https://img.shields.io/badge/type-HTML-orange.svg "Project type")
 ![](https://img.shields.io/github/repo-size/jerboa88/Tally.svg "Repository size")
 [![](https://img.shields.io/github/license/jerboa88/Tally.svg "Project license")](LICENSE)
