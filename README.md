@@ -5,6 +5,7 @@
 
 
 Your favorite character counter! Count the number of words, sentences, and paragraphs in your text.
+[http://jerboa88.github.io/Tally/](http://jerboa88.github.io/Tally/)
 
 
 ## License
