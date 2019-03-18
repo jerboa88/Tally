@@ -1,76 +1,105 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"/>
+	<title>Tally - Word Counter</title>
+	<meta name="description" content="Your favorite character counter! Count the number of words, sentences, and paragraphs in your text.">
+	<meta name="author" content="John Goodliff">
 
-<!-- ┬┌──┌─┐┌─┐┌─┐┌─┐┌─┐┌─┐
-     │├─ ├┬┘├─┤│ │├─┤├─┤├─┤
-   └─┘└──╵└─└─┘└─┘╵ ╵└─┘└─┘
-iamjerboa88+Tally@gmail.com -->
+	<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "Person",
+			"name": "John Goodliff",
+			"url": "https://jerboa88.github.io"
+		}
+	</script>
 
-<html lang="en" prefix="og:http://ogp.me/ns#">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title property="og:title">Tally - The most beautiful character counter on the planet</title>
-		<meta name="author" content="jerboa88">
-		<meta name="description" property="og:description" content="The most beautiful character counter on the planet.">
-		<meta property="og:image" content="img/logo.png">
-		<meta property="og:url" content="index.html">
-		<meta property="og:type" content="website">
+	<link rel="stylesheet" href="./style.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Roboto+Slab">
 
-		<link rel="apple-touch-icon" sizes="152x152" href="img/ios152.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="img/ios180.png">
-		<link rel="icon" href="img/android192.png" sizes="192x192">
-		<meta name="theme-color" content="#212121">
-		<meta name="msapplication-TileImage" content="img/ms144.png">
-		<meta name="msapplication-TileColor" content="#212121">
-		<link rel="icon" href="/img/favicon32.png" sizes="32x32">
-		<link rel="shortcut icon" href="img/favicon.ico" sizes="16x16 32x32 48x48">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#151515">
+	<meta name="msapplication-navbutton-color" content="#151515">
+	<meta name="msapplication-TileColor" content="#151515">
+	<meta name="theme-color" content="#151515">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
 
-		<link rel="stylesheet" type="text/css" href="css/index.css">
-		<link rel="stylesheet" type="text/css" href="css/shadow.css" shim-shadowdom>
-		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:300&text=Themostbauiflcrnp.|Roboto|Roboto+Slab&text=Tally.">
-
-		<script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
-		<link rel="import" href="bower_components/tally-components/paper-input-decorator-CUSTOM.html">
-		<link rel="import" href="bower_components/tally-components/paper-char-counter-CUSTOM.html">
-		<link rel="import" href="bower_components/tally-components/paper-button-CUSTOM.html">
-		<link rel="import" href="bower_components/tally-components/paper-action-dialog-CUSTOM.html">
-	</head>
-	<body itemscope="" itemtype="http://schema.org/WebPage">
-		<div class="stripe"></div>
-
+<body>
+	<div class="container">
 		<header>
-			<h1 itemprop="name">Tally.</h1>
-			<h2 itemprop="description">The most beautiful character counter on the planet.</h2>
+			<h1>Tally</h1>
 		</header>
-
-		<div id="content">
-			<paper-input-decorator label="Count my characters!">
-				<input id="input" is="core-input" class="test">
-				<paper-char-counter class="counter" target="input"></paper-char-counter>
-			</paper-input-decorator>
+		<p>
+			Your favorite character counter!<br>
+			Count the number of words, sentences, and paragraphs in your text instantly.
+		</p>
+		<textarea id="input" spellcheck="false" maxlength="1000000" placeholder="The quick brown fox jumps over the lazy dog..." autofocus></textarea>
+		<div class="table">
+			<h5>Characters</h5>
+			<h5>Words</h5>
+			<h5>Sentences</h5>
+			<h5>Paragraphs</h5>
+			<output id="characters">-</output>
+			<output id="words">-</output>
+			<output id="sentences">-</output>
+			<output id="paragraphs">-</output>
+			<h5>Spaces</h5>
+			<h5>Letters</h5>
+			<h5>Digits</h5>
+			<h5>Special Characters</h5>
+			<output id="spaces">-</output>
+			<output id="letters">-</output>
+			<output id="digits">-</output>
+			<output id="specialcharacters">-</output>
 		</div>
-
+		<p>
+			Please note that although this calculator was designed to be as accurate as possible, it may not be perfect. No promises!
+		</p>
 		<footer>
-			<paper-button class="b1" onclick="document.getElementById('dialog').toggle()">about</paper-button>
-			<paper-button class="b2" onclick="window.location.href = 'https://jerboa88.github.io/'" rel="author" itemprop="author" itemprop="url">jerboa88</paper-button>
+			<a href="https://github.com/jerboa88/Tally"><b>GitHub</b></a>
+			<div class="social">
+				<a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fjerboa88.github.io%2FTally%2F"><i class="fas fa-facebook-square"></i></a>
+				<a href="http://twitter.com/share?url=http%3A%2F%2Fjerboa88.github.io%2FTally%2F&hashtags=charactercounter%2Cwordcounter&text=Tally%20-%20Your%20favorite%20character%20counter%21%20%20Count%20the%20number%20of%20words%2C%20sentences%2C%20and%20paragraphs%20in%20your%20text%3A"><i class="fas fa-twitter-square"></i></a>
+				<a href="mailto:someone@yoursite.com&subject=Tally%20-%20Word%20Counter&body=Tally%20-%20Your%20favorite%20character%20counter%21%20%20Count%20the%20number%20of%20words%2C%20sentences%2C%20and%20paragraphs%20in%20your%20text%3A"><i class="fas fa-envelope-square"></i></a>
+			</div>
+			<a href="https://jerboa88.github.io" rel="author"><b>Made by John Goodliff</b></a>
 		</footer>
+	</div>
 
-		<paper-action-dialog id="dialog" heading="Tally - v1" transition="core-transition-center" backdrop>
-			<p>
-				Created with<span class="heart">&hearts;</span>by jerboa88.<br>
-				<script>
-					var a = "iamjerboa88+Tally", b = "gmail.com", text = a + "@" + b;
-					document.write("<a href='mailto:" + a + "@" + b + "' itemprop='email'>" + text + "</a>")
-				</script>
-			</p>
-			<p>
-				Works best in Chrome, sorry.<br>
-				Special thanks to <a href="https://pages.github.com/">Github Pages</a> for hosting and to the <a href="https://www.polymer-project.org/">Polymer Project</a> for their Paper Elements.<br>
-				<a href="LICENSE.md" rel="license" itemprop="license">MIT</a>
-			</p>
-			<paper-button class="close" affirmative autofocus>Awesome</paper-button>
-		</paper-action-dialog>
-
-		<div class="stripe"></div>
-	</body>
+	<a href="#" id="settings"><b><i class="fas fa-gear"></i></b></a>
+	<div class="sidebar">
+		<h3>Options</h3>
+		<strong>Input</strong>
+		<section>
+			<input type="checkbox" id="savesettings">
+			<label for="savesettings">Remember settings</label><br>
+			<input type="checkbox" id="savetext" disabled>
+			<label for="savetext">Remember text from last time</label><br>
+			<input type="checkbox" id="maxchars">
+			<label for="maxchars">Allow more than 1,000,000 characters</label>
+		</section>
+		<strong>Theme</strong>
+		<section>
+			<input type="radio" name="theme" id="blacktheme" value="Black" checked>Black<br>
+			<input type="radio" name="theme" id="whitetheme" value="White">White<br>
+			<input type="radio" name="theme" id="tealtheme" value="Teal">Teal<br>
+			<input type="radio" name="theme" id="nightskytheme" value="Night Sky">Night Sky<br>
+		</section>
+		<strong>Info</strong>
+		<p>
+			Thanks for using the site! This project is licensed under the <a href="https://github.com/jerboa88/Tally/blob/gh-pages/LICENSE" rel="license"><strong>MIT license</strong></a>.
+		</p>
+		<p>
+			Icons were provided by <a href="https://github.com/FortAwesome/Font-Awesome" rel="link"><strong>Font Awesome</strong></a> under the CC BY 4.0 License, SIL OFL 1.1 License, and MIT Licenses and packaged using <a href="https://icomoon.io/#docs" rel="link"><strong>IcoMoon</strong></a>. Please see <a href="https://github.com/jerboa88/Tally/tree/gh-pages/fonts/LICENSE.txt" rel="link"><strong>the license</strong></a> for more details.
+		</p>
+		<section class="padding"></section>
+	</div>
+	<script src="./script.js"></script>
+</body>
 </html>
