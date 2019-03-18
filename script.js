@@ -8,6 +8,7 @@
 			blacktheme = document.getElementById('blacktheme'),
 			whitetheme = document.getElementById('whitetheme'),
 			tealtheme = document.getElementById('tealtheme'),
+			dusktheme = document.getElementById('dusktheme'),
 			deg = 0
 
 
@@ -17,7 +18,7 @@
 	whitetheme.addEventListener('change', savesettings)
 	blacktheme.addEventListener('change', savesettings)
 	tealtheme.addEventListener('change', savesettings)
-	nightskytheme.addEventListener('change', savesettings)
+	dusktheme.addEventListener('change', savesettings)
 
 
 	function savesettings() {
@@ -112,7 +113,7 @@
 			return 'teal'
 		}
 
-		else if (nightskytheme.checked) {
+		else if (dusktheme.checked) {
 			root.setProperty('--bg', '#080b12')
 			root.setProperty('--primary', '#291427')
 			root.setProperty('--focus', '#291427')
@@ -120,7 +121,7 @@
 			root.setProperty('--shadow', 'none')
 			root.setProperty('--selection', 'rgba(8,11,18,.75)')
 
-			return 'nightsky'
+			return 'dusk'
 		}
 	}
 
@@ -138,8 +139,8 @@
 			tealtheme.checked = true
 		}
 
-		else if (theme == 'nightsky') {
-			nightskytheme.checked = true
+		else if (theme == 'dusk') {
+			dusktheme.checked = true
 		}
 	}
 
