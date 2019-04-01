@@ -4,7 +4,7 @@
 [![](https://img.shields.io/github/license/jerboa88/Tally.svg "Project license")](LICENSE)
 
 
-Your favorite character counter! Count the number of words, sentences, and paragraphs in your text.
+Your favorite character counter, with a dark mode! Count the number of words, sentences, and paragraphs in your text instantly.
 [https://tallywordcounter.online/](https://tallywordcounter.online/)
 
 
