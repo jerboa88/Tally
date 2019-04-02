@@ -179,7 +179,7 @@ strong {
 }
 
 textarea {
-	min-height: 12em;
+	min-height: 15em;
 	margin: var(--hmargin) var(--vmargin);
 	-webkit-box-flex: 1;
 			-ms-flex: 1;
