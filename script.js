@@ -268,6 +268,8 @@
 		for (var key in count) {
 			document.getElementById(key).innerHTML = count[key] || '-'
 		}
+
+		gtag_report_conversion()
 	}
 
 	count()

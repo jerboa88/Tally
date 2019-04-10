@@ -15,6 +15,20 @@
 		gtag('js', new Date());
 
 		gtag('config', 'UA-136445575-1');
+		gtag('config', 'AW-989465829');
+
+		function gtag_report_conversion(url) {
+			var callback = function () {
+				if (typeof(url) != 'undefined') {
+					window.location = url;
+				}
+			};
+			gtag('event', 'conversion', {
+				'send_to': 'AW-989465829/cMDMCN6e6pgBEOWZ6NcD',
+				'event_callback': callback
+			});
+			return false;
+		}
 	</script>
 
 	<script type="application/ld+json">
