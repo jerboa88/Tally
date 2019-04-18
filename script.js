@@ -58,7 +58,7 @@
 
 	function setcookie(name, value) {
 		let d = new Date()
-		d.setTime(d.getTime() + 3600000)
+		d.setTime(d.getTime() + 5184000) // 60 days
 		document.cookie = name + '=' + value + ';expires=' + d.toUTCString() + ';path=/'
 	}
 
@@ -90,60 +90,61 @@
 
 
 	function clearcookies() {
-		let cookies = document.cookie.split(';')
+		let keys = ['savesettings', 'savetext', 'maxchars', 'theme']
 
-		for (let i = 0; i < cookies.length; i++) {
-			document.cookie = cookies[i].split('=')[0] + '=;expires=Tue, 01 Jan 2019 00:00:00 UTC'
+		for (let i = 0; i < keys.length; i++) {
+			document.cookie = keys[i] + '=;expires=Tue, 01 Jan 2019 00:00:00 UTC'
 		}
 	}
 
 
 	function gettheme() {
-		let root = document.documentElement.style
-
 		if (blacktheme.checked) {
-			root.setProperty('--bg', '#151515')
-			root.setProperty('--primary', '#222')
-			root.setProperty('--focus', '#202020')
-			root.setProperty('--text', '#fff')
-			root.setProperty('--shadow', 'rgba(0,0,0,.5)')
-			root.setProperty('--selection', 'rgba(255,255,255,.5)')
+			applytheme('#151515', '#222', '#202020', '#fff', 'rgba(0,0,0,.5)', 'rgba(255,255,255,.5)', 'black')
 
 			return 'black'
 		}
 
 		else if (whitetheme.checked) {
-			root.setProperty('--bg', '#fff')
-			root.setProperty('--primary', '#eee')
-			root.setProperty('--focus', '#f4f4f4')
-			root.setProperty('--text', '#000')
-			root.setProperty('--shadow', 'none')
-			root.setProperty('--selection', 'rgba(0,0,0,.5)')
+			applytheme('#fff', '#eee', '#f4f4f4', '#000', 'none', 'rgba(0,0,0,.5)', 'default')
 
 			return 'white'
 		}
 
 		else if (tealtheme.checked) {
-			root.setProperty('--bg', '#317b71')
-			root.setProperty('--primary', '#44877e')
-			root.setProperty('--focus', '#3D837a')
-			root.setProperty('--text', '#fff')
-			root.setProperty('--shadow', 'rgba(0,0,0,.5)')
-			root.setProperty('--selection', 'rgba(194,67,63,.75)')
+			applytheme('#317b71', '#44877e', '#3D837a', '#fff', 'rgba(0,0,0,.5)', 'rgba(194,67,63,.75)', 'default')
 
 			return 'teal'
 		}
 
 		else if (dusktheme.checked) {
-			root.setProperty('--bg', '#080b12')
-			root.setProperty('--primary', '#291427')
-			root.setProperty('--focus', '#291427')
-			root.setProperty('--text', '#F4CAE0')
-			root.setProperty('--shadow', 'none')
-			root.setProperty('--selection', 'rgba(8,11,18,.75)')
+			applytheme('#080b12', '#291427', '#291427', '#F4CAE0', 'none', 'rgba(8,11,18,.75)', 'black')
 
 			return 'dusk'
 		}
+	}
+
+
+	function applytheme(bg, primary, focus, text, shadow, selection, ios) {
+		let root = document.documentElement.style,
+				safariicon = document.querySelector('link[rel=mask-icon]'),
+				msnavbutton = document.querySelector('meta[name=msapplication-navbutton-color]'),
+				mstile = document.querySelector('meta[name=msapplication-TileColor]'),
+				androidtheme = document.querySelector('meta[name=theme-color]'),
+				appletheme = document.querySelector('meta[name=apple-mobile-web-app-status-bar-style]')
+
+		root.setProperty('--bg', bg)
+		root.setProperty('--primary', primary)
+		root.setProperty('--focus', focus)
+		root.setProperty('--text', text)
+		root.setProperty('--shadow', shadow)
+		root.setProperty('--selection', selection)
+
+		safariicon.setAttribute('content', bg)
+		msnavbutton.setAttribute('content', bg)
+		mstile.setAttribute('content', bg)
+		androidtheme.setAttribute('content', bg)
+		appletheme.setAttribute('content', ios)
 	}
 
 
