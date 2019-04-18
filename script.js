@@ -9,7 +9,8 @@
 			whitetheme = document.getElementById('whitetheme'),
 			tealtheme = document.getElementById('tealtheme'),
 			dusktheme = document.getElementById('dusktheme'),
-			deg = 0
+			deg = 0,
+			timesused = 0
 
 
 	savesettingsinput.addEventListener('change', savesettings)
@@ -22,14 +23,18 @@
 
 
 	function savesettings() {
-		setcookie('savesettings', savesettingsinput.checked ? 1 : 0)
 		setmaxchars()
 		theme = gettheme()
 
 		if (savesettingsinput.checked) {
+			setcookie('savesettings', 1)
 			setcookie('savetext', savetextinput.checked ? 1 : 0)
 			setcookie('maxchars', maxcharsinput.checked ? 1 : 0)
 			setcookie('theme', theme)
+		}
+
+		else {
+			clearcookies()
 		}
 	}
 
@@ -62,17 +67,33 @@
 		let patt = new RegExp(name + '=(\\w+)\;?')
 
 		if (document.cookie) {
-			let result = patt.exec(document.cookie)[1]
+			let result = patt.exec(document.cookie),
+					newresult = false
 
-			if (result == '1') {
-				result = true
+			if (result) {
+				if (result[1] == '1') {
+					newresult = true
+				}
+
+				else if (result[1] == '0') {
+					newresult = false
+				}
+
+				else {
+					newresult = result[1]
+				}
 			}
 
-			else if (result == '0') {
-				result = false
-			}
+			return newresult
+		}
+	}
 
-			return result
+
+	function clearcookies() {
+		let cookies = document.cookie.split(';')
+
+		for (let i = 0; i < cookies.length; i++) {
+			document.cookie = cookies[i].split('=')[0] + '=;expires=Tue, 01 Jan 2019 00:00:00 UTC'
 		}
 	}
 
@@ -194,7 +215,6 @@
 
 		for (var i = 0; i < len; i++) {
 			current = text[i]
-			// chars++
 			count.characters++
 
 			if (/\d/.test(current)) {
@@ -269,7 +289,11 @@
 			document.getElementById(key).innerHTML = count[key] || '-'
 		}
 
-		gtag_report_conversion()
+		if (timesused == 1) {
+			gtag_report_conversion()
+		}
+
+		timesused++
 	}
 
 	count()
