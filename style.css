@@ -11,7 +11,7 @@
 	--roundness: .8rem;
 	--textsize: 1rem;
 	--numsize: .9em;
-	--sidebarwidth: 18em;
+	--sidebarwidth: 20em;
 	--sidebarpadding: 1.5em;
 }
 
@@ -28,7 +28,8 @@ textarea::-webkit-scrollbar {
 }
 
 textarea::-webkit-scrollbar-thumb {
-	border-radius: 1em;
+	-webkit-border-radius: 1em;
+					border-radius: 1em;
 	background-color: var(--text);
 	-webkit-box-shadow: .05em .05em .1em rgba(0,0,0,.5);
 	box-shadow: .05em .05em .1em rgba(0,0,0,.5);
@@ -48,14 +49,17 @@ html, body, .container {
 	font-size: 1.5em;
 	display: -webkit-box;
 	display: -ms-flexbox;
+	display: -webkit-flex;
 	display: flex;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
-	-ms-flex-direction: column;
-	flex-direction: column;
+	-webkit-flex-direction: column;
+			-ms-flex-direction: column;
+					flex-direction: column;
 	-webkit-box-pack: center;
 	-ms-flex-pack: center;
-	justify-content: space-around;
+	-webkit-justify-content: space-around;
+					justify-content: space-around;
 	cursor: default;
 	overflow: hidden;
 }
@@ -81,11 +85,13 @@ p {
 header, footer {
 	display: -webkit-box;
 	display: -ms-flexbox;
+	display: -webkit-flex;
 	display: flex;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
-	-ms-flex-direction: column;
-	flex-direction: column;
+	-webkit-flex-direction: column;
+			-ms-flex-direction: column;
+					flex-direction: column;
 	font-size: var(--textsize);
 }
 
@@ -96,16 +102,20 @@ header {
 footer {
 	display: -webkit-box;
 	display: -ms-flexbox;
+	display: -webkit-flex;
 	display: flex;
 	-webkit-box-orient: horizontal;
 	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
 			-ms-flex-direction: row;
 					flex-direction: row;
 	-webkit-box-pack: justify;
 			-ms-flex-pack: justify;
+	-webkit-justify-content: space-between;
 					justify-content: space-between;
 	-webkit-box-align: center;
 			-ms-flex-align: center;
+	-webkit-align-items: center;
 					align-items: center;
 	margin-top: var(--hmargin);
 	background: var(--primary);
@@ -113,6 +123,7 @@ footer {
 
 footer > * {
 	-webkit-box-flex: .4;
+	-webkit-flex: .4;
 			-ms-flex: .4;
 					flex: .4;
 }
@@ -132,18 +143,23 @@ footer:first-child {
 .social {
 	display: -webkit-box;
 	display: -ms-flexbox;
+	display: -webkit-flex;
 	display: flex;
 	-webkit-box-orient: horizontal;
 	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
 			-ms-flex-direction: row;
 					flex-direction: row;
 	-webkit-box-pack: space-evenly;
 			-ms-flex-pack: space-evenly;
+	-webkit-justify-content: space-evenly;
 					justify-content: space-evenly;
 	-webkit-box-align: center;
 			-ms-flex-align: center;
+	-webkit-align-items: center;
 					align-items: center;
 	-webkit-box-flex: .2;
+	-webkit-flex: .2;
 			-ms-flex: .2;
 					flex: .2;
 }
@@ -159,6 +175,9 @@ footer > a:link {
 a:link {
 	color: var(--text);
 	text-decoration: none;
+	-webkit-transition: .1s;
+	-o-transition: .1s;
+	transition: .1s
 }
 
 a:hover {
@@ -182,11 +201,13 @@ textarea {
 	min-height: 15em;
 	margin: var(--hmargin) var(--vmargin);
 	-webkit-box-flex: 1;
+	-webkit-flex: 1;
 			-ms-flex: 1;
 					flex: 1;
 	border: none;
 	outline: none;
-	border-radius: var(--roundness);
+	-webkit-border-radius: var(--roundness);
+					border-radius: var(--roundness);
 	padding: 1.5em;
 	background: var(--primary);
 	color: var(--text);
@@ -206,6 +227,7 @@ textarea:focus {
 	display: -ms-grid;
 	display: grid;
 	-webkit-box-flex: 1;
+	-webkit-flex: 1;
 			-ms-flex: 1;
 					flex: 1;
 	-ms-grid-columns: auto auto auto auto;
@@ -216,7 +238,8 @@ textarea:focus {
 	padding: .8em;
 	background: var(--primary);
 	color: var(--text);
-	border-radius: var(--roundness);
+	-webkit-border-radius: var(--roundness);
+					border-radius: var(--roundness);
 	-webkit-box-shadow: .05em .05em .1em var(--bg);
 	box-shadow: .05em .05em .1em var(--bg);
 }
@@ -250,22 +273,25 @@ i {
 .fa-gear {
 	padding: .5em;
 	-webkit-transition: -webkit-transform .5s;
-	transition: -webkit-transform .5s;
-	-o-transition: transform .5s;
-	transition: transform .5s;
-	transition: transform .5s, -webkit-transform .5s;
+			-o-transition: transform .5s;
+					transition: -webkit-transform .5s;
+					transition: transform .5s;
+					transition: transform .5s, -webkit-transform .5s;
 }
 
 .sidebar {
 	display: -webkit-box;
 	display: -ms-flexbox;
+	display: -webkit-flex;
 	display: flex;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
 			-ms-flex-direction: column;
 					flex-direction: column;
 	-webkit-box-pack: space-between;
 			-ms-flex-pack: space-between;
+	-webkit-justify-content: space-between;
 					justify-content: space-between;
 	position: fixed;
 	background: var(--primary);
@@ -309,6 +335,80 @@ input[type=checkbox], input[type=radio] {
 
 .badge {
 	text-align: center;
+}
+
+.themes {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-justify-content: space-around;
+			-ms-flex-pack: distribute;
+					justify-content: space-around;
+}
+
+.themes > p {
+	width: 4em;
+	margin: 0;
+	text-align: center;
+}
+
+label[for='blacktheme'] {
+	background: #151515;
+	color: #fff;
+	border-color: #fff;
+}
+
+label[for='whitetheme'] {
+	background: #fff;
+	color: #000;
+	border-color: #000;
+}
+
+label[for='tealtheme'] {
+	background: #317b71;
+	color: #fff;
+	border-color: #fff;
+}
+
+label[for='dusktheme'] {
+	background: #291427;
+	background: -webkit-linear-gradient(-45deg, #291427 25%, #080b12 100%);
+	background: -webkit-linear-gradient(315deg, #291427 25%, #080b12 100%);
+	background: -o-linear-gradient(315deg, #291427 25%, #080b12 100%);
+	background: linear-gradient(135deg, #291427 25%, #080b12 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#291427', endColorstr='#080b12',GradientType=1);
+	color: #fff;
+}
+
+.themes > p > label {
+	border: 1px solid rgba(255,255,255,.15);
+	display: block;
+	padding: 1em 0;
+	margin-top: -1em;
+	cursor: pointer;
+	opacity: .5;
+	-webkit-transition: .1s;
+	-o-transition: .1s;
+	transition: .1s;
+}
+
+input[type='radio'] {
+	opacity: 0;
+	width: 0;
+	height: 0;
+	margin: 0;
+	padding: 0;
+}
+
+.themes > p > label:hover,
+input[type='radio']:active ~ label {
+	opacity: 1;
+}
+
+input[type='radio']:checked ~ label {
+	opacity: 1;
+	border: 1px solid;
 }
 
 
