@@ -5,6 +5,7 @@
 			savesettingsinput = document.getElementById('savesettings'),
 			savetextinput = document.getElementById('savetext'),
 			maxcharsinput = document.getElementById('maxchars'),
+			autotheme = document.getElementById('autotheme'),
 			blacktheme = document.getElementById('blacktheme'),
 			whitetheme = document.getElementById('whitetheme'),
 			tealtheme = document.getElementById('tealtheme'),
@@ -12,14 +13,23 @@
 			deg = 0,
 			timesused = 0
 
+	const systemdarkscheme = matchMedia('(prefers-color-scheme: dark)'),
+				systemlightscheme = matchMedia('(prefers-color-scheme: light)'),
+				systemnundefinedscheme = matchMedia('(prefers-color-scheme: no-preference)')
+
 
 	savesettingsinput.addEventListener('change', savesettings)
 	savetextinput.addEventListener('change', savesettings)
 	maxcharsinput.addEventListener('change', savesettings)
+
+	autotheme.addEventListener('change', savesettings)
 	whitetheme.addEventListener('change', savesettings)
 	blacktheme.addEventListener('change', savesettings)
 	tealtheme.addEventListener('change', savesettings)
 	dusktheme.addEventListener('change', savesettings)
+
+	systemdarkscheme.addEventListener('change', gettheme)
+	systemlightscheme.addEventListener('change', gettheme)
 
 
 	function savesettings() {
@@ -98,15 +108,59 @@
 	}
 
 
+	function applyblacktheme() {
+		applytheme('#151515', '#222', '#202020', '#fff', 'rgba(0,0,0,.5)', 'rgba(255,255,255,.5)', 'black')
+	}
+
+	function applywhitetheme() {
+		applytheme('#fff', '#eee', '#f4f4f4', '#000', 'none', 'rgba(0,0,0,.5)', 'default')
+	}
+
+
 	function gettheme() {
-		if (blacktheme.checked) {
-			applytheme('#151515', '#222', '#202020', '#fff', 'rgba(0,0,0,.5)', 'rgba(255,255,255,.5)', 'black')
+		if (autotheme.checked) {
+			if (systemdarkscheme.matches) {
+				applyblacktheme()
+
+				return 'auto'
+			}
+
+			else if (systemlightscheme.matches) {
+				applywhitetheme()
+
+				return 'auto'
+			}
+
+			else if (systemnundefinedscheme.matches) {
+				const date = new Date(),
+						hour = d.getHours()
+
+				if (hour < 8 || hour > 20) {
+					applyblacktheme()
+				}
+
+				else {
+					applywhitetheme()
+				}
+
+				return 'auto'
+			}
+
+			else {
+				applywhitetheme()
+
+				return 'white'
+			}
+		}
+
+		else if (blacktheme.checked) {
+			applyblacktheme()
 
 			return 'black'
 		}
 
 		else if (whitetheme.checked) {
-			applytheme('#fff', '#eee', '#f4f4f4', '#000', 'none', 'rgba(0,0,0,.5)', 'default')
+			applywhitetheme()
 
 			return 'white'
 		}
@@ -149,7 +203,11 @@
 
 
 	function settheme(theme) {
-		if (theme == 'black') {
+		if (theme == 'auto') {
+			autotheme.checked = true
+		}
+
+		else if (theme == 'black') {
 			blacktheme.checked = true
 		}
 
@@ -186,6 +244,7 @@
 
 	function opensidebar() {
 		sidebar.classList.toggle('open')
+		document.body.classList.toggle('freezebody')
 		deg += 180
 		icon.style.transform = 'rotate(' + deg + 'deg)'
 	}
@@ -193,6 +252,7 @@
 
 	function closesidebar() {
 		sidebar.classList.remove('open')
+		document.body.classList.remove('freezebody')
 	}
 
 

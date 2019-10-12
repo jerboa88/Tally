@@ -15,6 +15,23 @@
 	--sidebarpadding: 1.5em;
 }
 
+@media (prefers-color-scheme: dark), (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
+	label[for='autotheme'] {
+		background: #333;
+		background: -webkit-linear-gradient(-45deg, #fff 0%, #151515 100%);
+		background: -webkit-linear-gradient(315deg, #fff 0%, #151515 100%);
+		background: -o-linear-gradient(315deg, #fff 0%, #151515 100%);
+		background: linear-gradient(135deg, #fff 0%, #151515 100%);
+		color: #fff;
+	}
+}
+
+@media not (prefers-color-scheme: dark) and not (prefers-color-scheme: light) and not (prefers-color-scheme: no-preference) {
+ .themes > p:first-child {
+		display: none;
+	}
+}
+
 ::-moz-selection {
 	background: var(--selection);
 }
@@ -315,6 +332,11 @@ i {
 					box-shadow: 0 0 10em #000;
 }
 
+.freezebody {
+	position: fixed;
+	overflow-y: scroll;
+}
+
 h3 {
 	margin: 0;
 	text-align: center;
@@ -377,7 +399,6 @@ label[for='dusktheme'] {
 	background: -webkit-linear-gradient(315deg, #291427 25%, #080b12 100%);
 	background: -o-linear-gradient(315deg, #291427 25%, #080b12 100%);
 	background: linear-gradient(135deg, #291427 25%, #080b12 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#291427', endColorstr='#080b12',GradientType=1);
 	color: #fff;
 }
 
