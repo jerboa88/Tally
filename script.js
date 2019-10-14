@@ -1,79 +1,102 @@
 ;(function(){
 	let input = document.getElementById('input'),
 			sidebar = document.getElementsByClassName('sidebar')[0],
-			icon = document.getElementsByClassName('fa-gear')[0],
+			// icon = document.getElementsByClassName('fa-gear')[0],
 			savesettingsinput = document.getElementById('savesettings'),
 			savetextinput = document.getElementById('savetext'),
 			maxcharsinput = document.getElementById('maxchars'),
-			autotheme = document.getElementById('autotheme'),
-			blacktheme = document.getElementById('blacktheme'),
-			whitetheme = document.getElementById('whitetheme'),
-			tealtheme = document.getElementById('tealtheme'),
-			dusktheme = document.getElementById('dusktheme'),
-			deg = 0,
-			timesused = 0
+			// deg = 0,
+			timesused = 0,
 
-	const systemdarkscheme = matchMedia('(prefers-color-scheme: dark)'),
-				systemlightscheme = matchMedia('(prefers-color-scheme: light)'),
-				systemnundefinedscheme = matchMedia('(prefers-color-scheme: no-preference)')
+			safariicon = document.querySelector('link[rel=mask-icon]'),
+			msnavbutton = document.querySelector('meta[name=msapplication-navbutton-color]'),
+			mstile = document.querySelector('meta[name=msapplication-TileColor]'),
+			androidtheme = document.querySelector('meta[name=theme-color]'),
+			appletheme = document.querySelector('meta[name=apple-mobile-web-app-status-bar-style]'),
+
+			themes = {
+				auto: {
+					checkbox: document.getElementById('autotheme')
+				},
+				black: {
+					checkbox: document.getElementById('blacktheme'),
+					colors: ['#151515', '#222', '#202020', '#fff', 'rgba(0,0,0,.5)', 'rgba(255,255,255,.5)', 'black']
+				},
+				white: {
+					checkbox: document.getElementById('whitetheme'),
+					colors: ['#fff', '#eee', '#f4f4f4', '#000', 'none', 'rgba(0,0,0,.5)', 'default']
+				},
+				teal: {
+					checkbox: document.getElementById('tealtheme'),
+					colors: ['#317b71', '#44877e', '#3D837a', '#fff', 'rgba(0,0,0,.5)', 'rgba(194,67,63,.75)', 'default']
+				},
+				dusk: {
+					checkbox: document.getElementById('dusktheme'),
+					colors: ['#080b12', '#291427', '#291427', '#F4CAE0', 'none', 'rgba(8,11,18,.75)', 'black']
+				}
+			}
+
+	const system_color = {
+		dark: matchMedia('(prefers-color-scheme: dark)'),
+		light: matchMedia('(prefers-color-scheme: light)'),
+		none: matchMedia('(prefers-color-scheme: no-preference)')
+	}
 
 
-	savesettingsinput.addEventListener('change', savesettings)
-	savetextinput.addEventListener('change', savesettings)
-	maxcharsinput.addEventListener('change', savesettings)
+	savesettingsinput.addEventListener('change', SaveSettings)
+	savetextinput.addEventListener('change', SaveSettings)
+	maxcharsinput.addEventListener('change', SaveSettings)
+	system_color.dark.addEventListener('change', GetTheme)
+	system_color.light.addEventListener('change', GetTheme)
+	system_color.none.addEventListener('change', GetTheme)
 
-	autotheme.addEventListener('change', savesettings)
-	whitetheme.addEventListener('change', savesettings)
-	blacktheme.addEventListener('change', savesettings)
-	tealtheme.addEventListener('change', savesettings)
-	dusktheme.addEventListener('change', savesettings)
-
-	systemdarkscheme.addEventListener('change', gettheme)
-	systemlightscheme.addEventListener('change', gettheme)
+	for (let i in themes) {
+		themes[i].checkbox.addEventListener('change', SaveSettings)
+	}
 
 
-	function savesettings() {
-		setmaxchars()
-		theme = gettheme()
+	function SaveSettings() {
+		SetMaxChars()
+		theme = GetTheme()
 
 		if (savesettingsinput.checked) {
-			setcookie('savesettings', 1)
-			setcookie('savetext', savetextinput.checked ? 1 : 0)
-			setcookie('maxchars', maxcharsinput.checked ? 1 : 0)
-			setcookie('theme', theme)
+			SetCookie('savesettings', 1)
+			SetCookie('savetext', savetextinput.checked ? 1 : 0)
+			SetCookie('maxchars', maxcharsinput.checked ? 1 : 0)
+			SetCookie('theme', theme)
 		}
 
 		else {
-			clearcookies()
+			ClearCookies()
 		}
 	}
 
 
-	function loadsettings() {
-		savesettings = getcookie('savesettings')
+	function LoadSettings() {
+		savesettings = GetCookie('savesettings')
 
 		if (savesettings) {
 			savesettingsinput.checked = savesettings
-			savetextinput.checked = getcookie('savetext')
-			maxcharsinput.checked = getcookie('maxchars')
-			settheme(getcookie('theme'))
+			savetextinput.checked = GetCookie('savetext')
+			maxcharsinput.checked = GetCookie('maxchars')
+			SetTheme(GetCookie('theme'))
 		}
 
-		setmaxchars()
-		gettheme()
+		SetMaxChars()
+		GetTheme()
 	}
 
-	loadsettings()
+	LoadSettings()
 
 
-	function setcookie(name, value) {
+	function SetCookie(name, value) {
 		let d = new Date()
 		d.setTime(d.getTime() + 5184000) // 60 days
 		document.cookie = name + '=' + value + ';expires=' + d.toUTCString() + ';path=/'
 	}
 
 
-	function getcookie(name) {
+	function GetCookie(name) {
 		let patt = new RegExp(name + '=(\\w+)\;?')
 
 		if (document.cookie) {
@@ -81,17 +104,7 @@
 					newresult = false
 
 			if (result) {
-				if (result[1] == '1') {
-					newresult = true
-				}
-
-				else if (result[1] == '0') {
-					newresult = false
-				}
-
-				else {
-					newresult = result[1]
-				}
+				newresult = (result[1] == '1') ? true : (result[1] == '0') ? false : result[1]
 			}
 
 			return newresult
@@ -99,7 +112,7 @@
 	}
 
 
-	function clearcookies() {
+	function ClearCookies() {
 		let keys = ['savesettings', 'savetext', 'maxchars', 'theme']
 
 		for (let i = 0; i < keys.length; i++) {
@@ -108,155 +121,100 @@
 	}
 
 
-	function applyblacktheme() {
-		applytheme('#151515', '#222', '#202020', '#fff', 'rgba(0,0,0,.5)', 'rgba(255,255,255,.5)', 'black')
-	}
+	function GetTheme() {
+		for (i in themes) {
+			if (themes[i].checkbox.checked) {
+				if (i == 'auto') {
+					if (system_color.dark.matches) {
+						ApplyTheme(themes.black.colors)
 
-	function applywhitetheme() {
-		applytheme('#fff', '#eee', '#f4f4f4', '#000', 'none', 'rgba(0,0,0,.5)', 'default')
-	}
+						return 'auto'
+					}
 
+					else if (system_color.light.matches) {
+						ApplyTheme(themes.white.colors)
 
-	function gettheme() {
-		if (autotheme.checked) {
-			if (systemdarkscheme.matches) {
-				applyblacktheme()
+						return 'auto'
+					}
 
-				return 'auto'
-			}
+					else if (system_color.none.matches) {
+						const date = new Date(),
+									hour = d.getHours()
 
-			else if (systemlightscheme.matches) {
-				applywhitetheme()
+						ApplyTheme((hour < 8 || hour > 20) ? themes.black.colors : themes.white.colors)
 
-				return 'auto'
-			}
+						return 'auto'
+					}
 
-			else if (systemnundefinedscheme.matches) {
-				const date = new Date(),
-						hour = d.getHours()
+					else {
+						ApplyTheme(themes.white.colors)
 
-				if (hour < 8 || hour > 20) {
-					applyblacktheme()
+						return 'white'
+					}
 				}
 
 				else {
-					applywhitetheme()
+					ApplyTheme(themes[i].colors)
+
+					return i
 				}
-
-				return 'auto'
-			}
-
-			else {
-				applywhitetheme()
-
-				return 'white'
 			}
 		}
+	}
 
-		else if (blacktheme.checked) {
-			applyblacktheme()
 
-			return 'black'
+	// Input: bg, primary, focus, text, shadow, selection, ios
+	function ApplyTheme(colors) {
+		let color_types = ['--bg', '--primary', '--focus', '--text', '--shadow', '--selection']
+
+		for (let i = 0; i < color_types.length; i++) {
+			document.documentElement.style.setProperty(color_types[i], colors[i])
 		}
 
-		else if (whitetheme.checked) {
-			applywhitetheme()
+		safariicon.setAttribute('content', colors[0])
+		msnavbutton.setAttribute('content', colors[0])
+		mstile.setAttribute('content', colors[0])
+		androidtheme.setAttribute('content', colors[0])
+		appletheme.setAttribute('content', colors[6])
+	}
 
-			return 'white'
-		}
 
-		else if (tealtheme.checked) {
-			applytheme('#317b71', '#44877e', '#3D837a', '#fff', 'rgba(0,0,0,.5)', 'rgba(194,67,63,.75)', 'default')
-
-			return 'teal'
-		}
-
-		else if (dusktheme.checked) {
-			applytheme('#080b12', '#291427', '#291427', '#F4CAE0', 'none', 'rgba(8,11,18,.75)', 'black')
-
-			return 'dusk'
+	function SetTheme(theme) {
+		for (i in themes) {
+			if (theme == i) {
+				themes[i].checkbox.checked = true
+				break
+			}
 		}
 	}
 
 
-	function applytheme(bg, primary, focus, text, shadow, selection, ios) {
-		let root = document.documentElement.style,
-				safariicon = document.querySelector('link[rel=mask-icon]'),
-				msnavbutton = document.querySelector('meta[name=msapplication-navbutton-color]'),
-				mstile = document.querySelector('meta[name=msapplication-TileColor]'),
-				androidtheme = document.querySelector('meta[name=theme-color]'),
-				appletheme = document.querySelector('meta[name=apple-mobile-web-app-status-bar-style]')
-
-		root.setProperty('--bg', bg)
-		root.setProperty('--primary', primary)
-		root.setProperty('--focus', focus)
-		root.setProperty('--text', text)
-		root.setProperty('--shadow', shadow)
-		root.setProperty('--selection', selection)
-
-		safariicon.setAttribute('content', bg)
-		msnavbutton.setAttribute('content', bg)
-		mstile.setAttribute('content', bg)
-		androidtheme.setAttribute('content', bg)
-		appletheme.setAttribute('content', ios)
-	}
-
-
-	function settheme(theme) {
-		if (theme == 'auto') {
-			autotheme.checked = true
-		}
-
-		else if (theme == 'black') {
-			blacktheme.checked = true
-		}
-
-		else if (theme == 'white') {
-			whitetheme.checked = true
-		}
-
-		else if (theme == 'teal') {
-			tealtheme.checked = true
-		}
-
-		else if (theme == 'dusk') {
-			dusktheme.checked = true
-		}
-	}
-
-
-	function setmaxchars() {
-		if (maxcharsinput.checked) {
-			input.removeAttribute('maxlength')
-		}
-
-		else {
-			input.maxLength = 1000000
-		}
+	function SetMaxChars() {
+		(maxcharsinput.checked) ? input.removeAttribute('maxlength') : input.maxLength = 1000000
 	}
 
 
 
-	input.addEventListener('input', count)
-	document.getElementById('settings').addEventListener('click', opensidebar)
-	document.getElementsByClassName('container')[0].addEventListener('click', closesidebar)
+	input.addEventListener('input', Count)
+	document.getElementById('settings').addEventListener('click', OpenSidebar)
+	document.getElementsByClassName('container')[0].addEventListener('click', CloseSidebar)
 
 
-	function opensidebar() {
+	function OpenSidebar() {
 		sidebar.classList.toggle('open')
 		document.body.classList.toggle('freezebody')
-		deg += 180
-		icon.style.transform = 'rotate(' + deg + 'deg)'
+		// deg += 180
+		// icon.style.transform = 'rotate(' + deg + 'deg)'
 	}
 
 
-	function closesidebar() {
+	function CloseSidebar() {
 		sidebar.classList.remove('open')
 		document.body.classList.remove('freezebody')
 	}
 
 
-	function count() {
+	function Count() {
 		const text = input.value,
 					len = text.length
 
@@ -274,7 +232,7 @@
 					specialcharacters: 0
 				}
 
-		for (var i = 0; i < len; i++) {
+		for (let i = 0; i < len; i++) {
 			current = text[i]
 			count.characters++
 
@@ -346,7 +304,7 @@
 			count.paragraphs++
 		}
 
-		for (var key in count) {
+		for (let key in count) {
 			document.getElementById(key).innerHTML = count[key] || '-'
 		}
 
@@ -357,5 +315,5 @@
 		timesused++
 	}
 
-	count()
+	Count()
 })();
