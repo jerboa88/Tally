@@ -5,7 +5,7 @@
 
 
 Your favorite character counter, with a dark mode! Count the number of words, sentences, and paragraphs in your text instantly.
-[https://tallywordcounter.online/](https://tallywordcounter.online/)
+[https://tally.johng.io](https://tally.johng.io)
 
 Check out the Tally Chrome Extension [here](https://github.com/jerboa88/Tally-Extension)
 
