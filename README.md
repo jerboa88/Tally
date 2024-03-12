@@ -16,6 +16,9 @@
     <a href="LICENSE">
       <img src="https://img.shields.io/github/license/jerboa88/Tally.svg" alt="Project license" title="Project license"/>
     </a>
+    <a href="https://tally.johng.io" title="Project URL">
+			<img src="https://img.shields.io/website?url=https%3A%2F%2Ftally.johng.io&up_message=tally.johng.io%20%E2%86%97" alt="Project URL" title="Project URL">
+		</a>
   </p>
   
   <p class="projectDesc">
