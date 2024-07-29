@@ -21,7 +21,7 @@
 		</a>
   </p>
   
-  <p class="projectDesc">
+  <p class="projectDesc" data-exposition="An online character counter, created in order to get more familiar with using CSS grid layouts, text parsing, and cookie handling in JavaScript. I have since ported the site to a Chrome extension that over 200 users.">
     Your favorite character counter, now with a dark mode! Count the number of words, sentences, and paragraphs in your text instantly.<br/><br/>
       Also check out the Tally Chrome Extension <a href="https://github.com/jerboa88/Tally-Extension">here</a>
   </p>
