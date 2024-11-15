@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 :root {
 	--bg: #151515;
 	--primary: #222;
@@ -18,8 +25,6 @@
 @media (prefers-color-scheme: dark), (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
 	label[for='autotheme'] {
 		background: #333;
-		background: -webkit-linear-gradient(-45deg, #fff 0%, #151515 100%);
-		background: -webkit-linear-gradient(315deg, #fff 0%, #151515 100%);
 		background: -o-linear-gradient(315deg, #fff 0%, #151515 100%);
 		background: linear-gradient(135deg, #fff 0%, #151515 100%);
 		color: #fff;
@@ -45,8 +50,7 @@ textarea::-webkit-scrollbar {
 }
 
 textarea::-webkit-scrollbar-thumb {
-	-webkit-border-radius: 1em;
-					border-radius: 1em;
+	border-radius: 1em;
 	background-color: var(--text);
 	-webkit-box-shadow: .05em .05em .1em rgba(0,0,0,.5);
 	box-shadow: .05em .05em .1em rgba(0,0,0,.5);
@@ -70,16 +74,13 @@ body {
 	font-size: 1.5em;
 	display: -webkit-box;
 	display: -ms-flexbox;
-	display: -webkit-flex;
 	display: flex;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
-	-webkit-flex-direction: column;
 			-ms-flex-direction: column;
 					flex-direction: column;
 	-webkit-box-pack: center;
 	-ms-flex-pack: center;
-	-webkit-justify-content: space-around;
 					justify-content: space-around;
 	cursor: default;
 	overflow: hidden;
@@ -106,11 +107,9 @@ p {
 header, footer {
 	display: -webkit-box;
 	display: -ms-flexbox;
-	display: -webkit-flex;
 	display: flex;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
-	-webkit-flex-direction: column;
 			-ms-flex-direction: column;
 					flex-direction: column;
 	font-size: var(--textsize);
@@ -123,20 +122,16 @@ header {
 footer {
 	display: -webkit-box;
 	display: -ms-flexbox;
-	display: -webkit-flex;
 	display: flex;
 	-webkit-box-orient: horizontal;
 	-webkit-box-direction: normal;
-	-webkit-flex-direction: row;
 			-ms-flex-direction: row;
 					flex-direction: row;
 	-webkit-box-pack: justify;
 			-ms-flex-pack: justify;
-	-webkit-justify-content: space-between;
 					justify-content: space-between;
 	-webkit-box-align: center;
 			-ms-flex-align: center;
-	-webkit-align-items: center;
 					align-items: center;
 	margin-top: var(--hmargin);
 	background: var(--primary);
@@ -144,7 +139,6 @@ footer {
 
 footer > * {
 	-webkit-box-flex: .4;
-	-webkit-flex: .4;
 			-ms-flex: .4;
 					flex: .4;
 }
@@ -164,23 +158,18 @@ footer:first-child {
 .social {
 	display: -webkit-box;
 	display: -ms-flexbox;
-	display: -webkit-flex;
 	display: flex;
 	-webkit-box-orient: horizontal;
 	-webkit-box-direction: normal;
-	-webkit-flex-direction: row;
 			-ms-flex-direction: row;
 					flex-direction: row;
 	-webkit-box-pack: space-evenly;
 			-ms-flex-pack: space-evenly;
-	-webkit-justify-content: space-evenly;
 					justify-content: space-evenly;
 	-webkit-box-align: center;
 			-ms-flex-align: center;
-	-webkit-align-items: center;
 					align-items: center;
 	-webkit-box-flex: .2;
-	-webkit-flex: .2;
 			-ms-flex: .2;
 					flex: .2;
 }
@@ -222,13 +211,11 @@ textarea {
 	min-height: 15em;
 	margin: var(--hmargin) var(--vmargin);
 	-webkit-box-flex: 1;
-	-webkit-flex: 1;
 			-ms-flex: 1;
 					flex: 1;
 	border: none;
 	outline: none;
-	-webkit-border-radius: var(--roundness);
-					border-radius: var(--roundness);
+	border-radius: var(--roundness);
 	padding: 1.5em;
 	background: var(--primary);
 	color: var(--text);
@@ -256,8 +243,7 @@ textarea:focus {
 	gap: .5em;
 	background: var(--primary);
 	color: var(--text);
-	-webkit-border-radius: var(--roundness);
-					border-radius: var(--roundness);
+	border-radius: var(--roundness);
 	-webkit-box-shadow: .05em .05em .1em var(--bg);
 	box-shadow: .05em .05em .1em var(--bg);
 }
@@ -300,16 +286,13 @@ i {
 .sidebar {
 	display: -webkit-box;
 	display: -ms-flexbox;
-	display: -webkit-flex;
 	display: flex;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
-	-webkit-flex-direction: column;
 			-ms-flex-direction: column;
 					flex-direction: column;
 	-webkit-box-pack: space-between;
 			-ms-flex-pack: space-between;
-	-webkit-justify-content: space-between;
 					justify-content: space-between;
 	position: fixed;
 	background: var(--primary);
@@ -362,12 +345,10 @@ input[type=checkbox], input[type=radio] {
 
 .themes {
 	display: -webkit-box;
-	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
-	-webkit-justify-content: space-around;
-			-ms-flex-pack: distribute;
-					justify-content: space-around;
+	-ms-flex-pack: distribute;
+			justify-content: space-around;
 }
 
 .themes > p {
@@ -396,8 +377,6 @@ label[for='tealtheme'] {
 
 label[for='dusktheme'] {
 	background: #291427;
-	background: -webkit-linear-gradient(-45deg, #291427 25%, #080b12 100%);
-	background: -webkit-linear-gradient(315deg, #291427 25%, #080b12 100%);
 	background: -o-linear-gradient(315deg, #291427 25%, #080b12 100%);
 	background: linear-gradient(135deg, #291427 25%, #080b12 100%);
 	color: #fff;
