@@ -5,7 +5,8 @@
 	"main": "src/scripts/index.js",
 	"scripts": {
 		"start": "rna serve src --port 3000",
-		"build": "rna build src/index.html --output public --bundle --minify"
+		"build": "npm run clean && rna build src/index.html --output public --bundle --minify",
+		"clean": "rimraf public"
 	},
 	"keywords": [
 		"word counter",
@@ -21,6 +22,7 @@
 	"devDependencies": {
 		"@chialab/esbuild-plugin-html": "^0.18.2",
 		"@chialab/rna": "^0.18.0",
-		"htmlnano": "^2.1.1"
+		"htmlnano": "^2.1.1",
+		"rimraf": "^6.0.1"
 	}
 }
