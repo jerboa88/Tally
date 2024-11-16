@@ -9,6 +9,16 @@ import { getCounts } from "./counter.js";
 	const elementSaveSettingsInput = document.getElementById("savesettings");
 	const elementSaveTextInput = document.getElementById("savetext");
 	const elementMaxCharsInput = document.getElementById("maxchars");
+	const elementOutput = {
+		characters: document.getElementById("characters"),
+		words: document.getElementById("words"),
+		sentences: document.getElementById("sentences"),
+		paragraphs: document.getElementById("paragraphs"),
+		spaces: document.getElementById("spaces"),
+		letters: document.getElementById("letters"),
+		digits: document.getElementById("digits"),
+		specialCharacters: document.getElementById("specialCharacters"),
+	};
 	// deg = 0,
 	const metaTagSafariIconColor = document.querySelector("link[rel=mask-icon]");
 	const metaTagMsNavButtonColor = document.querySelector(
@@ -205,7 +215,7 @@ import { getCounts } from "./counter.js";
 		}
 	}
 
-	const throttledUpdateCounts = debounce(updateCounts, 100);
+	const throttledUpdateCounts = debounce(updateCounts);
 
 	elementInput.addEventListener("input", throttledUpdateCounts);
 	document.getElementById("settings").addEventListener("click", openSidebar);
@@ -229,7 +239,7 @@ import { getCounts } from "./counter.js";
 		const countObj = await getCounts(elementInput.value);
 
 		for (const key in countObj) {
-			document.getElementById(key).innerHTML = countObj[key] || "-";
+			elementOutput[key].innerHTML = countObj[key] || "-";
 		}
 	}
 
