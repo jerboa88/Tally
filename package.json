@@ -1,0 +1,26 @@
+{
+	"name": "tally",
+	"version": "3.0.0",
+	"description": "Your favorite character counter, now with a dark mode! Count the number of words, sentences, and paragraphs in your text instantly.",
+	"main": "src/scripts/index.js",
+	"scripts": {
+		"start": "rna serve src --port 3000",
+		"build": "rna build src/index.html --output public --bundle --minify"
+	},
+	"keywords": [
+		"word counter",
+		"character counter",
+		"sentence counter",
+		"paragraph counter",
+		"text analyzer",
+		"text statistics"
+	],
+	"author": "John Goodliff (https://johng.io)",
+	"license": "MIT",
+	"type": "module",
+	"devDependencies": {
+		"@chialab/esbuild-plugin-html": "^0.18.2",
+		"@chialab/rna": "^0.18.0",
+		"htmlnano": "^2.1.1"
+	}
+}
