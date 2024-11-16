@@ -202,6 +202,12 @@ a:visited {
 	color: var(--text);
 }
 
+svg {
+	width: 24px;
+	height: 24px;
+	fill: var(--text);
+}
+
 strong {
 	font-weight: inherit;
 	border-bottom: 1px solid var(--text);
@@ -269,18 +275,18 @@ output {
 	right: 0;
 }
 
-i {
-	display: inline-block;
-	font-size: 1.5rem;
-}
-
-.fa-gear {
-	padding: .5em;
+#settings > svg {
+	padding: 1.5em;
 	-webkit-transition: -webkit-transform .5s;
 			-o-transition: transform .5s;
 					transition: -webkit-transform .5s;
 					transition: transform .5s;
 					transition: transform .5s, -webkit-transform .5s;
+}
+
+i {
+	display: inline-block;
+	font-size: 1.5rem;
 }
 
 .sidebar {
@@ -410,52 +416,4 @@ input[type='radio']:active ~ label {
 input[type='radio']:checked ~ label {
 	opacity: 1;
 	border: 1px solid;
-}
-
-
-
-/* IcoMoon icon font styles */
-@font-face {
-	font-family: 'icomoon';
-	src:
-		url('../fonts/icomoon.ttf?gps37i') format('truetype'),
-		url('../fonts/icomoon.woff?gps37i') format('woff'),
-		url('../fonts/icomoon.svg?gps37i#icomoon') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
-
-i {
-	/* use !important to prevent issues with browser extensions that change fonts */
-	font-family: 'icomoon' !important;
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-
-	/* Better Font Rendering =========== */
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-.fa-arrow-down:before {
-	content: '\e904';
-	font-size: 1rem;
-}
-.fa-envelope-square:before {
-	content: '\e903';
-}
-.fa-facebook-square:before {
-	content: '\e900';
-}
-.fa-twitter-square:before {
-	content: '\e901';
-}
-.fa-cog:before {
-	content: '\e902';
-}
-.fa-gear:before {
-	content: '\e902';
 }
