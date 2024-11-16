@@ -8,30 +8,6 @@
 	<meta name="description" content="Your favorite character counter, with a dark mode! Count the number of words, sentences, and paragraphs in your text instantly.">
 	<meta name="author" content="John Goodliff">
 
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136445575-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() { dataLayer.push(arguments); }
-		gtag('js', new Date());
-
-		gtag('config', 'UA-136445575-1');
-		gtag('config', 'AW-989465829');
-
-		function gtag_report_conversion(url) {
-			var callback = function () {
-				if (typeof (url) != 'undefined') {
-					window.location = url;
-				}
-			};
-			gtag('event', 'conversion', {
-				'send_to': 'AW-989465829/cMDMCN6e6pgBEOWZ6NcD',
-				'event_callback': callback
-			});
-			return false;
-		}
-	</script>
-
 	<script type="application/ld+json">
 		{
 			"@context": "http://schema.org",
