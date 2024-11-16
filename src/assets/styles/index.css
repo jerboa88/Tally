@@ -418,9 +418,9 @@ input[type='radio']:checked ~ label {
 @font-face {
 	font-family: 'icomoon';
 	src:
-		url('fonts/icomoon.ttf?gps37i') format('truetype'),
-		url('fonts/icomoon.woff?gps37i') format('woff'),
-		url('fonts/icomoon.svg?gps37i#icomoon') format('svg');
+		url('../fonts/icomoon.ttf?gps37i') format('truetype'),
+		url('../fonts/icomoon.woff?gps37i') format('woff'),
+		url('../fonts/icomoon.svg?gps37i#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
