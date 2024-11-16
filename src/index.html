@@ -66,7 +66,14 @@
 		<p>
 			Please note that although this calculator was designed to be as accurate as possible, it may not be perfect. No promises!
 		</p>
-		<p class="sharelabel"><b>Share</b><br><i class="fas fa-arrow-down"></i></p>
+		<p class="sharelabel">
+			<b>Share</b>
+			<br>
+			<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+				<path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
+			</svg>
+		</p>
 		<footer>
 			<a href="https://github.com/jerboa88/Tally"><b>GitHub</b></a>
 			<div class="social">
@@ -102,54 +109,61 @@
 	</a>
 	<div class="sidebar">
 		<h3>Options</h3>
-		<strong>Input</strong>
 		<section>
-			<input type="checkbox" id="savesettings">
-			<label for="savesettings">Remember settings</label><br>
-			<input type="checkbox" id="savetext" disabled>
-			<label for="savetext">Remember text from last time</label><br>
-			<input type="checkbox" id="maxchars">
-			<label for="maxchars">Allow more than 1,000,000 characters</label>
+			<strong>Input</strong>
+			<div>
+				<input type="checkbox" id="savesettings">
+				<label for="savesettings">Remember settings</label><br>
+				<input type="checkbox" id="savetext" disabled>
+				<label for="savetext">Remember text from last time</label><br>
+				<input type="checkbox" id="maxchars">
+				<label for="maxchars">Allow more than 1,000,000 characters</label>
+			</div>
 		</section>
-		<strong>Theme</strong>
-		<section class="themes">
+		<section>
+			<strong>Theme</strong>
+			<div class="themes">
+				<p>
+					<input type="radio" name="theme" id="autotheme" value="Auto" checked>
+					<label for="autotheme">Auto</label>
+				</p>
+				<p>
+					<input type="radio" name="theme" id="blacktheme" value="Black" checked>
+					<label for="blacktheme">Black</label>
+				</p>
+				<p>
+					<input type="radio" name="theme" id="whitetheme" value="White">
+					<label for="whitetheme">White</label>
+				</p>
+				<p>
+					<input type="radio" name="theme" id="tealtheme" value="Teal">
+					<label for="tealtheme">Teal</label>
+				</p>
+				<p>
+					<input type="radio" name="theme" id="dusktheme" value="Dusk">
+					<label for="dusktheme">Dusk</label>
+				</p>
+			</div>
+		</section>
+		<section>
+			<strong>Info</strong>
 			<p>
-				<input type="radio" name="theme" id="autotheme" value="Auto" checked>
-				<label for="autotheme">Auto</label>
+				Thanks for using the site! This project is licensed under the <a href="https://github.com/jerboa88/Tally/blob/gh-pages/LICENSE" rel="license"><strong>MIT license</strong></a>.
 			</p>
+
 			<p>
-				<input type="radio" name="theme" id="blacktheme" value="Black" checked>
-				<label for="blacktheme">Black</label>
-			</p>
-			<p>
-				<input type="radio" name="theme" id="whitetheme" value="White">
-				<label for="whitetheme">White</label>
-			</p>
-			<p>
-				<input type="radio" name="theme" id="tealtheme" value="Teal">
-				<label for="tealtheme">Teal</label>
-			</p>
-			<p>
-				<input type="radio" name="theme" id="dusktheme" value="Dusk">
-				<label for="dusktheme">Dusk</label>
+				Icons were provided by <a href="https://fontawesome.com" rel="link"><strong>Font Awesome</strong></a> under the <a href="https://fontawesome.com/license/free" rel="link">CC BY 4.0 License</a>.
 			</p>
 		</section>
-		<strong>Info</strong>
-		<p>
-			Thanks for using the site! This project is licensed under the <a href="https://github.com/jerboa88/Tally/blob/gh-pages/LICENSE" rel="license"><strong>MIT license</strong></a>.
-		</p>
-
-		<p>
-			Icons were provided by <a href="https://fontawesome.com" rel="link"><strong>Font Awesome</strong></a> under the <a href="https://fontawesome.com/license/free" rel="link">CC BY 4.0 License</a>.
-		</p>
-
-		<strong>Extension</strong>
-		<p>
-			A Chrome extension is also available for even easier counting. Simply select any text, right click, and click count.
-		</p>
-		<a href="https://chrome.google.com/webstore/detail/tally-word-counter/eggkmbghbmjmbdjloifaklghfiecjbnk" target="_blank" class="badge">
-			<img src="./assets/images/webstorebadge.png" alt="Tally on the Chrome Web Store">
-		</a>
+		<section>
+			<strong>Extension</strong>
+			<p>
+				A Chrome extension is also available for even easier counting. Simply select any text, right click, and click count.
+			</p>
+			<a href="https://chrome.google.com/webstore/detail/tally-word-counter/eggkmbghbmjmbdjloifaklghfiecjbnk" target="_blank" class="badge">
+				<img src="./assets/images/webstorebadge.png" alt="Tally on the Chrome Web Store">
+			</a>
+		</section>
 		<section class="padding"></section>
 	</div>
 

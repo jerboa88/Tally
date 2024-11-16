@@ -297,9 +297,9 @@ i {
 	-webkit-box-direction: normal;
 			-ms-flex-direction: column;
 					flex-direction: column;
-	-webkit-box-pack: space-between;
-			-ms-flex-pack: space-between;
-					justify-content: space-between;
+					-webkit-box-pack: start;
+					    -ms-flex-pack: start;
+					        justify-content: start;
 	position: fixed;
 	background: var(--primary);
 	width: var(--sidebarwidth);
@@ -307,6 +307,7 @@ i {
 	top: 0;
 	right: calc(0em - var(--sidebarwidth) - 2 * var(--sidebarpadding));
 	padding: var(--sidebarpadding);
+	gap: 4em;
 	color: var(--text);
 	font-family: 'Open Sans', 'Calibri', 'Trebuchet MS', sans-serif;
 	font-weight: lighter;
@@ -314,6 +315,21 @@ i {
 	-webkit-transition: right .4s;
 	-o-transition: right .4s;
 	transition: right .4s;
+}
+
+.sidebar > section {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	gap: 1em;
+}
+
+.sidebar p {
+	margin: 0;
 }
 
 .open {
@@ -341,9 +357,6 @@ input[type=checkbox], input[type=radio] {
 	height: 4%;
 }
 
-.sidebar > p {
-	margin-top: 0;
-}
 
 .badge {
 	text-align: center;
