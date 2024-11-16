@@ -20,6 +20,10 @@
 	--numsize: .9em;
 	--sidebarwidth: 20em;
 	--sidebarpadding: 1.5em;
+
+	--headerFont: 'Roboto Slab Variable', sans-serif;
+	--bodyFont: 'Roboto Flex Variable', 'Calibri', 'Trebuchet MS', sans-serif;
+	--bodyFontWeight: 300;
 }
 
 @media (prefers-color-scheme: dark), (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
@@ -59,6 +63,9 @@ textarea::-webkit-scrollbar-thumb {
 body {
 	margin: 0;
 	background: var(--bg);
+	color: var(--text);
+	font-family: var(--bodyFont);
+	font-weight: var(--bodyFontWeight);
 }
 
 .container {
@@ -66,11 +73,7 @@ body {
 }
 
 .container {
-	background: var(--bg);
-	color: var(--text);
 	text-align: center;
-	font-family: 'Open Sans', 'Calibri', 'Trebuchet MS', sans-serif;
-	font-weight: lighter;
 	font-size: 1.5em;
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -87,7 +90,7 @@ body {
 }
 
 h1 {
-	font-family: 'Roboto Slab';
+	font-family: var(--headerFont);
 	font-size: 4em;
 	text-shadow: .05em .05em .1em var(--shadow);
 	margin: 0;
@@ -228,9 +231,9 @@ textarea {
 	-webkit-box-shadow: .05em .05em .1em var(--bg) inset;
 	box-shadow: .05em .05em .1em var(--bg) inset;
 	font-size: .7em;
-	font-family: 'Open Sans', 'Calibri', 'Trebuchet MS', sans-serif;
-	font-weight: lighter;
 	resize: none;
+	font-family: var(--bodyFont);
+	font-weight: var(--bodyFontWeight);
 }
 
 textarea:focus {
@@ -257,10 +260,11 @@ textarea:focus {
 h5 {
 	margin: 0;
 	font-size: var(--textsize);
-	font-weight: lighter;
+	font-weight: var(--bodyFontWeight);
 }
 
 output {
+	font-family: var(--headerFont);
 	font-size: var(--numsize);
 	font-weight: bold;
 }
@@ -309,8 +313,6 @@ i {
 	padding: var(--sidebarpadding);
 	gap: 4em;
 	color: var(--text);
-	font-family: 'Open Sans', 'Calibri', 'Trebuchet MS', sans-serif;
-	font-weight: lighter;
 	font-size: 1em;
 	-webkit-transition: right .4s;
 	-o-transition: right .4s;

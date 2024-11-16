@@ -22,6 +22,8 @@
 	"devDependencies": {
 		"@chialab/esbuild-plugin-html": "^0.18.2",
 		"@chialab/rna": "^0.18.0",
+		"@fontsource-variable/roboto-flex": "^5.1.0",
+		"@fontsource-variable/roboto-slab": "^5.1.0",
 		"htmlnano": "^2.1.1",
 		"rimraf": "^6.0.1"
 	}

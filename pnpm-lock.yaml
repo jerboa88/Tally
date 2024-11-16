@@ -14,6 +14,12 @@ importers:
       '@chialab/rna':
         specifier: ^0.18.0
         version: 0.18.0(@chialab/rna-bundler@0.18.1(htmlnano@2.1.1))
+      '@fontsource-variable/roboto-flex':
+        specifier: ^5.1.0
+        version: 5.1.0
+      '@fontsource-variable/roboto-slab':
+        specifier: ^5.1.0
+        version: 5.1.0
       htmlnano:
         specifier: ^2.1.1
         version: 2.1.1
@@ -249,6 +255,12 @@ packages:
     engines: {node: '>=12'}
     cpu: [x64]
     os: [win32]
+
+  '@fontsource-variable/roboto-flex@5.1.0':
+    resolution: {integrity: sha512-TwH8+uOwBqIjxtvTc+kp7ywyH7V7bDLbAXrEQg2SoCTJ6m2pn00x7ULioTTzDEvek+XpbqIf8gbKE1zlcONNGg==}
+
+  '@fontsource-variable/roboto-slab@5.1.0':
+    resolution: {integrity: sha512-yDXymBKjK3CPrtaS8WbT9kOIWeSl3N5xaW8odaXOPZk9vhbWe/fO9e4VUG8T7ZYRR+RoRtwNWZ7gE4a5lqEIIQ==}
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -687,6 +699,10 @@ snapshots:
 
   '@esbuild/win32-x64@0.19.12':
     optional: true
+
+  '@fontsource-variable/roboto-flex@5.1.0': {}
+
+  '@fontsource-variable/roboto-slab@5.1.0': {}
 
   '@isaacs/cliui@8.0.2':
     dependencies:

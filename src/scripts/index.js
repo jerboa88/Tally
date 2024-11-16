@@ -1,3 +1,5 @@
+import "@fontsource-variable/roboto-slab";
+import "@fontsource-variable/roboto-flex";
 import { getCookie, setCookie, clearCookies } from "./cookies.js";
 import { debounce } from "./utils.js";
 import { getCounts } from "./counter.js";
