@@ -18,7 +18,7 @@
 			<img src="https://img.shields.io/website?url=https%3A%2F%2Ftally.johng.io&up_message=tally.johng.io%20%E2%86%97" alt="Project URL" title="Project URL">
 		</a>
 	</p>
-	<p class="projectDesc" data-exposition="An online character counter, created in order to get more familiar with using CSS grid layouts, text parsing, and cookie handling in JavaScript. I have since ported the site to a Chrome extension that over 200 users.">
+	<p class="projectDesc">
 		Your favorite character counter, now with a dark mode! Count the number of words, sentences, and paragraphs in your text instantly.<br/><br/>
 		Also check out the Tally Chrome Extension <a href="https://github.com/jerboa88/Tally-Extension">here</a>
 	</p>
