@@ -15,9 +15,9 @@ export function getCookie(name) {
 		let newResult = false;
 
 		if (result) {
-			if (result[1] === "1") {
+			if (result[1] === '1') {
 				newResult = true;
-			} else if (result[1] === "0") {
+			} else if (result[1] === '0') {
 				newResult = false;
 			} else {
 				newResult = result[1];
@@ -29,7 +29,7 @@ export function getCookie(name) {
 }
 
 export function clearCookies() {
-	const keys = ["savesettings", "savetext", "maxchars", "theme"];
+	const keys = ['savesettings', 'savetext', 'maxchars', 'theme'];
 
 	for (let i = 0; i < keys.length; i++) {
 		document.cookie = `${keys[i]}=;expires=Tue, 01 Jan 2024 00:00:00 UTC`;
