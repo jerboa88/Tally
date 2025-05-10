@@ -6,7 +6,9 @@
 	"scripts": {
 		"start": "rna serve src --port 3000",
 		"build": "npm run clean && rna build src/index.html --output public --bundle --minify",
-		"clean": "rimraf public"
+		"clean": "rimraf public",
+		"lint": "biome lint .",
+		"format": "biome format . --fix"
 	},
 	"keywords": [
 		"word counter",
@@ -20,6 +22,7 @@
 	"license": "MIT",
 	"type": "module",
 	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
 		"@chialab/esbuild-plugin-html": "^0.18.2",
 		"@chialab/rna": "^0.18.0",
 		"@chialab/rna-dev-server": "^0.18.0",

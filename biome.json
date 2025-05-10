@@ -1,0 +1,12 @@
+{
+	"files": {
+		"ignore": [
+			"public"
+		]
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single"
+		}
+	}
+}
