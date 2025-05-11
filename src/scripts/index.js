@@ -19,7 +19,7 @@ import { getCounts } from "./counter.js";
 		spaces: document.getElementById("spaces"),
 		letters: document.getElementById("letters"),
 		digits: document.getElementById("digits"),
-		specialCharacters: document.getElementById("specialCharacters"),
+		symbols: document.getElementById("symbols"),
 	};
 	// deg = 0,
 	const metaTagSafariIconColor = document.querySelector("link[rel=mask-icon]");

@@ -10,8 +10,7 @@ let paragraphs = 0;
 let spaces = 0;
 let letters = 0;
 let digits = 0;
-// TODO: Rename to symbols
-let specialCharacters = 0;
+let symbols = 0;
 
 // TODO: Add line counting
 
@@ -28,7 +27,7 @@ function resetCounts() {
 	spaces = 0;
 	letters = 0;
 	digits = 0;
-	specialCharacters = 0;
+	symbols = 0;
 }
 
 function startParagraph() {
@@ -133,7 +132,7 @@ export async function getCounts(text) {
 		} else if (isNewline(currentCharacter)) {
 			endParagraph();
 		} else {
-			specialCharacters++;
+			symbols++;
 		}
 	}
 
@@ -151,6 +150,6 @@ export async function getCounts(text) {
 		spaces,
 		letters,
 		digits,
-		specialCharacters,
+		symbols,
 	};
 }
