@@ -11,11 +11,12 @@ import { getCounts } from './counter.js';
 	const elementSaveSettingsInput = document.getElementById('savesettings');
 	const elementSaveTextInput = document.getElementById('savetext');
 	const elementMaxCharsInput = document.getElementById('maxchars');
-	const elementOutput = {
+	const elementOutputs = {
 		characters: document.getElementById('characters'),
 		words: document.getElementById('words'),
 		sentences: document.getElementById('sentences'),
 		paragraphs: document.getElementById('paragraphs'),
+		lines: document.getElementById('lines'),
 		spaces: document.getElementById('spaces'),
 		letters: document.getElementById('letters'),
 		digits: document.getElementById('digits'),
@@ -241,7 +242,7 @@ import { getCounts } from './counter.js';
 		const countObj = await getCounts(elementInput.value);
 
 		for (const key in countObj) {
-			elementOutput[key].innerHTML = countObj[key] || '-';
+			elementOutputs[key].value = countObj[key] || '-';
 		}
 	}
 
