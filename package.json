@@ -2,11 +2,14 @@
 	"name": "tally",
 	"version": "3.0.0",
 	"description": "Your favorite character counter, now with a dark mode! Count the number of words, sentences, and paragraphs in your text instantly.",
-	"main": "src/scripts/index.js",
+	"source": "src/index.html",
+	"browserslist": "defaults",
 	"scripts": {
-		"start": "rna serve src --port 3000",
-		"build": "npm run clean && rna build src/index.html --output public --bundle --minify",
-		"clean": "rimraf public",
+		"start": "parcel",
+		"dev": "parcel",
+		"build": "parcel build",
+		"clean": "rimraf dist",
+		"test": "ava",
 		"lint": "biome lint .",
 		"format": "biome format . --fix"
 	},
@@ -23,13 +26,15 @@
 	"type": "module",
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"@chialab/esbuild-plugin-html": "^0.18.2",
-		"@chialab/rna": "^0.18.0",
-		"@chialab/rna-dev-server": "^0.18.0",
 		"@fontsource-variable/roboto-flex": "^5.1.0",
 		"@fontsource-variable/roboto-slab": "^5.1.0",
-		"htmlnano": "^2.1.1",
-		"rimraf": "^6.0.1"
+		"@parcel/packager-raw-url": "2.14.4",
+		"@parcel/transformer-jsonld": "2.14.4",
+		"@parcel/transformer-webmanifest": "2.14.4",
+		"parcel": "^2.14.4",
+		"rimraf": "^6.0.1",
+		"sharp": "^0.33.5",
+		"svgo": "^3.3.2"
 	},
 	"packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39"
 }
