@@ -189,12 +189,10 @@ textarea:focus {
 }
 
 .table {
-	display: -ms-grid;
-	display: grid;
-	-ms-grid-columns: auto auto auto auto;
-	grid-template-columns: auto auto auto auto;
-	-ms-grid-rows: auto auto;
-	grid-template-rows: auto auto;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
 	margin: var(--hmargin) var(--vmargin);
 	padding: 1.5em;
 	gap: .5em;
@@ -202,6 +200,13 @@ textarea:focus {
 	color: var(--text);
 	border-radius: var(--roundness);
 	box-shadow: .05em .05em .1em var(--bg);
+}
+
+.table > div {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	gap: .25em;
 }
 
 h5 {
