@@ -1,109 +1,109 @@
-import "@fontsource-variable/roboto-slab";
-import "@fontsource-variable/roboto-flex";
-import { getCookie, setCookie, clearCookies } from "./cookies.js";
-import { debounce } from "./utils.js";
-import { getCounts } from "./counter.js";
+import '@fontsource-variable/roboto-slab';
+import '@fontsource-variable/roboto-flex';
+import { getCookie, setCookie, clearCookies } from './cookies.js';
+import { debounce } from './utils.js';
+import { getCounts } from './counter.js';
 
 (() => {
-	const elementInput = document.getElementById("input");
-	const elementSidebar = document.getElementsByClassName("sidebar")[0];
+	const elementInput = document.getElementById('input');
+	const elementSidebar = document.getElementsByClassName('sidebar')[0];
 	// icon = document.getElementsByClassName('fa-gear')[0],
-	const elementSaveSettingsInput = document.getElementById("savesettings");
-	const elementSaveTextInput = document.getElementById("savetext");
-	const elementMaxCharsInput = document.getElementById("maxchars");
+	const elementSaveSettingsInput = document.getElementById('savesettings');
+	const elementSaveTextInput = document.getElementById('savetext');
+	const elementMaxCharsInput = document.getElementById('maxchars');
 	const elementOutput = {
-		characters: document.getElementById("characters"),
-		words: document.getElementById("words"),
-		sentences: document.getElementById("sentences"),
-		paragraphs: document.getElementById("paragraphs"),
-		spaces: document.getElementById("spaces"),
-		letters: document.getElementById("letters"),
-		digits: document.getElementById("digits"),
-		symbols: document.getElementById("symbols"),
+		characters: document.getElementById('characters'),
+		words: document.getElementById('words'),
+		sentences: document.getElementById('sentences'),
+		paragraphs: document.getElementById('paragraphs'),
+		spaces: document.getElementById('spaces'),
+		letters: document.getElementById('letters'),
+		digits: document.getElementById('digits'),
+		symbols: document.getElementById('symbols'),
 	};
 	// deg = 0,
-	const metaTagSafariIconColor = document.querySelector("link[rel=mask-icon]");
+	const metaTagSafariIconColor = document.querySelector('link[rel=mask-icon]');
 	const metaTagMsNavButtonColor = document.querySelector(
-		"meta[name=msapplication-navbutton-color]",
+		'meta[name=msapplication-navbutton-color]',
 	);
 	const metaTagMsTileColor = document.querySelector(
-		"meta[name=msapplication-TileColor]",
+		'meta[name=msapplication-TileColor]',
 	);
 	const metaTagAndroidThemeColor = document.querySelector(
-		"meta[name=theme-color]",
+		'meta[name=theme-color]',
 	);
 	const metaTagAppleThemeColor = document.querySelector(
-		"meta[name=apple-mobile-web-app-status-bar-style]",
+		'meta[name=apple-mobile-web-app-status-bar-style]',
 	);
 	const themes = {
 		auto: {
-			checkbox: document.getElementById("autotheme"),
+			checkbox: document.getElementById('autotheme'),
 		},
 		black: {
-			checkbox: document.getElementById("blacktheme"),
+			checkbox: document.getElementById('blacktheme'),
 			colors: [
-				"#151515",
-				"#222",
-				"#202020",
-				"#fff",
-				"rgba(0,0,0,.5)",
-				"rgba(255,255,255,.5)",
-				"black",
+				'#151515',
+				'#222',
+				'#202020',
+				'#fff',
+				'rgba(0,0,0,.5)',
+				'rgba(255,255,255,.5)',
+				'black',
 			],
 		},
 		white: {
-			checkbox: document.getElementById("whitetheme"),
+			checkbox: document.getElementById('whitetheme'),
 			colors: [
-				"#fff",
-				"#eee",
-				"#f4f4f4",
-				"#000",
-				"none",
-				"rgba(0,0,0,.5)",
-				"default",
+				'#fff',
+				'#eee',
+				'#f4f4f4',
+				'#000',
+				'none',
+				'rgba(0,0,0,.5)',
+				'default',
 			],
 		},
 		teal: {
-			checkbox: document.getElementById("tealtheme"),
+			checkbox: document.getElementById('tealtheme'),
 			colors: [
-				"#317b71",
-				"#44877e",
-				"#3D837a",
-				"#fff",
-				"rgba(0,0,0,.5)",
-				"rgba(194,67,63,.75)",
-				"default",
+				'#317b71',
+				'#44877e',
+				'#3D837a',
+				'#fff',
+				'rgba(0,0,0,.5)',
+				'rgba(194,67,63,.75)',
+				'default',
 			],
 		},
 		dusk: {
-			checkbox: document.getElementById("dusktheme"),
+			checkbox: document.getElementById('dusktheme'),
 			colors: [
-				"#080b12",
-				"#291427",
-				"#291427",
-				"#F4CAE0",
-				"none",
-				"rgba(8,11,18,.75)",
-				"black",
+				'#080b12',
+				'#291427',
+				'#291427',
+				'#F4CAE0',
+				'none',
+				'rgba(8,11,18,.75)',
+				'black',
 			],
 		},
 	};
 
 	const systemThemeColor = {
-		dark: matchMedia("(prefers-color-scheme: dark)"),
-		light: matchMedia("(prefers-color-scheme: light)"),
-		none: matchMedia("(prefers-color-scheme: no-preference)"),
+		dark: matchMedia('(prefers-color-scheme: dark)'),
+		light: matchMedia('(prefers-color-scheme: light)'),
+		none: matchMedia('(prefers-color-scheme: no-preference)'),
 	};
 
-	elementSaveSettingsInput.addEventListener("change", saveSettings);
-	elementSaveTextInput.addEventListener("change", saveSettings);
-	elementMaxCharsInput.addEventListener("change", saveSettings);
-	systemThemeColor.dark.addEventListener("change", getTheme);
-	systemThemeColor.light.addEventListener("change", getTheme);
-	systemThemeColor.none.addEventListener("change", getTheme);
+	elementSaveSettingsInput.addEventListener('change', saveSettings);
+	elementSaveTextInput.addEventListener('change', saveSettings);
+	elementMaxCharsInput.addEventListener('change', saveSettings);
+	systemThemeColor.dark.addEventListener('change', getTheme);
+	systemThemeColor.light.addEventListener('change', getTheme);
+	systemThemeColor.none.addEventListener('change', getTheme);
 
 	for (const theme in themes) {
-		themes[theme].checkbox.addEventListener("change", saveSettings);
+		themes[theme].checkbox.addEventListener('change', saveSettings);
 	}
 
 	function saveSettings() {
@@ -112,24 +112,24 @@ import { getCounts } from "./counter.js";
 		const theme = getTheme();
 
 		if (elementSaveSettingsInput.checked) {
-			setCookie("savesettings", 1);
-			setCookie("savetext", elementSaveTextInput.checked ? 1 : 0);
-			setCookie("maxchars", elementMaxCharsInput.checked ? 1 : 0);
-			setCookie("theme", theme);
+			setCookie('savesettings', 1);
+			setCookie('savetext', elementSaveTextInput.checked ? 1 : 0);
+			setCookie('maxchars', elementMaxCharsInput.checked ? 1 : 0);
+			setCookie('theme', theme);
 		} else {
 			clearCookies();
 		}
 	}
 
 	function loadSettings() {
-		const saveSettingsCookie = getCookie("savesettings");
+		const saveSettingsCookie = getCookie('savesettings');
 
 		if (saveSettingsCookie) {
 			elementSaveSettingsInput.checked = saveSettingsCookie;
-			elementSaveTextInput.checked = getCookie("savetext");
-			elementMaxCharsInput.checked = getCookie("maxchars");
+			elementSaveTextInput.checked = getCookie('savetext');
+			elementMaxCharsInput.checked = getCookie('maxchars');
 
-			setTheme(getCookie("theme"));
+			setTheme(getCookie('theme'));
 		}
 
 		setMaxChars();
@@ -141,17 +141,17 @@ import { getCounts } from "./counter.js";
 	function getTheme() {
 		for (const theme in themes) {
 			if (themes[theme].checkbox.checked) {
-				if (theme === "auto") {
+				if (theme === 'auto') {
 					if (systemThemeColor.dark.matches) {
 						applyTheme(themes.black.colors);
 
-						return "auto";
+						return 'auto';
 					}
 
 					if (systemThemeColor.light.matches) {
 						applyTheme(themes.white.colors);
 
-						return "auto";
+						return 'auto';
 					}
 
 					if (systemThemeColor.none.matches) {
@@ -163,12 +163,12 @@ import { getCounts } from "./counter.js";
 								: themes.white.colors,
 						);
 
-						return "auto";
+						return 'auto';
 					}
 
 					applyTheme(themes.white.colors);
 
-					return "white";
+					return 'white';
 				}
 
 				applyTheme(themes[theme].colors);
@@ -181,23 +181,23 @@ import { getCounts } from "./counter.js";
 	// Input: bg, primary, focus, text, shadow, selection, ios
 	function applyTheme(colors) {
 		const color_types = [
-			"--bg",
-			"--primary",
-			"--focus",
-			"--text",
-			"--shadow",
-			"--selection",
+			'--bg',
+			'--primary',
+			'--focus',
+			'--text',
+			'--shadow',
+			'--selection',
 		];
 
 		for (let i = 0; i < color_types.length; i++) {
 			document.documentElement.style.setProperty(color_types[i], colors[i]);
 		}
 
-		metaTagSafariIconColor.setAttribute("content", colors[0]);
-		metaTagMsNavButtonColor.setAttribute("content", colors[0]);
-		metaTagMsTileColor.setAttribute("content", colors[0]);
-		metaTagAndroidThemeColor.setAttribute("content", colors[0]);
-		metaTagAppleThemeColor.setAttribute("content", colors[6]);
+		metaTagSafariIconColor.setAttribute('content', colors[0]);
+		metaTagMsNavButtonColor.setAttribute('content', colors[0]);
+		metaTagMsTileColor.setAttribute('content', colors[0]);
+		metaTagAndroidThemeColor.setAttribute('content', colors[0]);
+		metaTagAppleThemeColor.setAttribute('content', colors[6]);
 	}
 
 	function setTheme(theme) {
@@ -213,35 +213,35 @@ import { getCounts } from "./counter.js";
 		if (elementMaxCharsInput.checked) {
 			elementInput.maxLength = 1000000;
 		} else {
-			elementInput.removeAttribute("maxlength");
+			elementInput.removeAttribute('maxlength');
 		}
 	}
 
 	const throttledUpdateCounts = debounce(updateCounts);
 
-	elementInput.addEventListener("input", throttledUpdateCounts);
-	document.getElementById("settings").addEventListener("click", openSidebar);
+	elementInput.addEventListener('input', throttledUpdateCounts);
+	document.getElementById('settings').addEventListener('click', openSidebar);
 	document
-		.getElementsByClassName("container")[0]
-		.addEventListener("click", closeSidebar);
+		.getElementsByClassName('container')[0]
+		.addEventListener('click', closeSidebar);
 
 	function openSidebar() {
-		elementSidebar.classList.toggle("open");
-		document.body.classList.toggle("freezebody");
+		elementSidebar.classList.toggle('open');
+		document.body.classList.toggle('freezebody');
 		// deg += 180
 		// icon.style.transform = 'rotate(' + deg + 'deg)'
 	}
 
 	function closeSidebar() {
-		elementSidebar.classList.remove("open");
-		document.body.classList.remove("freezebody");
+		elementSidebar.classList.remove('open');
+		document.body.classList.remove('freezebody');
 	}
 
 	async function updateCounts() {
 		const countObj = await getCounts(elementInput.value);
 
 		for (const key in countObj) {
-			elementOutput[key].innerHTML = countObj[key] || "-";
+			elementOutput[key].innerHTML = countObj[key] || '-';
 		}
 	}
 

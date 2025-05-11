@@ -82,20 +82,20 @@ function isLetter(character) {
 }
 
 function isSpace(character) {
-	return character === " ";
+	return character === ' ';
 }
 
 function isNewline(character) {
-	return character === "\n";
+	return character === '\n';
 }
 
 function isPeriod(character) {
-	return character === ".";
+	return character === '.';
 }
 
 function isSentenceEnd(character) {
 	// This is slightly faster than using `includes()` on a string, presumably because we don't need to perform case-sensitive comparisons
-	return ["?", "!"].includes(character);
+	return ['?', '!'].includes(character);
 }
 
 export async function getCounts(text) {

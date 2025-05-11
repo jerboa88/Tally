@@ -1,10 +1,13 @@
 {
 	"files": {
-		"ignore": [
-			"public"
-		]
+		"ignore": ["public"]
 	},
 	"javascript": {
+		"formatter": {
+			"quoteStyle": "single"
+		}
+	},
+	"css": {
 		"formatter": {
 			"quoteStyle": "single"
 		}

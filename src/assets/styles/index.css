@@ -3,8 +3,8 @@
 	--primary: #222;
 	--focus: #202020;
 	--text: #fff;
-	--shadow: rgba(0,0,0,.5);
-	--selection: rgba(0, 0, 0, .5);
+	--shadow: rgba(0, 0, 0, 0.5);
+	--selection: rgba(0, 0, 0, 0.5);
 
 	--hmargin: 1%;
 	--vmargin: 4%;
@@ -19,17 +19,12 @@
 	--bodyFontWeight: 300;
 }
 
-@media (prefers-color-scheme: dark), (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
+@media (prefers-color-scheme: dark), (prefers-color-scheme: light),
+	(prefers-color-scheme: no-preference) {
 	label[for='autotheme'] {
 		background: #333;
 		background: linear-gradient(135deg, #fff 0%, #151515 100%);
 		color: #fff;
-	}
-}
-
-@media not (prefers-color-scheme: dark) and not (prefers-color-scheme: light) and not (prefers-color-scheme: no-preference) {
- .themes > p:first-child {
-		display: none;
 	}
 }
 
@@ -48,7 +43,7 @@ textarea::-webkit-scrollbar {
 textarea::-webkit-scrollbar-thumb {
 	border-radius: 1em;
 	background-color: var(--text);
-	box-shadow: .05em .05em .1em rgba(0,0,0,.5);
+	box-shadow: .05em .05em .1em rgba(0, 0, 0, 0.5);
 }
 
 body {
@@ -82,7 +77,7 @@ h1 {
 
 h1:after {
 	content: 'v2';
-	font-size: .25em
+	font-size: .25em;
 }
 
 p {
@@ -91,7 +86,8 @@ p {
 	text-shadow: .04em .04em .07em var(--shadow);
 }
 
-header, footer {
+header,
+footer {
 	display: flex;
 	flex-direction: column;
 	font-size: var(--textsize);
@@ -111,7 +107,7 @@ footer {
 }
 
 footer > * {
-	flex: .4;
+	flex: 0.4;
 }
 
 footer:first-child {
@@ -131,7 +127,7 @@ footer:first-child {
 	flex-direction: row;
 	justify-content: space-evenly;
 	align-items: center;
-	flex: .2;
+	flex: 0.2;
 }
 
 .social > a:link {
@@ -145,11 +141,11 @@ footer > a:link {
 a:link {
 	color: var(--text);
 	text-decoration: none;
-	transition: .1s
+	transition: .1s;
 }
 
 a:hover {
-	opacity: .7;
+	opacity: 0.7;
 }
 
 a:active {
@@ -234,7 +230,7 @@ output {
 	padding: 1.5em;
 	transition: -webkit-transform .5s;
 	transition: transform .5s;
-					transition: transform .5s, -webkit-transform .5s;
+	transition: transform .5s, -webkit-transform .5s;
 }
 
 i {
@@ -245,7 +241,7 @@ i {
 .sidebar {
 	display: flex;
 	flex-direction: column;
-					justify-content: start;
+	justify-content: start;
 	position: fixed;
 	background: var(--primary);
 	width: var(--sidebarwidth);
@@ -284,7 +280,8 @@ h3 {
 	text-align: center;
 }
 
-input[type=checkbox], input[type=radio] {
+input[type='checkbox'],
+input[type='radio'] {
 	margin: 0 var(--vmargin);
 	vertical-align: middle;
 }
@@ -292,7 +289,6 @@ input[type=checkbox], input[type=radio] {
 .padding {
 	height: 4%;
 }
-
 
 .badge {
 	text-align: center;
@@ -334,12 +330,12 @@ label[for='dusktheme'] {
 }
 
 .themes > p > label {
-	border: 1px solid rgba(255,255,255,.15);
+	border: 1px solid rgba(255, 255, 255, 0.15);
 	display: block;
 	padding: 1em 0;
 	margin-top: -1em;
 	cursor: pointer;
-	opacity: .5;
+	opacity: 0.5;
 	transition: .1s;
 }
 
