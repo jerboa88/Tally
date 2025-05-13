@@ -186,12 +186,12 @@ import { getCounts } from './counter.js';
 	// Input: bg, primary, focus, text, shadow, selection, ios
 	function applyTheme(colors) {
 		const color_types = [
-			'--bg',
-			'--primary',
-			'--focus',
-			'--text',
-			'--shadow',
-			'--selection',
+			'--color-base-1',
+			'--color-base-2',
+			'--color-focus',
+			'--color-text',
+			'--color-shadow',
+			'--color-selection',
 		];
 
 		for (let i = 0; i < color_types.length; i++) {
