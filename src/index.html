@@ -33,70 +33,81 @@
 <body>
 	<div class="container">
 		<header>
-			<h1>Tally</h1>
+			<a href="/">
+				<h1>Tally</h1>
+			</a>
+			<p>
+				Your favorite character counter, now with a dark mode!
+			</p>
 		</header>
-		<p>
-			Your favorite character counter, now with a dark mode!<br><br>
+		<main>
+			<section>
+				<textarea id="input" spellcheck="false" maxlength="1000000" placeholder="The quick brown fox jumps over the lazy dog..." autofocus></textarea>
+				<form class="table counts">
+					<div>
+						<label for="characters">Characters</label>
+						<output id="characters" for="input">-</output>
+					</div>
+					<div>
+						<label for="words">Words</label>
+						<output id="words" for="input">-</output>
+					</div>
+					<div>
+						<label for="sentences">Sentences</label>
+						<output id="sentences" for="input">-</output>
+					</div>
+					<div>
+						<label for="paragraphs">Paragraphs</label>
+						<output id="paragraphs" for="input">-</output>
+					</div>
+					<div>
+						<label for="lines">Lines</label>
+						<output id="lines" for="input">-</output>
+					</div>
+				</form>
+				<form class="table stats">
+					<div>
+						<label for="spaces">Spaces</label>
+						<output id="spaces" for="input">-</output>
+					</div>
+					<div>
+						<label for="letters">Letters</label>
+						<output id="letters" for="input">-</output>
+					</div>
+					<div>
+						<label for="digits">Digits</label>
+						<output id="digits" for="input">-</output>
+					</div>
+					<div>
+						<label for="symbols">Symbols</label>
+						<output id="symbols" for="input">-</output>
+					</div>
+				</form>
+			</section>
+			<section>
+				<div>
+					<h2>About</h2>
+					<p>
+						Tally Word Counter is a free online tool to count the number of characters, words, paragraphs, and lines in your text. It can also show counts for different types of characters like letters, digits, spaces, and symbols/special characters. Make sure you have the required number of words for your essay or post by counting them instantly with Tally.
+					</p>
+					<br>
+					<p>
+						Note that this calculator was designed for use with English text. It may work for other languages, but I can't guarantee that the results will be accurate.
+					</p>
 
-			Tally Word Counter is a free online tool to count the number of characters, words, paragraphs, and lines in your text. Tally can also show counts for different types of characters like letters, digits, spaces, and symbols/special characters. Make sure you have the required number of words for your essay or post by counting them instantly with Tally.<br><br>
+					<h2>More</h2>
 
-			Tally has other themes available in the settings, so check them out if you want a different look. Please bookmark this page to use Tally whenever you need.
-		</p>
-		<textarea id="input" spellcheck="false" maxlength="1000000" placeholder="The quick brown fox jumps over the lazy dog..." autofocus></textarea>
-		<form class="table counts">
-			<div>
-				<label for="characters">Characters</label>
-				<output id="characters" for="input">-</output>
-			</div>
-			<div>
-				<label for="words">Words</label>
-				<output id="words" for="input">-</output>
-			</div>
-			<div>
-				<label for="sentences">Sentences</label>
-				<output id="sentences" for="input">-</output>
-			</div>
-			<div>
-				<label for="paragraphs">Paragraphs</label>
-				<output id="paragraphs" for="input">-</output>
-			</div>
-			<div>
-				<label for="lines">Lines</label>
-				<output id="lines" for="input">-</output>
-			</div>
-		</form>
-		<form class="table stats">
-			<div>
-				<label for="spaces">Spaces</label>
-				<output id="spaces" for="input">-</output>
-			</div>
-			<div>
-				<label for="letters">Letters</label>
-				<output id="letters" for="input">-</output>
-			</div>
-			<div>
-				<label for="digits">Digits</label>
-				<output id="digits" for="input">-</output>
-			</div>
-			<div>
-				<label for="symbols">Symbols</label>
-				<output id="symbols" for="input">-</output>
-			</div>
-		</form>
-		<p>
-			Note that this calculator was designed for use with English text. It may work for other languages, but I cannot guarantee that the results will be accurate.
-		</p>
-
-		<h2>More</h2>
-
-		<h3>Tally Extension</h3>
-		<p>
-			A Tally Chrome extension is also available for even easier counting. Simply select any text, right click, and click count.
-		</p>
-		<br>
-		<a href="https://chrome.google.com/webstore/detail/tally-word-counter/eggkmbghbmjmbdjloifaklghfiecjbnk" target="_blank">
-			<img src="./assets/images/web-store-badge.png" alt="Badge for Tally extension on the Chrome Web Store">
-		</a>
+					<h3>Tally Extension</h3>
+					<p>
+						A Tally Chrome extension is also available for even easier counting. Simply select any text, right click, and click count.
+					</p>
+					<br>
+					<a href="https://chrome.google.com/webstore/detail/tally-word-counter/eggkmbghbmjmbdjloifaklghfiecjbnk" target="_blank">
+						<img src="./assets/images/web-store-badge.png" alt="Badge for Tally extension on the Chrome Web Store">
+					</a>
+				</div>
+			</section>
+		</main>
 
 		<footer>
 			<div>
