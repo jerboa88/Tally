@@ -23,6 +23,7 @@
 	<link rel="apple-touch-icon" sizes="180x180" href="./assets/images/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon-16x16.png">
+
 	<link rel="mask-icon" href="./assets/images/safari-pinned-tab.svg" color="#151515">
 	<meta name="msapplication-navbutton-color" content="#151515">
 	<meta name="msapplication-TileColor" content="#151515">
@@ -31,219 +32,215 @@
 </head>
 
 <body>
-	<div class="container">
-		<header>
-			<a href="/">
-				<h1>Tally</h1>
-			</a>
+	<header class="indent">
+		<a href="/">
+			<h1>Tally</h1>
+		</a>
+		<p>Your favorite word counter, now with a dark mode!</p>
+	</header>
+	<main>
+		<section>
+			<textarea id="input" spellcheck="false" maxlength="1000000" placeholder="The quick brown cat jumps over the lazy dog..." autofocus></textarea>
+			<form class="table counts">
+				<div>
+					<label for="characters">Characters</label>
+					<output id="characters" for="input">-</output>
+				</div>
+				<div>
+					<label for="words">Words</label>
+					<output id="words" for="input">-</output>
+				</div>
+				<div>
+					<label for="sentences">Sentences</label>
+					<output id="sentences" for="input">-</output>
+				</div>
+				<div>
+					<label for="paragraphs">Paragraphs</label>
+					<output id="paragraphs" for="input">-</output>
+				</div>
+				<div>
+					<label for="lines">Lines</label>
+					<output id="lines" for="input">-</output>
+				</div>
+			</form>
+			<form class="table stats">
+				<div>
+					<label for="spaces">Spaces</label>
+					<output id="spaces" for="input">-</output>
+				</div>
+				<div>
+					<label for="letters">Letters</label>
+					<output id="letters" for="input">-</output>
+				</div>
+				<div>
+					<label for="digits">Digits</label>
+					<output id="digits" for="input">-</output>
+				</div>
+				<div>
+					<label for="symbols">Symbols</label>
+					<output id="symbols" for="input">-</output>
+				</div>
+			</form>
+		</section>
+		<section class="indent">
+			<div>
+				<h2>About</h2>
+				<aside>
+					<p class="alert note">
+						This calculator was designed for use with English text. It may work for other languages, but I can't guarantee that the results will be accurate. See the <a href="https://github.com/jerboa88/Tally/blob/main/README.md#specification">specification</a> for more details on how the calculator works.
+					</p>
+				</aside>
+				<br>
+				<p>
+					Tally Word Counter is a free online tool to count the number of characters, words, paragraphs, and lines in your text. It can also show counts for different types of characters like letters, digits, spaces, and symbols/special characters. Make sure you have the right number of words for your essay or post by counting them instantly with Tally.
+				</p>
+
+				<h3>Features</h3>
+				<ul>
+					<li>
+						<h4>🧮 View text metrics:</h4>
+						Count the number of characters, words, sentences, paragraphs, and lines in your text.
+					</li>
+					<li>
+						<h4>📊 View character composition:</h4>
+						View the number of spaces, digits, letters, and symbols/special characters in the input.
+					</li>
+					<li>
+						<h4>🚀 Real-time updates:</h4>
+						Optimized for speed, Tally updates the counts in real-time as you type.
+					</li>
+					<li>
+						<h4>🎨 Themes:</h4>
+						Save your eyes with the built-in dark mode, or try one of the other <a href="#themes">included themes</a>.
+					</li>
+					<li>
+						<h4>🆓 100% Free & Ad-Free:</h4>
+						Use the tool without distractions, tracking, or paywalls — no ads, no sign-ups, no limitations.
+					</li>
+					<li>
+						<h4>👨🏻‍💻 Open-source:</h4>
+						Know how to code? Help make Tally better by contributing to the project on <a href="https://github.com/jerboa88/Tally">GitHub</a>, or copy it and make your own version!
+					</li>
+				</ul>
+
+				<h3>Use Cases</h3>
+				<ul>
+					<li>
+						<h4>📚 Students & Educators:</h4>
+						Check essay lengths and assignment limits quickly and accurately.
+					</li>
+					<li>
+						<h4>✍️ Writers & Bloggers:</h4>
+						Track writing progress and optimize structure for readability.
+					</li>
+					<li>
+						<h4>📄 Legal & Business Professionals:</h4>
+						Ensure documents meet required character or word counts.
+					</li>
+					<li>
+						<h4>📱 Social Media Managers:</h4>
+						Stay within platform limits for tweets, posts, and bios.
+					</li>
+					<li>
+						<h4>🧪 Developers & Testers:</h4>
+						Analyze input strings and view line counts for code and data.
+					</li>
+					<li>
+						<h4>🌐 SEO Specialists:</h4>
+						Optimize content length for meta descriptions, headings, and body text.
+					</li>
+				</ul>
+			</div>
+			<div>
+				<h2>More</h2>
+
+				<h3>Tally Extension</h3>
+				<p>
+					A Tally Chrome extension is also available for even easier counting. Simply select any text, right click, and click count.
+				</p>
+				<br>
+				<a href="https://chrome.google.com/webstore/detail/tally-word-counter/eggkmbghbmjmbdjloifaklghfiecjbnk" target="_blank">
+					<img src="./assets/images/web-store-badge.png" alt="Badge for Tally extension on the Chrome Web Store">
+				</a>
+
+				<h3>Mergist - Online PDF Merger</h3>
+				<p>
+					Need to join some PDF files together? <a href="https://mergist.johng.io" target="_blank">Mergist</a> is an online tool to combine multiple PDF files into one. Mergist has no ads, no file size limits, and your files never leave your device.
+				</p>
+				<br>
+				<img src="./assets/images/mergist-dark-promo.png" alt="Mergist running on an iPhone 14">
+			</div>
+		</section>
+	</main>
+	<footer>
+		<div>
+			<h3>Credits</h3>
 			<p>
-				Your favorite character counter, now with a dark mode!
+				This project is licensed under the <a href="https://github.com/jerboa88/Tally/blob/gh-pages/LICENSE" rel="license"><strong>MIT license</strong></a> and the source code for this project is available on <a href="https://github.com/jerboa88/Tally">GitHub</a>. If you encounter any bugs, please <a href="https://github.com/jerboa88/Tally/issues">open an issue</a>.
 			</p>
-		</header>
-		<main>
-			<section>
-				<textarea id="input" spellcheck="false" maxlength="1000000" placeholder="The quick brown cat jumps over the lazy dog..." autofocus></textarea>
-				<form class="table counts">
-					<div>
-						<label for="characters">Characters</label>
-						<output id="characters" for="input">-</output>
-					</div>
-					<div>
-						<label for="words">Words</label>
-						<output id="words" for="input">-</output>
-					</div>
-					<div>
-						<label for="sentences">Sentences</label>
-						<output id="sentences" for="input">-</output>
-					</div>
-					<div>
-						<label for="paragraphs">Paragraphs</label>
-						<output id="paragraphs" for="input">-</output>
-					</div>
-					<div>
-						<label for="lines">Lines</label>
-						<output id="lines" for="input">-</output>
-					</div>
-				</form>
-				<form class="table stats">
-					<div>
-						<label for="spaces">Spaces</label>
-						<output id="spaces" for="input">-</output>
-					</div>
-					<div>
-						<label for="letters">Letters</label>
-						<output id="letters" for="input">-</output>
-					</div>
-					<div>
-						<label for="digits">Digits</label>
-						<output id="digits" for="input">-</output>
-					</div>
-					<div>
-						<label for="symbols">Symbols</label>
-						<output id="symbols" for="input">-</output>
-					</div>
-				</form>
-			</section>
-			<section>
+			<br>
+			<p>
+				The iPhone mockup image for <a href="https://mergist.johng.io" target="_blank">Mergist</a> is generated with <a href="https://imockup.pro/" rel="external">iMockup.pro</a> and licensed under their <a href="https://imockup.pro/license" rel="external">basic license</a>.
+			</p>
+			<br>
+			<p>
+				Made with ❤️ by <a href="https://johng.io" rel="author"><strong>John Goodliff</strong></a>.
+			</p>
+		</div>
+		<div>
+			<h3>Privacy</h3>
+			<p>
+				All text processing is performed locally on your own device and is never sent to a server.
+			</p>
+			<br>
+			<p>
+				If you select a new theme or change any options, local storage will be used to store your settings locally. If you select the "Remember input text" option, your input text will also be saved between page visits. You can uncheck this option at any time to clear the saved input text. You can also wipe the saved data for this site in your browser's settings.
+			</p>
+			<br>
+			<p>
+				This site does not collect personal analytics. However, basic visitor information such as IP addresses may be passively collected by our DNS provider (Cloudflare) for security and performance purposes. This data is not used for tracking or marketing.
+			</p>
+			<br>
+			<p>
+				By using this site to agree to these terms.
+			</p>
+		</div>
+		<div>
+			<h3>Options</h3>
+			<div>
+				<input type="checkbox" id="savesettings">
+				<label for="savesettings">Remember settings</label><br>
+				<input type="checkbox" id="savetext" disabled>
+				<label for="savetext">Remember text from last time</label><br>
+				<input type="checkbox" id="maxchars">
+				<label for="maxchars">Allow more than 1,000,000 characters</label>
+			</div>
+
+			<h3>Theme</h3>
+			<div class="themes">
 				<div>
-					<h2>About</h2>
-					<aside>
-						<p class="alert note">
-							This calculator was designed for use with English text. It may work for other languages, but I can't guarantee that the results will be accurate. See the <a href="https://github.com/jerboa88/Tally/blob/main/README.md#specification">specification</a> for more details on how the calculator works.
-						</p>
-					</aside>
-					<br>
-					<p>
-						Tally Word Counter is a free online tool to count the number of characters, words, paragraphs, and lines in your text. It can also show counts for different types of characters like letters, digits, spaces, and symbols/special characters. Make sure you have the right number of words for your essay or post by counting them instantly with Tally.
-					</p>
-
-					<h3>Features</h3>
-					<ul>
-						<li>
-							<h4>🧮 View text metrics:</h4>
-							Count the number of characters, words, sentences, paragraphs, and lines in your text.
-						</li>
-						<li>
-							<h4>📊 View character composition:</h4>
-							View the number of spaces, digits, letters, and symbols/special characters in the input.
-						</li>
-						<li>
-							<h4>🚀 Real-time updates:</h4>
-							Optimized for speed, Tally updates the counts in real-time as you type.
-						</li>
-						<li>
-							<h4>🎨 Themes:</h4>
-							Save your eyes with the built-in dark mode, or try one of the other <a href="#themes">included themes</a>.
-						</li>
-						<li>
-							<h4>🆓 100% Free & Ad-Free:</h4>
-							Use the tool without distractions, tracking, or paywalls — no ads, no sign-ups, no limitations.
-						</li>
-						<li>
-							<h4>👨🏻‍💻 Open-source:</h4>
-							Know how to code? Help make Tally better by contributing to the project on <a href="https://github.com/jerboa88/Tally">GitHub</a>, or copy it and make your own version!
-						</li>
-					</ul>
-
-					<h3>Use Cases</h3>
-					<ul>
-						<li>
-							<h4>📚 Students & Educators:</h4>
-							Check essay lengths and assignment limits quickly and accurately.
-						</li>
-						<li>
-							<h4>✍️ Writers & Bloggers:</h4>
-							Track writing progress and optimize structure for readability.
-						</li>
-						<li>
-							<h4>📄 Legal & Business Professionals:</h4>
-							Ensure documents meet required character or word counts.
-						</li>
-						<li>
-							<h4>📱 Social Media Managers:</h4>
-							Stay within platform limits for tweets, posts, and bios.
-						</li>
-						<li>
-							<h4>🧪 Developers & Testers:</h4>
-							Analyze input strings and view line counts for code and data.
-						</li>
-						<li>
-							<h4>🌐 SEO Specialists:</h4>
-							Optimize content length for meta descriptions, headings, and body text.
-						</li>
-					</ul>
-
-					<h2>More</h2>
-
-					<h3>Tally Extension</h3>
-					<p>
-						A Tally Chrome extension is also available for even easier counting. Simply select any text, right click, and click count.
-					</p>
-					<br>
-					<a href="https://chrome.google.com/webstore/detail/tally-word-counter/eggkmbghbmjmbdjloifaklghfiecjbnk" target="_blank">
-						<img src="./assets/images/web-store-badge.png" alt="Badge for Tally extension on the Chrome Web Store">
-					</a>
-
-					<h3>Mergist - Online PDF Merger</h3>
-					<p>
-						Need to join some PDF files together? <a href="https://mergist.johng.io" target="_blank">Mergist</a> is an online tool to combine multiple PDF files into one. Mergist has no ads, no file size limits, and your files never leave your device.
-					</p>
-					<br>
-					<img src="./assets/images/mergist-dark-promo.png" alt="Mergist running on an iPhone 14">
+					<input type="radio" name="theme" id="autotheme" value="Auto" checked>
+					<label for="autotheme">Auto</label>
 				</div>
-			</section>
-		</main>
-
-		<footer>
-			<div>
-				<h3>Credits</h3>
-				<p>
-					This project is licensed under the <a href="https://github.com/jerboa88/Tally/blob/gh-pages/LICENSE" rel="license"><strong>MIT license</strong></a> and the source code for this project is available on <a href="https://github.com/jerboa88/Tally">GitHub</a>. If you encounter any bugs, please <a href="https://github.com/jerboa88/Tally/issues">open an issue</a>.
-				</p>
-				<br>
-				<p>
-					The iPhone mockup image for <a href="https://mergist.johng.io" target="_blank">Mergist</a> is generated with <a href="https://imockup.pro/" rel="external">iMockup.pro</a> and licensed under their <a href="https://imockup.pro/license" rel="external">basic license</a>.
-				</p>
-				<br>
-				<p>
-					Made with ❤️ by <a href="https://johng.io" rel="author"><strong>John Goodliff</strong></a>.
-				</p>
-			</div>
-			<div>
-				<h3>Privacy</h3>
-				<p>
-					All text processing is performed locally on your own device and is never sent to a server.
-				</p>
-				<br>
-				<p>
-					If you select a new theme or change any options, local storage will be used to store your settings locally. If you select the "Remember input text" option, your input text will also be saved between page visits. You can uncheck this option at any time to clear the saved input text. You can also wipe the saved data for this site in your browser's settings.
-				</p>
-				<br>
-				<p>
-					This site does not collect personal analytics. However, basic visitor information such as IP addresses may be passively collected by our DNS provider (Cloudflare) for security and performance purposes. This data is not used for tracking or marketing.
-				</p>
-				<br>
-				<p>
-					By using this site to agree to these terms.
-				</p>
-			</div>
-			<div>
-				<h3>Options</h3>
 				<div>
-					<input type="checkbox" id="savesettings">
-					<label for="savesettings">Remember settings</label><br>
-					<input type="checkbox" id="savetext" disabled>
-					<label for="savetext">Remember text from last time</label><br>
-					<input type="checkbox" id="maxchars">
-					<label for="maxchars">Allow more than 1,000,000 characters</label>
+					<input type="radio" name="theme" id="blacktheme" value="Black" checked>
+					<label for="blacktheme">Black</label>
 				</div>
-
-				<h3>Theme</h3>
-				<div class="themes">
-					<p>
-						<input type="radio" name="theme" id="autotheme" value="Auto" checked>
-						<label for="autotheme">Auto</label>
-					</p>
-					<p>
-						<input type="radio" name="theme" id="blacktheme" value="Black" checked>
-						<label for="blacktheme">Black</label>
-					</p>
-					<p>
-						<input type="radio" name="theme" id="whitetheme" value="White">
-						<label for="whitetheme">White</label>
-					</p>
-					<p>
-						<input type="radio" name="theme" id="tealtheme" value="Teal">
-						<label for="tealtheme">Teal</label>
-					</p>
-					<p>
-						<input type="radio" name="theme" id="dusktheme" value="Dusk">
-						<label for="dusktheme">Dusk</label>
-					</p>
+				<div>
+					<input type="radio" name="theme" id="whitetheme" value="White">
+					<label for="whitetheme">White</label>
+				</div>
+				<div>
+					<input type="radio" name="theme" id="tealtheme" value="Teal">
+					<label for="tealtheme">Teal</label>
+				</div>
+				<div>
+					<input type="radio" name="theme" id="dusktheme" value="Dusk">
+					<label for="dusktheme">Dusk</label>
 				</div>
 			</div>
-		</footer>
-	</div>
+		</div>
+	</footer>
 
 	<script src="./scripts/index.js" type="module"></script>
 </body>
