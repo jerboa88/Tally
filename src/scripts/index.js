@@ -1,6 +1,6 @@
 import '@fontsource-variable/roboto-slab';
 import '@fontsource-variable/roboto-flex';
-import { getCookie, setCookie, clearCookies } from './cookies.js';
+import { get, set, removeAll } from './storage.js';
 import { debounce } from './utils.js';
 import { getCounts } from './counter.js';
 
@@ -113,24 +113,24 @@ import { getCounts } from './counter.js';
 		const theme = getTheme();
 
 		if (elementSaveSettingsInput.checked) {
-			setCookie('savesettings', 1);
-			setCookie('savetext', elementSaveTextInput.checked ? 1 : 0);
-			setCookie('maxchars', elementMaxCharsInput.checked ? 1 : 0);
-			setCookie('theme', theme);
+			set('savesettings', 1);
+			set('savetext', elementSaveTextInput.checked ? 1 : 0);
+			set('maxchars', elementMaxCharsInput.checked ? 1 : 0);
+			set('theme', theme);
 		} else {
-			clearCookies();
+			removeAll();
 		}
 	}
 
 	function loadSettings() {
-		const saveSettingsCookie = getCookie('savesettings');
+		const saveSettings = get('savesettings');
 
-		if (saveSettingsCookie) {
-			elementSaveSettingsInput.checked = saveSettingsCookie;
-			elementSaveTextInput.checked = getCookie('savetext');
-			elementMaxCharsInput.checked = getCookie('maxchars');
+		if (saveSettings) {
+			elementSaveSettingsInput.checked = saveSettings;
+			elementSaveTextInput.checked = get('savetext');
+			elementMaxCharsInput.checked = get('maxchars');
 
-			setTheme(getCookie('theme'));
+			setTheme(get('theme'));
 		}
 
 		setMaxChars();
@@ -201,10 +201,10 @@ import { getCounts } from './counter.js';
 		metaTagAppleThemeColor.setAttribute('content', colors[6]);
 	}
 
-	function setTheme(theme) {
-		for (i in themes) {
-			if (theme == i) {
-				themes[i].checkbox.checked = true;
+	function setTheme(newTheme) {
+		for (const theme in themes) {
+			if (newTheme == theme) {
+				themes[theme].checkbox.checked = true;
 				break;
 			}
 		}
