@@ -31,7 +31,9 @@
 	--font-weight-bold: 500;
 	--font-weight-bolder: 700;
 
-	--max-width-base: 896px;
+	--max-width-page: 56rem;
+
+	--min-height-textarea: 16rem;
 
 	--border-width-base: 1px;
 
@@ -160,7 +162,7 @@ main {
 	justify-content: space-evenly;
 	gap: var(--padding-lg);
 	flex: 1;
-	max-width: var(--max-width-base);
+	max-width: var(--max-width-page);
 	margin: var(--padding-base);
 }
 
@@ -222,8 +224,8 @@ a:visited {
 }
 
 textarea {
-	min-height: 15em;
-	flex: 1;
+	min-height: var(--min-height-textarea);
+	max-height: var(--max-width-page);
 	border: none;
 	outline: none;
 	border-radius: var(--border-radius-base);
@@ -234,8 +236,8 @@ textarea {
 	font-family: var(--font-family-base);
 	font-size: var(--font-size-base);
 	font-weight: var(--font-weight-base);
-	resize: none;
 	transition: background-color var(--transition-duration-base);
+	resize: block;
 }
 
 textarea:focus {
