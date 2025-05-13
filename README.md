@@ -26,18 +26,28 @@
 
 
 ## About
-> [!WARNING]
-> This calculator was designed for use with English text. It may work for other languages, but I cannot guarantee that the results will be accurate. See the [specification](#specification) below for more details on how the calculator works.
+> [!NOTE]
+> This calculator was designed for use with English text. It may work for other languages, but I can't guarantee that the results will be accurate. See the [specification](#specification) for more details on how the calculator works.
 
-Tally Word Counter is a free online tool to count the number of characters, words, paragraphs, and lines in your text. Tally can also show counts for different types of characters like letters, digits, spaces, and symbols/special characters. Make sure you have the required number of words for your essay or post by counting them instantly with Tally.
+Tally Word Counter is a free online tool to count the number of characters, words, paragraphs, and lines in your text. It can also show counts for different types of characters like letters, digits, spaces, and symbols/special characters. Make sure you have the right number of words for your essay or post by counting them instantly with Tally.
 
 Also check out the Tally Chrome Extension [here](https://github.com/jerboa88/Tally-Extension).
 
 ### Features
-- **🧮 Counts:** Count the number of characters, words, sentences, paragraphs, and lines in your text.
-- **📊 Character stats:** View the number of spaces, digits, letters, and symbols/special characters in the input.
+- **🧮 View text metrics:** Count the number of characters, words, sentences, paragraphs, and lines in your text.
+- **📊 View character composition:** View the number of spaces, digits, letters, and symbols/special characters in the input.
+- **🚀 Real-time updates:** Optimized for speed, Tally updates the counts in real-time as you type.
 - **🎨 Themes:** Save your eyes with the built-in dark mode, or try one of the other included themes.
+- **🆓 100% Free & Ad-Free:** Use the tool without distractions, tracking, or paywalls — no ads, no sign-ups, no limitations.
 - **👨🏻‍💻 Open-source:** Know how to code? Help make Tally better by contributing to the project on GitHub, or copy it and make your own version!
+
+### Use Cases
+- **📚 Students & Educators:** Check essay lengths and assignment limits quickly and accurately.
+- **✍️ Writers & Bloggers:** Track writing progress and optimize structure for readability.
+- **📄 Legal & Business Professionals:** Ensure documents meet required character or word counts.
+- **📱 Social Media Managers:** Stay within platform limits for tweets, posts, and bios.
+- **🧪 Developers & Testers:** Analyze input strings and view line counts for code and data.
+- **🌐 SEO Specialists:** Optimize content length for meta descriptions, headings, and body text.
 
 ### Screenshots
 
@@ -70,7 +80,7 @@ Here is an overview of how we determine the counts for each token type:
 | **character** | A Unicode **grapheme cluster** (user-perceived character), as determined by `Intl.Segmenter`. This is currently hardcoded to use the `en` locale, but other locales may work as well. Using this method, Emojis and other multi-codepoint characters are counted as a single character. **Examples:** `a`, `2`, `!`, `🔥`, `貓` |
 | **word**      | A contiguous sequence of one or more **letters or digits** followed by a **space**, **end mark**, or **newline**. Symbols by themselves are not considered words. **Examples:** `space `, `Whoa!`, `newline\n`, `42`.                                                                                                          |
 | **sentence**  | A contiguous sequence of one or more **words** followed by an **end mark**. **Example:** `Hello, world!`, `20 93.`.                                                                                                                                                                                                            |
-| **paragraph** | A contiguous sequence of one or more **sentences** followed by a **newline**. **Examples:** `The quick brown fox jumps over the lazy dog\n`, `Hello world! Bye world!\n`, `42\n`.                                                                                                                                              |
+| **paragraph** | A contiguous sequence of one or more **sentences** followed by a **newline**. **Examples:** `The quick brown cat jumps over the lazy dog\n`, `Hello world! Bye world!\n`, `42\n`.                                                                                                                                              |
 | **space**     | A literal space character (`' '`). Other whitespace (ex. tabs, newlines) are not included.                                                                                                                                                                                                                                     |
 | **letter**    | A character in the ASCII ranges A–Z or a–z. **Examples:** `A`, `j`, `z`.                                                                                                                                                                                                                                                       |
 | **digit**     | A character in the ASCII range 0-9. **Examples:** `0`, `5`, `9`.                                                                                                                                                                                                                                                               |
