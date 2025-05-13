@@ -5,6 +5,12 @@ import { debounce } from './utils.js';
 import { getCounts } from './counter.js';
 
 (() => {
+	// Constants / config
+	// ------------------
+	const CLASS_ENABLE_TRANSITIONS = 'enable-transitions';
+
+	// Runtime variables
+	// -----------------
 	const elementInput = document.getElementById('input');
 	const elementSidebar = document.getElementsByClassName('sidebar')[0];
 	// icon = document.getElementsByClassName('fa-gear')[0],
@@ -220,6 +226,10 @@ import { getCounts } from './counter.js';
 
 	const throttledUpdateCounts = debounce(updateCounts);
 
+	// Enable transitions after page load
+	window.addEventListener('load', () => {
+		document.body.classList.add(CLASS_ENABLE_TRANSITIONS);
+	});
 	elementInput.addEventListener('input', throttledUpdateCounts);
 	document.getElementById('settings').addEventListener('click', openSidebar);
 	document

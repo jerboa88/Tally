@@ -19,6 +19,22 @@
 	--bodyFontWeight: 300;
 }
 
+/* Utility classes */
+/* --------------- */
+
+.enable-transitions {
+	--transition-duration-base: .125s;
+	--transition-duration-long: .5s;
+}
+
+.enable-transitions * {
+	transition-property: background-color, color;
+	transition-duration: var(--transition-duration-long);
+}
+
+/* Other styles */
+/* ------------ */
+
 @media (prefers-color-scheme: dark), (prefers-color-scheme: light),
 	(prefers-color-scheme: no-preference) {
 	label[for='autotheme'] {
