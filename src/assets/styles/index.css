@@ -11,12 +11,24 @@
 	--roundness: .8rem;
 	--textsize: 1rem;
 	--numsize: .9em;
-	--sidebarwidth: 20em;
-	--sidebarpadding: 1.5em;
 
-	--headerFont: 'Roboto Slab Variable', sans-serif;
-	--bodyFont: 'Roboto Flex Variable', 'Calibri', 'Trebuchet MS', sans-serif;
-	--bodyFontWeight: 300;
+	--padding-sm: .75em;
+	--padding-base: 1.5em;
+	--padding-lg: 3em;
+
+	--border-radius-base: .8rem;
+
+	--font-size-base: 1rem;
+	--font-size-lg: 1.5rem;
+	--font-size-xl: 4rem;
+
+	--font-family-header: 'Roboto Slab Variable', sans-serif;
+	--font-family-base: 'Roboto Flex Variable', 'Calibri', 'Trebuchet MS',
+		sans-serif;
+
+	--font-weight-base: 300;
+	--font-weight-bold: 500;
+	--font-weight-bolder: 700;
 
 	--pulse-scale: 1.1;
 }
@@ -81,68 +93,52 @@ body {
 	margin: 0;
 	background: var(--bg);
 	color: var(--text);
-	font-family: var(--bodyFont);
-	font-weight: var(--bodyFontWeight);
+	font-family: var(--font-family-base);
+	font-weight: var(--font-weight-base);
 }
 
 .container {
-	min-height: 100dvh;
-}
-
-.container {
-	text-align: center;
-	font-size: 1.5em;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
+	min-height: 100dvh;
+	align-items: center;
+	text-align: center;
+	font-size: 1.5em;
 	cursor: default;
 	overflow: hidden;
-}
-
-h1 {
-	font-family: var(--headerFont);
-	font-size: 4em;
-	text-shadow: .05em .05em .1em var(--shadow);
-	margin: 0;
-}
-
-h1:after {
-	content: 'v2';
-	font-size: .25em;
-}
-
-p {
-	margin: var(--vmargin);
-	font-size: var(--textsize);
-	text-shadow: .04em .04em .07em var(--shadow);
 }
 
 header,
 footer {
 	display: flex;
-	flex-direction: column;
-	font-size: var(--textsize);
+	width: 100%;
 }
 
 header {
-	margin: var(--hmargin);
+	flex-direction: column;
+	align-items: center;
+	gap: var(--padding-base);
+	width: fit-content;
+	margin-top: var(--padding-lg);
+	margin-inline: var(--padding-base);
 }
 
 footer {
-	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-	margin-top: var(--hmargin);
-	background: var(--primary);
+	justify-content: space-around;
+	align-items: start;
+	gap: var(--padding-base);
+	flex-wrap: wrap;
+	box-sizing: border-box;
+	padding: var(--padding-lg);
+	text-align: start;
+	background-color: var(--primary);
 }
 
 footer > * {
-	flex: 0.4;
-}
-
-footer:first-child {
-	text-align: left;
+	flex: 1;
+	min-width: 18rem;
 }
 
 .sharelabel {
@@ -211,8 +207,8 @@ textarea {
 	box-shadow: .05em .05em .1em var(--bg) inset;
 	font-size: .7em;
 	resize: none;
-	font-family: var(--bodyFont);
-	font-weight: var(--bodyFontWeight);
+	font-family: var(--font-family-base);
+	font-weight: var(--font-weight-base);
 }
 
 textarea:focus {
@@ -240,80 +236,45 @@ textarea:focus {
 	gap: .25em;
 }
 
-h5 {
+h1 {
+	margin: 0;
+	font-family: var(--font-family-header);
+	font-size: var(--font-size-xl);
+	text-shadow: .05em .05em .1em var(--color-shadow);
+	text-align: center;
+}
+
+h1:after {
+	content: 'v3';
+	font-size: var(--font-size-base);
+}
+
+h2,
+h3 {
+	font-family: var(--font-family-header);
+}
+
+h4 {
+	display: inline;
+	margin: 0;
+	font-weight: var(--font-weight-bold);
+}
+
+label {
+	font-size: var(--font-size-base);
+	font-weight: var(--font-weight-base);
+}
+
+p {
 	margin: 0;
 	font-size: var(--textsize);
-	font-weight: var(--bodyFontWeight);
+	text-shadow: .04em .04em .07em var(--color-shadow);
 }
 
 output {
-	font-family: var(--headerFont);
+	font-family: var(--font-family-header);
 	font-size: var(--numsize);
 	font-weight: bold;
-}
-
-#paragraphs {
-	margin-bottom: 1em;
-}
-
-#settings {
-	position: absolute;
-	top: 0;
-	right: 0;
-}
-
-#settings > svg {
-	padding: 1.5em;
-	transition: -webkit-transform .5s;
-	transition: transform .5s;
-	transition: transform .5s, -webkit-transform .5s;
-}
-
-i {
-	display: inline-block;
-	font-size: 1.5rem;
-}
-
-.sidebar {
-	display: flex;
-	flex-direction: column;
-	justify-content: start;
-	position: fixed;
-	background: var(--primary);
-	width: var(--sidebarwidth);
-	height: 100%;
-	top: 0;
-	right: calc(0em - var(--sidebarwidth) - 2 * var(--sidebarpadding));
-	padding: var(--sidebarpadding);
-	gap: 4em;
-	color: var(--text);
-	font-size: 1em;
-	transition: right .4s;
-}
-
-.sidebar > section {
-	display: flex;
-	flex-direction: column;
-	gap: 1em;
-}
-
-.sidebar p {
-	margin: 0;
-}
-
-.open {
-	right: 0;
-	box-shadow: 0 0 10em #000;
-}
-
-.freezebody {
-	position: fixed;
-	overflow-y: scroll;
-}
-
-h3 {
-	margin: 0;
-	text-align: center;
 }
 
 input[type='checkbox'],
@@ -333,6 +294,7 @@ input[type='radio'] {
 .themes {
 	display: flex;
 	justify-content: space-around;
+	width: fit-content;
 }
 
 .themes > p {
