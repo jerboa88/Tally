@@ -17,6 +17,8 @@
 	--headerFont: 'Roboto Slab Variable', sans-serif;
 	--bodyFont: 'Roboto Flex Variable', 'Calibri', 'Trebuchet MS', sans-serif;
 	--bodyFontWeight: 300;
+
+	--pulse-scale: 1.1;
 }
 
 /* Utility classes */
@@ -32,6 +34,10 @@
 	transition-duration: var(--transition-duration-long);
 }
 
+.pulse {
+	animation: pulse var(--transition-duration-base) ease-out;
+}
+
 /* Other styles */
 /* ------------ */
 
@@ -41,6 +47,15 @@
 		background: #333;
 		background: linear-gradient(135deg, #fff 0%, #151515 100%);
 		color: #fff;
+	}
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(var(--pulse-scale));
+	}
+	100% {
+		transform: scale(1);
 	}
 }
 

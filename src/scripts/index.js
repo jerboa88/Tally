@@ -7,6 +7,7 @@ import { getCounts } from './counter.js';
 (() => {
 	// Constants / config
 	// ------------------
+	const CLASS_OUTPUT_UPDATE_ANIMATION = 'pulse';
 	const CLASS_ENABLE_TRANSITIONS = 'enable-transitions';
 
 	// Runtime variables
@@ -252,7 +253,20 @@ import { getCounts } from './counter.js';
 		const countObj = await getCounts(elementInput.value);
 
 		for (const key in countObj) {
-			elementOutputs[key].value = countObj[key] || '-';
+			const output = elementOutputs[key]
+			const count = (countObj[key] || '-').toString();
+
+			// Only update the output if the value has changed
+			if (output.value !== count) {
+				output.value = count;
+
+				output.classList.remove(CLASS_OUTPUT_UPDATE_ANIMATION);
+
+				// Force a reflow to restart the animation
+				void output.offsetWidth;
+
+				output.classList.add(CLASS_OUTPUT_UPDATE_ANIMATION);
+			}
 		}
 	}
 
