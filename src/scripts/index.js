@@ -13,8 +13,6 @@ import { getCounts } from './counter.js';
 	// Runtime variables
 	// -----------------
 	const elementInput = document.getElementById('input');
-	const elementSidebar = document.getElementsByClassName('sidebar')[0];
-	// icon = document.getElementsByClassName('fa-gear')[0],
 	const elementSaveSettingsInput = document.getElementById('savesettings');
 	const elementSaveTextInput = document.getElementById('savetext');
 	const elementMaxCharsInput = document.getElementById('maxchars');
@@ -29,7 +27,6 @@ import { getCounts } from './counter.js';
 		digits: document.getElementById('digits'),
 		symbols: document.getElementById('symbols'),
 	};
-	// deg = 0,
 	const metaTagSafariIconColor = document.querySelector('link[rel=mask-icon]');
 	const metaTagMsNavButtonColor = document.querySelector(
 		'meta[name=msapplication-navbutton-color]',
@@ -232,22 +229,6 @@ import { getCounts } from './counter.js';
 		document.body.classList.add(CLASS_ENABLE_TRANSITIONS);
 	});
 	elementInput.addEventListener('input', throttledUpdateCounts);
-	document.getElementById('settings').addEventListener('click', openSidebar);
-	document
-		.getElementsByClassName('container')[0]
-		.addEventListener('click', closeSidebar);
-
-	function openSidebar() {
-		elementSidebar.classList.toggle('open');
-		document.body.classList.toggle('freezebody');
-		// deg += 180
-		// icon.style.transform = 'rotate(' + deg + 'deg)'
-	}
-
-	function closeSidebar() {
-		elementSidebar.classList.remove('open');
-		document.body.classList.remove('freezebody');
-	}
 
 	async function updateCounts() {
 		const countObj = await getCounts(elementInput.value);

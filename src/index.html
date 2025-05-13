@@ -45,146 +45,106 @@
 		<textarea id="input" spellcheck="false" maxlength="1000000" placeholder="The quick brown fox jumps over the lazy dog..." autofocus></textarea>
 		<form class="table counts">
 			<div>
-				<h5>Characters</h5>
+				<label for="characters">Characters</label>
 				<output id="characters" for="input">-</output>
 			</div>
 			<div>
-				<h5>Words</h5>
+				<label for="words">Words</label>
 				<output id="words" for="input">-</output>
 			</div>
 			<div>
-				<h5>Sentences</h5>
+				<label for="sentences">Sentences</label>
 				<output id="sentences" for="input">-</output>
 			</div>
 			<div>
-				<h5>Paragraphs</h5>
+				<label for="paragraphs">Paragraphs</label>
 				<output id="paragraphs" for="input">-</output>
 			</div>
 			<div>
-				<h5>Lines</h5>
+				<label for="lines">Lines</label>
 				<output id="lines" for="input">-</output>
 			</div>
 		</form>
 		<form class="table stats">
 			<div>
-				<h5>Spaces</h5>
+				<label for="spaces">Spaces</label>
 				<output id="spaces" for="input">-</output>
 			</div>
 			<div>
-				<h5>Letters</h5>
+				<label for="letters">Letters</label>
 				<output id="letters" for="input">-</output>
 			</div>
 			<div>
-				<h5>Digits</h5>
+				<label for="digits">Digits</label>
 				<output id="digits" for="input">-</output>
 			</div>
 			<div>
-				<h5>Symbols</h5>
+				<label for="symbols">Symbols</label>
 				<output id="symbols" for="input">-</output>
 			</div>
 		</form>
 		<p>
 			Note that this calculator was designed for use with English text. It may work for other languages, but I cannot guarantee that the results will be accurate.
 		</p>
-		<p class="sharelabel">
-			<b>Share</b>
-			<br>
-			<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-				<path d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
-			</svg>
+
+		<h2>More</h2>
+
+		<h3>Tally Extension</h3>
+		<p>
+			A Tally Chrome extension is also available for even easier counting. Simply select any text, right click, and click count.
 		</p>
+		<br>
+		<a href="https://chrome.google.com/webstore/detail/tally-word-counter/eggkmbghbmjmbdjloifaklghfiecjbnk" target="_blank">
+			<img src="./assets/images/web-store-badge.png" alt="Badge for Tally extension on the Chrome Web Store">
+		</a>
+
 		<footer>
-			<a href="https://github.com/jerboa88/Tally"><b>GitHub</b></a>
-			<div class="social">
-				<a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftally.johng.io">
-					<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-						<path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64h98.2V334.2H109.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H255V480H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z" />
-					</svg>
-				</a>
-				<a href="http://x.com/share?url=https%3A%2F%2Ftally.johng.io&hashtags=charactercounter%2Cwordcounter&text=Tally%20-%20Your%20favorite%20character%20counter%21%20%20Count%20the%20number%20of%20words%2C%20sentences%2C%20and%20paragraphs%20in%20your%20text%3A">
-					<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-						<path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm297.1 84L257.3 234.6 379.4 396H283.8L209 298.1 123.3 396H75.8l111-126.9L69.7 116h98l67.7 89.5L313.6 116h47.5zM323.3 367.6L153.4 142.9H125.1L296.9 367.6h26.3z" />
-					</svg>
-				</a>
-				<a href="mailto:someone@example.com&subject=Tally%20-%20Word%20Counter&body=Tally%20-%20Your%20favorite%20character%20counter%21%20%20Count%20the%20number%20of%20words%2C%20sentences%2C%20and%20paragraphs%20in%20your%20text%3A">
-					<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-						<path d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zM218 271.7L64.2 172.4C66 156.4 79.5 144 96 144l256 0c16.5 0 30 12.4 31.8 28.4L230 271.7c-1.8 1.2-3.9 1.8-6 1.8s-4.2-.6-6-1.8zm29.4 26.9L384 210.4 384 336c0 17.7-14.3 32-32 32L96 368c-17.7 0-32-14.3-32-32l0-125.6 136.6 88.2c7 4.5 15.1 6.9 23.4 6.9s16.4-2.4 23.4-6.9z" />
-					</svg>
-				</a>
-			</div>
-
-			<a href="https://johng.io" rel="author"><b>Made by John Goodliff</b></a>
-		</footer>
-	</div>
-
-	<a href="#" id="settings">
-		<!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-			<path d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z" />
-		</svg>
-	</a>
-	<div class="sidebar">
-		<h3>Options</h3>
-		<section>
-			<strong>Input</strong>
 			<div>
-				<input type="checkbox" id="savesettings">
-				<label for="savesettings">Remember settings</label><br>
-				<input type="checkbox" id="savetext" disabled>
-				<label for="savetext">Remember text from last time</label><br>
-				<input type="checkbox" id="maxchars">
-				<label for="maxchars">Allow more than 1,000,000 characters</label>
-			</div>
-		</section>
-		<section>
-			<strong>Theme</strong>
-			<div class="themes">
+				<h3>Credits</h3>
 				<p>
-					<input type="radio" name="theme" id="autotheme" value="Auto" checked>
-					<label for="autotheme">Auto</label>
+					This project is licensed under the <a href="https://github.com/jerboa88/Tally/blob/gh-pages/LICENSE" rel="license"><strong>MIT license</strong></a> and the source code for this project is available on <a href="https://github.com/jerboa88/Tally">GitHub</a>. If you encounter any bugs, please <a href="https://github.com/jerboa88/Tally/issues">open an issue</a>.
 				</p>
+				<br>
 				<p>
-					<input type="radio" name="theme" id="blacktheme" value="Black" checked>
-					<label for="blacktheme">Black</label>
-				</p>
-				<p>
-					<input type="radio" name="theme" id="whitetheme" value="White">
-					<label for="whitetheme">White</label>
-				</p>
-				<p>
-					<input type="radio" name="theme" id="tealtheme" value="Teal">
-					<label for="tealtheme">Teal</label>
-				</p>
-				<p>
-					<input type="radio" name="theme" id="dusktheme" value="Dusk">
-					<label for="dusktheme">Dusk</label>
+					Made with ❤️ by <a href="https://johng.io" rel="author"><strong>John Goodliff</strong></a>.
 				</p>
 			</div>
-		</section>
-		<section>
-			<strong>Info</strong>
-			<p>
-				Thanks for using the site! This project is licensed under the <a href="https://github.com/jerboa88/Tally/blob/gh-pages/LICENSE" rel="license"><strong>MIT license</strong></a>.
-			</p>
+			<div>
+				<h3>Options</h3>
+				<div>
+					<input type="checkbox" id="savesettings">
+					<label for="savesettings">Remember settings</label><br>
+					<input type="checkbox" id="savetext" disabled>
+					<label for="savetext">Remember text from last time</label><br>
+					<input type="checkbox" id="maxchars">
+					<label for="maxchars">Allow more than 1,000,000 characters</label>
+				</div>
 
-			<p>
-				Icons were provided by <a href="https://fontawesome.com" rel="link"><strong>Font Awesome</strong></a> under the <a href="https://fontawesome.com/license/free" rel="link">CC BY 4.0 License</a>.
-			</p>
-		</section>
-		<section>
-			<strong>Extension</strong>
-			<p>
-				A Chrome extension is also available for even easier counting. Simply select any text, right click, and click count.
-			</p>
-			<a href="https://chrome.google.com/webstore/detail/tally-word-counter/eggkmbghbmjmbdjloifaklghfiecjbnk" target="_blank" class="badge">
-				<img src="./assets/images/webstorebadge.png" alt="Tally on the Chrome Web Store">
-			</a>
-		</section>
-		<section class="padding"></section>
+				<h3>Theme</h3>
+				<div class="themes">
+					<p>
+						<input type="radio" name="theme" id="autotheme" value="Auto" checked>
+						<label for="autotheme">Auto</label>
+					</p>
+					<p>
+						<input type="radio" name="theme" id="blacktheme" value="Black" checked>
+						<label for="blacktheme">Black</label>
+					</p>
+					<p>
+						<input type="radio" name="theme" id="whitetheme" value="White">
+						<label for="whitetheme">White</label>
+					</p>
+					<p>
+						<input type="radio" name="theme" id="tealtheme" value="Teal">
+						<label for="tealtheme">Teal</label>
+					</p>
+					<p>
+						<input type="radio" name="theme" id="dusktheme" value="Dusk">
+						<label for="dusktheme">Dusk</label>
+					</p>
+				</div>
+			</div>
+		</footer>
 	</div>
 
 	<script src="./scripts/index.js" type="module"></script>
