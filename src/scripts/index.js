@@ -16,6 +16,8 @@ const THEME_INPUT_NAME = 'theme';
 const STORAGE_KEY_MAP = {
 	theme: 'theme',
 	warnOnLargeInputText: 'warnOnLargeInputText',
+	rememberInputText: 'rememberInputText',
+	inputText: 'inputText',
 };
 const THEME_NAME_MAP = {
 	auto: 'Auto',
@@ -50,6 +52,9 @@ const OUTPUT_IDS = [
 const textInput = document.getElementById('input');
 const warnOnLargeInputTextCheckbox = document.getElementById(
 	'warn-on-large-input-text',
+);
+const rememberInputTextCheckbox = document.getElementById(
+	'remember-input-text',
 );
 const themeSelectorContainer = document.getElementById('theme-container');
 const outputMap = getOutputMap();
@@ -105,18 +110,41 @@ function changeWarnOnLargeInputText({ target: { checked } }) {
 }
 
 /**
- * Restore the options from local storage. If no options are found, the default options will be applied.
+ * Handle the remember input text checkbox change event. This will update the remember input text setting in local storage and clear the input text if the setting is disabled.
+ *
+ * @param {Event} event - The event object.
+ */
+function changeRememberInputText({ target: { checked } }) {
+	debug(`Changing remember input text to '${checked}'`);
+
+	set(STORAGE_KEY_MAP.rememberInputText, checked);
+
+	if (!checked) {
+		remove(STORAGE_KEY_MAP.inputText);
+	}
+}
+
+/**
+ * Restore options from local storage. If no options are found, the default options will be applied.
  */
 function restoreOptions() {
 	const warnOnLargeInputText = parseBoolean(
 		get(STORAGE_KEY_MAP.warnOnLargeInputText),
 	);
+	const rememberInputText = parseBoolean(
+		get(STORAGE_KEY_MAP.rememberInputText),
+	);
 
 	debug('Restoring options...');
 	debug(`\tWarn on large input text: '${warnOnLargeInputText}'`);
+	debug(`\tRemember input text: '${rememberInputText}'`);
 
-	// Default to true if no value is found
-	warnOnLargeInputTextCheckbox.checked = warnOnLargeInputText ?? true;
+	warnOnLargeInputTextCheckbox.checked = warnOnLargeInputText;
+
+	if (rememberInputText) {
+		rememberInputTextCheckbox.checked = true;
+		textInput.value = get(STORAGE_KEY_MAP.inputText);
+	}
 }
 
 /**
@@ -159,6 +187,13 @@ async function updateCounts() {
 
 			return;
 		}
+	}
+
+	// Save input text
+	if (rememberInputTextCheckbox.checked) {
+		debug('Saving input text...');
+
+		set(STORAGE_KEY_MAP.inputText, textInput.value);
 	}
 
 	const countObj = await getCounts(textInput.value);
@@ -272,6 +307,7 @@ function init() {
 		'change',
 		changeWarnOnLargeInputText,
 	);
+	rememberInputTextCheckbox.addEventListener('change', changeRememberInputText);
 	textInput.addEventListener('input', throttledUpdateCounts);
 
 	for (const themeSelector of Object.values(themeSelectorMap)) {
