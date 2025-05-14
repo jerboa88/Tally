@@ -5,7 +5,7 @@
 	--default-light-color-text: oklch(14.5% 0 0); /* Neutral 950 */
 	--default-light-color-shadow: none;
 	--default-light-color-primary: oklch(45.7% 0.24 277.023); /* Indigo 700 */
-	--default-light-color-mix-ratio-shadow: 0%;
+	--default-light-color-mix-ratio-shadow: 25%;
 
 	--color-mix-ratio-sm: 2.5%;
 	--color-mix-ratio-base: 50%;
@@ -53,9 +53,7 @@ label[for='dark'] {
 	--color-base-1: oklch(20.5% 0 0); /* Neutral 900 */
 	--color-base-2: oklch(26.9% 0 0); /* Neutral 800 */
 	--color-text: oklch(98.5% 0 0); /* Neutral 50 */
-	--color-shadow: oklch(14.5% 0 0); /* Neutral 950 */
 	--color-primary: oklch(70.7% 0.165 254.624); /* Blue 400 */
-	--color-mix-ratio-shadow: 100%;
 }
 
 /* Auto (light) theme */
@@ -66,9 +64,8 @@ label[for='dark'] {
 		--color-base-1: var(--default-light-color-base-1);
 		--color-base-2: var(--default-light-color-base-2);
 		--color-text: var(--default-light-color-text);
-		--color-shadow: var(--default-light-color-shadow);
 		--color-primary: var(--default-light-color-primary);
-		--color-mix-ratio-shadow: 0%;
+		--shadow-strength: var(--default-light-shadow-strength);
 	}
 }
 
@@ -78,9 +75,21 @@ label[for='light'] {
 	--color-base-1: var(--default-light-color-base-1);
 	--color-base-2: var(--default-light-color-base-2);
 	--color-text: var(--default-light-color-text);
-	--color-shadow: var(--default-light-color-shadow);
 	--color-primary: var(--default-light-color-primary);
-	--color-mix-ratio-shadow: 25%;
+	--shadow-strength: var(--default-light-shadow-strength);
+}
+
+/* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
+body[data-theme='amoled'],
+label[for='amoled'] {
+	--color-base-1: oklch(0 0 0);
+	--color-base-2: oklch(0 0 0);
+	--color-text: oklch(92.2% 0 0); /* Neutral 200 */
+	--color-primary: oklch(92.2% 0 0); /* Neutral 200 */
+}
+
+body[data-theme='amoled'] textarea {
+	border: 1px solid var(--color-primary);
 }
 
 /* Colors from OKSolar (https://meat.io/oksolar) */
@@ -89,7 +98,6 @@ label[for='solarizedDark'] {
 	--color-base-1: oklch(27.4% 0.05 219.6); /* base03 */
 	--color-base-2: oklch(32.1% 0.053 219.6); /* base02 */
 	--color-text: oklch(71.8% 0.017 198); /* base0 */
-	--color-shadow: oklch(27.4% 0.05 219.6); /* base03 */
 	--color-primary: oklch(63.1% 0.166 50.4); /* orange */
 }
 
@@ -99,9 +107,8 @@ label[for='solarizedLight'] {
 	--color-base-1: oklch(93.06% 0.026 92.4); /* base2 */
 	--color-base-2: oklch(97.35% 0.026 90.1); /* base3 */
 	--color-text: oklch(54.4% 0.017 219.6); /* base00 */
-	--color-shadow: none;
 	--color-primary: oklch(63.1% 0.221 21.6); /* red */
-	--color-mix-ratio-shadow: 25%;
+	--shadow-strength: var(--default-light-color-mix-ratio-shadow);
 }
 
 /* Utility classes */
@@ -214,16 +221,16 @@ body {
 		var(--color-primary),
 		transparent var(--color-mix-ratio-base)
 	);
-	--color-shadow-transparent: color-mix(
+	--color-shadow: color-mix(
 		in oklch shorter hue,
-		oklch(0 0 0 / 0.2) var(--color-mix-ratio-shadow),
+		oklch(0 0 0 / 0.2) var(--shadow-strength),
 		transparent
 	);
-	--box-shadow-base: 0 1px 3px 0 var(--color-shadow-transparent), 0 1px 2px -1px
-		var(--color-shadow-transparent);
-	--text-shadow-base: 0px 1px 0px var(--color-shadow-transparent), 0px 1px 1px
-		var(--color-shadow-transparent), 0px 2px 2px var(--color-shadow-transparent);
-	--text-shadow-sm: 0px 1px 1px var(--color-shadow-transparent);
+	--box-shadow-base: 0 1px 3px 0 var(--color-shadow), 0 1px 2px -1px
+		var(--color-shadow);
+	--text-shadow-base: 0px 1px 0px var(--color-shadow), 0px 1px 1px
+		var(--color-shadow), 0px 2px 2px var(--color-shadow);
+	--text-shadow-sm: 0px 1px 1px var(--color-shadow);
 }
 
 main {
