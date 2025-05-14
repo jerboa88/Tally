@@ -1,18 +1,17 @@
 :root {
-	/* Default theme */
-	--color-base-1: #151515;
-	--color-base-2: #222;
-	--color-focus: #202020;
-	--color-text: #fff;
-	--color-shadow: rgba(0, 0, 0, 0.5);
-	--color-selection: rgba(0, 0, 0, 0.5);
-	--color-primary: #60a5fa;
+	/* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
+	--default-light-color-base-1: oklch(98.5% 0 0); /* Neutral 50 */
+	--default-light-color-base-2: oklch(92.2% 0 0); /* Neutral 200  */
+	--default-light-color-text: oklch(14.5% 0 0); /* Neutral 950 */
+	--default-light-color-shadow: none;
+	--default-light-color-primary: oklch(45.7% 0.24 277.023); /* Indigo 700 */
+	--default-light-color-mix-ratio-shadow: 0%;
 
 	--color-mix-ratio-sm: 2.5%;
 	--color-mix-ratio-base: 50%;
 
 	--opacity-min: 0;
-	--opacity-hover: .7;
+	--opacity-hover: 0.7;
 	--opacity-max: 1;
 
 	--padding-base: 1.5rem;
@@ -26,9 +25,9 @@
 	--font-size-lg: 1.5rem;
 	--font-size-xl: 4rem;
 
-	--font-family-base: 'Roboto Flex Variable', 'Calibri', 'Trebuchet MS',
-	sans-serif;
 	--font-family-header: 'Roboto Slab Variable', sans-serif;
+	--font-family-base: 'Roboto Flex Variable', 'Calibri', 'Trebuchet MS',
+		sans-serif;
 
 	--font-weight-base: 300;
 	--font-weight-bold: 500;
@@ -41,11 +40,47 @@
 	--border-width-base: 1px;
 
 	--pulse-scale: 1.1;
+}
 
-	--box-shadow-base: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+/* Themes */
+/* ------ */
 
-	--text-shadow-base: 0px 1px 0px rgb(0 0 0 / 0.075), 0px 1px 1px rgb(0 0 0 / 0.075), 0px 2px 2px rgb(0 0 0 / 0.075);
-	--text-shadow-sm: 0px 1px 1px rgb(0 0 0 / 0.2);
+/* Auto (dark) / Dark theme */
+/* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
+body,
+label[for='auto'],
+label[for='dark'] {
+	--color-base-1: oklch(20.5% 0 0); /* Neutral 900 */
+	--color-base-2: oklch(26.9% 0 0); /* Neutral 800 */
+	--color-text: oklch(98.5% 0 0); /* Neutral 50 */
+	--color-shadow: oklch(14.5% 0 0); /* Neutral 950 */
+	--color-primary: oklch(70.7% 0.165 254.624); /* Blue 400 */
+	--color-mix-ratio-shadow: 100%;
+}
+
+/* Auto (light) theme */
+/* Make the default theme light if the user prefers light mode */
+@media (prefers-color-scheme: light) {
+	body[data-theme='auto'],
+	label[for='auto'] {
+		--color-base-1: var(--default-light-color-base-1);
+		--color-base-2: var(--default-light-color-base-2);
+		--color-text: var(--default-light-color-text);
+		--color-shadow: var(--default-light-color-shadow);
+		--color-primary: var(--default-light-color-primary);
+		--color-mix-ratio-shadow: 0%;
+	}
+}
+
+/* Light theme */
+body[data-theme='light'],
+label[for='light'] {
+	--color-base-1: var(--default-light-color-base-1);
+	--color-base-2: var(--default-light-color-base-2);
+	--color-text: var(--default-light-color-text);
+	--color-shadow: var(--default-light-color-shadow);
+	--color-primary: var(--default-light-color-primary);
+	--color-mix-ratio-shadow: 0%;
 }
 
 /* Utility classes */
@@ -126,7 +161,8 @@ textarea::placeholder {
 	color: color-mix(
 		in oklch shorter hue,
 		var(--color-text),
-		transparent var(--color-mix-ratio-base));
+		transparent var(--color-mix-ratio-base)
+	);
 }
 
 /* Base styles */
@@ -157,6 +193,16 @@ body {
 		var(--color-primary),
 		transparent var(--color-mix-ratio-base)
 	);
+	--color-shadow-transparent: color-mix(
+		in oklch shorter hue,
+		oklch(0 0 0 / 0.2) var(--color-mix-ratio-shadow),
+		transparent
+	);
+	--box-shadow-base: 0 1px 3px 0 var(--color-shadow-transparent), 0 1px 2px -1px
+		var(--color-shadow-transparent);
+	--text-shadow-base: 0px 1px 0px var(--color-shadow-transparent), 0px 1px 1px
+		var(--color-shadow-transparent), 0px 2px 2px var(--color-shadow-transparent);
+	--text-shadow-sm: 0px 1px 1px var(--color-shadow-transparent);
 }
 
 main {
@@ -205,25 +251,6 @@ footer {
 footer > * {
 	flex: 1;
 	min-width: var(--min-height-textarea);
-}
-
-a:link {
-	color: var(--color-primary);
-	text-decoration: none;
-	transition-property: color, opacity;
-	transition-duration: var(--transition-duration-base);
-}
-
-a:hover {
-	opacity: var(--opacity-hover);
-}
-
-a:active {
-	opacity: var(--opacity-max);
-}
-
-a:visited {
-	color: var(--color-primary);
 }
 
 textarea {
@@ -311,6 +338,25 @@ ul {
 	margin-block-end: 0;
 }
 
+a:link {
+	color: var(--color-primary);
+	text-decoration: none;
+	transition-property: color, opacity;
+	transition-duration: var(--transition-duration-base);
+}
+
+a:hover {
+	opacity: var(--opacity-hover);
+}
+
+a:active {
+	opacity: var(--opacity-max);
+}
+
+a:visited {
+	color: var(--color-primary);
+}
+
 output {
 	font-family: var(--font-family-header);
 	font-size: var(--font-size-lg);
@@ -322,64 +368,62 @@ input[type='radio'] {
 	vertical-align: middle;
 }
 
-.themes {
-	display: flex;
-	justify-content: space-around;
-	width: fit-content;
+#theme-container {
+	display: grid;
+	grid-template-columns: auto auto;
+	border-radius: var(--border-radius-base);
+	overflow: hidden;
 }
 
-.themes > div {
+#theme-container > div {
 	text-align: center;
 }
 
-.themes > div > label {
-	border: var(--border-width-base) solid rgba(255, 255, 255, 0.15);
+#theme-container > div > label {
 	display: block;
-	padding: var(--padding-base) var(--padding-sm);
+	padding: var(--padding-sm);
+	background-color: var(--color-base-1);
+	color: var(--color-text);
+	transition-property: background-color, color, opacity;
+	transition-duration: var(--transition-duration-base);
 	cursor: pointer;
-	opacity: var(--opacity-hover);
-	transition: opacity var(--transition-duration-base);
 }
 
-.themes > div > input[type='radio'] {
+#theme-container:hover > div > input[type='radio'] ~ label {
+	opacity: var(--opacity-hover);
+}
+
+#theme-container:hover > div > input[type='radio']:hover ~ label {
+	opacity: var(--opacity-max);
+	box-shadow: var(--box-shadow-xl);
+}
+
+/* Make Auto theme span two columns */
+#theme-container > div:first-child {
+	grid-column-start: span 2;
+}
+
+#theme-container > div > input[type='radio'] {
 	display: block;
-	width: 0;
-	height: 0;
 	margin: 0;
 	padding: 0;
+	width: 0;
+	height: 0;
 	opacity: var(--opacity-min);
 }
 
-.themes > div > label:hover,
+#theme-container > div > label:hover,
 input[type='radio']:active ~ label {
 	opacity: var(--opacity-max);
 }
 
-.themes > div > input[type='radio']:checked ~ label {
+#theme-container > div > input[type='radio']:checked ~ label {
+	font-weight: var(--font-weight-bolder);
 	opacity: var(--opacity-max);
-	border: var(--border-width-base) solid;
+	box-shadow: var(--box-shadow-xl);
 }
 
-label[for='blacktheme'] {
-	background: #151515;
-	color: #fff;
-	border-color: #fff;
-}
-
-label[for='whitetheme'] {
-	background: #fff;
-	color: #000;
-	border-color: #000;
-}
-
-label[for='tealtheme'] {
-	background: #317b71;
-	color: #fff;
-	border-color: #fff;
-}
-
-label[for='dusktheme'] {
-	background: #291427;
-	background: linear-gradient(135deg, #291427 25%, #080b12 100%);
-	color: #fff;
+#theme-container > div > input[type='radio']:checked ~ label::before {
+	content: '✓ ';
+	font-weight: var(--font-weight-bolder);
 }
