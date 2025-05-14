@@ -1,250 +1,325 @@
 import '@fontsource-variable/roboto-slab';
 import '@fontsource-variable/roboto-flex';
-import { getCookie, setCookie, clearCookies } from './cookies.js';
-import { debounce } from './utils.js';
+import { debug, debounce, parseBoolean } from './utils.js';
+import { get, set, remove } from './storage.js';
 import { getCounts } from './counter.js';
 
-(() => {
-	const elementInput = document.getElementById('input');
-	const elementSidebar = document.getElementsByClassName('sidebar')[0];
-	// icon = document.getElementsByClassName('fa-gear')[0],
-	const elementSaveSettingsInput = document.getElementById('savesettings');
-	const elementSaveTextInput = document.getElementById('savetext');
-	const elementMaxCharsInput = document.getElementById('maxchars');
-	const elementOutputs = {
-		characters: document.getElementById('characters'),
-		words: document.getElementById('words'),
-		sentences: document.getElementById('sentences'),
-		paragraphs: document.getElementById('paragraphs'),
-		lines: document.getElementById('lines'),
-		spaces: document.getElementById('spaces'),
-		letters: document.getElementById('letters'),
-		digits: document.getElementById('digits'),
-		symbols: document.getElementById('symbols'),
-	};
-	// deg = 0,
-	const metaTagSafariIconColor = document.querySelector('link[rel=mask-icon]');
-	const metaTagMsNavButtonColor = document.querySelector(
-		'meta[name=msapplication-navbutton-color]',
-	);
-	const metaTagMsTileColor = document.querySelector(
-		'meta[name=msapplication-TileColor]',
-	);
-	const metaTagAndroidThemeColor = document.querySelector(
-		'meta[name=theme-color]',
-	);
-	const metaTagAppleThemeColor = document.querySelector(
-		'meta[name=apple-mobile-web-app-status-bar-style]',
-	);
-	const themes = {
-		auto: {
-			checkbox: document.getElementById('autotheme'),
-		},
-		black: {
-			checkbox: document.getElementById('blacktheme'),
-			colors: [
-				'#151515',
-				'#222',
-				'#202020',
-				'#fff',
-				'rgba(0,0,0,.5)',
-				'rgba(255,255,255,.5)',
-				'black',
-			],
-		},
-		white: {
-			checkbox: document.getElementById('whitetheme'),
-			colors: [
-				'#fff',
-				'#eee',
-				'#f4f4f4',
-				'#000',
-				'none',
-				'rgba(0,0,0,.5)',
-				'default',
-			],
-		},
-		teal: {
-			checkbox: document.getElementById('tealtheme'),
-			colors: [
-				'#317b71',
-				'#44877e',
-				'#3D837a',
-				'#fff',
-				'rgba(0,0,0,.5)',
-				'rgba(194,67,63,.75)',
-				'default',
-			],
-		},
-		dusk: {
-			checkbox: document.getElementById('dusktheme'),
-			colors: [
-				'#080b12',
-				'#291427',
-				'#291427',
-				'#F4CAE0',
-				'none',
-				'rgba(8,11,18,.75)',
-				'black',
-			],
-		},
-	};
+// Constants / config
+// ------------------
+const LARGE_INPUT_WARNING_THRESHOLD = 1000000;
+const LARGE_INPUT_WARNING_MSG =
+	"You've entered a large amount of text. This may cause performance issues. Do you want to continue?\n\n(You can disable this warning in the options.)";
+const CLASS_OUTPUT_UPDATE_ANIMATION = 'pulse';
+const CLASS_ENABLE_TRANSITIONS = 'enable-transitions';
+const BASE_COLOR_VARIABLE_NAME = '--color-base-1';
+const THEME_INPUT_NAME = 'theme';
+const STORAGE_KEY_MAP = {
+	theme: 'theme',
+	warnOnLargeInputText: 'warnOnLargeInputText',
+	rememberInputText: 'rememberInputText',
+	inputText: 'inputText',
+};
+const THEME_NAME_MAP = {
+	auto: 'Auto',
+	dark: 'Dark',
+	light: 'Light',
+	solarizedDark: 'Solarized Dark',
+	solarizedLight: 'Solarized Light',
+	dusk: 'Dusk',
+	teal: 'Teal',
+	amoled: 'AMOLED',
+};
+const DEFAULT_THEME = 'auto';
+const META_TAG_SELECTOR_ATTRIBUTE_MATRIX = [
+	['link[rel=mask-icon]', 'color'],
+	['meta[name=msapplication-navbutton-color]', 'content'],
+	['meta[name=msapplication-TileColor]', 'content'],
+	['meta[name=theme-color]', 'content'],
+	['meta[name=apple-mobile-web-app-status-bar-style]', 'content'],
+];
+const OUTPUT_IDS = [
+	'characters',
+	'words',
+	'sentences',
+	'paragraphs',
+	'lines',
+	'spaces',
+	'letters',
+	'digits',
+	'symbols',
+];
 
-	const systemThemeColor = {
-		dark: matchMedia('(prefers-color-scheme: dark)'),
-		light: matchMedia('(prefers-color-scheme: light)'),
-		none: matchMedia('(prefers-color-scheme: no-preference)'),
-	};
+// Runtime variables
+// -----------------
+const textInput = document.getElementById('input');
+const warnOnLargeInputTextCheckbox = document.getElementById(
+	'warn-on-large-input-text',
+);
+const rememberInputTextCheckbox = document.getElementById(
+	'remember-input-text',
+);
+const themeSelectorContainer = document.getElementById('theme-container');
+const outputMap = getOutputMap();
+const metaTagMatrix = getMetaTagMatrix();
+const themeSelectorMap = buildThemeSelectors();
 
-	elementSaveSettingsInput.addEventListener('change', saveSettings);
-	elementSaveTextInput.addEventListener('change', saveSettings);
-	elementMaxCharsInput.addEventListener('change', saveSettings);
-	systemThemeColor.dark.addEventListener('change', getTheme);
-	systemThemeColor.light.addEventListener('change', getTheme);
-	systemThemeColor.none.addEventListener('change', getTheme);
+// Functions
+// ---------
 
-	for (const theme in themes) {
-		themes[theme].checkbox.addEventListener('change', saveSettings);
+/**
+ * Apply a theme to the page given its key.
+ *
+ * @param {string} themeKey - The key of the theme to apply.
+ */
+function applyTheme(themeKey) {
+	debug(`Applying theme '${themeKey}'`);
+
+	// Update colors in meta tags
+	const styleMap = window.getComputedStyle(document.body);
+	const baseColor = styleMap.getPropertyValue(BASE_COLOR_VARIABLE_NAME);
+
+	for (const [metaTag, metaTagAttribute] of metaTagMatrix) {
+		metaTag.setAttribute(metaTagAttribute, baseColor);
 	}
 
-	function saveSettings() {
-		setMaxChars();
+	// Set theme attribute on body
+	document.body.setAttribute(`data-${STORAGE_KEY_MAP.theme}`, themeKey);
+}
 
-		const theme = getTheme();
+/**
+ * Handle the theme selector change event. This will update the theme in local storage and apply the theme to the page.
+ *
+ * @param {Event} event - The event object.
+ */
+function changeTheme({ target }) {
+	const themeName = target.value;
 
-		if (elementSaveSettingsInput.checked) {
-			setCookie('savesettings', 1);
-			setCookie('savetext', elementSaveTextInput.checked ? 1 : 0);
-			setCookie('maxchars', elementMaxCharsInput.checked ? 1 : 0);
-			setCookie('theme', theme);
-		} else {
-			clearCookies();
-		}
+	debug(`Changing theme to '${themeName}'`);
+
+	set(STORAGE_KEY_MAP.theme, themeName);
+	applyTheme(themeName);
+}
+
+/**
+ * Handle the warn on large input text checkbox change event. This will update the warn on large input text setting in local storage.
+ *
+ * @param {Event} event - The event object.
+ */
+function changeWarnOnLargeInputText({ target: { checked } }) {
+	debug(`Changing warn on large input text to '${checked}'`);
+
+	set(STORAGE_KEY_MAP.warnOnLargeInputText, checked);
+}
+
+/**
+ * Handle the remember input text checkbox change event. This will update the remember input text setting in local storage and clear the input text if the setting is disabled.
+ *
+ * @param {Event} event - The event object.
+ */
+function changeRememberInputText({ target: { checked } }) {
+	debug(`Changing remember input text to '${checked}'`);
+
+	set(STORAGE_KEY_MAP.rememberInputText, checked);
+
+	if (!checked) {
+		remove(STORAGE_KEY_MAP.inputText);
+	}
+}
+
+/**
+ * Restore options from local storage. If no options are found, the default options will be applied.
+ */
+function restoreOptions() {
+	const warnOnLargeInputText = parseBoolean(
+		get(STORAGE_KEY_MAP.warnOnLargeInputText),
+	);
+	const rememberInputText = parseBoolean(
+		get(STORAGE_KEY_MAP.rememberInputText),
+	);
+
+	debug('Restoring options...');
+	debug(`\tWarn on large input text: '${warnOnLargeInputText}'`);
+	debug(`\tRemember input text: '${rememberInputText}'`);
+
+	warnOnLargeInputTextCheckbox.checked = warnOnLargeInputText;
+
+	if (rememberInputText) {
+		rememberInputTextCheckbox.checked = true;
+		textInput.value = get(STORAGE_KEY_MAP.inputText);
+	}
+}
+
+/**
+ * Restore the theme from local storage. If no theme is found, the default theme will be applied.
+ */
+function restoreTheme() {
+	let theme = get(STORAGE_KEY_MAP.theme);
+
+	debug(`Restoring theme: '${theme}'...`);
+
+	if (theme in themeSelectorMap) {
+		themeSelectorMap[theme].checked = true;
+	} else {
+		themeSelectorMap[DEFAULT_THEME].checked = true;
+		theme = DEFAULT_THEME;
 	}
 
-	function loadSettings() {
-		const saveSettingsCookie = getCookie('savesettings');
+	applyTheme(theme);
+}
 
-		if (saveSettingsCookie) {
-			elementSaveSettingsInput.checked = saveSettingsCookie;
-			elementSaveTextInput.checked = getCookie('savetext');
-			elementMaxCharsInput.checked = getCookie('maxchars');
+/**
+ * Compute the counts for the input text and update the output elements accordingly.
+ */
+async function updateCounts() {
+	debug('Updating counts...');
 
-			setTheme(getCookie('theme'));
-		}
+	// Warn the user if the input text is large
+	if (
+		warnOnLargeInputTextCheckbox.checked &&
+		textInput.value.length > LARGE_INPUT_WARNING_THRESHOLD
+	) {
+		debug('Input text is large.');
 
-		setMaxChars();
-		getTheme();
-	}
+		if (!confirm(LARGE_INPUT_WARNING_MSG)) {
+			debug('User cancelled computation.');
 
-	loadSettings();
-
-	function getTheme() {
-		for (const theme in themes) {
-			if (themes[theme].checkbox.checked) {
-				if (theme === 'auto') {
-					if (systemThemeColor.dark.matches) {
-						applyTheme(themes.black.colors);
-
-						return 'auto';
-					}
-
-					if (systemThemeColor.light.matches) {
-						applyTheme(themes.white.colors);
-
-						return 'auto';
-					}
-
-					if (systemThemeColor.none.matches) {
-						const currentHour = new Date().getHours();
-
-						applyTheme(
-							currentHour < 8 || currentHour > 20
-								? themes.black.colors
-								: themes.white.colors,
-						);
-
-						return 'auto';
-					}
-
-					applyTheme(themes.white.colors);
-
-					return 'white';
-				}
-
-				applyTheme(themes[theme].colors);
-
-				return theme;
+			for (const output of Object.values(outputMap)) {
+				output.value = '?';
 			}
+
+			return;
 		}
 	}
 
-	// Input: bg, primary, focus, text, shadow, selection, ios
-	function applyTheme(colors) {
-		const color_types = [
-			'--bg',
-			'--primary',
-			'--focus',
-			'--text',
-			'--shadow',
-			'--selection',
-		];
+	// Save input text
+	if (rememberInputTextCheckbox.checked) {
+		debug('Saving input text...');
 
-		for (let i = 0; i < color_types.length; i++) {
-			document.documentElement.style.setProperty(color_types[i], colors[i]);
-		}
-
-		metaTagSafariIconColor.setAttribute('content', colors[0]);
-		metaTagMsNavButtonColor.setAttribute('content', colors[0]);
-		metaTagMsTileColor.setAttribute('content', colors[0]);
-		metaTagAndroidThemeColor.setAttribute('content', colors[0]);
-		metaTagAppleThemeColor.setAttribute('content', colors[6]);
+		set(STORAGE_KEY_MAP.inputText, textInput.value);
 	}
 
-	function setTheme(theme) {
-		for (i in themes) {
-			if (theme == i) {
-				themes[i].checkbox.checked = true;
-				break;
-			}
+	const countObj = await getCounts(textInput.value);
+
+	for (const key in countObj) {
+		const output = outputMap[key];
+		const count = (countObj[key] || '-').toString();
+
+		// Only update the output if the value has changed
+		if (output.value !== count) {
+			output.value = count;
+
+			output.classList.remove(CLASS_OUTPUT_UPDATE_ANIMATION);
+
+			// Force a reflow to restart the animation
+			void output.offsetWidth;
+
+			output.classList.add(CLASS_OUTPUT_UPDATE_ANIMATION);
 		}
+	}
+}
+
+/**
+ * Given a matrix of meta tag selectors and attributes, returns a matrix of meta tag elements and attributes.
+ *
+ * @returns {Array.<[HTMLElement, string]>} A matrix of meta tag elements and attribute names.
+ */
+function getMetaTagMatrix() {
+	debug('Getting meta tag matrix...');
+
+	const metaTagMatrix = [];
+
+	for (const [
+		metaTagSelector,
+		metaTagAttribute,
+	] of META_TAG_SELECTOR_ATTRIBUTE_MATRIX) {
+		metaTagMatrix.push([
+			document.querySelector(metaTagSelector),
+			metaTagAttribute,
+		]);
 	}
 
-	function setMaxChars() {
-		if (elementMaxCharsInput.checked) {
-			elementInput.maxLength = 1000000;
-		} else {
-			elementInput.removeAttribute('maxlength');
-		}
+	return metaTagMatrix;
+}
+
+/**
+ * Given a list of output IDs, returns a map of output IDs to their corresponding output elements.
+ *
+ * @returns {Object.<string, HTMLOutputElement>} A map of output IDs to their corresponding output elements.
+ */
+function getOutputMap() {
+	debug('Getting output map...');
+
+	const outputMap = {};
+
+	for (const outputId of OUTPUT_IDS) {
+		outputMap[outputId] = document.getElementById(outputId);
 	}
+
+	return outputMap;
+}
+
+/**
+ * Builds radio buttons to change the theme and returns a map of theme keys to input elements.
+ *
+ * @returns {Object.<string, HTMLInputElement>} A map of theme keys to input elements.
+ */
+function buildThemeSelectors() {
+	debug('Building theme selectors...');
+
+	const themeSelectorMap = {};
+
+	for (const [themeKey, themeName] of Object.entries(THEME_NAME_MAP)) {
+		const div = document.createElement('div');
+		const input = document.createElement('input');
+		const label = document.createElement('label');
+		const text = document.createTextNode(themeName);
+
+		input.type = 'radio';
+		input.name = THEME_INPUT_NAME;
+		input.id = themeKey;
+		input.value = themeKey;
+		label.htmlFor = themeKey;
+
+		label.appendChild(text);
+		div.appendChild(input);
+		div.appendChild(label);
+
+		themeSelectorContainer.appendChild(div);
+
+		themeSelectorMap[themeKey] = input;
+	}
+
+	return themeSelectorMap;
+}
+
+/**
+ * Register event listeners and load settings from cookies.
+ */
+function init() {
+	debug('Initializing...');
 
 	const throttledUpdateCounts = debounce(updateCounts);
 
-	elementInput.addEventListener('input', throttledUpdateCounts);
-	document.getElementById('settings').addEventListener('click', openSidebar);
-	document
-		.getElementsByClassName('container')[0]
-		.addEventListener('click', closeSidebar);
+	// Enable transitions after page load
+	window.addEventListener('load', () => {
+		document.body.classList.add(CLASS_ENABLE_TRANSITIONS);
+	});
 
-	function openSidebar() {
-		elementSidebar.classList.toggle('open');
-		document.body.classList.toggle('freezebody');
-		// deg += 180
-		// icon.style.transform = 'rotate(' + deg + 'deg)'
+	warnOnLargeInputTextCheckbox.addEventListener(
+		'change',
+		changeWarnOnLargeInputText,
+	);
+	rememberInputTextCheckbox.addEventListener('change', changeRememberInputText);
+	textInput.addEventListener('input', throttledUpdateCounts);
+
+	for (const themeSelector of Object.values(themeSelectorMap)) {
+		themeSelector.addEventListener('change', changeTheme);
 	}
 
-	function closeSidebar() {
-		elementSidebar.classList.remove('open');
-		document.body.classList.remove('freezebody');
-	}
-
-	async function updateCounts() {
-		const countObj = await getCounts(elementInput.value);
-
-		for (const key in countObj) {
-			elementOutputs[key].value = countObj[key] || '-';
-		}
-	}
-
+	restoreOptions();
+	restoreTheme();
 	updateCounts();
-})();
+}
+
+// Entry point
+init();

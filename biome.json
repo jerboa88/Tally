@@ -1,6 +1,8 @@
 {
 	"files": {
-		"ignore": ["public"]
+		"ignore": [
+			"dist"
+		]
 	},
 	"javascript": {
 		"formatter": {
@@ -9,6 +11,7 @@
 	},
 	"css": {
 		"formatter": {
+			"enabled": true,
 			"quoteStyle": "single"
 		}
 	}
