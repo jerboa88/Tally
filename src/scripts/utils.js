@@ -29,3 +29,13 @@ export function debounce(fn, delay = 50) {
 		}, delay);
 	};
 }
+
+/**
+ * Parse a boolean value from a string.
+ *
+ * @param {string} value - The string to parse.
+ * @returns {boolean} - The parsed boolean value.
+ */
+export function parseBoolean(value) {
+	return value === 'true';
+}
