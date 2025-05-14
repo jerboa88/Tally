@@ -1,7 +1,7 @@
 :root {
 	/* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
-	--default-light-color-base-1: oklch(98.5% 0 0); /* Neutral 50 */
-	--default-light-color-base-2: oklch(92.2% 0 0); /* Neutral 200  */
+	--default-light-color-base-1: oklch(92.2% 0 0); /* Neutral 200  */
+	--default-light-color-base-2: oklch(98.5% 0 0); /* Neutral 50 */
 	--default-light-color-text: oklch(14.5% 0 0); /* Neutral 950 */
 	--default-light-color-shadow: none;
 	--default-light-color-primary: oklch(45.7% 0.24 277.023); /* Indigo 700 */
@@ -403,7 +403,14 @@ input[type='radio'] {
 #theme-container > div > label {
 	display: block;
 	padding: var(--padding-sm);
-	background-color: var(--color-base-1);
+	background: var(--color-base-1);
+	background: linear-gradient(
+		90deg,
+		var(--color-base-1) 0%,
+		var(--color-base-1) 49%,
+		var(--color-base-2) 51%,
+		var(--color-base-2) 100%
+	);
 	color: var(--color-text);
 	transition-property: background-color, color, opacity;
 	transition-duration: var(--transition-duration-base);
