@@ -1,10 +1,21 @@
+// Constants / config
+// ------------------
+const IS_DEBUG = false;
+
+// Runtime variables
+// ------------------
+const logFunc = IS_DEBUG ? console.debug : () => {};
+
+// Functions
+// ---------
+
 /**
  * Log a debug message to the console.
  *
  * @param {string} msg - The message to log.
  */
 export function debug(msg) {
-	console.debug(
+	logFunc(
 		'%c[Tally]',
 		'color:var(--color-primary);background:var(--color-base-1);font-family:var(--font-family-header);font-weight:var(--font-weight-bold);',
 		msg,
