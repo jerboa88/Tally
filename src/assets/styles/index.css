@@ -5,7 +5,7 @@
 	--default-light-color-text: oklch(14.5% 0 0); /* Neutral 950 */
 	--default-light-color-shadow: none;
 	--default-light-color-primary: oklch(45.7% 0.24 277.023); /* Indigo 700 */
-	--default-light-color-mix-ratio-shadow: 25%;
+	--default-light-color-mix-ratio-shadow: 35%;
 
 	--color-mix-ratio-sm: 2.5%;
 	--color-mix-ratio-base: 50%;
@@ -54,6 +54,7 @@ label[for='dark'] {
 	--color-base-2: oklch(26.9% 0 0); /* Neutral 800 */
 	--color-text: oklch(98.5% 0 0); /* Neutral 50 */
 	--color-primary: oklch(70.7% 0.165 254.624); /* Blue 400 */
+	--shadow-strength: 100%;
 }
 
 /* Auto (light) theme */
@@ -86,6 +87,7 @@ label[for='amoled'] {
 	--color-base-2: oklch(0 0 0);
 	--color-text: oklch(92.2% 0 0); /* Neutral 200 */
 	--color-primary: oklch(92.2% 0 0); /* Neutral 200 */
+	--shadow-strength: 0%;
 }
 
 body[data-theme='amoled'] textarea {
@@ -99,6 +101,7 @@ label[for='solarizedDark'] {
 	--color-base-2: oklch(32.1% 0.053 219.6); /* base02 */
 	--color-text: oklch(71.8% 0.017 198); /* base0 */
 	--color-primary: oklch(63.1% 0.166 50.4); /* orange */
+	--shadow-strength: 100%;
 }
 
 /* Colors from OKSolar (https://meat.io/oksolar) */
@@ -108,6 +111,24 @@ label[for='solarizedLight'] {
 	--color-base-2: oklch(97.35% 0.026 90.1); /* base3 */
 	--color-text: oklch(54.4% 0.017 219.6); /* base00 */
 	--color-primary: oklch(63.1% 0.221 21.6); /* red */
+	--shadow-strength: var(--default-light-color-mix-ratio-shadow);
+}
+
+body[data-theme='dusk'],
+label[for='dusk'] {
+	--color-base-1: oklch(15% 0.018 270);
+	--color-base-2: oklch(22% 0.04 330);
+	--color-text: oklch(90% 0.08 340);
+	--color-primary: oklch(0.64 0.21 22.89);
+	--shadow-strength: 100%;
+}
+
+body[data-theme='teal'],
+label[for='teal'] {
+	--color-base-1: oklch(52% 0.07 190);
+	--color-base-2: oklch(58% 0.07 185);
+	--color-text: oklch(100% 0 0);
+	--color-primary: oklch(85% 0.085 30);
 	--shadow-strength: var(--default-light-color-mix-ratio-shadow);
 }
 
@@ -223,7 +244,7 @@ body {
 	);
 	--color-shadow: color-mix(
 		in oklch shorter hue,
-		oklch(0 0 0 / 0.2) var(--shadow-strength),
+		oklch(0 0 0 / 0.25) var(--shadow-strength),
 		transparent
 	);
 	--box-shadow-base: 0 1px 3px 0 var(--color-shadow), 0 1px 2px -1px
@@ -434,7 +455,8 @@ input[type='radio'] {
 }
 
 /* Make Auto theme span two columns */
-#theme-container > div:first-child {
+#theme-container > div:first-child,
+#theme-container > div:last-child {
 	grid-column-start: span 2;
 }
 

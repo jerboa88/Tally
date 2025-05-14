@@ -25,6 +25,8 @@ const THEME_NAME_MAP = {
 	light: 'Light',
 	solarizedDark: 'Solarized Dark',
 	solarizedLight: 'Solarized Light',
+	dusk: 'Dusk',
+	teal: 'Teal',
 	amoled: 'AMOLED',
 };
 const DEFAULT_THEME = 'auto';
