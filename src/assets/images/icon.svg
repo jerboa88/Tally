@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="256"
+   height="256"
+   viewBox="0 0 67.733332 67.73333"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="logo2.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:document-units="px"
+     showgrid="false"
+     width="256mm"
+     units="px"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-paths="true"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-page="true"
+     inkscape:zoom="3"
+     inkscape:cx="17.166667"
+     inkscape:cy="160"
+     inkscape:window-width="2560"
+     inkscape:window-height="1384"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs2">
+    <rect
+       x="0"
+       y="0"
+       width="512"
+       height="256"
+       id="rect30950" />
+    <rect
+       x="63.493103"
+       y="204.51813"
+       width="87.308594"
+       height="105.51416"
+       id="rect26996" />
+    <rect
+       x="0"
+       y="0"
+       width="447.76953"
+       height="235.73222"
+       id="rect2590" />
+    <rect
+       x="0"
+       y="0"
+       width="256"
+       height="256"
+       id="rect2590-3" />
+    <rect
+       x="0"
+       y="0"
+       width="256"
+       height="256"
+       id="rect2590-7" />
+    <rect
+       x="0"
+       y="0"
+       width="512"
+       height="256"
+       id="rect30950-9" />
+    <rect
+       x="0"
+       y="0"
+       width="512"
+       height="256"
+       id="rect30950-91" />
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter2786"
+       x="-0.075262099"
+       y="-0.076336021"
+       width="1.1505242"
+       height="1.1685754">
+      <feFlood
+         flood-opacity="1"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood2776" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite2778" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="1"
+         result="blur"
+         id="feGaussianBlur2780" />
+      <feOffset
+         dx="0"
+         dy="0.5"
+         result="offset"
+         id="feOffset2782" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="composite2"
+         id="feComposite2784" />
+    </filter>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-60.421495,57.676046)">
+    <rect
+       style="fill:#1a1a1a;stroke-width:1;paint-order:markers stroke fill"
+       id="rect948"
+       width="63.499996"
+       height="63.499996"
+       x="62.538162"
+       y="-55.55938"
+       ry="7.9374995" />
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458332)"
+       id="text26994"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect26996);fill:#000000;fill-opacity:1;stroke:none" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:41.275px;line-height:1.25;font-family:'Roboto Slab';-inkscape-font-specification:'Roboto Slab Bold';baseline-shift:baseline;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="-20.952063"
+       y="-23.455128"
+       id="text47760"><tspan
+         sodipodi:role="line"
+         id="tspan47758"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:41.275px;font-family:'Roboto Slab';-inkscape-font-specification:'Roboto Slab Bold';baseline-shift:baseline;fill:#ffffff;stroke-width:0.264583"
+         x="-20.952063"
+         y="-23.455128" /></text>
+    <g
+       id="g46490-1"
+       transform="matrix(1.2279743,0,0,1.2279743,114.77675,-28.798714)"
+       style="stroke-width:0.814348;filter:url(#filter2786)">
+      <g
+         aria-label="ll"
+         transform="matrix(0.26458332,0,0,0.26458332,-29.845306,-18.170179)"
+         id="text30948-7-1"
+         style="font-weight:bold;font-size:156px;line-height:1.25;font-family:'Roboto Slab';-inkscape-font-specification:'Roboto Slab Bold';white-space:pre;shape-inside:url(#rect30950-91);fill:#ffffff;stroke-width:0.814348">
+        <path
+           d="M 3.5800781,143.44521 V 130.11513 L 14.320313,127.82997 V 40.308487 L 2.4375,38.02333 V 24.61708 h 34.125 v 103.21289 l 10.740234,2.28516 v 13.33008 z"
+           id="path46654-5"
+           style="stroke-width:0.814348" />
+        <path
+           d="m 53.320312,143.44521 v -13.33008 l 10.740235,-2.28516 V 40.308487 L 52.177734,38.02333 V 24.61708 h 34.125 v 103.21289 l 10.740235,2.28516 v 13.33008 z"
+           id="path46656-9"
+           style="stroke-width:0.814348" />
+      </g>
+      <g
+         aria-label="|"
+         transform="matrix(0.13229166,0.22913588,-0.22913588,0.13229166,3.6216436,-12.76903)"
+         id="text30948-0-7"
+         style="font-weight:bold;font-size:156px;line-height:1.25;font-family:'Roboto Slab';-inkscape-font-specification:'Roboto Slab Bold';white-space:pre;shape-inside:url(#rect30950-9);fill:#ffffff;stroke-width:0.814348">
+        <path
+           d="M 10.054688,164.01161 V 32.538955 H 23.384766 V 164.01161 Z"
+           id="path46659-7"
+           style="stroke-width:0.814348" />
+      </g>
+    </g>
+  </g>
+</svg>

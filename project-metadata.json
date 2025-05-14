@@ -3,7 +3,7 @@
 	"name": "Tally",
 	"tagline": "Character Counter",
 	"background": "An online character counter, created in order to get more familiar with using CSS grid layouts, text parsing, and cookie handling in JavaScript. I have since ported the site to a Chrome extension that over 200 users.",
-	"logoPath": "src/assets/images/icon-large.png",
+	"logoPath": "src/assets/images/logo.svg",
 	"category": "App",
 	"subcategory": "Web",
 	"schema": {

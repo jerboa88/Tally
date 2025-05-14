@@ -1,10 +1,9 @@
 
 <!-- Project Header -->
 <div align="center">
-	<img class="projectLogo" src="src/assets/images/icon-large.png" alt="Project logo" title="Project logo" width="256">
 	<h1 class="projectName">
-		<a href="https://tally.johng.io">
-			Tally - Word Counter
+		<a href="https://tally.johng.io" title="Tally - Word Counter">
+			<img class="projectLogo" src="src/assets/images/logo.svg" alt="Project logo" title="Project logo" width="256">
 		</a>
 	</h1>
 	<p class="projectBadges">
