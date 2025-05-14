@@ -31,7 +31,7 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 </head>
 
-<body>
+<body data-theme="auto">
 	<header class="indent">
 		<a href="/">
 			<h1>Tally</h1>
@@ -40,7 +40,7 @@
 	</header>
 	<main>
 		<section>
-			<textarea id="input" spellcheck="false" maxlength="1000000" placeholder="The quick brown cat jumps over the lazy dog..." autofocus></textarea>
+			<textarea id="input" spellcheck="false" placeholder="The quick brown cat jumps over the lazy dog..." autofocus></textarea>
 			<form class="table counts">
 				<div>
 					<label for="characters">Characters</label>
@@ -206,39 +206,8 @@
 			</p>
 		</div>
 		<div>
-			<h3>Options</h3>
-			<div>
-				<input type="checkbox" id="savesettings">
-				<label for="savesettings">Remember settings</label><br>
-				<input type="checkbox" id="savetext" disabled>
-				<label for="savetext">Remember text from last time</label><br>
-				<input type="checkbox" id="maxchars">
-				<label for="maxchars">Allow more than 1,000,000 characters</label>
-			</div>
-
 			<h3>Theme</h3>
-			<div class="themes">
-				<div>
-					<input type="radio" name="theme" id="autotheme" value="Auto" checked>
-					<label for="autotheme">Auto</label>
-				</div>
-				<div>
-					<input type="radio" name="theme" id="blacktheme" value="Black" checked>
-					<label for="blacktheme">Black</label>
-				</div>
-				<div>
-					<input type="radio" name="theme" id="whitetheme" value="White">
-					<label for="whitetheme">White</label>
-				</div>
-				<div>
-					<input type="radio" name="theme" id="tealtheme" value="Teal">
-					<label for="tealtheme">Teal</label>
-				</div>
-				<div>
-					<input type="radio" name="theme" id="dusktheme" value="Dusk">
-					<label for="dusktheme">Dusk</label>
-				</div>
-			</div>
+			<div id="theme-container"></div>
 		</div>
 	</footer>
 

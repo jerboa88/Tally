@@ -1,226 +1,211 @@
 import '@fontsource-variable/roboto-slab';
 import '@fontsource-variable/roboto-flex';
-import { get, set, removeAll } from './storage.js';
-import { debounce } from './utils.js';
+import { debug, debounce } from './utils.js';
+import { get, set, remove } from './storage.js';
 import { getCounts } from './counter.js';
 
-(() => {
-	// Constants / config
-	// ------------------
-	const CLASS_OUTPUT_UPDATE_ANIMATION = 'pulse';
-	const CLASS_ENABLE_TRANSITIONS = 'enable-transitions';
+// Constants / config
+// ------------------
+const CLASS_OUTPUT_UPDATE_ANIMATION = 'pulse';
+const CLASS_ENABLE_TRANSITIONS = 'enable-transitions';
+const BASE_COLOR_VARIABLE_NAME = '--color-base-1';
+const THEME_INPUT_NAME = 'theme';
+const STORAGE_KEY_MAP = {
+	theme: 'theme',
+};
+const THEME_NAME_MAP = {
+	auto: 'Auto',
+	dark: 'Dark',
+	light: 'Light',
+};
+const DEFAULT_THEME = 'auto';
+const META_TAG_SELECTOR_ATTRIBUTE_MATRIX = [
+	['link[rel=mask-icon]', 'color'],
+	['meta[name=msapplication-navbutton-color]', 'content'],
+	['meta[name=msapplication-TileColor]', 'content'],
+	['meta[name=theme-color]', 'content'],
+	['meta[name=apple-mobile-web-app-status-bar-style]', 'content'],
+];
+const OUTPUT_IDS = [
+	'characters',
+	'words',
+	'sentences',
+	'paragraphs',
+	'lines',
+	'spaces',
+	'letters',
+	'digits',
+	'symbols',
+];
 
-	// Runtime variables
-	// -----------------
-	const elementInput = document.getElementById('input');
-	const elementSaveSettingsInput = document.getElementById('savesettings');
-	const elementSaveTextInput = document.getElementById('savetext');
-	const elementMaxCharsInput = document.getElementById('maxchars');
-	const elementOutputs = {
-		characters: document.getElementById('characters'),
-		words: document.getElementById('words'),
-		sentences: document.getElementById('sentences'),
-		paragraphs: document.getElementById('paragraphs'),
-		lines: document.getElementById('lines'),
-		spaces: document.getElementById('spaces'),
-		letters: document.getElementById('letters'),
-		digits: document.getElementById('digits'),
-		symbols: document.getElementById('symbols'),
-	};
-	const metaTagSafariIconColor = document.querySelector('link[rel=mask-icon]');
-	const metaTagMsNavButtonColor = document.querySelector(
-		'meta[name=msapplication-navbutton-color]',
-	);
-	const metaTagMsTileColor = document.querySelector(
-		'meta[name=msapplication-TileColor]',
-	);
-	const metaTagAndroidThemeColor = document.querySelector(
-		'meta[name=theme-color]',
-	);
-	const metaTagAppleThemeColor = document.querySelector(
-		'meta[name=apple-mobile-web-app-status-bar-style]',
-	);
-	const themes = {
-		auto: {
-			checkbox: document.getElementById('autotheme'),
-		},
-		black: {
-			checkbox: document.getElementById('blacktheme'),
-			colors: [
-				'#151515',
-				'#222',
-				'#202020',
-				'#fff',
-				'rgba(0,0,0,.5)',
-				'rgba(255,255,255,.5)',
-				'black',
-			],
-		},
-		white: {
-			checkbox: document.getElementById('whitetheme'),
-			colors: [
-				'#fff',
-				'#eee',
-				'#f4f4f4',
-				'#000',
-				'none',
-				'rgba(0,0,0,.5)',
-				'default',
-			],
-		},
-		teal: {
-			checkbox: document.getElementById('tealtheme'),
-			colors: [
-				'#317b71',
-				'#44877e',
-				'#3D837a',
-				'#fff',
-				'rgba(0,0,0,.5)',
-				'rgba(194,67,63,.75)',
-				'default',
-			],
-		},
-		dusk: {
-			checkbox: document.getElementById('dusktheme'),
-			colors: [
-				'#080b12',
-				'#291427',
-				'#291427',
-				'#F4CAE0',
-				'none',
-				'rgba(8,11,18,.75)',
-				'black',
-			],
-		},
-	};
+// Runtime variables
+// -----------------
+const textInput = document.getElementById('input');
+const themeSelectorContainer = document.getElementById('theme-container');
+const outputMap = getOutputMap();
+const metaTagMatrix = getMetaTagMatrix();
+const themeSelectorMap = buildThemeSelectors();
 
-	const systemThemeColor = {
-		dark: matchMedia('(prefers-color-scheme: dark)'),
-		light: matchMedia('(prefers-color-scheme: light)'),
-		none: matchMedia('(prefers-color-scheme: no-preference)'),
-	};
+// Functions
+// ---------
 
-	elementSaveSettingsInput.addEventListener('change', saveSettings);
-	elementSaveTextInput.addEventListener('change', saveSettings);
-	elementMaxCharsInput.addEventListener('change', saveSettings);
-	systemThemeColor.dark.addEventListener('change', getTheme);
-	systemThemeColor.light.addEventListener('change', getTheme);
-	systemThemeColor.none.addEventListener('change', getTheme);
+/**
+ * Apply a theme to the page given its key.
+ *
+ * @param {string} themeKey - The key of the theme to apply.
+ */
+function applyTheme(themeKey) {
+	debug(`Applying theme '${themeKey}'`);
 
-	for (const theme in themes) {
-		themes[theme].checkbox.addEventListener('change', saveSettings);
+	// Update colors in meta tags
+	const styleMap = window.getComputedStyle(document.body);
+	const baseColor = styleMap.getPropertyValue(BASE_COLOR_VARIABLE_NAME);
+
+	for (const [metaTag, metaTagAttribute] of metaTagMatrix) {
+		metaTag.setAttribute(metaTagAttribute, baseColor);
 	}
 
-	function saveSettings() {
-		setMaxChars();
+	// Set theme attribute on body
+	document.body.setAttribute(`data-${STORAGE_KEY_MAP.theme}`, themeKey);
+}
 
-		const theme = getTheme();
+/**
+ * Handle the theme selector change event. This will update the theme in local storage and apply the theme to the page.
+ *
+ * @param {Event} event - The event object.
+ */
+function changeTheme({ target }) {
+	const themeName = target.value;
 
-		if (elementSaveSettingsInput.checked) {
-			set('savesettings', 1);
-			set('savetext', elementSaveTextInput.checked ? 1 : 0);
-			set('maxchars', elementMaxCharsInput.checked ? 1 : 0);
-			set('theme', theme);
-		} else {
-			removeAll();
+	debug(`Changing theme to '${themeName}'`);
+
+	set(STORAGE_KEY_MAP.theme, themeName);
+	applyTheme(themeName);
+}
+
+/**
+ * Restore the theme from local storage. If no theme is found, the default theme will be applied.
+ */
+function restoreTheme() {
+	let theme = get(STORAGE_KEY_MAP.theme);
+
+	debug(`Restoring theme: '${theme}'...`);
+
+	if (theme in themeSelectorMap) {
+		themeSelectorMap[theme].checked = true;
+	} else {
+		themeSelectorMap[DEFAULT_THEME].checked = true;
+		theme = DEFAULT_THEME;
+	}
+
+	applyTheme(theme);
+}
+
+/**
+ * Compute the counts for the input text and update the output elements accordingly.
+ */
+async function updateCounts() {
+	debug('Updating counts...');
+
+	const countObj = await getCounts(textInput.value);
+
+	for (const key in countObj) {
+		const output = outputMap[key];
+		const count = (countObj[key] || '-').toString();
+
+		// Only update the output if the value has changed
+		if (output.value !== count) {
+			output.value = count;
+
+			output.classList.remove(CLASS_OUTPUT_UPDATE_ANIMATION);
+
+			// Force a reflow to restart the animation
+			void output.offsetWidth;
+
+			output.classList.add(CLASS_OUTPUT_UPDATE_ANIMATION);
 		}
 	}
+}
 
-	function loadSettings() {
-		const saveSettings = get('savesettings');
+/**
+ * Given a matrix of meta tag selectors and attributes, returns a matrix of meta tag elements and attributes.
+ *
+ * @returns {Array.<[HTMLElement, string]>} A matrix of meta tag elements and attribute names.
+ */
+function getMetaTagMatrix() {
+	debug('Getting meta tag matrix...');
 
-		if (saveSettings) {
-			elementSaveSettingsInput.checked = saveSettings;
-			elementSaveTextInput.checked = get('savetext');
-			elementMaxCharsInput.checked = get('maxchars');
+	const metaTagMatrix = [];
 
-			setTheme(get('theme'));
-		}
-
-		setMaxChars();
-		getTheme();
+	for (const [
+		metaTagSelector,
+		metaTagAttribute,
+	] of META_TAG_SELECTOR_ATTRIBUTE_MATRIX) {
+		metaTagMatrix.push([
+			document.querySelector(metaTagSelector),
+			metaTagAttribute,
+		]);
 	}
 
-	loadSettings();
+	return metaTagMatrix;
+}
 
-	function getTheme() {
-		for (const theme in themes) {
-			if (themes[theme].checkbox.checked) {
-				if (theme === 'auto') {
-					if (systemThemeColor.dark.matches) {
-						applyTheme(themes.black.colors);
+/**
+ * Given a list of output IDs, returns a map of output IDs to their corresponding output elements.
+ *
+ * @returns {Object.<string, HTMLOutputElement>} A map of output IDs to their corresponding output elements.
+ */
+function getOutputMap() {
+	debug('Getting output map...');
 
-						return 'auto';
-					}
+	const outputMap = {};
 
-					if (systemThemeColor.light.matches) {
-						applyTheme(themes.white.colors);
-
-						return 'auto';
-					}
-
-					if (systemThemeColor.none.matches) {
-						const currentHour = new Date().getHours();
-
-						applyTheme(
-							currentHour < 8 || currentHour > 20
-								? themes.black.colors
-								: themes.white.colors,
-						);
-
-						return 'auto';
-					}
-
-					applyTheme(themes.white.colors);
-
-					return 'white';
-				}
-
-				applyTheme(themes[theme].colors);
-
-				return theme;
-			}
-		}
+	for (const outputId of OUTPUT_IDS) {
+		outputMap[outputId] = document.getElementById(outputId);
 	}
 
-	// Input: bg, primary, focus, text, shadow, selection, ios
-	function applyTheme(colors) {
-		const color_types = [
-			'--color-base-1',
-			'--color-base-2',
-			'--color-focus',
-			'--color-text',
-			'--color-shadow',
-			'--color-selection',
-		];
+	return outputMap;
+}
 
-		for (let i = 0; i < color_types.length; i++) {
-			document.documentElement.style.setProperty(color_types[i], colors[i]);
-		}
+/**
+ * Builds radio buttons to change the theme and returns a map of theme keys to input elements.
+ *
+ * @returns {Object.<string, HTMLInputElement>} A map of theme keys to input elements.
+ */
+function buildThemeSelectors() {
+	debug('Building theme selectors...');
 
-		metaTagSafariIconColor.setAttribute('content', colors[0]);
-		metaTagMsNavButtonColor.setAttribute('content', colors[0]);
-		metaTagMsTileColor.setAttribute('content', colors[0]);
-		metaTagAndroidThemeColor.setAttribute('content', colors[0]);
-		metaTagAppleThemeColor.setAttribute('content', colors[6]);
+	const themeSelectorMap = {};
+
+	for (const [themeKey, themeName] of Object.entries(THEME_NAME_MAP)) {
+		const div = document.createElement('div');
+		const input = document.createElement('input');
+		const label = document.createElement('label');
+		const text = document.createTextNode(themeName);
+
+		input.type = 'radio';
+		input.name = THEME_INPUT_NAME;
+		input.id = themeKey;
+		input.value = themeKey;
+		label.htmlFor = themeKey;
+
+		label.appendChild(text);
+		div.appendChild(input);
+		div.appendChild(label);
+
+		themeSelectorContainer.appendChild(div);
+
+		themeSelectorMap[themeKey] = input;
 	}
 
-	function setTheme(newTheme) {
-		for (const theme in themes) {
-			if (newTheme == theme) {
-				themes[theme].checkbox.checked = true;
-				break;
-			}
-		}
-	}
+	return themeSelectorMap;
+}
 
-	function setMaxChars() {
-		if (elementMaxCharsInput.checked) {
-			elementInput.maxLength = 1000000;
-		} else {
-			elementInput.removeAttribute('maxlength');
-		}
-	}
+/**
+ * Register event listeners and load settings from cookies.
+ */
+function init() {
+	debug('Initializing...');
 
 	const throttledUpdateCounts = debounce(updateCounts);
 
@@ -228,28 +213,16 @@ import { getCounts } from './counter.js';
 	window.addEventListener('load', () => {
 		document.body.classList.add(CLASS_ENABLE_TRANSITIONS);
 	});
-	elementInput.addEventListener('input', throttledUpdateCounts);
 
-	async function updateCounts() {
-		const countObj = await getCounts(elementInput.value);
+	textInput.addEventListener('input', throttledUpdateCounts);
 
-		for (const key in countObj) {
-			const output = elementOutputs[key]
-			const count = (countObj[key] || '-').toString();
-
-			// Only update the output if the value has changed
-			if (output.value !== count) {
-				output.value = count;
-
-				output.classList.remove(CLASS_OUTPUT_UPDATE_ANIMATION);
-
-				// Force a reflow to restart the animation
-				void output.offsetWidth;
-
-				output.classList.add(CLASS_OUTPUT_UPDATE_ANIMATION);
-			}
-		}
+	for (const themeSelector of Object.values(themeSelectorMap)) {
+		themeSelector.addEventListener('change', changeTheme);
 	}
 
+	restoreTheme();
 	updateCounts();
-})();
+}
+
+// Entry point
+init();
