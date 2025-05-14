@@ -5,7 +5,7 @@
 	--default-light-color-text: oklch(14.5% 0 0); /* Neutral 950 */
 	--default-light-color-shadow: none;
 	--default-light-color-primary: oklch(45.7% 0.24 277.023); /* Indigo 700 */
-	--default-light-color-mix-ratio-shadow: 35%;
+	--default-light-shadow-strength: 30%;
 
 	--color-mix-ratio-sm: 2.5%;
 	--color-mix-ratio-base: 50%;
@@ -18,8 +18,6 @@
 	--padding-xs: calc(var(--padding-base) / 4);
 	--padding-sm: calc(var(--padding-base) / 2);
 	--padding-lg: calc(var(--padding-base) * 2);
-
-	--border-radius-base: .75rem;
 
 	--font-size-base: 1rem;
 	--font-size-lg: 1.5rem;
@@ -34,10 +32,12 @@
 	--font-weight-bolder: 700;
 
 	--max-width-page: 56rem;
-
+	--min-width-footer-child: 22rem;
 	--min-height-textarea: 18rem;
 
 	--border-width-base: 1px;
+
+	--border-radius-base: .75rem;
 
 	--pulse-scale: 1.1;
 }
@@ -80,6 +80,24 @@ label[for='light'] {
 	--shadow-strength: var(--default-light-shadow-strength);
 }
 
+body[data-theme='dusk'],
+label[for='dusk'] {
+	--color-base-1: oklch(15% 0.018 270);
+	--color-base-2: oklch(22% 0.04 330);
+	--color-text: oklch(90% 0.08 340);
+	--color-primary: oklch(0.64 0.21 22.89);
+	--shadow-strength: 100%;
+}
+
+body[data-theme='teal'],
+label[for='teal'] {
+	--color-base-1: oklch(52% 0.07 190);
+	--color-base-2: oklch(58% 0.07 185);
+	--color-text: oklch(100% 0 0);
+	--color-primary: oklch(85% 0.085 30);
+	--shadow-strength: var(--default-light-shadow-strength);
+}
+
 /* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
 body[data-theme='amoled'],
 label[for='amoled'] {
@@ -111,25 +129,60 @@ label[for='solarizedLight'] {
 	--color-base-2: oklch(97.35% 0.026 90.1); /* base3 */
 	--color-text: oklch(54.4% 0.017 219.6); /* base00 */
 	--color-primary: oklch(63.1% 0.221 21.6); /* red */
-	--shadow-strength: var(--default-light-color-mix-ratio-shadow);
 }
 
-body[data-theme='dusk'],
-label[for='dusk'] {
-	--color-base-1: oklch(15% 0.018 270);
-	--color-base-2: oklch(22% 0.04 330);
-	--color-text: oklch(90% 0.08 340);
-	--color-primary: oklch(0.64 0.21 22.89);
+body[data-theme='gruvboxDark'],
+label[for='gruvboxDark'] {
+	--color-base-1: oklch(21% 0 0);
+	--color-base-2: oklch(26% 0.01 45);
+	--color-text: oklch(85% 0.08 90);
+	--color-primary: oklch(62% 0.2 75);
 	--shadow-strength: 100%;
 }
 
-body[data-theme='teal'],
-label[for='teal'] {
-	--color-base-1: oklch(52% 0.07 190);
-	--color-base-2: oklch(58% 0.07 185);
-	--color-text: oklch(100% 0 0);
-	--color-primary: oklch(85% 0.085 30);
-	--shadow-strength: var(--default-light-color-mix-ratio-shadow);
+body[data-theme='gruvboxLight'],
+label[for='gruvboxLight'] {
+	--color-base-1: oklch(85% 0.08 90);
+	--color-base-2: oklch(95% 0.06 90);
+	--color-text: oklch(26% 0.01 45);
+	--color-primary: oklch(62% 0.2 75);
+	--shadow-strength: var(--default-light-shadow-strength);
+}
+
+body[data-theme='catppuccinMocha'],
+label[for='catppuccinMocha'] {
+	--color-base-1: oklch(20% 0.02 270);
+	--color-base-2: oklch(28% 0.03 270);
+	--color-text: oklch(90% 0.06 270);
+	--color-primary: oklch(75% 0.18 270);
+	--shadow-strength: 100%;
+}
+
+body[data-theme='catppuccinLatte'],
+label[for='catppuccinLatte'] {
+	--color-base-1: oklch(92% 0.01 250);
+	--color-base-2: oklch(96% 0.01 250);
+	--color-text: oklch(30% 0.02 260);
+	--color-primary: oklch(68% 0.18 275);
+	--shadow-strength: var(--default-light-shadow-strength);
+}
+
+body[data-theme='dracula'],
+label[for='dracula'] {
+	--color-base-1: oklch(24% 0.03 270);
+	--color-base-2: oklch(36% 0.03 270);
+	--color-text: oklch(98% 0.01 100);
+	--color-primary: oklch(70% 0.2 300);
+	--shadow-strength: 100%;
+}
+
+body[data-theme='nord'],
+label[for='nord'] {
+	--color-base-1: oklch(25% 0.03 250);
+	--color-base-2: oklch(30% 0.03 250);
+	--color-text: oklch(88% 0.03 250);
+	--color-primary: oklch(65% 0.18 250);
+	--shadow-strength: 100%;
 }
 
 /* Utility classes */
@@ -299,7 +352,7 @@ footer {
 
 footer > * {
 	flex: 1;
-	min-width: var(--min-height-textarea);
+	min-width: var(--min-width-footer-child);
 }
 
 textarea {
@@ -420,12 +473,14 @@ input[type='radio'] {
 #theme-container {
 	display: grid;
 	grid-template-columns: auto auto;
+	width: fit-content;
 	border-radius: var(--border-radius-base);
 	overflow: hidden;
 }
 
 #theme-container > div {
 	text-align: center;
+	white-space: nowrap;
 }
 
 #theme-container > div > label {
@@ -452,12 +507,6 @@ input[type='radio'] {
 #theme-container:hover > div > input[type='radio']:hover ~ label {
 	opacity: var(--opacity-max);
 	box-shadow: var(--box-shadow-xl);
-}
-
-/* Make Auto theme span two columns */
-#theme-container > div:first-child,
-#theme-container > div:last-child {
-	grid-column-start: span 2;
 }
 
 #theme-container > div > input[type='radio'] {

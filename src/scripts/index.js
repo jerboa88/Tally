@@ -21,13 +21,19 @@ const STORAGE_KEY_MAP = {
 };
 const THEME_NAME_MAP = {
 	auto: 'Auto',
-	dark: 'Dark',
-	light: 'Light',
-	solarizedDark: 'Solarized Dark',
-	solarizedLight: 'Solarized Light',
-	dusk: 'Dusk',
-	teal: 'Teal',
 	amoled: 'AMOLED',
+	light: 'Light',
+	dark: 'Dark',
+	teal: 'Teal',
+	dusk: 'Dusk',
+	solarizedLight: 'Solarized Light',
+	solarizedDark: 'Solarized Dark',
+	gruvboxLight: '🚧 Gruvbox Light',
+	gruvboxDark: '🚧 Gruvbox Dark',
+	catppuccinLatte: '🚧 Catppuccin Latte',
+	catppuccinMocha: '🚧 Catppuccin Mocha',
+	nord: '🚧 Nord',
+	dracula: '🚧 Dracula',
 };
 const DEFAULT_THEME = 'auto';
 const META_TAG_SELECTOR_ATTRIBUTE_MATRIX = [
