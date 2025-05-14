@@ -141,7 +141,7 @@ function restoreOptions() {
 	debug(`\tWarn on large input text: '${warnOnLargeInputText}'`);
 	debug(`\tRemember input text: '${rememberInputText}'`);
 
-	warnOnLargeInputTextCheckbox.checked = warnOnLargeInputText;
+	warnOnLargeInputTextCheckbox.checked = warnOnLargeInputText ?? true;
 
 	if (rememberInputText) {
 		rememberInputTextCheckbox.checked = true;

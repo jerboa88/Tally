@@ -45,8 +45,16 @@ export function debounce(fn, delay = 50) {
  * Parse a boolean value from a string.
  *
  * @param {string} value - The string to parse.
- * @returns {boolean} - The parsed boolean value.
+ * @returns {boolean | null} - The parsed boolean value.
  */
 export function parseBoolean(value) {
-	return value === 'true';
+	if (value === 'true') {
+		return true;
+	}
+
+	if (value === 'false') {
+		return false;
+	}
+
+	return null;
 }
