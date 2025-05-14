@@ -26,15 +26,15 @@
 	"type": "module",
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"@fontsource-variable/roboto-flex": "^5.1.0",
-		"@fontsource-variable/roboto-slab": "^5.1.0",
-		"@parcel/packager-raw-url": "2.14.4",
-		"@parcel/transformer-jsonld": "2.14.4",
-		"@parcel/transformer-webmanifest": "2.14.4",
+		"@fontsource-variable/roboto-flex": "^5.2.5",
+		"@fontsource-variable/roboto-slab": "^5.2.5",
+		"@parcel/packager-raw-url": "2.15.0",
+		"@parcel/transformer-jsonld": "2.15.0",
+		"@parcel/transformer-webmanifest": "2.15.0",
 		"ava": "^6.3.0",
-		"parcel": "^2.14.4",
+		"parcel": "^2.15.0",
 		"rimraf": "^6.0.1",
-		"sharp": "^0.33.5",
+		"sharp": "^0.34.1",
 		"svgo": "^3.3.2"
 	},
 	"packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39"
