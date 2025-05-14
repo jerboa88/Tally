@@ -19,6 +19,7 @@ const THEME_NAME_MAP = {
 	light: 'Light',
 	solarizedDark: 'Solarized Dark',
 	solarizedLight: 'Solarized Light',
+	amoled: 'AMOLED',
 };
 const DEFAULT_THEME = 'auto';
 const META_TAG_SELECTOR_ATTRIBUTE_MATRIX = [
