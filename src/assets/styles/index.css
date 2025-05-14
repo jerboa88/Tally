@@ -80,7 +80,28 @@ label[for='light'] {
 	--color-text: var(--default-light-color-text);
 	--color-shadow: var(--default-light-color-shadow);
 	--color-primary: var(--default-light-color-primary);
-	--color-mix-ratio-shadow: 0%;
+	--color-mix-ratio-shadow: 25%;
+}
+
+/* Colors from OKSolar (https://meat.io/oksolar) */
+body[data-theme='solarizedDark'],
+label[for='solarizedDark'] {
+	--color-base-1: oklch(27.4% 0.05 219.6); /* base03 */
+	--color-base-2: oklch(32.1% 0.053 219.6); /* base02 */
+	--color-text: oklch(71.8% 0.017 198); /* base0 */
+	--color-shadow: oklch(27.4% 0.05 219.6); /* base03 */
+	--color-primary: oklch(63.1% 0.166 50.4); /* orange */
+}
+
+/* Colors from OKSolar (https://meat.io/oksolar) */
+body[data-theme='solarizedLight'],
+label[for='solarizedLight'] {
+	--color-base-1: oklch(93.06% 0.026 92.4); /* base2 */
+	--color-base-2: oklch(97.35% 0.026 90.1); /* base3 */
+	--color-text: oklch(54.4% 0.017 219.6); /* base00 */
+	--color-shadow: none;
+	--color-primary: oklch(63.1% 0.221 21.6); /* red */
+	--color-mix-ratio-shadow: 25%;
 }
 
 /* Utility classes */
