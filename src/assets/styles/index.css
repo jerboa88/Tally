@@ -305,6 +305,8 @@ body {
 	--text-shadow-base: 0px 1px 0px var(--color-shadow), 0px 1px 1px
 		var(--color-shadow), 0px 2px 2px var(--color-shadow);
 	--text-shadow-sm: 0px 1px 1px var(--color-shadow);
+	--drop-shadow-base: drop-shadow(0 1px .3px var(--color-shadow))
+		drop-shadow(0 1px .2px var(--color-shadow));
 }
 
 main {
@@ -336,6 +338,16 @@ header {
 	width: fit-content;
 	margin-block-start: var(--padding-lg);
 	margin-inline: var(--padding-base);
+}
+
+header > a:link {
+	border-bottom: none;
+}
+
+header > a:link > svg {
+	width: 10rem;
+	height: fit-content;
+	filter: var(--drop-shadow-base);
 }
 
 footer {
@@ -379,6 +391,7 @@ textarea:focus {
 img {
 	max-width: 100%;
 	max-height: 100%;
+	height: auto;
 }
 
 .table {
@@ -401,18 +414,6 @@ img {
 	align-items: center;
 	gap: var(--padding-xs);
 	flex: 1;
-}
-
-h1 {
-	margin: 0;
-	font-family: var(--font-family-header);
-	font-size: var(--font-size-xl);
-	text-shadow: var(--text-shadow-base);
-}
-
-h1:after {
-	content: 'v3';
-	font-size: var(--font-size-base);
 }
 
 h2,
@@ -441,10 +442,12 @@ ul {
 }
 
 a:link {
+	padding-block-end: var(--border-width-base);
 	color: var(--color-primary);
 	text-decoration: none;
 	transition-property: color, opacity;
 	transition-duration: var(--transition-duration-base);
+	border-block-end: var(--border-width-base) solid var(--color-primary);
 }
 
 a:hover {

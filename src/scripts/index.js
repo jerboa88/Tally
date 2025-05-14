@@ -37,7 +37,6 @@ const THEME_NAME_MAP = {
 };
 const DEFAULT_THEME = 'auto';
 const META_TAG_SELECTOR_ATTRIBUTE_MATRIX = [
-	['link[rel=mask-icon]', 'color'],
 	['meta[name=msapplication-navbutton-color]', 'content'],
 	['meta[name=msapplication-TileColor]', 'content'],
 	['meta[name=theme-color]', 'content'],
