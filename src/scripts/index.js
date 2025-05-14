@@ -1,17 +1,21 @@
 import '@fontsource-variable/roboto-slab';
 import '@fontsource-variable/roboto-flex';
-import { debug, debounce } from './utils.js';
+import { debug, debounce, parseBoolean } from './utils.js';
 import { get, set, remove } from './storage.js';
 import { getCounts } from './counter.js';
 
 // Constants / config
 // ------------------
+const LARGE_INPUT_WARNING_THRESHOLD = 1000000;
+const LARGE_INPUT_WARNING_MSG =
+	"You've entered a large amount of text. This may cause performance issues. Do you want to continue?\n\n(You can disable this warning in the options.)";
 const CLASS_OUTPUT_UPDATE_ANIMATION = 'pulse';
 const CLASS_ENABLE_TRANSITIONS = 'enable-transitions';
 const BASE_COLOR_VARIABLE_NAME = '--color-base-1';
 const THEME_INPUT_NAME = 'theme';
 const STORAGE_KEY_MAP = {
 	theme: 'theme',
+	warnOnLargeInputText: 'warnOnLargeInputText',
 };
 const THEME_NAME_MAP = {
 	auto: 'Auto',
@@ -44,6 +48,9 @@ const OUTPUT_IDS = [
 // Runtime variables
 // -----------------
 const textInput = document.getElementById('input');
+const warnOnLargeInputTextCheckbox = document.getElementById(
+	'warn-on-large-input-text',
+);
 const themeSelectorContainer = document.getElementById('theme-container');
 const outputMap = getOutputMap();
 const metaTagMatrix = getMetaTagMatrix();
@@ -87,6 +94,32 @@ function changeTheme({ target }) {
 }
 
 /**
+ * Handle the warn on large input text checkbox change event. This will update the warn on large input text setting in local storage.
+ *
+ * @param {Event} event - The event object.
+ */
+function changeWarnOnLargeInputText({ target: { checked } }) {
+	debug(`Changing warn on large input text to '${checked}'`);
+
+	set(STORAGE_KEY_MAP.warnOnLargeInputText, checked);
+}
+
+/**
+ * Restore the options from local storage. If no options are found, the default options will be applied.
+ */
+function restoreOptions() {
+	const warnOnLargeInputText = parseBoolean(
+		get(STORAGE_KEY_MAP.warnOnLargeInputText),
+	);
+
+	debug('Restoring options...');
+	debug(`\tWarn on large input text: '${warnOnLargeInputText}'`);
+
+	// Default to true if no value is found
+	warnOnLargeInputTextCheckbox.checked = warnOnLargeInputText ?? true;
+}
+
+/**
  * Restore the theme from local storage. If no theme is found, the default theme will be applied.
  */
 function restoreTheme() {
@@ -109,6 +142,24 @@ function restoreTheme() {
  */
 async function updateCounts() {
 	debug('Updating counts...');
+
+	// Warn the user if the input text is large
+	if (
+		warnOnLargeInputTextCheckbox.checked &&
+		textInput.value.length > LARGE_INPUT_WARNING_THRESHOLD
+	) {
+		debug('Input text is large.');
+
+		if (!confirm(LARGE_INPUT_WARNING_MSG)) {
+			debug('User cancelled computation.');
+
+			for (const output of Object.values(outputMap)) {
+				output.value = '?';
+			}
+
+			return;
+		}
+	}
 
 	const countObj = await getCounts(textInput.value);
 
@@ -217,12 +268,17 @@ function init() {
 		document.body.classList.add(CLASS_ENABLE_TRANSITIONS);
 	});
 
+	warnOnLargeInputTextCheckbox.addEventListener(
+		'change',
+		changeWarnOnLargeInputText,
+	);
 	textInput.addEventListener('input', throttledUpdateCounts);
 
 	for (const themeSelector of Object.values(themeSelectorMap)) {
 		themeSelector.addEventListener('change', changeTheme);
 	}
 
+	restoreOptions();
 	restoreTheme();
 	updateCounts();
 }
