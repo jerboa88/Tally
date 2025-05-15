@@ -477,46 +477,59 @@ input[type='radio'] {
 	vertical-align: middle;
 }
 
-#theme-container {
+.config {
 	display: grid;
-	grid-template-columns: auto auto;
-	width: fit-content;
 	border-radius: var(--border-radius-base);
 	overflow: hidden;
 }
 
-#theme-container > div {
+.config.options {
+	grid-template-columns: auto;
+}
+
+.config.themes {
+	grid-template-columns: auto auto;
+}
+
+.config > div {
 	text-align: center;
 	white-space: nowrap;
 }
 
-#theme-container > div > label {
+.config.options > div {
+	text-align: start;
+}
+
+.config > div > label {
 	display: block;
 	padding: var(--padding-sm);
 	background: var(--color-base-1);
-	background: linear-gradient(
-		90deg,
-		var(--color-base-1) 0%,
-		var(--color-base-1) 49%,
-		var(--color-base-2) 51%,
-		var(--color-base-2) 100%
-	);
 	color: var(--color-text);
 	transition-property: background-color, color, opacity;
 	transition-duration: var(--transition-duration-base);
 	cursor: pointer;
 }
 
-#theme-container:hover > div > input[type='radio'] ~ label {
+.config.themes > div > label {
+	background: linear-gradient(
+		90deg,
+		var(--color-base-1) 0%,
+		var(--color-base-1) 49.9%,
+		var(--color-base-2) 50.1%,
+		var(--color-base-2) 100%
+	);
+}
+
+.config:hover > div > input ~ label {
 	opacity: var(--opacity-hover);
 }
 
-#theme-container:hover > div > input[type='radio']:hover ~ label {
+.config:hover > div > input:hover ~ label {
 	opacity: var(--opacity-max);
 	box-shadow: var(--box-shadow-xl);
 }
 
-#theme-container > div > input[type='radio'] {
+input {
 	display: block;
 	margin: 0;
 	padding: 0;
@@ -525,18 +538,21 @@ input[type='radio'] {
 	opacity: var(--opacity-min);
 }
 
-#theme-container > div > label:hover,
-input[type='radio']:active ~ label {
+input:active ~ label {
 	opacity: var(--opacity-max);
 }
 
-#theme-container > div > input[type='radio']:checked ~ label {
+input:checked ~ label {
 	font-weight: var(--font-weight-bolder);
 	opacity: var(--opacity-max);
 	box-shadow: var(--box-shadow-xl);
 }
 
-#theme-container > div > input[type='radio']:checked ~ label::before {
+input[type='checkbox'] ~ label::before {
+	content: '✗ ';
+}
+
+input:checked ~ label::before {
 	content: '✓ ';
 	font-weight: var(--font-weight-bolder);
 }
