@@ -450,6 +450,10 @@ a:link {
 	border-block-end: var(--border-width-base) solid var(--color-primary);
 }
 
+a:link:has(img) {
+	border: none;
+}
+
 a:hover {
 	opacity: var(--opacity-hover);
 }
