@@ -129,6 +129,7 @@ label[for='solarizedLight'] {
 	--color-base-2: oklch(97.35% 0.026 90.1); /* base3 */
 	--color-text: oklch(54.4% 0.017 219.6); /* base00 */
 	--color-primary: oklch(63.1% 0.221 21.6); /* red */
+	--shadow-strength: var(--default-light-shadow-strength);
 }
 
 body[data-theme='gruvboxDark'],
@@ -302,6 +303,7 @@ body {
 	);
 	--box-shadow-base: 0 1px 3px 0 var(--color-shadow), 0 1px 2px -1px
 		var(--color-shadow);
+	--box-shadow-inset-base: inset 0 2px 4px var(--color-shadow);
 	--text-shadow-base: 0px 1px 0px var(--color-shadow), 0px 1px 1px
 		var(--color-shadow), 0px 2px 2px var(--color-shadow);
 	--text-shadow-sm: 0px 1px 1px var(--color-shadow);

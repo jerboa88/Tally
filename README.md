@@ -61,7 +61,6 @@ Also check out the Tally Chrome Extension [here](https://github.com/jerboa88/Tal
 | ![Screenshot of Tally's available options](screenshots/options.png) | ![Screenshot of Tally's available themes](screenshots/themes.png) |
 | ------------------------------------------------------------------- | ----------------------------------------------------------------- |
 | _Available options  - v3_                                           | _Available themes - v3_                                           |
-|                                                                     |
 
 
 ## Specification
