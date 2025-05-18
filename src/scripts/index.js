@@ -63,8 +63,7 @@ const warnOnLargeInputTextCheckbox = document.getElementById(
 const rememberInputTextCheckbox = document.getElementById(
 	'remember-input-text',
 );
-const themeSelectorContainer =
-	document.getElementsByClassName('config themes')[0];
+const themeSelectorContainer = document.getElementById('themes');
 const outputMap = getOutputMap();
 const metaTagMatrix = getMetaTagMatrix();
 const themeSelectorMap = buildThemeSelectors();
