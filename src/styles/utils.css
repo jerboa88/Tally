@@ -1,0 +1,52 @@
+/* Animations */
+/* ---------- */
+
+@keyframes pulse {
+	0% {
+		transform: scale(var(--pulse-scale));
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+/* Utility classes */
+/* --------------- */
+
+.enable-transitions {
+	--transition-duration-base: .125s;
+	--transition-duration-long: .5s;
+
+	* {
+		transition-property: background-color, color;
+		transition-duration: var(--transition-duration-long);
+	}
+}
+
+.pulse {
+	animation: pulse var(--transition-duration-base) ease-out;
+}
+
+/* Indent an element to visually align it with text in padded containers */
+.indent {
+	padding: 0 var(--padding-base);
+}
+
+p.alert {
+	border-radius: var(--border-radius-base);
+	padding: var(--padding-base);
+	border-width: var(--border-width-base);
+	border-style: solid;
+
+	&.note {
+		border-color: var(--color-primary);
+
+		&::before {
+			content: 'ⓘ Note';
+			display: block;
+			padding-block-end: var(--padding-sm);
+			color: var(--color-primary);
+			font-weight: var(--font-weight-bold);
+		}
+	}
+}

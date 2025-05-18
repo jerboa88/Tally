@@ -1,5 +1,3 @@
-import '@fontsource-variable/roboto-slab';
-import '@fontsource-variable/roboto-flex';
 import { debug, debounce, parseBoolean } from './utils.js';
 import { get, set, remove } from './storage.js';
 import { getCounts } from './counter.js';

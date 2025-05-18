@@ -1,0 +1,69 @@
+:root {
+	/* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
+	--default-light-color-base-1: oklch(92.2% 0 0); /* Neutral 200  */
+	--default-light-color-base-2: oklch(98.5% 0 0); /* Neutral 50 */
+	--default-light-color-text: oklch(14.5% 0 0); /* Neutral 950 */
+	--default-light-color-shadow: none;
+	--default-light-color-primary: oklch(45.7% 0.24 277.023); /* Indigo 700 */
+	--default-light-shadow-strength: 30%;
+
+	--color-mix-ratio-sm: 2.5%;
+	--color-mix-ratio-base: 50%;
+
+	--opacity-min: 0;
+	--opacity-hover: 0.7;
+	--opacity-max: 1;
+
+	--padding-base: 1.5rem;
+	--padding-xs: calc(var(--padding-base) / 4);
+	--padding-sm: calc(var(--padding-base) / 2);
+	--padding-lg: calc(var(--padding-base) * 2);
+
+	--font-size-base: 1rem;
+	--font-size-lg: 1.5rem;
+	--font-size-xl: 4rem;
+
+	--font-family-header: 'Roboto Slab Variable', sans-serif;
+	--font-family-base: 'Roboto Flex Variable', 'Calibri', 'Trebuchet MS',
+		sans-serif;
+
+	--font-weight-base: 300;
+	--font-weight-bold: 500;
+	--font-weight-bolder: 700;
+
+	--max-width-page: 56rem;
+	--min-height-textarea: 18rem;
+
+	--border-width-base: 1px;
+
+	--border-radius-base: .75rem;
+
+	--pulse-scale: 1.1;
+}
+
+body {
+	/* Generate additional colors from the provided theme colors */
+	--color-base-3: color-mix(
+		in oklch shorter hue,
+		var(--color-base-2),
+		var(--color-text) var(--color-mix-ratio-sm)
+	);
+	--color-selection: color-mix(
+		in oklch shorter hue,
+		var(--color-primary),
+		transparent var(--color-mix-ratio-base)
+	);
+	--color-shadow: color-mix(
+		in oklch shorter hue,
+		oklch(0 0 0 / 0.25) var(--shadow-strength),
+		transparent
+	);
+	--box-shadow-base: 0 1px 3px 0 var(--color-shadow), 0 1px 2px -1px
+		var(--color-shadow);
+	--box-shadow-inset-base: inset 0 2px 4px var(--color-shadow);
+	--text-shadow-base: 0px 1px 0px var(--color-shadow), 0px 1px 1px
+		var(--color-shadow), 0px 2px 2px var(--color-shadow);
+	--text-shadow-sm: 0px 1px 1px var(--color-shadow);
+	--drop-shadow-base: drop-shadow(0 1px .3px var(--color-shadow))
+		drop-shadow(0 1px .2px var(--color-shadow));
+}
