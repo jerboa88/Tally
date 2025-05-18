@@ -43,45 +43,45 @@
 	<main>
 		<section>
 			<textarea id="input" spellcheck="false" placeholder="The quick brown cat jumps over the lazy dog..." autofocus></textarea>
-			<form class="table counts">
-				<div>
-					<label for="characters">Characters</label>
+			<form>
+				<label>
+					Characters
 					<output id="characters" for="input">-</output>
-				</div>
-				<div>
-					<label for="words">Words</label>
+				</label>
+				<label>
+					Words
 					<output id="words" for="input">-</output>
-				</div>
-				<div>
-					<label for="sentences">Sentences</label>
+				</label>
+				<label>
+					Sentences
 					<output id="sentences" for="input">-</output>
-				</div>
-				<div>
-					<label for="paragraphs">Paragraphs</label>
+				</label>
+				<label>
+					Paragraphs
 					<output id="paragraphs" for="input">-</output>
-				</div>
-				<div>
-					<label for="lines">Lines</label>
+				</label>
+				<label>
+					Lines
 					<output id="lines" for="input">-</output>
-				</div>
+				</label>
 			</form>
-			<form class="table stats">
-				<div>
-					<label for="spaces">Spaces</label>
+			<form>
+				<label>
+					Spaces
 					<output id="spaces" for="input">-</output>
-				</div>
-				<div>
-					<label for="letters">Letters</label>
+				</label>
+				<label>
+					Letters
 					<output id="letters" for="input">-</output>
-				</div>
-				<div>
-					<label for="digits">Digits</label>
+				</label>
+				<label>
+					Digits
 					<output id="digits" for="input">-</output>
-				</div>
-				<div>
-					<label for="symbols">Symbols</label>
+				</label>
+				<label>
+					Symbols
 					<output id="symbols" for="input">-</output>
-				</div>
+				</label>
 			</form>
 		</section>
 		<section class="indent">
@@ -209,19 +209,19 @@
 		</div>
 		<div>
 			<h3>Options</h3>
-			<div class="config options">
-				<div>
+			<form>
+				<label>
 					<input type="checkbox" id="warn-on-large-input-text">
-					<label for="warn-on-large-input-text">Warn on large input text</label>
-				</div>
-				<div>
+					Warn on large input text</label>
+				</label>
+				<label>
 					<input type="checkbox" id="remember-input-text">
-					<label for="remember-input-text">Remember input text</label>
-				</div>
-			</div>
+					Remember input text
+				</label>
+			</form>
 
 			<h3>Themes</h3>
-			<form id="themes" class="config themes"></form>
+			<form id="themes"></form>
 		</div>
 	</footer>
 

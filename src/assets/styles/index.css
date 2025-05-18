@@ -32,7 +32,6 @@
 	--font-weight-bolder: 700;
 
 	--max-width-page: 56rem;
-	--min-width-footer-child: 22rem;
 	--min-height-textarea: 18rem;
 
 	--border-width-base: 1px;
@@ -49,7 +48,7 @@
 /* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
 body,
 label[for='auto'],
-label[for='dark'] {
+label:has(> input#dark) {
 	--color-base-1: oklch(20.5% 0 0); /* Neutral 900 */
 	--color-base-2: oklch(26.9% 0 0); /* Neutral 800 */
 	--color-text: oklch(98.5% 0 0); /* Neutral 50 */
@@ -61,7 +60,7 @@ label[for='dark'] {
 /* Make the default theme light if the user prefers light mode */
 @media (prefers-color-scheme: light) {
 	body[data-theme='auto'],
-	label[for='auto'] {
+	label:has(> input#auto) {
 		--color-base-1: var(--default-light-color-base-1);
 		--color-base-2: var(--default-light-color-base-2);
 		--color-text: var(--default-light-color-text);
@@ -72,7 +71,7 @@ label[for='dark'] {
 
 /* Light theme */
 body[data-theme='light'],
-label[for='light'] {
+label:has(> input#light) {
 	--color-base-1: var(--default-light-color-base-1);
 	--color-base-2: var(--default-light-color-base-2);
 	--color-text: var(--default-light-color-text);
@@ -81,7 +80,7 @@ label[for='light'] {
 }
 
 body[data-theme='dusk'],
-label[for='dusk'] {
+label:has(> input#dusk) {
 	--color-base-1: oklch(15% 0.018 270);
 	--color-base-2: oklch(22% 0.04 330);
 	--color-text: oklch(90% 0.08 340);
@@ -90,7 +89,7 @@ label[for='dusk'] {
 }
 
 body[data-theme='teal'],
-label[for='teal'] {
+label:has(> input#teal) {
 	--color-base-1: oklch(52% 0.07 190);
 	--color-base-2: oklch(58% 0.07 185);
 	--color-text: oklch(100% 0 0);
@@ -100,7 +99,7 @@ label[for='teal'] {
 
 /* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
 body[data-theme='amoled'],
-label[for='amoled'] {
+label:has(> input#amoled) {
 	--color-base-1: oklch(0 0 0);
 	--color-base-2: oklch(0 0 0);
 	--color-text: oklch(92.2% 0 0); /* Neutral 200 */
@@ -114,7 +113,7 @@ body[data-theme='amoled'] textarea {
 
 /* Colors from OKSolar (https://meat.io/oksolar) */
 body[data-theme='solarizedDark'],
-label[for='solarizedDark'] {
+label:has(> input#solarizedDark) {
 	--color-base-1: oklch(27.4% 0.05 219.6); /* base03 */
 	--color-base-2: oklch(32.1% 0.053 219.6); /* base02 */
 	--color-text: oklch(71.8% 0.017 198); /* base0 */
@@ -124,7 +123,7 @@ label[for='solarizedDark'] {
 
 /* Colors from OKSolar (https://meat.io/oksolar) */
 body[data-theme='solarizedLight'],
-label[for='solarizedLight'] {
+label:has(> input#solarizedLight) {
 	--color-base-1: oklch(93.06% 0.026 92.4); /* base2 */
 	--color-base-2: oklch(97.35% 0.026 90.1); /* base3 */
 	--color-text: oklch(54.4% 0.017 219.6); /* base00 */
@@ -133,7 +132,7 @@ label[for='solarizedLight'] {
 }
 
 body[data-theme='gruvboxDark'],
-label[for='gruvboxDark'] {
+label:has(> input#gruvboxDark) {
 	--color-base-1: oklch(21% 0 0);
 	--color-base-2: oklch(26% 0.01 45);
 	--color-text: oklch(85% 0.08 90);
@@ -142,7 +141,7 @@ label[for='gruvboxDark'] {
 }
 
 body[data-theme='gruvboxLight'],
-label[for='gruvboxLight'] {
+label:has(> input#gruvboxLight) {
 	--color-base-1: oklch(85% 0.08 90);
 	--color-base-2: oklch(95% 0.06 90);
 	--color-text: oklch(26% 0.01 45);
@@ -151,7 +150,7 @@ label[for='gruvboxLight'] {
 }
 
 body[data-theme='catppuccinMocha'],
-label[for='catppuccinMocha'] {
+label:has(> input#catppuccinMocha) {
 	--color-base-1: oklch(20% 0.02 270);
 	--color-base-2: oklch(28% 0.03 270);
 	--color-text: oklch(90% 0.06 270);
@@ -160,7 +159,7 @@ label[for='catppuccinMocha'] {
 }
 
 body[data-theme='catppuccinLatte'],
-label[for='catppuccinLatte'] {
+label:has(> input#catppuccinLatte) {
 	--color-base-1: oklch(92% 0.01 250);
 	--color-base-2: oklch(96% 0.01 250);
 	--color-text: oklch(30% 0.02 260);
@@ -169,7 +168,7 @@ label[for='catppuccinLatte'] {
 }
 
 body[data-theme='dracula'],
-label[for='dracula'] {
+label:has(> input#dracula) {
 	--color-base-1: oklch(24% 0.03 270);
 	--color-base-2: oklch(36% 0.03 270);
 	--color-text: oklch(98% 0.01 100);
@@ -178,7 +177,7 @@ label[for='dracula'] {
 }
 
 body[data-theme='nord'],
-label[for='nord'] {
+label:has(> input#nord) {
 	--color-base-1: oklch(25% 0.03 250);
 	--color-base-2: oklch(30% 0.03 250);
 	--color-text: oklch(88% 0.03 250);
@@ -192,11 +191,11 @@ label[for='nord'] {
 .enable-transitions {
 	--transition-duration-base: .125s;
 	--transition-duration-long: .5s;
-}
 
-.enable-transitions * {
-	transition-property: background-color, color;
-	transition-duration: var(--transition-duration-long);
+	* {
+		transition-property: background-color, color;
+		transition-duration: var(--transition-duration-long);
+	}
 }
 
 .pulse {
@@ -213,18 +212,18 @@ p.alert {
 	padding: var(--padding-base);
 	border-width: var(--border-width-base);
 	border-style: solid;
-}
 
-p.alert.note {
-	border-color: var(--color-primary);
-}
+	&.note {
+		border-color: var(--color-primary);
 
-p.alert.note::before {
-	content: 'ⓘ Note';
-	display: block;
-	padding-block-end: var(--padding-sm);
-	color: var(--color-primary);
-	font-weight: var(--font-weight-bold);
+		&::before {
+			content: 'ⓘ Note';
+			display: block;
+			padding-block-end: var(--padding-sm);
+			color: var(--color-primary);
+			font-weight: var(--font-weight-bold);
+		}
+	}
 }
 
 /* Animations */
@@ -248,24 +247,6 @@ p.alert.note::before {
 
 ::selection {
 	background-color: var(--color-selection);
-}
-
-textarea::-webkit-scrollbar {
-	width: var(--padding-sm);
-}
-
-textarea::-webkit-scrollbar-thumb {
-	border-radius: var(--border-radius-base);
-	background-color: var(--color-text);
-	box-shadow: var(--box-shadow-base);
-}
-
-textarea::placeholder {
-	color: color-mix(
-		in oklch shorter hue,
-		var(--color-text),
-		transparent var(--color-mix-ratio-base)
-	);
 }
 
 /* Base styles */
@@ -319,12 +300,12 @@ main {
 	flex: 1;
 	max-width: var(--max-width-page);
 	margin: var(--padding-base);
-}
 
-main > section {
-	display: flex;
-	flex-direction: column;
-	gap: var(--padding-base);
+	& > section {
+		display: flex;
+		flex-direction: column;
+		gap: var(--padding-base);
+	}
 }
 
 header,
@@ -340,16 +321,12 @@ header {
 	width: fit-content;
 	margin-block-start: var(--padding-lg);
 	margin-inline: var(--padding-base);
-}
 
-header > a:link {
-	border-bottom: none;
-}
-
-header > a:link > svg {
-	width: 10rem;
-	height: fit-content;
-	filter: var(--drop-shadow-base);
+	svg {
+		width: 10rem;
+		height: fit-content;
+		filter: var(--drop-shadow-base);
+	}
 }
 
 footer {
@@ -362,11 +339,11 @@ footer {
 	padding: var(--padding-lg);
 	background-color: var(--color-base-2);
 	box-shadow: var(--box-shadow-base);
-}
 
-footer > * {
-	flex: 1;
-	min-width: var(--min-width-footer-child);
+	& > * {
+		flex: 1;
+		flex-basis: 30%;
+	}
 }
 
 textarea {
@@ -384,38 +361,35 @@ textarea {
 	font-weight: var(--font-weight-base);
 	transition: background-color var(--transition-duration-base);
 	resize: block;
-}
 
-textarea:focus {
-	background-color: var(--color-base-3);
+	&:focus {
+		background-color: var(--color-base-3);
+	}
+
+	&::-webkit-scrollbar {
+		width: var(--padding-xs);
+	}
+
+	&::-webkit-scrollbar-thumb {
+		border-radius: var(--border-radius-base);
+		background-color: var(--color-text);
+		box-shadow: var(--box-shadow-base);
+		cursor: pointer;
+	}
+
+	&::placeholder {
+		color: color-mix(
+			in oklch shorter hue,
+			var(--color-text),
+			transparent var(--color-mix-ratio-base)
+		);
+	}
 }
 
 img {
 	max-width: 100%;
 	max-height: 100%;
 	height: auto;
-}
-
-.table {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	padding: var(--padding-base);
-	gap: var(--padding-sm);
-	background-color: var(--color-base-2);
-	color: var(--color-text);
-	border-radius: var(--border-radius-base);
-	box-shadow: var(--box-shadow-base);
-}
-
-.table > div {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: var(--padding-xs);
-	flex: 1;
 }
 
 h2,
@@ -429,11 +403,6 @@ h4 {
 	font-weight: var(--font-weight-bold);
 }
 
-label {
-	font-size: var(--font-size-base);
-	font-weight: var(--font-weight-base);
-}
-
 p {
 	margin: 0;
 	text-shadow: var(--text-shadow-sm);
@@ -443,92 +412,49 @@ ul {
 	margin-block-end: 0;
 }
 
-a:link {
-	padding-block-end: var(--border-width-base);
-	color: var(--color-primary);
-	text-decoration: none;
-	transition-property: color, opacity;
-	transition-duration: var(--transition-duration-base);
-	border-block-end: var(--border-width-base) solid var(--color-primary);
+a {
+	&:any-link {
+		padding-block-end: var(--border-width-base);
+		color: var(--color-primary);
+		text-decoration: none;
+		transition-property: color, opacity;
+		transition-duration: var(--transition-duration-base);
+		border-block-end: var(--border-width-base) solid var(--color-primary);
+
+		&:has(img),
+		&:has(svg) {
+			border: none;
+		}
+	}
+
+	&:hover {
+		opacity: var(--opacity-hover);
+	}
+
+	&:active {
+		opacity: var(--opacity-max);
+	}
 }
 
-a:link:has(img) {
-	border: none;
-}
-
-a:hover {
-	opacity: var(--opacity-hover);
-}
-
-a:active {
-	opacity: var(--opacity-max);
-}
-
-a:visited {
-	color: var(--color-primary);
-}
-
-output {
-	font-family: var(--font-family-header);
-	font-size: var(--font-size-lg);
-	font-weight: var(--font-weight-bold);
-}
-
-input[type='checkbox'],
-input[type='radio'] {
-	vertical-align: middle;
-}
-
-.config {
-	display: grid;
+form {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
 	border-radius: var(--border-radius-base);
+	box-shadow: var(--box-shadow-base);
 	overflow: hidden;
-}
 
-.config.options {
-	grid-template-columns: auto;
-}
+	&:hover > label {
+		&:has(> input) {
+			opacity: var(--opacity-hover);
+		}
 
-.config.themes {
-	grid-template-columns: auto auto;
-}
-
-.config > div {
-	text-align: center;
-	white-space: nowrap;
-}
-
-.config.options > div {
-	text-align: start;
-}
-
-.config > div > label {
-	display: block;
-	padding: var(--padding-sm);
-	background: var(--color-base-1);
-	color: var(--color-text);
-	transition-property: background-color, color, opacity;
-	transition-duration: var(--transition-duration-base);
-	cursor: pointer;
-}
-
-.config.themes > div > label {
-	background: linear-gradient(
-		90deg,
-		var(--color-base-1) 0%,
-		var(--color-base-1) 49.9%,
-		var(--color-base-2) 50.1%,
-		var(--color-base-2) 100%
-	);
-}
-
-.config:hover > div > input ~ label {
-	opacity: var(--opacity-hover);
-}
-
-.config:hover > div > input:hover ~ label {
-	opacity: var(--opacity-max);
-	box-shadow: var(--box-shadow-xl);
+		&:has(> input:hover) {
+			opacity: var(--opacity-max);
+			box-shadow: var(--box-shadow-base);
+		}
+	}
 }
 
 input {
@@ -540,21 +466,70 @@ input {
 	opacity: var(--opacity-min);
 }
 
-input:active ~ label {
-	opacity: var(--opacity-max);
+output {
+	font-family: var(--font-family-header);
+	font-size: var(--font-size-lg);
+	font-weight: var(--font-weight-bold);
 }
 
-input:checked ~ label {
-	font-weight: var(--font-weight-bolder);
-	opacity: var(--opacity-max);
-	box-shadow: var(--box-shadow-xl);
+label {
+	--padding: var(--padding-sm);
+
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: var(--padding-xs);
+	flex-basis: calc(50% - 2 * var(--padding));
+	flex-grow: 1;
+	padding: var(--padding);
+	background: var(--color-base-1);
+	color: var(--color-text);
+	text-align: center;
+	white-space: nowrap;
+	cursor: pointer;
+	transition-property: background-color, color, opacity;
+	transition-duration: var(--transition-duration-base);
+
+	&:has(> input:active) {
+		opacity: var(--opacity-max);
+	}
+
+	&:has(> input[type='checkbox']:not(:checked)) {
+		box-shadow: var(--box-shadow-inset-base);
+	}
+
+	&:has(> input[type='checkbox'])::before {
+		content: '✗ ';
+	}
+
+	&:has(> input:checked) {
+		font-weight: var(--font-weight-bolder);
+		background: var(--color-base-3);
+		box-shadow: var(--box-shadow-base);
+		opacity: var(--opacity-max);
+		box-shadow: var(--box-shadow-base);
+		z-index: 1;
+
+		&::before {
+			content: '✓ ';
+			font-weight: var(--font-weight-bolder);
+		}
+	}
+
+	&:has(> output) {
+		flex-direction: column;
+		flex: 1;
+		padding: var(--padding-base);
+		background-color: var(--color-base-2);
+	}
 }
 
-input[type='checkbox'] ~ label::before {
-	content: '✗ ';
-}
-
-input:checked ~ label::before {
-	content: '✓ ';
-	font-weight: var(--font-weight-bolder);
+#themes > label {
+	background: linear-gradient(
+		90deg,
+		var(--color-base-1) 0%,
+		var(--color-base-1) 49.9%,
+		var(--color-base-2) 50.1%,
+		var(--color-base-2) 100%
+	);
 }

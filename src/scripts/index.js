@@ -274,7 +274,6 @@ function buildThemeSelectors() {
 	const themeSelectorMap = {};
 
 	for (const [themeKey, themeName] of Object.entries(THEME_NAME_MAP)) {
-		const div = document.createElement('div');
 		const input = document.createElement('input');
 		const label = document.createElement('label');
 		const text = document.createTextNode(themeName);
@@ -283,13 +282,10 @@ function buildThemeSelectors() {
 		input.name = THEME_INPUT_NAME;
 		input.id = themeKey;
 		input.value = themeKey;
-		label.htmlFor = themeKey;
 
+		label.appendChild(input);
 		label.appendChild(text);
-		div.appendChild(input);
-		div.appendChild(label);
-
-		themeSelectorContainer.appendChild(div);
+		themeSelectorContainer.appendChild(label);
 
 		themeSelectorMap[themeKey] = input;
 	}
