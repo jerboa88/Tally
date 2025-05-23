@@ -196,12 +196,6 @@ a {
 	}
 }
 
-iframe {
-	border: none;
-	border-radius: 6px;
-	box-shadow: var(--box-shadow-base);
-}
-
 form {
 	display: flex;
 	flex-direction: row;
