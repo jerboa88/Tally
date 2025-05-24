@@ -1,8 +1,15 @@
 {
+	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
 	"files": {
 		"ignore": [
-			"dist"
+			"dist/**/*"
 		]
+	},
+	"organizeImports": {
+		"enabled": true
+	},
+	"linter": {
+		"enabled": true
 	},
 	"javascript": {
 		"formatter": {
@@ -13,6 +20,9 @@
 		"formatter": {
 			"enabled": true,
 			"quoteStyle": "single"
+		},
+		"linter": {
+			"enabled": true
 		}
 	}
 }
