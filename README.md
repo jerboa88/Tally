@@ -1,4 +1,3 @@
-
 <!-- Project Header -->
 <div align="center">
 	<h1 class="projectName">
@@ -99,6 +98,8 @@ This project is licensed under the MIT License. See [LICENSE](LICENSE) for detai
 
 ## 🖇️ Related
 - **[Tally Chrome Extension]**: A Chrome extension to easily count the number of words, characters, and paragraphs on any site
+- **[Mergist](https://mergist.johng.io)**: Mergist is an online tool to combine multiple PDF files into one. Mergist has no ads, no file size limits, and your files never leave your device
+- **[Shared File Finder for Google Drive](https://github.com/jerboa88/Shared-File-Finder-for-Google-Drive)**: An Apps Script that finds all files/folders on Google Drive that are shared with others and adds them to a Google Sheet
 
 
 ## 💕 Funding
