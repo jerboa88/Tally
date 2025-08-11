@@ -24,7 +24,7 @@
 </div>
 
 
-## About
+## 👋 About
 > [!NOTE]
 > This calculator was designed for use with English text. It may work for other languages, but I can't guarantee that the results will be accurate. See the [specification](#specification) for more details on how the calculator works.
 
@@ -63,7 +63,7 @@ Also check out the Tally Chrome Extension [here](https://github.com/jerboa88/Tal
 | _Available options  - v3_                                           | _Available themes - v3_                                           |
 
 
-## Specification
+## 👓 Specification
 > [!NOTE]
 > In this specification, we refer to words, characters, spaces, lines, etc. as **_tokens_** for simplicity.
 
@@ -93,7 +93,7 @@ Here is an overview of how we determine the counts for each token type:
 | **line**      | A literal newline character (`\n`).                                                                                                                                                                                                                                                                                            |
 
 
-## License
+## 🧾 License
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 
