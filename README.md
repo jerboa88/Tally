@@ -18,7 +18,7 @@
 		</a>
 	</p>
 	<p class="projectDesc">
-		Your favorite word counter, now with a dark mode! Count the number of characters, words, sentences, paragraphs, and lines in your text instantly.
+		Your favorite word counter, now with a dark mode! Count the number of characters, words, sentences, paragraphs, and lines in your text instantly
 	</p>
 	<br/>
 </div>
@@ -30,7 +30,7 @@
 
 Tally Word Counter is a free online tool to count the number of characters, words, paragraphs, and lines in your text. It can also show counts for different types of characters like letters, digits, spaces, and symbols/special characters. Make sure you have the right number of words for your essay or post by counting them instantly with Tally.
 
-Also check out the Tally Chrome Extension [here](https://github.com/jerboa88/Tally-Extension).
+Also check out the [Tally Chrome Extension].
 
 ### Features
 - **🧮 View text metrics:** Count the number of characters, words, sentences, paragraphs, and lines in your text.
@@ -97,8 +97,11 @@ Here is an overview of how we determine the counts for each token type:
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 
-## 💕 Funding
+## 🖇️ Related
+- **[Tally Chrome Extension]**: A Chrome extension to easily count the number of words, characters, and paragraphs on any site
 
+
+## 💕 Funding
 Find this project useful? [Sponsoring me](https://johng.io/funding) will help me cover costs and **_commit_** more time to open-source.
 
 If you can't donate but still want to contribute, don't worry. There are many other ways to help out, like:
@@ -110,3 +113,6 @@ If you can't donate but still want to contribute, don't worry. There are many ot
 - ⭐ starring the project
 
 I appreciate the support!
+
+
+[Tally Chrome Extension]: https://github.com/jerboa88/Tally-Extension
