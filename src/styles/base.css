@@ -152,6 +152,12 @@ img {
 	height: auto;
 }
 
+svg {
+	width: var(--icon-size);
+	height: var(--icon-size);
+	stroke: var(--color-text);
+}
+
 h2,
 h3 {
 	font-family: var(--font-family-header);
@@ -173,10 +179,11 @@ ul {
 }
 
 a {
-	&:any-link {
+	text-decoration: none;
+
+	&:any-link:not(:has(svg)) {
 		padding-block-end: var(--border-width-base);
 		color: var(--color-primary);
-		text-decoration: none;
 		transition-property: color, opacity;
 		transition-duration: var(--transition-duration-base);
 		border-block-end: var(--border-width-base) solid var(--color-primary);
@@ -194,9 +201,16 @@ a {
 	&:active {
 		opacity: var(--opacity-max);
 	}
+
+	/* Class is needed here to forcefully increase specificity */
+	&:not(.enable-transitions) {
+		transition-property: background-color, color, opacity;
+		transition-duration: var(--transition-duration-base);
+	}
 }
 
-form {
+form,
+nav {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -217,26 +231,29 @@ form {
 	}
 
 	label {
+		background: var(--color-base-1);
+	}
+
+	a {
+		background: var(--color-base-2);
+	}
+
+	label,
+	a {
 		--padding: var(--padding-sm);
 
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
+		align-items: center;
 		gap: var(--padding-xs);
 		flex-basis: calc(50% - 2 * var(--padding));
 		flex-grow: 1;
 		padding: var(--padding);
-		background: var(--color-base-1);
 		color: var(--color-text);
 		text-align: center;
 		white-space: nowrap;
 		cursor: pointer;
-
-		/* Class is needed here to forcefully increase specificity */
-		&:not(.enable-transitions) {
-			transition-property: background-color, color, opacity;
-			transition-duration: var(--transition-duration-base);
-		}
 
 		&:has(> input:active) {
 			opacity: var(--opacity-max);

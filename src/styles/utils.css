@@ -32,6 +32,17 @@
 	padding: 0 var(--padding-base);
 }
 
+/* Hide an element but keep it accessible to screen readers */
+/* From https://www.tpgi.com/the-anatomy-of-visually-hidden/ */
+.visually-hidden:not(:focus):not(:active) {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	white-space: nowrap;
+	clip-path: inset(50%);
+}
+
 p.alert {
 	border-radius: var(--border-radius-base);
 	padding: var(--padding-base);
