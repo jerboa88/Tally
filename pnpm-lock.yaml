@@ -17,6 +17,9 @@ importers:
       '@fontsource-variable/roboto-slab':
         specifier: ^5.2.8
         version: 5.2.8
+      '@parcel/config-default':
+        specifier: ^2.16.0
+        version: 2.16.0(@parcel/core@2.16.0(@swc/helpers@0.5.17))(@swc/helpers@0.5.17)
       '@parcel/packager-raw-url':
         specifier: 2.16.0
         version: 2.16.0(@parcel/core@2.16.0(@swc/helpers@0.5.17))
@@ -32,6 +35,9 @@ importers:
       parcel:
         specifier: ^2.16.0
         version: 2.16.0(@swc/helpers@0.5.17)
+      parcel-reporter-static-files-copy:
+        specifier: ^1.5.3
+        version: 1.5.3(@parcel/core@2.16.0(@swc/helpers@0.5.17))
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -1448,6 +1454,10 @@ packages:
 
   package-json-from-dist@1.0.1:
     resolution: {integrity: sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw==}
+
+  parcel-reporter-static-files-copy@1.5.3:
+    resolution: {integrity: sha512-Ukq2SyJYn3GFIPCLamXuQ+2t+0j54llujjOUoRjtmVvfsuGnJDEpMznADeIoKuQDvy0jpxtWzWkQvxqI/j+U4A==}
+    engines: {parcel: ^2.0.0-beta.1}
 
   parcel@2.16.0:
     resolution: {integrity: sha512-4sgnoYixTR6Qq6265tjmufXQj7wxvZo4VJHrYfbnfWQWfW5CgF80IiM+dy050pYgtBAMvh+8vJDDYiSto1YPUA==}
@@ -3271,6 +3281,13 @@ snapshots:
       load-json-file: 7.0.1
 
   package-json-from-dist@1.0.1: {}
+
+  parcel-reporter-static-files-copy@1.5.3(@parcel/core@2.16.0(@swc/helpers@0.5.17)):
+    dependencies:
+      '@parcel/plugin': 2.16.0(@parcel/core@2.16.0(@swc/helpers@0.5.17))
+    transitivePeerDependencies:
+      - '@parcel/core'
+      - napi-wasm
 
   parcel@2.16.0(@swc/helpers@0.5.17):
     dependencies:
