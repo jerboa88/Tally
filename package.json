@@ -26,13 +26,13 @@
 	"type": "module",
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"@fontsource-variable/roboto-flex": "^5.2.5",
-		"@fontsource-variable/roboto-slab": "^5.2.5",
-		"@parcel/packager-raw-url": "2.15.0",
-		"@parcel/transformer-jsonld": "2.15.0",
-		"@parcel/transformer-webmanifest": "2.15.0",
-		"ava": "^6.3.0",
-		"parcel": "^2.15.0",
+		"@fontsource-variable/roboto-flex": "^5.2.8",
+		"@fontsource-variable/roboto-slab": "^5.2.8",
+		"@parcel/packager-raw-url": "2.16.0",
+		"@parcel/transformer-jsonld": "2.16.0",
+		"@parcel/transformer-webmanifest": "2.16.0",
+		"ava": "^6.4.1",
+		"parcel": "^2.16.0",
 		"rimraf": "^6.0.1",
 		"sharp": "^0.33.5",
 		"svgo": "^3.3.2"
@@ -42,5 +42,5 @@
 			"nesting": true
 		}
 	},
-	"packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39"
+	"packageManager": "pnpm@10.17.0+sha512.fce8a3dd29a4ed2ec566fb53efbb04d8c44a0f05bc6f24a73046910fb9c3ce7afa35a0980500668fa3573345bd644644fa98338fa168235c80f4aa17aa17fbef"
 }
