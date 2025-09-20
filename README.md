@@ -5,25 +5,23 @@
 			<img class="projectLogo" src="src/assets/images/logo.svg" alt="Project logo" title="Project logo" width="256">
 		</a>
 	</h1>
-	<p class="projectBadges">
+	<p class="projectBadges info">
 		<img src="https://johng.io/badges/category/App.svg" alt="Project category" title="Project category">
 		<img src="https://img.shields.io/github/languages/top/jerboa88/Tally.svg" alt="Language" title="Language">
 		<img src="https://img.shields.io/github/repo-size/jerboa88/Tally.svg" alt="Repository size" title="Repository size">
-		<a href="LICENSE">
-			<img src="https://img.shields.io/github/license/jerboa88/Tally.svg" alt="Project license" title="Project license"/>
-		</a>
-		<a href="https://tally.johng.io" title="Project URL">
-			<img src="https://img.shields.io/website?url=https%3A%2F%2Ftally.johng.io&up_message=tally.johng.io%20%E2%86%97" alt="Project URL" title="Project URL">
-		</a>
+		<a href="LICENSE"><img src="https://img.shields.io/github/license/jerboa88/Tally.svg" alt="Project license" title="Project license"/></a>
+	</p>
+	<p class="projectBadges status">
+		<a href="https://tally.johng.io" title="Project URL"><img src="https://img.shields.io/website?url=https%3A%2F%2Ftally.johng.io&up_message=tally.johng.io%20%E2%86%97" alt="Project URL" title="Project URL"></a>
 	</p>
 	<p class="projectDesc">
-		Your favorite word counter, now with a dark mode! Count the number of characters, words, sentences, paragraphs, and lines in your text instantly
+		Your favorite word counter, now with more themes than ever! Count the number of characters, words, sentences, paragraphs, and lines in your text instantly
 	</p>
 	<br/>
 </div>
 
-
 ## 👋 About
+
 > [!NOTE]
 > This calculator was designed for use with English text. It may work for other languages, but I can't guarantee that the results will be accurate. See the [specification](#specification) for more details on how the calculator works.
 
@@ -32,6 +30,7 @@ Tally Word Counter is a free online tool to count the number of characters, word
 Also check out the [Tally Chrome Extension].
 
 ### Features
+
 - **🧮 View text metrics:** Count the number of characters, words, sentences, paragraphs, and lines in your text.
 - **📊 View character composition:** View the number of spaces, digits, letters, and symbols/special characters in the input.
 - **🚀 Real-time updates:** Optimized for speed, Tally updates the counts in real-time as you type.
@@ -40,6 +39,7 @@ Also check out the [Tally Chrome Extension].
 - **👨🏻‍💻 Open-source:** Know how to code? Help make Tally better by contributing to the project on GitHub, or copy it and make your own version!
 
 ### Use Cases
+
 - **📚 Students & Educators:** Check essay lengths and assignment limits quickly and accurately.
 - **✍️ Writers & Bloggers:** Track writing progress and optimize structure for readability.
 - **📄 Legal & Business Professionals:** Ensure documents meet required character or word counts.
@@ -63,6 +63,7 @@ Also check out the [Tally Chrome Extension].
 
 
 ## 👓 Specification
+
 > [!NOTE]
 > In this specification, we refer to words, characters, spaces, lines, etc. as **_tokens_** for simplicity.
 
@@ -93,16 +94,19 @@ Here is an overview of how we determine the counts for each token type:
 
 
 ## 🧾 License
+
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 
 ## 🖇️ Related
+
 - **[Tally Chrome Extension]**: A Chrome extension to easily count the number of words, characters, and paragraphs on any site
 - **[Mergist](https://mergist.johng.io)**: Mergist is an online tool to combine multiple PDF files into one. Mergist has no ads, no file size limits, and your files never leave your device
 - **[Shared File Finder for Google Drive](https://github.com/jerboa88/Shared-File-Finder-for-Google-Drive)**: An Apps Script that finds all files/folders on Google Drive that are shared with others and adds them to a Google Sheet
 
 
 ## 💕 Funding
+
 Find this project useful? [Sponsoring me](https://johng.io/funding) will help me cover costs and **_commit_** more time to open-source.
 
 If you can't donate but still want to contribute, don't worry. There are many other ways to help out, like:

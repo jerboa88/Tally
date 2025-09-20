@@ -1,7 +1,7 @@
 {
 	"name": "tally",
 	"version": "3.0.0",
-	"description": "Your favorite character counter, now with a dark mode! Count the number of words, sentences, and paragraphs in your text instantly.",
+	"description": "Your favorite character counter, now with more themes than ever! Count the number of words, sentences, and paragraphs in your text instantly.",
 	"source": "src/index.html",
 	"browserslist": "defaults",
 	"scripts": {
