@@ -1,49 +1,53 @@
 {
 	"name": "tally",
 	"version": "3.0.0",
-	"description": "Your favorite character counter, now with more themes than ever! Count the number of words, sentences, and paragraphs in your text instantly.",
-	"source": "src/index.html",
-	"browserslist": "defaults",
+	"description": "Your favorite dark mode word counter, now with even more themes! Count the number of characters, words, sentences, paragraphs, and lines in your text instantly with Tally.",
 	"scripts": {
-		"start": "parcel",
-		"dev": "parcel",
-		"build": "parcel build",
-		"clean": "rimraf dist",
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"serve": "astro preview",
+		"astro": "astro",
 		"test": "ava",
-		"lint": "biome lint .",
-		"format": "biome format . --fix",
+		"format:check": "prettier --check .",
+		"format:write": "prettier --write .",
 		"upgrade-interactive": "pnpx npm-check-updates -i --format group -p pnpm"
 	},
 	"keywords": [
-		"word counter",
 		"character counter",
+		"word counter",
 		"sentence counter",
 		"paragraph counter",
+		"line counter",
+		"text analysis",
 		"text analyzer",
-		"text statistics"
+		"text statistics",
+		"online tool"
 	],
 	"author": "John Goodliff (https://johng.io)",
 	"license": "MIT",
 	"type": "module",
 	"devDependencies": {
-		"@biomejs/biome": "1.9.4",
-		"@fontsource-variable/roboto-flex": "^5.2.8",
-		"@fontsource-variable/roboto-slab": "^5.2.8",
-		"@parcel/config-default": "^2.16.0",
-		"@parcel/packager-raw-url": "2.16.0",
-		"@parcel/transformer-jsonld": "2.16.0",
-		"@parcel/transformer-webmanifest": "2.16.0",
+		"@astrojs/markdoc": "^0.15.7",
+		"@astrojs/sitemap": "^3.6.0",
+		"@lucide/astro": "^0.544.0",
+		"@nanostores/logger": "^1.0.0",
+		"@nanostores/persistent": "^1.1.0",
+		"astro": "^5.14.1",
+		"astro-capo": "^0.0.1",
+		"astro-robots-txt": "^1.0.0",
 		"ava": "^6.4.1",
-		"parcel": "^2.16.0",
-		"parcel-reporter-static-files-copy": "^1.5.3",
-		"rimraf": "^6.0.1",
-		"sharp": "^0.33.5",
-		"svgo": "^3.3.2"
+		"nanostores": "^1.0.1",
+		"prettier": "^3.6.2",
+		"prettier-plugin-astro": "^0.14.1",
+		"prettier-plugin-astro-organize-imports": "^0.4.11",
+		"radashi": "^12.6.2",
+		"sharp": "^0.34.4"
 	},
 	"@parcel/transformer-css": {
 		"drafts": {
 			"nesting": true
 		}
 	},
-	"packageManager": "pnpm@10.17.0+sha512.fce8a3dd29a4ed2ec566fb53efbb04d8c44a0f05bc6f24a73046910fb9c3ce7afa35a0980500668fa3573345bd644644fa98338fa168235c80f4aa17aa17fbef"
+	"packageManager": "pnpm@10.18.0"
 }
