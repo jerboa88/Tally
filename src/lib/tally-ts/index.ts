@@ -1,10 +1,17 @@
-const WAS_BLANK = 0;
-const WAS_IN_PARAGRAPH = 1;
-const WAS_IN_SENTENCE = 2;
-const WAS_END_MARK = 3;
-const WAS_IN_WORD = 4;
+type LastCharacterState =
+	| typeof WAS_BLANK
+	| typeof WAS_IN_PARAGRAPH
+	| typeof WAS_IN_SENTENCE
+	| typeof WAS_END_MARK
+	| typeof WAS_IN_WORD;
 
-let lastCharacterState = WAS_BLANK;
+const WAS_BLANK = 0 as const;
+const WAS_IN_PARAGRAPH = 1 as const;
+const WAS_IN_SENTENCE = 2 as const;
+const WAS_END_MARK = 3 as const;
+const WAS_IN_WORD = 4 as const;
+
+let lastCharacterState: LastCharacterState = WAS_BLANK;
 
 // Counts
 let characters = 0;
@@ -41,8 +48,8 @@ function resetCounts() {
  * @param character - The character to check
  * @returns True if the character is a digit
  */
-function isDigit(character) {
-	const charCode = character.charCodeAt();
+function isDigit(character: string): boolean {
+	const charCode = character.charCodeAt(0);
 
 	return charCode >= 48 && charCode <= 57;
 }
@@ -53,8 +60,8 @@ function isDigit(character) {
  * @param character - The character to check
  * @returns True if the character is a letter
  */
-function isLetter(character) {
-	const charCode = character.charCodeAt();
+function isLetter(character: string): boolean {
+	const charCode = character.charCodeAt(0);
 
 	return (
 		// lowercase a-z || uppercase A-Z
@@ -68,7 +75,7 @@ function isLetter(character) {
  * @param character - The character to check
  * @returns True if the character is a space
  */
-function isSpace(character) {
+function isSpace(character: string): boolean {
 	return character === ' ';
 }
 
@@ -78,7 +85,7 @@ function isSpace(character) {
  * @param character - The character to check
  * @returns True if the character is a newline
  */
-function isNewline(character) {
+function isNewline(character: string): boolean {
 	return character === '\n';
 }
 
@@ -88,7 +95,7 @@ function isNewline(character) {
  * @param character - The character to check
  * @returns True if the character is an end mark
  */
-function isEndMark(character) {
+function isEndMark(character: string): boolean {
 	// This is slightly faster than using `includes()` on a string, presumably because we don't need to perform case-sensitive comparisons
 	return ['.', '?', '!'].includes(character);
 }
@@ -103,7 +110,20 @@ function isEndMark(character) {
  * @param locales - The locale(s) to use for grapheme segmentation (default: 'en')
  * @returns An object containing all computed counts
  */
-export async function getCounts(text, locales = 'en') {
+export async function getCounts(
+	text: string,
+	locales: Intl.LocalesArgument = 'en',
+): Promise<{
+	characters: number;
+	words: number;
+	sentences: number;
+	paragraphs: number;
+	lines: number;
+	spaces: number;
+	letters: number;
+	digits: number;
+	symbols: number;
+}> {
 	const startTime = performance.timeOrigin + performance.now();
 	const graphemeSegmenter = new Intl.Segmenter(locales, {
 		granularity: 'grapheme',

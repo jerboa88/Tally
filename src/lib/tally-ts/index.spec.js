@@ -1,5 +1,5 @@
 import test from 'ava';
-import { getCounts } from './index.js';
+import { getCounts } from './index.ts';
 
 const getCountsResultIs = test.macro(async (t, input, expected) => {
 	const actual = await getCounts(input);
