@@ -1,6 +1,7 @@
 # Themes
 
 ## Black
+
 ```txt
 He was soon borne away by the waves, and lost in darkness and distance.
 
@@ -8,6 +9,7 @@ He was soon borne away by the waves, and lost in darkness and distance.
 ```
 
 ## White
+
 ```txt
 For an instant, everything was bathed in radiance.
 
@@ -15,6 +17,7 @@ For an instant, everything was bathed in radiance.
 ```
 
 ## Dusk
+
 ```txt
 There's a special quality to the loneliness of dusk, a melancholy more brooding even than the night's.
 
@@ -22,6 +25,7 @@ There's a special quality to the loneliness of dusk, a melancholy more brooding 
 ```
 
 ## Teal
+
 ```txt
 Assuredly the turquoise doth possess a soul more intelligent than that of man.
 
