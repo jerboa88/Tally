@@ -19,7 +19,9 @@ let letters = 0;
 let digits = 0;
 let symbols = 0;
 
-
+/**
+ * Resets all count accumulators and state to their initial values.
+ */
 function resetCounts() {
 	lastCharacterState = WAS_BLANK;
 	characters = 0;
@@ -33,13 +35,24 @@ function resetCounts() {
 	symbols = 0;
 }
 
+/**
+ * Checks if a character is a digit (0-9).
+ *
+ * @param character - The character to check
+ * @returns True if the character is a digit
+ */
 function isDigit(character) {
 	const charCode = character.charCodeAt();
 
-	// digits 0-9
 	return charCode >= 48 && charCode <= 57;
 }
 
+/**
+ * Checks if a character is an ASCII letter (a-z, A-Z).
+ *
+ * @param character - The character to check
+ * @returns True if the character is a letter
+ */
 function isLetter(character) {
 	const charCode = character.charCodeAt();
 
@@ -49,19 +62,47 @@ function isLetter(character) {
 	);
 }
 
+/**
+ * Checks if a character is a space.
+ *
+ * @param character - The character to check
+ * @returns True if the character is a space
+ */
 function isSpace(character) {
 	return character === ' ';
 }
 
+/**
+ * Checks if a character is a newline.
+ *
+ * @param character - The character to check
+ * @returns True if the character is a newline
+ */
 function isNewline(character) {
 	return character === '\n';
 }
 
+/**
+ * Checks if a character is sentence-ending punctuation (., ?, !).
+ *
+ * @param character - The character to check
+ * @returns True if the character is an end mark
+ */
 function isEndMark(character) {
 	// This is slightly faster than using `includes()` on a string, presumably because we don't need to perform case-sensitive comparisons
 	return ['.', '?', '!'].includes(character);
 }
 
+/**
+ * Analyzes text and returns counts for various statistics.
+ *
+ * Uses grapheme segmentation to properly handle Unicode characters. Logs
+ * processing time to the console for performance monitoring.
+ *
+ * @param text - The text to analyze
+ * @param locales - The locale(s) to use for grapheme segmentation (default: 'en')
+ * @returns An object containing all computed counts
+ */
 export async function getCounts(text, locales = 'en') {
 	const startTime = performance.timeOrigin + performance.now();
 	const graphemeSegmenter = new Intl.Segmenter(locales, {
