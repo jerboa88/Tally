@@ -1,0 +1,42 @@
+---
+import type { AstroComponent } from '@lucide/astro';
+import type { ComponentProps } from 'astro/types';
+import Link from './Link.astro';
+
+/**
+ * Props for a navigation button with an optional icon.
+ *
+ * @property icon - Optional Lucide icon component to display before the label
+ * @property label - Optional text label
+ */
+interface Props extends ComponentProps<typeof Link> {
+	icon?: AstroComponent;
+	label?: string;
+}
+
+const { icon: Icon, label, ...restProps } = Astro.props;
+---
+
+<Link {...restProps}>
+	{Icon && <Icon size={16} aria-hidden="true" />}
+	<slot>
+		{label}
+	</slot>
+</Link>
+
+<style>
+	a {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		gap: var(--padding-xs);
+		flex-grow: 1;
+		padding: var(--padding-sm);
+		background: var(--color-base-2);
+		color: var(--color-text);
+		text-align: center;
+		white-space: nowrap;
+		cursor: pointer;
+	}
+</style>
