@@ -1,0 +1,76 @@
+---
+import { isExternalUrl } from '@utils/index.ts';
+import type { HTMLAttributes } from 'astro/types';
+
+type AnchorAttributes = HTMLAttributes<'a'>;
+
+/**
+ * Base props for the anchor component, excluding href and title.
+ *
+ * @property tooltip - Optional tooltip text (mapped to title attribute)
+ */
+interface BaseProps extends Omit<AnchorAttributes, 'href' | 'title'> {
+	tooltip?: AnchorAttributes['title'];
+}
+
+/**
+ * Public props interface for an anchor link with automatic external link detection.
+ *
+ * @property to - The URL or path to link to
+ */
+interface Props extends BaseProps {
+	to: string;
+}
+
+/**
+ * Internal props allowing both 'to' and 'href' for Markdoc compatibility.
+ *
+ * @property to - The URL or path to link to (preferred)
+ * @property href - Alternative to 'to' for Markdoc rendering
+ */
+interface InternalProps extends BaseProps {
+	to?: string;
+	href?: string;
+}
+
+const props: Props = Astro.props;
+const internalProps: InternalProps = props;
+
+let { rel, to, href, tooltip, ...restProps } = internalProps;
+
+// Use `href` instead of `to` when rendered via Markdoc
+href ??= to;
+
+const relsSet = new Set(rel?.split(' '));
+
+if (isExternalUrl(href)) {
+	relsSet.add('external');
+}
+
+rel = [...relsSet].join(' ');
+---
+
+<a {href} {rel} title={tooltip} aria-label={tooltip} {...restProps}>
+	<slot />
+</a>
+
+<style>
+	a {
+		text-decoration: none;
+		transition-duration: var(--transition-duration-base);
+
+		&:hover {
+			opacity: var(--opacity-hover);
+		}
+
+		&:active {
+			opacity: var(--opacity-max);
+		}
+
+		&:not(:has(img, svg)) {
+			padding-block-end: var(--border-width-base);
+			color: var(--color-primary);
+			border-block-end: var(--border-width-base) solid var(--color-primary);
+		}
+	}
+</style>
