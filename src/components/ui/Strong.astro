@@ -3,8 +3,11 @@ import type { HTMLAttributes } from 'astro/types';
 
 /**
  * Props for a bold text element. This is used by Markdoc.
+ * @property children - The content of the strong element
  */
-type Props = HTMLAttributes<'strong'>;
+interface Props extends HTMLAttributes<'strong'> {
+	children: astroHTML.JSX.Element;
+}
 
 const props = Astro.props;
 ---

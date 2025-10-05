@@ -5,8 +5,13 @@ import type { HTMLTag, Polymorphic } from 'astro/types';
  * Props for a polymorphic card container with rounded corners and shadow.
  *
  * @typeParam Tag - The HTML element type to render as (default: 'div')
+ * @property as - The HTML element type to render as (default: 'div')
+ * @property children - The content of the card
  */
-type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }>;
+type Props<Tag extends HTMLTag> = Polymorphic<{
+	as: Tag;
+	children: astroHTML.JSX.Element;
+}>;
 
 const { as: Tag = 'div', ...restProps } = Astro.props;
 ---

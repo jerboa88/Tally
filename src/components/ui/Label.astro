@@ -3,8 +3,11 @@ import type { HTMLAttributes } from 'astro/types';
 
 /**
  * Props for a styled label element with support for checkbox/radio input states.
+ * @property children - The content of the label
  */
-type Props = HTMLAttributes<'label'>;
+interface Props extends HTMLAttributes<'label'> {
+	children: astroHTML.JSX.Element;
+}
 
 const props = Astro.props;
 ---

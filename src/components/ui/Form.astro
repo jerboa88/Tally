@@ -2,7 +2,14 @@
 import type { HTMLAttributes } from 'astro/types';
 import Card from './Card.astro';
 
-type Props = HTMLAttributes<'form'>;
+/**
+ * Props for a styled form container with interactive label hover effects.
+ *
+ * @property children - The content of the form
+ */
+interface Props extends HTMLAttributes<'form'> {
+	children: astroHTML.JSX.Element;
+}
 
 const props = Astro.props;
 ---

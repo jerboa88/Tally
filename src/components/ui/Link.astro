@@ -8,9 +8,11 @@ type AnchorAttributes = HTMLAttributes<'a'>;
  * Base props for the anchor component, excluding href and title.
  *
  * @property tooltip - Optional tooltip text (mapped to title attribute)
+ * @property children - The content of the anchor element
  */
 interface BaseProps extends Omit<AnchorAttributes, 'href' | 'title'> {
 	tooltip?: AnchorAttributes['title'];
+	children: astroHTML.JSX.Element;
 }
 
 /**
