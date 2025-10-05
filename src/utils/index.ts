@@ -1,3 +1,5 @@
+import type { HttpsUrl } from '../types.ts';
+
 /**
  * Returns the keys of an object with proper type inference.
  *
@@ -75,4 +77,19 @@ export function wKey(...keys: (string | undefined | null)[]) {
 			viewTransitionName: key,
 		},
 	};
+}
+
+/**
+ * Checks if a URL string is an external HTTPS URL.
+ *
+ * @param urlString - The URL string to check
+ * @returns True if the URL starts with "https://"
+ * @throws {Error} If urlString is null or undefined
+ */
+export function isExternalUrl(
+	urlString: string | undefined,
+): urlString is HttpsUrl {
+	const definedUrlString = assertDefined(urlString, 'URL string');
+
+	return definedUrlString.startsWith('https://');
 }
