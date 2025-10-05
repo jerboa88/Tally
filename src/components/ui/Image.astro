@@ -1,0 +1,56 @@
+---
+import {
+	Image as AstroImage,
+	Picture as AstroPicture,
+	type LocalImageProps,
+	type RemoteImageProps,
+} from 'astro:assets';
+
+/**
+ * Props for an optimized image component that handles both local and remote images. Used by Markdoc.
+ *
+ * Automatically uses SVG format for .svg files and modern formats (AVIF, WebP) for other images.
+ */
+type Props = LocalImageProps | RemoteImageProps;
+
+/**
+ * Extracts the source URL string from various image source types.
+ *
+ * @param src - The image source (string URL, ImageMetadata, or Promise)
+ * @returns An object containing the source string and whether it's a remote URL
+ */
+async function getSrcString(src: Props['src']) {
+	if (typeof src === 'string') {
+		return {
+			src,
+			isRemote: true,
+		};
+	}
+
+	if ('src' in src) {
+		return {
+			src: src.src,
+			isRemote: false,
+		};
+	}
+
+	return {
+		src: (await src).default.src,
+		isRemote: false,
+	};
+}
+
+const props = Astro.props;
+
+const { src: srcString, isRemote } = await getSrcString(props.src);
+
+const isSvg = srcString.endsWith('.svg');
+---
+
+{
+	isSvg ? (
+		<AstroImage inferSize={isRemote} format="svg" {...props} />
+	) : (
+		<AstroPicture inferSize={isRemote} formats={['avif', 'webp']} {...props} />
+	)
+}
