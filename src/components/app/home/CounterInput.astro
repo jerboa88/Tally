@@ -1,0 +1,40 @@
+---
+import Textarea from '@components/ui/Textarea.astro';
+import { INPUT } from '@lib/config/input';
+import { getLocaleStrings } from '@lib/i18n/index.ts';
+import type { EmptyObject } from 'type-fest';
+
+/**
+ * Props for the main counter input textarea.
+ */
+type Props = EmptyObject;
+
+const { label, placeholder } = getLocaleStrings(Astro).input;
+---
+
+<Textarea
+	id={INPUT.id}
+	{placeholder}
+	aria-label={label}
+	spellcheck="false"
+	autofocus
+/>
+
+<script>
+	import { INPUT } from '@lib/config/input.ts';
+	import { $inputText } from '@stores/index.ts';
+	import { assertDefined, debounce } from '@utils/index.ts';
+
+	const updateInputText = debounce(() => $inputText.set(input.value));
+
+	const input = assertDefined(
+		document.getElementById(INPUT.id) as HTMLTextAreaElement | null,
+		'input textarea',
+	);
+
+	$inputText.subscribe((value, _oldValue) => {
+		input.value = value;
+	});
+
+	input.addEventListener('input', updateInputText);
+</script>
