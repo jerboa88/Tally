@@ -16,8 +16,8 @@ interface Props {
 
 const { id } = Astro.props;
 
-const MSG = getLocaleStrings(Astro).output;
-const label = MSG.map[id].label;
+const msg = getLocaleStrings(Astro).output;
+const label = msg.map[id].label;
 ---
 
 <Label {...wKey(id, 'label')}>

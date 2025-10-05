@@ -14,13 +14,13 @@ interface Props extends Omit<HTMLAttributes<'output'>, 'id'> {
 	id: OutputId;
 }
 
-const MSG = getLocaleStrings(Astro).output.placeholder;
+const msg = getLocaleStrings(Astro).output.placeholder;
 
 const { id, ...restProps } = Astro.props;
 ---
 
 <output {...restProps} {...wKey(id, 'output')} {id} name={id} for={INPUT.id}>
-	{MSG}
+	{msg}
 </output>
 
 <style>

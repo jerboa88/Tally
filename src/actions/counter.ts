@@ -8,7 +8,7 @@ import {} from '@stores/index.ts';
 import { getCounts } from '@lib/tally-ts/index.ts';
 import { getLocaleStrings } from '@lib/i18n/index.ts';
 
-const MSG = getLocaleStrings().input.largeInputWarning.message;
+const msg = getLocaleStrings().input.largeInputWarning.message;
 
 /**
  * Updates the output counts based on the current input text.
@@ -24,7 +24,7 @@ export async function updateCounts() {
 
 	// Warn the user if the input text is large
 	if ($warnOnLargeInputText.get() && text.length > INPUT.maxCharacters) {
-		if (!confirm(MSG)) {
+		if (!confirm(msg)) {
 			$outputCounts.set(null);
 
 			return;

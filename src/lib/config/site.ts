@@ -1,4 +1,4 @@
-type HttpsUrl = `https://${string}`;
+import type { HttpsUrl } from '../../types.ts';
 
 /**
  * The complete site configuration structure.
