@@ -9,6 +9,7 @@
 		"serve": "astro preview",
 		"astro": "astro",
 		"test": "ava",
+		"typecheck": "astro check",
 		"format:check": "prettier --check .",
 		"format:write": "prettier --write .",
 		"upgrade-interactive": "pnpx npm-check-updates -i --format group -p pnpm"
@@ -28,6 +29,7 @@
 	"license": "MIT",
 	"type": "module",
 	"devDependencies": {
+		"@astrojs/check": "^0.9.4",
 		"@astrojs/markdoc": "^0.15.7",
 		"@astrojs/sitemap": "^3.6.0",
 		"@lucide/astro": "^0.544.0",
@@ -42,12 +44,9 @@
 		"prettier-plugin-astro": "^0.14.1",
 		"prettier-plugin-astro-organize-imports": "^0.4.11",
 		"radashi": "^12.6.2",
-		"sharp": "^0.34.4"
-	},
-	"@parcel/transformer-css": {
-		"drafts": {
-			"nesting": true
-		}
+		"sharp": "^0.34.4",
+		"type-fest": "^5.0.1",
+		"typescript": "^5.9.3"
 	},
 	"packageManager": "pnpm@10.18.0"
 }
