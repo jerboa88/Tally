@@ -1,0 +1,63 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+/**
+ * Props for a styled label element with support for checkbox/radio input states.
+ */
+type Props = HTMLAttributes<'label'>;
+
+const props = Astro.props;
+---
+
+<label {...props}>
+	<slot />
+</label>
+
+<style>
+	label {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		gap: var(--padding-xs);
+		flex-basis: calc(50% - 2 * var(--padding-sm));
+		flex-grow: 1;
+		padding: var(--padding-sm);
+		background: var(--color-base-1);
+		color: var(--color-text);
+		text-align: center;
+		white-space: nowrap;
+
+		/* Don't change the cursor for `output` elements */
+		&:has(> input) {
+			cursor: pointer;
+		}
+
+		&:has(> input:active) {
+			opacity: var(--opacity-max);
+		}
+
+		&:has(> input[type='checkbox']:not(:checked)) {
+			box-shadow: var(--box-shadow-inset-base);
+		}
+
+		&:has(> input[type='checkbox'])::before {
+			content: '✗ ';
+		}
+
+		/* Applies to both radio and checkbox inputs */
+		&:has(> input:checked) {
+			font-weight: var(--font-weight-bolder);
+			background: var(--color-base-3);
+			box-shadow: var(--box-shadow-base);
+			opacity: var(--opacity-max);
+			box-shadow: var(--box-shadow-base);
+			z-index: 1;
+
+			&::before {
+				content: '✓ ';
+				font-weight: var(--font-weight-bolder);
+			}
+		}
+	}
+</style>
