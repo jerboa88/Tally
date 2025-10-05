@@ -1,10 +1,10 @@
 /**
  * Configuration for a group of related output fields.
  *
- * @property id - The section identifier
+ * @property id - The group identifier
  * @property fields - Array of output field IDs in this section
  */
-type OutputSection = {
+type OutputGroup = {
 	id: string;
 	fields: string[];
 };
@@ -12,7 +12,7 @@ type OutputSection = {
 /**
  * A record mapping section names to their output field configurations.
  */
-type OutputConfig = Record<string, OutputSection>;
+type OutputConfig = Record<string, OutputGroup>;
 
 /**
  * Global output configuration.
