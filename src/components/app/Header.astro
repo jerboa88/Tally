@@ -1,0 +1,60 @@
+---
+import Link from '@components/ui/Link.astro';
+import Logo from '@images/logo.svg';
+import { CLASS } from '@lib/config/class.ts';
+import { SITE } from '@lib/config/site.ts';
+import { getLocale, getLocaleStrings } from '@lib/i18n/index.ts';
+import type { HTMLAttributes } from 'astro/types';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+type Props = HTMLAttributes<'header'>;
+
+const locale = getLocale(Astro);
+const msg = getLocaleStrings(locale);
+
+const props = Astro.props;
+---
+
+<header {...props}>
+	<Link
+		to={getRelativeLocaleUrl(locale)}
+		aria-label={msg.header.label}
+		hreflang={locale}
+	>
+		<Logo />
+		<h1 class={CLASS.visuallyHidden}>
+			{SITE.title}
+		</h1>
+	</Link>
+	<p>
+		{msg.site.description}
+	</p>
+</header>
+
+<style>
+	header {
+		display: flex;
+		width: 100%;
+		max-width: var(--max-width-page);
+		flex-direction: column;
+		align-items: center;
+		gap: var(--padding-base);
+		width: fit-content;
+		margin-block-start: var(--padding-lg);
+		margin-inline: var(--padding-base);
+		view-transition-name: header;
+
+		svg {
+			width: 10rem;
+			height: fit-content;
+			filter: var(--drop-shadow-base);
+		}
+
+		> p {
+			padding: 0 var(--padding-base);
+			text-wrap-style: balance;
+			text-align: center;
+			view-transition-name: header-description;
+		}
+	}
+</style>

@@ -1,0 +1,52 @@
+---
+import Article from '@components/ui/Article.astro';
+import { LOCALE } from '@lib/config/locale.ts';
+import { getLocale } from '@lib/i18n/index.ts';
+import { assertDefined, keysOf, wKey } from '@utils/index.ts';
+import type { HTMLAttributes } from 'astro/types';
+import { getEntry } from 'astro:content';
+import LocaleSelector from './LocaleSelector.astro';
+import OptionsSelector from './OptionsSelector.astro';
+import ThemeSelector from './ThemeSelector.astro';
+
+type Props = HTMLAttributes<'footer'>;
+
+const hasMultipleLocales = keysOf(LOCALE.map).length > 1;
+const locale = getLocale(Astro);
+const creditsEntry = assertDefined(await getEntry(locale, 'credits'));
+const privacyEntry = assertDefined(await getEntry(locale, 'privacy'));
+
+const props = Astro.props;
+---
+
+<footer {...props}>
+	<Article entry={creditsEntry} />
+	<Article entry={privacyEntry} />
+	<section {...wKey('preferences', 'section')}>
+		{hasMultipleLocales && <LocaleSelector />}
+		<OptionsSelector />
+		<ThemeSelector />
+	</section>
+</footer>
+
+<style>
+	footer {
+		display: flex;
+		width: 100%;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: start;
+		gap: var(--padding-base);
+		flex-wrap: wrap;
+		box-sizing: border-box;
+		padding: var(--padding-lg);
+		background-color: var(--color-base-2);
+		box-shadow: var(--box-shadow-base);
+		view-transition-name: footer;
+
+		> * {
+			flex: 1;
+			flex-basis: 30%;
+		}
+	}
+</style>
