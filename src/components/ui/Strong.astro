@@ -1,0 +1,20 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+/**
+ * Props for a bold text element. This is used by Markdoc.
+ */
+type Props = HTMLAttributes<'strong'>;
+
+const props = Astro.props;
+---
+
+<strong {...props}>
+	<slot />
+</strong>
+
+<style>
+	strong {
+		font-weight: var(--font-weight-bold);
+	}
+</style>
