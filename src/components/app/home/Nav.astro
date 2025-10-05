@@ -1,0 +1,59 @@
+---
+import ButtonLink from '@components/ui/ButtonLink.astro';
+import Card from '@components/ui/Card.astro';
+import { SITE } from '@lib/config/site.ts';
+import { getLocaleStrings } from '@lib/i18n/index.ts';
+import {
+	CircleEllipsis,
+	Github,
+	HandCoins,
+	MessageSquareWarning,
+} from '@lucide/astro';
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'nav'>;
+
+const msg = getLocaleStrings(Astro).nav;
+
+const props = Astro.props;
+---
+
+<Card as="nav" {...props}>
+	<ButtonLink
+		to={SITE.url.github}
+		label={msg.viewSource.label}
+		icon={Github}
+		tooltip={msg.viewSource.tooltip}
+	/>
+	<ButtonLink
+		to={SITE.url.issues}
+		label={msg.reportIssue.label}
+		icon={MessageSquareWarning}
+		tooltip={msg.reportIssue.tooltip}
+		rel="help"
+	/>
+	<ButtonLink
+		to={SITE.url.funding}
+		label={msg.sponsor.label}
+		icon={HandCoins}
+		tooltip={msg.sponsor.tooltip}
+		rel="payment"
+	/>
+	<ButtonLink
+		to={SITE.author.url.homepage}
+		label={msg.moreProjects.label}
+		icon={CircleEllipsis}
+		tooltip={msg.moreProjects.tooltip}
+		rel="author me"
+	/>
+</Card>
+
+<style>
+	nav {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		view-transition-name: nav;
+	}
+</style>
