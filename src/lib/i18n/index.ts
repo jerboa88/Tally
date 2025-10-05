@@ -72,7 +72,7 @@ export function getLocaleStrings(arg?: AstroGlobal | LocaleId): LocaleMessages {
  * using Unicode regional indicator symbols. If the locale doesn't include
  * a region, attempts to infer it using `Intl.Locale.maximize()`.
  *
- * @param localeId - The locale ID (e.g., 'en', 'es', 'en-US')
+ * @param localeId - The locale ID (ex. 'en', 'es', 'en-US')
  * @returns The flag emoji for the locale's region, or null if no region can be determined
  *
  * @example

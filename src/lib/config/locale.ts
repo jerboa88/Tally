@@ -1,5 +1,5 @@
 /**
- * A human-readable locale name (e.g., "English", "Español").
+ * A human-readable locale name (ex. "English", "Español").
  */
 type LocaleName = string;
 

@@ -9,7 +9,7 @@ const pageSchema = z.object({});
  * Content collections for each supported locale.
  *
  * Each locale has its own collection to organize markdown content by language
- * (e.g., src/content/en/, src/content/es/).
+ * (ex. src/content/en/, src/content/es/).
  */
 export const collections = {
 	en: defineCollection({ schema: pageSchema }),
