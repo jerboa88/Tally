@@ -1,0 +1,80 @@
+---
+import InputGroup, { type EntryProps } from '@components/ui/InputGroup.astro';
+import { type Theme, THEME, type ThemeId } from '@lib/config/theme.ts';
+import { getLocaleStrings } from '@lib/i18n/index.ts';
+import { entriesOf } from '@utils/index.ts';
+import type { WithChildren } from '../../types.ts';
+
+/**
+ * Props for the theme selector component.
+ *
+ * Explicitly disallows children as theme entries are generated from config.
+ */
+type Props = WithChildren<false>;
+
+/**
+ * Constructs a theme label with an optional work-in-progress indicator.
+ *
+ * @param id - The theme ID
+ * @param themeData - The theme configuration data
+ * @returns A formatted string like "Dark" or "Gruvbox Light 🚧"
+ */
+function buildThemeLabel(id: ThemeId, themeData: Theme) {
+	const name = msg.map[id].label;
+	const suffix = themeData.wip ? '🚧' : '';
+
+	return `${name} ${suffix}`;
+}
+
+const msg = getLocaleStrings(Astro).themes;
+
+const entries: EntryProps[] = entriesOf(THEME.map).map(([themeId, theme]) => ({
+	id: themeId,
+	label: buildThemeLabel(themeId, theme),
+	checked: themeId === THEME.default.id,
+}));
+---
+
+<InputGroup {entries} id={THEME.id} title={msg.title} type="radio" />
+
+<style>
+	form {
+		label {
+			background: linear-gradient(
+				90deg,
+				var(--color-base-1) 0%,
+				var(--color-base-1) 49.9%,
+				var(--color-base-2) 50.1%,
+				var(--color-base-2) 100%
+			);
+		}
+	}
+</style>
+
+<script>
+	import { THEME } from '@lib/config/theme.ts';
+	import { $theme } from '@stores/index.ts';
+	import { entriesOf, getDefinedElementById } from '@utils/index.ts';
+	import { mapEntries } from 'radashi';
+
+	const themeRadioMap = mapEntries(THEME.map, (themeId) => [
+		themeId,
+		getDefinedElementById<HTMLInputElement>(themeId),
+	]);
+
+	// Update theme radio inputs when the theme changes
+	$theme.subscribe((value) => {
+		if (value in themeRadioMap) {
+			themeRadioMap[value].checked = true;
+		} else {
+			themeRadioMap[THEME.default.id].checked = true;
+
+			$theme.set(THEME.default.id);
+		}
+	});
+
+	// Update theme when a theme radio input is changed
+	for (const [id, radio] of entriesOf(themeRadioMap)) {
+		radio.addEventListener('change', () => $theme.set(id));
+	}
+</script>
