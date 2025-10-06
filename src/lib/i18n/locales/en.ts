@@ -14,8 +14,6 @@ const DESCRIPTION =
  */
 const EN: LocaleMessages = {
 	site: {
-		// The locale code for this translation (ex. 'en', 'es')
-		locale: 'en',
 		// Full site title shown in browser tabs
 		title: `${SITE.title} - ${TAGLINE}`,
 		// Short description shown below the page title

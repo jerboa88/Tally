@@ -16,8 +16,8 @@ type Props = {
 	children?: astroHTML.JSX.Element;
 };
 
-const locale = getLocale(Astro);
-const msg = getLocaleStrings(locale).site;
+const currentLocaleId = getLocale(Astro);
+const msg = getLocaleStrings(currentLocaleId).site;
 ---
 
 <CapoHead>

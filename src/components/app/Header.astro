@@ -15,17 +15,17 @@ import type { WithChildren } from '../../types.ts';
  */
 type Props = WithChildren<false, HTMLAttributes<'header'>>;
 
-const locale = getLocale(Astro);
-const msg = getLocaleStrings(locale);
+const currentLocaleId = getLocale(Astro);
+const msg = getLocaleStrings(currentLocaleId);
 
 const props = Astro.props;
 ---
 
 <header {...props}>
 	<Link
-		to={getRelativeLocaleUrl(locale)}
+		to={getRelativeLocaleUrl(currentLocaleId)}
 		aria-label={msg.header.label}
-		hreflang={locale}
+		hreflang={currentLocaleId}
 	>
 		<Logo />
 		<h1 class={CLASS.visuallyHidden}>

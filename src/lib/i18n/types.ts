@@ -38,7 +38,6 @@ type ThemeMap = {
  */
 export type LocaleMessages = {
 	site: {
-		locale: LocaleId;
 		title: Capitalize<string>;
 		description: Capitalize<string>;
 		longDescription: Capitalize<string>;

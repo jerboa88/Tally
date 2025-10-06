@@ -1,12 +1,16 @@
 /**
- * A human-readable locale name (ex. "English", "Español").
+ * Configuration for a single locale.
+ *
+ * @property wip - Whether the locale is still a work in progress
  */
-type LocaleName = string;
+export type Locale = {
+	wip: boolean;
+};
 
 /**
  * A record mapping locale IDs to their display names.
  */
-type LocaleMap = Record<string, LocaleName>;
+type LocaleMap = Record<string, Locale>;
 
 /**
  * The complete locale configuration structure.
@@ -22,8 +26,9 @@ type LocaleConfig = {
 };
 
 const localeMap = {
-	en: 'English',
-	es: 'Español',
+	en: {
+		wip: false,
+	},
 } as const satisfies LocaleMap;
 
 /**

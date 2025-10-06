@@ -1,12 +1,9 @@
 ---
 import type { EntryProps } from '@components/ui/InputGroup.astro';
 import InputGroup from '@components/ui/InputGroup.astro';
+import type { Locale } from '@lib/config/locale.ts';
 import { LOCALE, type LocaleId } from '@lib/config/locale.ts';
-import {
-	flagFromLocale,
-	getLocale,
-	getLocaleStrings,
-} from '@lib/i18n/index.ts';
+import { getLocale, getLocaleInfo, getLocaleStrings } from '@lib/i18n/index.ts';
 import { entriesOf } from '@utils/index.ts';
 import type { WithChildren } from '../../types.ts';
 
@@ -18,26 +15,33 @@ import type { WithChildren } from '../../types.ts';
 type Props = WithChildren<false>;
 
 /**
- * Constructs a locale label with its flag emoji prefix.
+ * Constructs a locale label with its flag emoji prefix, display name, and optional region.
  *
  * @param id - The locale ID
  * @param name - The locale display name
  * @returns A formatted string like "🇺🇸 English"
  */
-function buildLocaleLabel(id: LocaleId, name: string) {
-	const prefix = flagFromLocale(id);
+function buildLocaleLabel(id: LocaleId, locale: Locale) {
+	const { flag, languageName, regionName } = getLocaleInfo(id);
 
-	return `${prefix} ${name}`;
+	return [
+		flag,
+		languageName,
+		regionName && `(${regionName})`,
+		locale.wip && '🚧',
+	]
+		.filter(Boolean)
+		.join(' ');
 }
 
-const locale = getLocale(Astro);
-const msg = getLocaleStrings(locale).locales;
+const currentLocaleId = getLocale(Astro);
+const msg = getLocaleStrings(currentLocaleId).locales;
 
 const entries: EntryProps[] = entriesOf(LOCALE.map).map(
-	([localeId, localeName]) => ({
+	([localeId, locale]) => ({
 		id: localeId,
-		label: buildLocaleLabel(localeId, localeName),
-		checked: localeId === locale,
+		label: buildLocaleLabel(localeId, locale),
+		checked: localeId === currentLocaleId,
 	}),
 );
 ---

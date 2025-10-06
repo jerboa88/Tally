@@ -18,9 +18,9 @@ import ThemeSelector from './ThemeSelector.astro';
 type Props = WithChildren<false, HTMLAttributes<'footer'>>;
 
 const hasMultipleLocales = keysOf(LOCALE.map).length > 1;
-const locale = getLocale(Astro);
-const creditsEntry = assertDefined(await getEntry(locale, 'credits'));
-const privacyEntry = assertDefined(await getEntry(locale, 'privacy'));
+const currentLocaleId = getLocale(Astro);
+const creditsEntry = assertDefined(await getEntry(currentLocaleId, 'credits'));
+const privacyEntry = assertDefined(await getEntry(currentLocaleId, 'privacy'));
 
 const props = Astro.props;
 ---
