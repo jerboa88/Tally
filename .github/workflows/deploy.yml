@@ -6,36 +6,31 @@ on:
     branches:
       - main
 
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [24]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
+jobs:
+  build:
+    runs-on: ubuntu-latest
     steps:
       - name: 📂 Checkout repository
         uses: actions/checkout@v4
 
-      - name: 📦 Install pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: 🟢 Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+      - name: 🚀 Install, build, and upload artifact
+        uses: withastro/action@v4
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
+          node-version: 24
+          package-manager: pnpm
 
-      - name: 📥 Install dependencies
-        run: pnpm install
-
-      - name: 🛠️ Build site
-        run: pnpm build
-
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: 🚀 Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        if: ${{ github.ref == 'refs/heads/main' }}
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          cname: tally.johng.io
+        id: deployment
+        uses: actions/deploy-pages@v4
