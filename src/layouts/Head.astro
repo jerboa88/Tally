@@ -1,11 +1,20 @@
 ---
-import ICON from '@images/icon.svg';
+import iconIco from '@images/favicon.ico';
+import iconPng from '@images/icon-solid.png';
+import iconSvg from '@images/icon.svg';
 import { FONTS } from '@lib/config/fonts.ts';
 import { SITE } from '@lib/config/site';
 import { THEME } from '@lib/config/theme.ts';
 import { getLocale, getLocaleStrings } from '@lib/i18n/index.ts';
 import { Head as CapoHead } from 'astro-capo';
-import { Font } from 'astro:assets';
+import { Font, getImage } from 'astro:assets';
+
+const appleTouchIcon = await getImage({
+	src: iconPng,
+	format: 'png',
+	width: 180,
+	height: 180,
+});
 
 /**
  * Props for the document head section.
@@ -35,14 +44,14 @@ const msg = getLocaleStrings(currentLocaleId).site;
 	<meta name="theme-color" content={THEME.default.color} />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
-	<!-- TODO: Convert to favicon.ico -->
-	<!-- <link rel="icon" href="/favicon.ico" sizes="32x32" /> -->
-	<!-- TODO: Convert to 180x180 png -->
-	<!-- <link rel="apple-touch-icon" href={ICON.src} /> -->
+	<link rel="icon" sizes="48x48 32x32 24x24 16x16" href={iconIco} />
+	<link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon.src} />
+	<link rel="icon" type="image/svg+xml" href={iconSvg.src} />
+
+	<link rel="sitemap" href={`/${SITE.sitemapPrefix}-index.xml`} />
+
 	<!-- TODO: Add manifest -->
 	<!-- <link rel="manifest" href="../site.webmanifest" /> -->
-	<link rel="icon" type="image/svg+xml" href={ICON.src} />
-	<link rel="sitemap" href={`/${SITE.sitemapPrefix}-index.xml`} />
 
 	{FONTS.map(({ cssVariable }) => <Font {cssVariable} preload />)}
 

@@ -23,6 +23,9 @@ export default defineConfig({
 	server: {
 		host: true,
 	},
+	build: {
+		assets: 'assets',
+	},
 	prefetch: {
 		prefetchAll: true,
 		defaultStrategy: 'hover',
