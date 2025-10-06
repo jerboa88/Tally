@@ -23,7 +23,7 @@ export interface EntryProps extends InputAttributes {
  * @property type - The input type (ex. 'radio', 'checkbox')
  * @property entries - Array of input configurations to render
  */
-interface Props extends ComponentProps<typeof Form> {
+interface Props extends Omit<ComponentProps<typeof Form>, 'children'> {
 	title: Capitalize<string>;
 	type: InputAttributes['type'];
 	entries: EntryProps[];

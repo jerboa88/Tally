@@ -39,6 +39,23 @@ export function assertDefined<T>(
 }
 
 /**
+ * Gets a DOM element by ID and asserts it exists.
+ *
+ * @typeParam T - The expected HTML element type (default: HTMLElement)
+ * @param id - The element ID to search for
+ * @returns The DOM element
+ * @throws {Error} If no element with the given ID exists
+ */
+export function getDefinedElementById<T extends HTMLElement = HTMLElement>(
+	id: string,
+): T {
+	return assertDefined(
+		document.getElementById(id) as T | null,
+		`element with id '${id}'`,
+	);
+}
+
+/**
  * Debounces a function to limit how often it can be called.
  *
  * @remarks

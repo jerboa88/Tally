@@ -6,7 +6,6 @@ import {
 	$theme,
 	$persistedInputText,
 } from '@stores/index.ts';
-import {} from '@stores/index.ts';
 import { logger } from '@nanostores/logger';
 
 const originalDebug = console.debug;

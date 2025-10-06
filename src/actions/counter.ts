@@ -4,7 +4,6 @@ import {
 	$warnOnLargeInputText,
 	$outputCounts,
 } from '@stores/index.ts';
-import {} from '@stores/index.ts';
 import { getCounts } from '@lib/tally-ts/index.ts';
 import { getLocaleStrings } from '@lib/i18n/index.ts';
 

@@ -7,14 +7,11 @@ import { persistentBooleanAtom } from './utils.ts';
 import { type OutputId } from '@lib/config/output.ts';
 
 /**
- * Whether to warn the user when input text exceeds the maximum character limit.
+ * The currently selected theme ID.
  *
  * Persisted to localStorage.
  */
-export const $warnOnLargeInputText = persistentBooleanAtom(
-	OPTION.map.warnOnLargeInputText.id,
-	OPTION.map.warnOnLargeInputText.default,
-);
+export const $theme = persistentAtom<ThemeId>(THEME.id, THEME.default.id);
 
 /**
  * Whether to remember input text between browser sessions.
@@ -27,21 +24,14 @@ export const $rememberInputText = persistentBooleanAtom(
 );
 
 /**
- * Whether to enable debug logging for store state changes.
+ * Whether to warn the user when input text exceeds the maximum character limit.
  *
  * Persisted to localStorage.
  */
-export const $enableDebugLogging = persistentBooleanAtom(
-	OPTION.map.enableDebugLogging.id,
-	OPTION.map.enableDebugLogging.default,
+export const $warnOnLargeInputText = persistentBooleanAtom(
+	OPTION.map.warnOnLargeInputText.id,
+	OPTION.map.warnOnLargeInputText.default,
 );
-
-/**
- * The currently selected theme ID.
- *
- * Persisted to localStorage.
- */
-export const $theme = persistentAtom<ThemeId>(THEME.id, THEME.default.id);
 
 /**
  * The input text saved to localStorage.
@@ -51,6 +41,16 @@ export const $theme = persistentAtom<ThemeId>(THEME.id, THEME.default.id);
 export const $persistedInputText = persistentAtom<string>(
 	INPUT.id,
 	INPUT.default,
+);
+
+/**
+ * Whether to enable debug logging for store state changes.
+ *
+ * Persisted to localStorage.
+ */
+export const $enableDebugLogging = persistentBooleanAtom(
+	OPTION.map.enableDebugLogging.id,
+	OPTION.map.enableDebugLogging.default,
 );
 
 /**
