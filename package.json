@@ -45,7 +45,6 @@
 		"prettier-plugin-astro-organize-imports": "^0.4.11",
 		"radashi": "^12.6.2",
 		"sharp": "^0.34.4",
-		"type-fest": "^5.0.1",
 		"typescript": "^5.9.3"
 	},
 	"packageManager": "pnpm@10.18.0"
