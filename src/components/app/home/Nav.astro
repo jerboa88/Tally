@@ -10,8 +10,14 @@ import {
 	MessageSquareWarning,
 } from '@lucide/astro';
 import type { HTMLAttributes } from 'astro/types';
+import type { WithChildren } from '../../../types.ts';
 
-type Props = HTMLAttributes<'nav'>;
+/**
+ * Props for the navigation bar with external links.
+ *
+ * Explicitly disallows children as navigation items are predefined.
+ */
+type Props = WithChildren<false, HTMLAttributes<'nav'>>;
 
 const msg = getLocaleStrings(Astro).nav;
 

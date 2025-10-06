@@ -1,11 +1,12 @@
 ---
 import { wKey } from '@utils/index.ts';
 import type { ComponentProps, HTMLAttributes } from 'astro/types';
+import type { WithChildren } from '../../types.ts';
 import Form from './Form.astro';
 import HiddenInput from './HiddenInput.astro';
 import Label from './Label.astro';
 
-type InputAttributes = HTMLAttributes<'input'>;
+type InputAttributes = WithChildren<false, HTMLAttributes<'input'>>;
 
 /**
  * Props for a single input entry within the group.

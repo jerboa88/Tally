@@ -1,13 +1,11 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
+import type { WithChildren } from '../../types.ts';
 
 /**
  * Props for a bold text element. This is used by Markdoc.
- * @property children - The content of the strong element
  */
-interface Props extends HTMLAttributes<'strong'> {
-	children: astroHTML.JSX.Element;
-}
+type Props = WithChildren<true, HTMLAttributes<'strong'>>;
 
 const props = Astro.props;
 ---

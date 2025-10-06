@@ -1,10 +1,12 @@
 ---
 import { OUTPUT } from '@lib/config/output.ts';
+import type { WithChildren } from '../../../types.ts';
 import OutputGroup from './OutputGroup.astro';
 
 /**
  * The main counter outputs.
  */
+type Props = WithChildren<false>;
 ---
 
 {Object.values(OUTPUT).map((outputGroup) => <OutputGroup {...outputGroup} />)}

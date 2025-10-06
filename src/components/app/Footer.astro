@@ -5,11 +5,17 @@ import { getLocale } from '@lib/i18n/index.ts';
 import { assertDefined, keysOf, wKey } from '@utils/index.ts';
 import type { HTMLAttributes } from 'astro/types';
 import { getEntry } from 'astro:content';
+import type { WithChildren } from '../../types.ts';
 import LocaleSelector from './LocaleSelector.astro';
 import OptionsSelector from './OptionsSelector.astro';
 import ThemeSelector from './ThemeSelector.astro';
 
-type Props = HTMLAttributes<'footer'>;
+/**
+ * Props for the footer containing credits, privacy info, and user preferences.
+ *
+ * Explicitly disallows children as footer content is predefined.
+ */
+type Props = WithChildren<false, HTMLAttributes<'footer'>>;
 
 const hasMultipleLocales = keysOf(LOCALE.map).length > 1;
 const locale = getLocale(Astro);

@@ -1,13 +1,11 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
+import type { WithChildren } from '../../types.ts';
 
 /**
  * Props for a styled label element with support for checkbox/radio input states.
- * @property children - The content of the label
  */
-interface Props extends HTMLAttributes<'label'> {
-	children: astroHTML.JSX.Element;
-}
+type Props = WithChildren<true, HTMLAttributes<'label'>>;
 
 const props = Astro.props;
 ---

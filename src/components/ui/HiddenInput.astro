@@ -1,10 +1,11 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
+import type { WithChildren } from '../../types.ts';
 
 /**
  * Props for a visually hidden input element (used for checkbox/radio styling).
  */
-type Props = HTMLAttributes<'input'>;
+type Props = WithChildren<false, HTMLAttributes<'input'>>;
 
 const props = Astro.props;
 ---

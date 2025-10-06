@@ -1,11 +1,14 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
+import type { WithChildren } from '../../types.ts';
 import Card from './Card.astro';
 
 /**
- * Props for the main text input textarea.
+ * Props for a textarea with auto-resize and custom scrollbar styling.
+ *
+ * Explicitly disallows children as textarea content is controlled by value.
  */
-type Props = HTMLAttributes<'textarea'>;
+type Props = WithChildren<false, HTMLAttributes<'textarea'>>;
 
 const props = Astro.props;
 ---

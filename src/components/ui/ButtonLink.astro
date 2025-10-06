@@ -1,6 +1,7 @@
 ---
 import type { AstroComponent } from '@lucide/astro';
 import type { ComponentProps } from 'astro/types';
+import type { WithChildren } from '../../types.ts';
 import Link from './Link.astro';
 
 /**
@@ -9,7 +10,8 @@ import Link from './Link.astro';
  * @property icon - Optional Lucide icon component to display before the label
  * @property label - Optional text label
  */
-interface Props extends ComponentProps<typeof Link> {
+interface Props
+	extends WithChildren<false, Omit<ComponentProps<typeof Link>, 'children'>> {
 	icon?: AstroComponent;
 	label?: string;
 }

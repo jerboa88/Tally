@@ -2,10 +2,13 @@
 import Textarea from '@components/ui/Textarea.astro';
 import { INPUT } from '@lib/config/input';
 import { getLocaleStrings } from '@lib/i18n/index.ts';
+import type { WithChildren } from '../../../types.ts';
 
 /**
  * The main counter input textarea.
  */
+type Props = WithChildren<false>;
+
 const { label, placeholder } = getLocaleStrings(Astro).input;
 ---
 

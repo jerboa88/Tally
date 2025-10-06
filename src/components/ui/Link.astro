@@ -1,6 +1,7 @@
 ---
 import { isExternalUrl } from '@utils/index.ts';
 import type { HTMLAttributes } from 'astro/types';
+import type { WithChildren } from '../../types.ts';
 
 type AnchorAttributes = HTMLAttributes<'a'>;
 
@@ -8,11 +9,10 @@ type AnchorAttributes = HTMLAttributes<'a'>;
  * Base props for the anchor component, excluding href and title.
  *
  * @property tooltip - Optional tooltip text (mapped to title attribute)
- * @property children - The content of the anchor element
  */
-interface BaseProps extends Omit<AnchorAttributes, 'href' | 'title'> {
+interface BaseProps
+	extends WithChildren<true, Omit<AnchorAttributes, 'href' | 'title'>> {
 	tooltip?: AnchorAttributes['title'];
-	children: astroHTML.JSX.Element;
 }
 
 /**

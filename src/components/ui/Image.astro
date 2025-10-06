@@ -5,13 +5,14 @@ import {
 	type LocalImageProps,
 	type RemoteImageProps,
 } from 'astro:assets';
+import type { WithChildren } from '../../types.ts';
 
 /**
  * Props for an optimized image component that handles both local and remote images. Used by Markdoc.
  *
  * Automatically uses SVG format for .svg files and modern formats (AVIF, WebP) for other images.
  */
-type Props = LocalImageProps | RemoteImageProps;
+type Props = WithChildren<false, LocalImageProps | RemoteImageProps>;
 
 /**
  * Extracts the source URL string from various image source types.
