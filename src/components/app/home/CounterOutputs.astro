@@ -1,0 +1,48 @@
+---
+import { OUTPUT } from '@lib/config/output.ts';
+import OutputGroup from './OutputGroup.astro';
+
+/**
+ * The main counter outputs.
+ */
+---
+
+{Object.values(OUTPUT).map((outputGroup) => <OutputGroup {...outputGroup} />)}
+
+<script>
+	import { CLASS } from '@lib/config/class.ts';
+	import { OUTPUT, type OutputId } from '@lib/config/output.ts';
+	import { getLocaleStrings } from '@lib/i18n/index.ts';
+	import { $outputCounts } from '@stores/index.ts';
+	import { entriesOf, getDefinedElementById } from '@utils/index.ts';
+
+	type OutputMap = { [key in OutputId]: HTMLOutputElement };
+
+	const msg = getLocaleStrings().output.placeholder;
+
+	// Build a map of all output elements by their IDs
+	const outputMap: OutputMap = Object.fromEntries(
+		Object.values(OUTPUT).flatMap(({ fields }) =>
+			fields.map((id) => [id, getDefinedElementById<HTMLOutputElement>(id)]),
+		),
+	) as OutputMap;
+
+	// Update outputs when counts change
+	$outputCounts.subscribe((valueMap, oldValueMap) => {
+		for (const [outputId, output] of entriesOf(outputMap)) {
+			const oldValue = oldValueMap?.[outputId];
+			const value = valueMap?.[outputId];
+
+			// Only update if the value has changed
+			if (value !== oldValue) {
+				output.value = value ? value.toString() : msg;
+
+				// Restart animation
+				output.classList.remove(CLASS.outputUpdateAnimation);
+				// Force reflow
+				void output.offsetWidth;
+				output.classList.add(CLASS.outputUpdateAnimation);
+			}
+		}
+	});
+</script>
