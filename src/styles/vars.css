@@ -8,7 +8,8 @@
 	--default-light-shadow-strength: 30%;
 
 	--color-mix-ratio-sm: 2.5%;
-	--color-mix-ratio-base: 50%;
+	--color-mix-ratio-base: 10%;
+	--color-mix-ratio-lg: 50%;
 
 	--opacity-min: 0;
 	--opacity-hover: 0.7;
@@ -23,9 +24,9 @@
 	--font-size-lg: 1.5rem;
 	--font-size-xl: 4rem;
 
-	--font-family-header: 'Roboto Slab Variable', sans-serif;
-	--font-family-base: 'Roboto Flex Variable', 'Calibri', 'Trebuchet MS',
-		sans-serif;
+	/* Variable names defined in /src/lib/config/fonts.ts */
+	--font-family-header: var(--font-roboto-slab);
+	--font-family-base: var(--font-roboto-flex);
 
 	--font-weight-base: 300;
 	--font-weight-bold: 500;
@@ -38,7 +39,7 @@
 
 	--border-width-base: 1px;
 
-	--border-radius-base: .75rem;
+	--border-radius-base: 0.75rem;
 
 	--pulse-scale: 1.1;
 }
@@ -53,19 +54,20 @@ body {
 	--color-selection: color-mix(
 		in oklch shorter hue,
 		var(--color-primary),
-		transparent var(--color-mix-ratio-base)
+		transparent var(--color-mix-ratio-lg)
 	);
 	--color-shadow: color-mix(
 		in oklch shorter hue,
 		oklch(0 0 0 / 0.25) var(--shadow-strength),
 		transparent
 	);
-	--box-shadow-base: 0 1px 3px 0 var(--color-shadow), 0 1px 2px -1px
-		var(--color-shadow);
+	--box-shadow-base:
+		0 1px 3px 0 var(--color-shadow), 0 1px 2px -1px var(--color-shadow);
 	--box-shadow-inset-base: inset 0 2px 4px var(--color-shadow);
-	--text-shadow-base: 0px 1px 0px var(--color-shadow), 0px 1px 1px
-		var(--color-shadow), 0px 2px 2px var(--color-shadow);
+	--text-shadow-base:
+		0px 1px 0px var(--color-shadow), 0px 1px 1px var(--color-shadow),
+		0px 2px 2px var(--color-shadow);
 	--text-shadow-sm: 0px 1px 1px var(--color-shadow);
-	--drop-shadow-base: drop-shadow(0 1px .3px var(--color-shadow))
-		drop-shadow(0 1px .2px var(--color-shadow));
+	--drop-shadow-base: drop-shadow(0 1px 0.3px var(--color-shadow))
+		drop-shadow(0 1px 0.2px var(--color-shadow));
 }

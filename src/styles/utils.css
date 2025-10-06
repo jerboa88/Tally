@@ -14,22 +14,17 @@
 /* --------------- */
 
 .enable-transitions {
-	--transition-duration-base: .125s;
-	--transition-duration-long: .5s;
+	--transition-duration-base: 0.125s;
+	--transition-duration-long: 0.5s;
 
 	* {
-		transition-property: background-color, color;
+		transition-property: background-color, color, outline-color, opacity;
 		transition-duration: var(--transition-duration-long);
 	}
 }
 
 .pulse {
 	animation: pulse var(--transition-duration-base) ease-out;
-}
-
-/* Indent an element to visually align it with text in padded containers */
-.indent {
-	padding: 0 var(--padding-base);
 }
 
 /* Hide an element but keep it accessible to screen readers */
@@ -41,23 +36,4 @@
 	overflow: hidden;
 	white-space: nowrap;
 	clip-path: inset(50%);
-}
-
-p.alert {
-	border-radius: var(--border-radius-base);
-	padding: var(--padding-base);
-	border-width: var(--border-width-base);
-	border-style: solid;
-
-	&.note {
-		border-color: var(--color-primary);
-
-		&::before {
-			content: 'ⓘ Note';
-			display: block;
-			padding-block-end: var(--padding-sm);
-			color: var(--color-primary);
-			font-weight: var(--font-weight-bold);
-		}
-	}
 }
