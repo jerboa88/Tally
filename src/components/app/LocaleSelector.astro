@@ -1,0 +1,65 @@
+---
+import type { EntryProps } from '@components/ui/InputGroup.astro';
+import InputGroup from '@components/ui/InputGroup.astro';
+import { LOCALE, type LocaleId } from '@lib/config/locale.ts';
+import {
+	flagFromLocale,
+	getLocale,
+	getLocaleStrings,
+} from '@lib/i18n/index.ts';
+import { entriesOf } from '@utils/index.ts';
+import type { WithChildren } from '../../types.ts';
+
+/**
+ * Props for the locale selector component.
+ *
+ * Explicitly disallows children as locale entries are generated from config.
+ */
+type Props = WithChildren<false>;
+
+/**
+ * Constructs a locale label with its flag emoji prefix.
+ *
+ * @param id - The locale ID
+ * @param name - The locale display name
+ * @returns A formatted string like "🇺🇸 English"
+ */
+function buildLocaleLabel(id: LocaleId, name: string) {
+	const prefix = flagFromLocale(id);
+
+	return `${prefix} ${name}`;
+}
+
+const locale = getLocale(Astro);
+const msg = getLocaleStrings(locale).locales;
+
+const entries: EntryProps[] = entriesOf(LOCALE.map).map(
+	([localeId, localeName]) => ({
+		id: localeId,
+		label: buildLocaleLabel(localeId, localeName),
+		checked: localeId === locale,
+	}),
+);
+---
+
+<InputGroup {entries} id={LOCALE.id} title={msg.title} type="radio" />
+
+<script>
+	import { LOCALE } from '@lib/config/locale.ts';
+	import { entriesOf, getDefinedElementById } from '@utils/index.ts';
+	import { getRelativeLocaleUrl } from 'astro/virtual-modules/i18n.js';
+	import { mapEntries } from 'radashi';
+
+	const localeRadioMap = mapEntries(LOCALE.map, (localeId) => [
+		localeId,
+		getDefinedElementById<HTMLInputElement>(localeId),
+	]);
+
+	// Update theme when a theme radio input is changed
+	for (const [id, radio] of entriesOf(localeRadioMap)) {
+		radio.addEventListener(
+			'change',
+			() => (window.location.href = getRelativeLocaleUrl(id)),
+		);
+	}
+</script>
