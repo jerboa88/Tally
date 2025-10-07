@@ -1,4 +1,6 @@
 ---
+import { LOCALE } from '@lib/config/locale.ts';
+import { getLocaleStrings } from '@lib/i18n/index.ts';
 import type { WithChildren } from '../../types.ts';
 
 /**
@@ -7,17 +9,26 @@ import type { WithChildren } from '../../types.ts';
  * Explicitly disallows children as the loader structure is predefined.
  */
 type Props = WithChildren<false>;
+
+// Use the default locale because, at this point, we don't know the user's preferences
+const msg = getLocaleStrings(LOCALE.default).loader.label;
 ---
 
-<div class="typewriter">
-	<div class="slide"><i></i></div>
+<figure>
+	<div class="slide">
+		<i></i>
+	</div>
 	<div class="paper"></div>
 	<div class="keyboard"></div>
-</div>
+	<figcaption>
+		<h1>
+			{msg}
+		</h1>
+	</figcaption>
+</figure>
 
 <style>
-	/* From Uiverse.io by uxRakhal */
-	.typewriter {
+	figure {
 		--blue: var(--color-primary);
 		--blue-dark: color-mix(
 			in oklch shorter hue,
@@ -31,35 +42,45 @@ type Props = WithChildren<false>;
 		--duration: 3s;
 
 		position: relative;
-		animation: bounce05 var(--duration) linear infinite;
+		filter: var(--drop-shadow-base);
+		animation: bounce var(--duration) linear infinite;
 	}
 
-	.typewriter .slide {
+	figcaption {
+		text-align: center;
+	}
+
+	h1 {
+		font-family: var(--font-family-header);
+		font-size: var(--font-size-base);
+	}
+
+	.slide {
 		width: 92px;
 		height: 20px;
 		border-radius: 3px;
 		margin-left: 14px;
 		transform: translateX(14px);
 		background: linear-gradient(var(--blue), var(--blue-dark));
-		animation: slide05 var(--duration) ease infinite;
+		animation: slide var(--duration) ease infinite;
 	}
 
-	.typewriter .slide:before,
-	.typewriter .slide:after,
-	.typewriter .slide i:before {
+	.slide:before,
+	.slide:after,
+	.slide i:before {
 		content: '';
 		position: absolute;
 		background: var(--tool);
 	}
 
-	.typewriter .slide:before {
+	.slide:before {
 		width: 2px;
 		height: 8px;
 		top: 6px;
 		left: 100%;
 	}
 
-	.typewriter .slide:after {
+	.slide:after {
 		left: 94px;
 		top: 3px;
 		height: 14px;
@@ -67,7 +88,7 @@ type Props = WithChildren<false>;
 		border-radius: 3px;
 	}
 
-	.typewriter .slide i {
+	.slide i {
 		display: block;
 		position: absolute;
 		right: 100%;
@@ -77,7 +98,7 @@ type Props = WithChildren<false>;
 		background: var(--tool);
 	}
 
-	.typewriter .slide i:before {
+	.slide i:before {
 		right: 100%;
 		top: -2px;
 		width: 4px;
@@ -85,7 +106,7 @@ type Props = WithChildren<false>;
 		height: 14px;
 	}
 
-	.typewriter .paper {
+	.paper {
 		position: absolute;
 		left: 24px;
 		top: -26px;
@@ -94,10 +115,10 @@ type Props = WithChildren<false>;
 		border-radius: 5px;
 		background: var(--paper);
 		transform: translateY(46px);
-		animation: paper05 var(--duration) linear infinite;
+		animation: paper var(--duration) linear infinite;
 	}
 
-	.typewriter .paper:before {
+	.paper:before {
 		content: '';
 		position: absolute;
 		left: 6px;
@@ -113,7 +134,7 @@ type Props = WithChildren<false>;
 			0 36px 0 var(--text);
 	}
 
-	.typewriter .keyboard {
+	.keyboard {
 		width: 120px;
 		height: 56px;
 		margin-top: -10px;
@@ -121,13 +142,13 @@ type Props = WithChildren<false>;
 		position: relative;
 	}
 
-	.typewriter .keyboard:before,
-	.typewriter .keyboard:after {
+	.keyboard:before,
+	.keyboard:after {
 		content: '';
 		position: absolute;
 	}
 
-	.typewriter .keyboard:before {
+	.keyboard:before {
 		top: 0;
 		left: 0;
 		right: 0;
@@ -138,7 +159,7 @@ type Props = WithChildren<false>;
 		transform-origin: 50% 100%;
 	}
 
-	.typewriter .keyboard:after {
+	.keyboard:after {
 		left: 2px;
 		top: 25px;
 		width: 11px;
@@ -157,10 +178,10 @@ type Props = WithChildren<false>;
 			60px 10px 0 var(--key),
 			68px 10px 0 var(--key),
 			83px 10px 0 var(--key);
-		animation: keyboard05 var(--duration) linear infinite;
+		animation: keyboard var(--duration) linear infinite;
 	}
 
-	@keyframes bounce05 {
+	@keyframes bounce {
 		85%,
 		92%,
 		100% {
@@ -176,7 +197,7 @@ type Props = WithChildren<false>;
 		}
 	}
 
-	@keyframes slide05 {
+	@keyframes slide {
 		5% {
 			transform: translateX(14px);
 		}
@@ -206,7 +227,7 @@ type Props = WithChildren<false>;
 		}
 	}
 
-	@keyframes paper05 {
+	@keyframes paper {
 		5% {
 			transform: translateY(46px);
 		}
@@ -237,7 +258,7 @@ type Props = WithChildren<false>;
 		}
 	}
 
-	@keyframes keyboard05 {
+	@keyframes keyboard {
 		5%,
 		12%,
 		21%,

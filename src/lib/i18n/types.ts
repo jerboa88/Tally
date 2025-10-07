@@ -1,4 +1,3 @@
-import type { LocaleId } from '@lib/config/locale.ts';
 import type { OptionId } from '@lib/config/option.ts';
 import type { OutputId } from '@lib/config/output.ts';
 import type { ThemeId } from '@lib/config/theme.ts';
@@ -44,6 +43,9 @@ export type LocaleMessages = {
 		features: Capitalize<string>[];
 		requirements: Capitalize<string>;
 		keywords: string[];
+	};
+	loader: {
+		label: Capitalize<string>;
 	};
 	header: {
 		label: Capitalize<string>;

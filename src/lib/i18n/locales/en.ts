@@ -37,6 +37,9 @@ const EN: LocaleMessages = {
 			'online tool',
 		],
 	},
+	loader: {
+		label: 'Loading...',
+	},
 	header: {
 		// Accessible label for the header/logo link
 		label: `${SITE.title} homepage`,
