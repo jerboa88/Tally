@@ -130,3 +130,32 @@ export function getLocaleInfo(localeId: LocaleId) {
 		regionName,
 	};
 }
+
+/**
+ * Determines the best matching locale based on the user's browser language preferences.
+ *
+ * Iterates through the user's language preferences and returns the first supported
+ * locale. Falls back to the default locale if no match is found.
+ *
+ * @returns The best matching locale ID, or the default locale
+ */
+export function getBestMatchingLocale() {
+	const userLocaleIds = navigator.languages || [navigator.language];
+
+	// Check each user language preference
+	for (const localeId of userLocaleIds) {
+		const langCode = new Intl.Locale(localeId).minimize().language;
+
+		// See if we have a direct match
+		if (LOCALE.map[localeId as LocaleId]) {
+			return localeId;
+		}
+
+		// See if we have a match for just the language code
+		if (LOCALE.map[langCode as LocaleId]) {
+			return langCode;
+		}
+	}
+
+	return LOCALE.default;
+}
