@@ -1,0 +1,11 @@
+---
+import HomeLayout from '@layouts/HomeLayout.astro';
+import { LOCALE } from '@lib/config/locale.ts';
+import { keysOf } from '@utils/index.ts';
+
+export function getStaticPaths() {
+	return keysOf(LOCALE.map).map((localeId) => ({ params: { localeId } }));
+}
+---
+
+<HomeLayout />
