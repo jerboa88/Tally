@@ -4,20 +4,16 @@ import { defineConfig, fontProviders } from 'astro/config';
 import robotsTxt from 'astro-robots-txt';
 import { SITE } from './src/lib/config/site.ts';
 import { FONTS } from './src/lib/config/fonts.ts';
-import { LOCALE } from './src/lib/config/locale.ts';
-import { keysOf } from './src/utils/index.ts';
-
-const BASE_PATH = '/';
-const LOCALE_IDS = keysOf(LOCALE.map);
-const I18N_CONFIG = {
-	defaultLocale: LOCALE.default,
-	locales: Object.fromEntries(LOCALE_IDS.map((id) => [id, id])),
-};
+import { SOCIAL_PREVIEW } from './src/lib/config/social-preview.ts';
+import snapshot from './src/lib/astro-snapshot/src/index.ts';
+import { ASTRO_SNAPSHOT_CONFIG } from './src/config-transformer.ts';
+import { I18N_CONFIG } from './src/config-transformer.ts';
 
 // https://astro.build/config
 export default defineConfig({
 	site: SITE.url.base,
-	base: BASE_PATH,
+	base: SITE.basePath,
+	srcDir: SITE.srcDir,
 	output: 'static',
 	trailingSlash: 'never',
 	server: {
@@ -35,14 +31,7 @@ export default defineConfig({
 		responsiveStyles: true,
 		layout: 'constrained',
 	},
-	i18n: {
-		...I18N_CONFIG,
-		locales: LOCALE_IDS,
-		routing: {
-			prefixDefaultLocale: true,
-			redirectToDefaultLocale: false,
-		},
-	},
+	i18n: I18N_CONFIG.astro,
 	experimental: {
 		fonts: FONTS.map((props) => ({
 			...props,
@@ -59,21 +48,19 @@ export default defineConfig({
 			changefreq: 'monthly',
 			priority: 1,
 			lastmod: new Date(),
-			i18n: I18N_CONFIG,
-
+			i18n: I18N_CONFIG.sitemap,
 			serialize(item) {
 				const path = new URL(item.url).pathname;
 
 				// Don't include social preview pages in the sitemap
-				// TODO: Move preview path to constants
-				if (path.includes('/preview/')) {
+				if (path.includes(`/${SOCIAL_PREVIEW.id}/`)) {
 					return undefined;
 				}
 
 				// The homepage automatically redirects to the default locale, add the x-default hreflang tag
 				if (item.links) {
 					for (const link of item?.links) {
-						if (link.url === `${SITE.url.base}${BASE_PATH}`) {
+						if (link.url === `${SITE.url.base}${SITE.basePath}`) {
 							link.lang = 'x-default';
 						}
 					}
@@ -82,5 +69,6 @@ export default defineConfig({
 				return item;
 			},
 		}),
+		snapshot(ASTRO_SNAPSHOT_CONFIG),
 	],
 });

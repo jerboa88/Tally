@@ -10,6 +10,8 @@ import type { HttpsUrl } from '../../types.ts';
  */
 type SiteConfig = {
 	title: Capitalize<string>;
+	basePath: string;
+	srcDir: string;
 	sitemapPrefix: string;
 	url: {
 		base: HttpsUrl;
@@ -30,14 +32,17 @@ type SiteConfig = {
 			github: HttpsUrl;
 			linkedin: HttpsUrl;
 		};
+		username: {
+			x: `@${string}`;
+		};
 	};
 };
 
 const AUTHOR_FIRST_NAME = 'John' as const;
 const AUTHOR_LAST_NAME = 'Goodliff' as const;
-const AUTHOR_HOMEPAGE_URL = 'https://johng.io' as const;
-const AUTHOR_GITHUB_URL = 'https://github.com/jerboa88' as const;
-const REPO_URL = `${AUTHOR_GITHUB_URL}/Tally`;
+const AUTHOR_HOMEPAGE_URL: HttpsUrl = 'https://johng.io' as const;
+const AUTHOR_GITHUB_URL: HttpsUrl = 'https://github.com/jerboa88' as const;
+const REPO_URL: HttpsUrl = `${AUTHOR_GITHUB_URL}/Tally`;
 
 /**
  * Global site configuration.
@@ -46,6 +51,8 @@ const REPO_URL = `${AUTHOR_GITHUB_URL}/Tally`;
  */
 export const SITE = {
 	title: 'Tally',
+	basePath: '/',
+	srcDir: 'src',
 	sitemapPrefix: 'sitemap',
 	url: {
 		base: 'https://tally.johng.io',
@@ -65,6 +72,9 @@ export const SITE = {
 			homepage: AUTHOR_HOMEPAGE_URL,
 			github: AUTHOR_GITHUB_URL,
 			linkedin: 'https://www.linkedin.com/in/johngoodliff/',
+		},
+		username: {
+			x: '@jerboa88',
 		},
 	},
 } as const satisfies SiteConfig;
