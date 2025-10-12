@@ -14,19 +14,21 @@ type Props = WithChildren<false>;
 <script>
 	import { CLASS } from '@lib/config/class.ts';
 	import { OUTPUT, type OutputId } from '@lib/config/output.ts';
-	import { getLocaleStrings } from '@lib/i18n/index.ts';
+	import { getLocale, getLocaleStrings } from '@lib/i18n/index.ts';
 	import { $outputCounts } from '@stores/index.ts';
 	import { entriesOf, getDefinedElementById } from '@utils/index.ts';
 
 	type OutputMap = { [key in OutputId]: HTMLOutputElement };
 
-	const msg = getLocaleStrings().output.placeholder;
+	const currentLocaleId = getLocale();
+	const msg = getLocaleStrings(currentLocaleId).output.placeholder;
+	const numberFormatter = new Intl.NumberFormat(currentLocaleId);
 
 	// Build a map of all output elements by their IDs
 	const outputMap: OutputMap = Object.fromEntries(
 		Object.values(OUTPUT).flatMap(({ fields }) =>
-			fields.map((id) => [id, getDefinedElementById<HTMLOutputElement>(id)]),
-		),
+			fields.map((id) => [id, getDefinedElementById<HTMLOutputElement>(id)])
+		)
 	) as OutputMap;
 
 	// Update outputs when counts change
@@ -37,7 +39,7 @@ type Props = WithChildren<false>;
 
 			// Only update if the value has changed
 			if (value !== oldValue) {
-				output.value = value ? value.toString() : msg;
+				output.value = value ? numberFormatter.format(value) : msg;
 
 				// Restart animation
 				output.classList.remove(CLASS.outputUpdateAnimation);
