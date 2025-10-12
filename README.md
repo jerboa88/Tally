@@ -95,7 +95,12 @@ Here is an overview of how we determine the counts for each token type:
 
 ## 🧾 License
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+Copyright © 2025 [John Goodliff](https://johng.io).
+
+This project is licensed under the AGPL-3.0 License. See [LICENSE](LICENSE) for details. The following included libraries have their own licenses:
+
+- **tally-ts**: MIT License
+- **astro-snapshot**: MIT License
 
 
 ## 🖇️ Related
