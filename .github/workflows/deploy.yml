@@ -18,6 +18,10 @@ jobs:
       - name: 📂 Checkout repository
         uses: actions/checkout@v4
 
+      # Required for Puppeteer
+      - name: 🛡️ Disable AppArmor
+        run: echo 0 | sudo tee /proc/sys/kernel/apparmor_restrict_unprivileged_userns
+
       - name: 🚀 Install, build, and upload artifact
         uses: withastro/action@v4
         with:
