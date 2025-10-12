@@ -1,3 +1,5 @@
+// This file is imported by astro.config.ts which doesn't support aliases, so we can't use them here either
+import { SITE } from '../lib/config/site.ts';
 import type { HttpsUrl } from '../types.ts';
 
 /**
@@ -109,4 +111,14 @@ export function isExternalUrl(
 	const definedUrlString = assertDefined(urlString, 'URL string');
 
 	return definedUrlString.startsWith('https://');
+}
+
+/**
+ * Converts a relative path to an absolute URL using the site's base URL.
+ *
+ * @param path - The relative path to convert
+ * @returns The absolute URL as a string
+ */
+export function pathToAbsoluteUrl(path: string) {
+	return new URL(path, SITE.url.base).href;
 }
