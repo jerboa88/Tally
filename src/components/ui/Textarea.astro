@@ -1,0 +1,59 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import type { WithChildren } from '../../types.ts';
+import Card from './Card.astro';
+
+/**
+ * Props for a textarea with auto-resize and custom scrollbar styling.
+ *
+ * Explicitly disallows children as textarea content is controlled by value.
+ */
+type Props = WithChildren<false, HTMLAttributes<'textarea'>>;
+
+const props = Astro.props;
+---
+
+<Card as="textarea" {...props} />
+
+<style>
+	textarea {
+		min-height: var(--min-height-textarea);
+		max-height: var(--max-width-page);
+		border: none;
+		padding: var(--padding-base);
+		background-color: var(--color-base-2);
+		color: var(--color-text);
+		font-family: var(--font-family-base);
+		font-size: var(--font-size-base);
+		font-weight: var(--font-weight-base);
+		transition-duration: var(--transition-duration-base);
+		resize: block;
+		view-transition-name: input;
+		line-height: inherit;
+		/* Revert `overflow:hidden` set by Card */
+		overflow-y: auto;
+
+		&:focus {
+			background-color: var(--color-base-3);
+		}
+
+		&::-webkit-scrollbar {
+			width: var(--padding-xs);
+		}
+
+		&::-webkit-scrollbar-thumb {
+			border-radius: var(--border-radius-base);
+			background-color: var(--color-text);
+			box-shadow: var(--box-shadow-base);
+			cursor: pointer;
+		}
+
+		&::placeholder {
+			color: color-mix(
+				in oklch shorter hue,
+				var(--color-text),
+				transparent var(--color-mix-ratio-lg)
+			);
+		}
+	}
+</style>

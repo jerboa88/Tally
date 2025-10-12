@@ -1,0 +1,123 @@
+---
+import ButtonLink from '@components/ui/ButtonLink.astro';
+import Card from '@components/ui/Card.astro';
+import themeDark from '@images/theme_dark.png';
+import themeLight from '@images/theme_light.png';
+import themeTeal from '@images/theme_teal.png';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { SITE } from '@lib/config/site.ts';
+import type { SocialPreviewId } from '@lib/config/social-preview.ts';
+import { getLocaleStrings } from '@lib/i18n/index.ts';
+import { Link } from '@lucide/astro';
+import type { WithChildren } from '../types.ts';
+
+/**
+ * Props for the social media preview image layout.
+ *
+ * @property type - The social platform type, determining dimensions ('og' for Open Graph 1200x630, 'twitter' for Twitter Card 800x418)
+ */
+interface Props extends WithChildren<false> {
+	type: SocialPreviewId;
+}
+
+const msg = getLocaleStrings(Astro);
+
+const label = new URL(SITE.url.base).host;
+
+const { type } = Astro.props;
+---
+
+<BaseLayout>
+	<meta slot="head" name="robots" content="noindex, nofollow" />
+	<main class={type}>
+		<header>
+			<Card>
+				<ButtonLink to={SITE.url.base} {label} icon={Link} />
+			</Card>
+			<p>
+				{msg.site.description}
+			</p>
+		</header>
+		<section>
+			<img src={themeLight.src} />
+			<img src={themeDark.src} />
+			<img src={themeTeal.src} />
+		</section>
+	</main>
+</BaseLayout>
+
+<style>
+	body {
+		--color-shadow: oklch(0 0 0);
+	}
+
+	main {
+		display: flex;
+		flex-direction: column;
+		justify-content: end;
+		align-items: center;
+		flex: 1;
+		overflow: hidden;
+		background-image: radial-gradient(
+			farthest-corner circle at 50% 100% in oklch,
+			var(--color-base-3),
+			oklch(0% 0 0 / 0.5)
+		);
+	}
+
+	a {
+		flex-grow: 0;
+	}
+
+	section {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: end;
+	}
+
+	span {
+		width: fit-content;
+		border-radius: var(--border-radius-base);
+		padding: var(--padding-sm);
+		background-color: var(--color-base-2);
+		font-family: var(--font-family-header);
+	}
+
+	p {
+		margin: 0 var(--padding-base);
+		font-size: var(--font-size-lg);
+	}
+
+	header {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+		align-items: center;
+		flex: 1;
+		text-align: center;
+	}
+
+	img {
+		width: 25%;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		margin-block-end: calc(-2 * var(--padding-lg));
+		margin-inline: calc(-1 * var(--padding-base));
+		overflow: hidden;
+		background-color: var(--color-base-2);
+		border-radius: var(--border-radius-base);
+		box-shadow: var(--box-shadow-lg);
+		z-index: 0;
+	}
+
+	img:nth-of-type(2) {
+		width: 40%;
+		margin-block-end: calc(-4.5 * var(--padding-lg));
+		margin-inline: calc(-2 * var(--padding-lg));
+		z-index: 1;
+		border: var(--border-width-base) solid var(--color-primary);
+	}
+</style>

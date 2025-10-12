@@ -1,0 +1,21 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import type { WithChildren } from '../../types.ts';
+
+/**
+ * Props for a bold text element. This is used by Markdoc.
+ */
+type Props = WithChildren<true, HTMLAttributes<'strong'>>;
+
+const props = Astro.props;
+---
+
+<strong {...props}>
+	<slot />
+</strong>
+
+<style>
+	strong {
+		font-weight: var(--font-weight-bold);
+	}
+</style>

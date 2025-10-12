@@ -1,0 +1,32 @@
+---
+import type { HTMLTag, Polymorphic } from 'astro/types';
+
+/**
+ * Props for a polymorphic card container with rounded corners and shadow.
+ *
+ * @typeParam Tag - The HTML element type to render as (default: 'div')
+ * @property as - The HTML element type to render as (default: 'div')
+ */
+type Props<Tag extends HTMLTag> = Polymorphic<{
+	as: Tag;
+}>;
+
+const { as: Tag = 'div', ...restProps } = Astro.props;
+---
+
+<Tag {...restProps}>
+	<slot />
+</Tag>
+
+<style>
+	* {
+		border-radius: var(--border-radius-base);
+		box-shadow: var(--box-shadow-base);
+		overflow: hidden;
+
+		/* Outlines are cut off when using `overflow: hidden` so use a negative offset instead */
+		> * {
+			outline-offset: calc(-1 * var(--padding-xs));
+		}
+	}
+</style>

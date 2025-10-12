@@ -1,0 +1,19 @@
+---
+import Form from '@components/ui/Form.astro';
+import { OUTPUT } from '@lib/config/output.ts';
+import { wKey } from '@utils/index.ts';
+import LabelledOutput from './LabelledOutput.astro';
+
+/**
+ * Props for a group of related output fields.
+ *
+ * Receives a section configuration from the OUTPUT constant (ex. 'general' or 'character').
+ */
+type Props = (typeof OUTPUT)[keyof typeof OUTPUT];
+
+const { id, fields } = Astro.props;
+---
+
+<Form {...wKey(id, 'output', 'form')}>
+	{fields.map((fieldId) => <LabelledOutput id={fieldId} />)}
+</Form>

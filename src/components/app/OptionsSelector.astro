@@ -1,0 +1,75 @@
+---
+import type { EntryProps } from '@components/ui/InputGroup.astro';
+import InputGroup from '@components/ui/InputGroup.astro';
+import { OPTION } from '@lib/config/option.ts';
+import { getLocaleStrings } from '@lib/i18n/index.ts';
+import { keysOf } from '@utils/index.ts';
+import type { WithChildren } from '../../types.ts';
+
+/**
+ * Props for the options selector component.
+ *
+ * Explicitly disallows children as option entries are generated from config.
+ */
+type Props = WithChildren<false>;
+
+const msg = getLocaleStrings(Astro).options;
+
+const entries: EntryProps[] = keysOf(OPTION.map).map((id) => ({
+	id,
+	label: msg.map[id].label,
+}));
+---
+
+<InputGroup {entries} id={OPTION.id} title={msg.title} type="checkbox" />
+
+<script>
+	import { OPTION, type OptionId } from '@lib/config/option.ts';
+	import {
+		$enableDebugLogging,
+		$rememberInputText,
+		$warnOnLargeInputText,
+	} from '@stores/index.ts';
+	import { getDefinedElementById } from '@utils/index.ts';
+	import type { WritableAtom } from 'nanostores';
+	import { mapEntries } from 'radashi';
+
+	/**
+	 * Associates a store with its corresponding checkbox element.
+	 *
+	 * @property store - The nanostores atom for this option
+	 * @property checkbox - The DOM checkbox input element
+	 */
+	type OptionEntry = {
+		store: WritableAtom<boolean>;
+		checkbox: HTMLInputElement;
+	};
+
+	type OptionMap = Record<OptionId, OptionEntry>;
+
+	const idStoreMap = {
+		[OPTION.map.warnOnLargeInputText.id]: $warnOnLargeInputText,
+		[OPTION.map.rememberInputText.id]: $rememberInputText,
+		[OPTION.map.enableDebugLogging.id]: $enableDebugLogging,
+	} as const satisfies { [id in OptionId]: WritableAtom<boolean> };
+
+	const optionMap: OptionMap = mapEntries(idStoreMap, (optionId, store) => [
+		optionId,
+		{
+			store,
+			checkbox: getDefinedElementById<HTMLInputElement>(optionId),
+		},
+	]);
+
+	for (const { store, checkbox } of Object.values(optionMap)) {
+		// Update checkboxes when the option changes
+		store.subscribe((value) => {
+			checkbox.checked = value;
+		});
+
+		// Update theme when a theme radio input is changed
+		checkbox.addEventListener('change', () => {
+			store.set(checkbox.checked);
+		});
+	}
+</script>

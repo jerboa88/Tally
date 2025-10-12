@@ -1,0 +1,22 @@
+---
+import SocialPreviewLayout from '@layouts/SocialPreviewLayout.astro';
+import { LOCALE } from '@lib/config/locale.ts';
+import { SOCIAL_PREVIEW } from '@lib/config/social-preview.ts';
+import { keysOf } from '@utils/index.ts';
+import { cartesianProduct } from 'radashi';
+
+export function getStaticPaths() {
+	const paramMatrix = cartesianProduct(
+		keysOf(LOCALE.map),
+		keysOf(SOCIAL_PREVIEW.map),
+	);
+
+	return paramMatrix.map(([localeId, type]) => ({
+		params: { localeId, type: type },
+	}));
+}
+
+const { type } = Astro.params;
+---
+
+<SocialPreviewLayout {type} />

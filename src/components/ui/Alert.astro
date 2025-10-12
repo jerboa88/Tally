@@ -1,0 +1,45 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import type { WithChildren } from '../../types.ts';
+
+/**
+ * Props for an alert/notification blockquote with configurable styling. Used by Markdoc.
+ *
+ * @property type - The alert type determining the icon and styling (default: 'info')
+ */
+interface Props extends WithChildren<true, HTMLAttributes<'blockquote'>> {
+	type?: 'info';
+}
+
+const { type = 'info', ...restProps } = Astro.props;
+---
+
+<blockquote data-type={type} {...restProps}>
+	<slot />
+</blockquote>
+
+<style>
+	blockquote {
+		margin-inline: 0;
+		padding: var(--padding-base);
+		border-width: var(--border-width-base);
+		border-style: solid;
+		border-radius: var(--border-radius-base);
+		border-color: var(--color-primary);
+
+		> p {
+			margin: 0;
+		}
+
+		&::before {
+			display: block;
+			padding-block-end: var(--padding-sm);
+			font-weight: var(--font-weight-bold);
+		}
+
+		&[data-type='info']::before {
+			content: 'ⓘ Note';
+			color: var(--color-primary);
+		}
+	}
+</style>

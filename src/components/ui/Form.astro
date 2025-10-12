@@ -1,0 +1,40 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import type { WithChildren } from '../../types.ts';
+import Card from './Card.astro';
+
+/**
+ * Props for a styled form container with interactive label hover effects.
+ */
+type Props = WithChildren<true, HTMLAttributes<'form'>>;
+
+const props = Astro.props;
+---
+
+<Card as="form" {...props}>
+	<slot />
+</Card>
+
+<style>
+	form {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-between;
+
+		&:hover {
+			> label {
+				transition-duration: var(--transition-duration-base);
+
+				&:has(> input) {
+					opacity: var(--opacity-hover);
+				}
+
+				&:has(> input:hover) {
+					opacity: var(--opacity-max);
+					box-shadow: var(--box-shadow-base);
+				}
+			}
+		}
+	}
+</style>
