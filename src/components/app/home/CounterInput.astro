@@ -18,6 +18,7 @@ const { label, placeholder } = getLocaleStrings(Astro).input;
 	aria-label={label}
 	spellcheck="false"
 	autofocus
+	disabled
 />
 
 <script>
@@ -29,9 +30,11 @@ const { label, placeholder } = getLocaleStrings(Astro).input;
 
 	const input = getDefinedElementById<HTMLTextAreaElement>(INPUT.id);
 
+	input.addEventListener('input', updateInputText);
+
 	$inputText.subscribe((value) => {
 		input.value = value;
 	});
 
-	input.addEventListener('input', updateInputText);
+	input.disabled = false;
 </script>
