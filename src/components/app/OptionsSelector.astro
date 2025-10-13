@@ -16,8 +16,12 @@ type Props = WithChildren<false>;
 const msg = getLocaleStrings(Astro).options;
 
 const entries: EntryProps[] = keysOf(OPTION.map).map((id) => ({
-	id,
-	label: msg.map[id].label,
+	label: {
+		text: msg.map[id].label,
+	},
+	input: {
+		id,
+	},
 }));
 ---
 

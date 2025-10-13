@@ -39,10 +39,14 @@ const msg = getLocaleStrings(currentLocaleId).locales;
 
 const entries: EntryProps[] = entriesOf(LOCALE.map).map(
 	([localeId, locale]) => ({
-		id: localeId,
-		label: buildLocaleLabel(localeId, locale),
-		checked: localeId === currentLocaleId,
-	}),
+		label: {
+			text: buildLocaleLabel(localeId, locale),
+		},
+		input: {
+			id: localeId,
+			checked: localeId === currentLocaleId,
+		},
+	})
 );
 ---
 
@@ -63,7 +67,7 @@ const entries: EntryProps[] = entriesOf(LOCALE.map).map(
 	for (const [id, radio] of entriesOf(localeRadioMap)) {
 		radio.addEventListener(
 			'change',
-			() => (window.location.href = getRelativeLocaleUrl(id)),
+			() => (window.location.href = getRelativeLocaleUrl(id))
 		);
 	}
 </script>
