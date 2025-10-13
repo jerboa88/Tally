@@ -12,7 +12,8 @@
 		"typecheck": "astro check",
 		"format:check": "prettier --check .",
 		"format:write": "prettier --write .",
-		"upgrade-interactive": "pnpx npm-check-updates -i --format group -p pnpm"
+		"upgrade-interactive": "pnpx npm-check-updates -i --format group -p pnpm",
+		"postinstall": "pnpx puppeteer browsers install chrome"
 	},
 	"keywords": [
 		"character counter",
@@ -30,12 +31,12 @@
 	"type": "module",
 	"devDependencies": {
 		"@astrojs/check": "^0.9.4",
-		"@astrojs/markdoc": "^0.15.7",
+		"@astrojs/markdoc": "^0.15.8",
 		"@astrojs/sitemap": "^3.6.0",
-		"@lucide/astro": "^0.544.0",
+		"@lucide/astro": "^0.545.0",
 		"@nanostores/logger": "^1.0.0",
 		"@nanostores/persistent": "^1.1.0",
-		"astro": "^5.14.3",
+		"astro": "^5.14.4",
 		"astro-capo": "^0.0.1",
 		"astro-robots-txt": "^1.0.0",
 		"ava": "^6.4.1",
