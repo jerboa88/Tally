@@ -1,6 +1,6 @@
 /* Auto (dark) / Dark theme */
 /* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
-body,
+:root,
 label[for='auto'],
 label:has(> input#dark) {
 	--color-base-1: oklch(20.5% 0 0); /* Neutral 900 */
@@ -13,7 +13,7 @@ label:has(> input#dark) {
 /* Auto (light) theme */
 /* Make the default theme light if the user prefers light mode */
 @media (prefers-color-scheme: light) {
-	body[data-theme='auto'],
+	:root[data-theme='auto'],
 	label:has(> input#auto) {
 		--color-base-1: var(--default-light-color-base-1);
 		--color-base-2: var(--default-light-color-base-2);
@@ -24,7 +24,7 @@ label:has(> input#dark) {
 }
 
 /* Light theme */
-body[data-theme='light'],
+:root[data-theme='light'],
 label:has(> input#light) {
 	--color-base-1: var(--default-light-color-base-1);
 	--color-base-2: var(--default-light-color-base-2);
@@ -33,7 +33,7 @@ label:has(> input#light) {
 	--shadow-strength: var(--default-light-shadow-strength);
 }
 
-body[data-theme='dusk'],
+:root[data-theme='dusk'],
 label:has(> input#dusk) {
 	--color-base-1: oklch(15% 0.018 270);
 	--color-base-2: oklch(22% 0.04 330);
@@ -42,7 +42,7 @@ label:has(> input#dusk) {
 	--shadow-strength: 100%;
 }
 
-body[data-theme='teal'],
+:root[data-theme='teal'],
 label:has(> input#teal) {
 	--color-base-1: oklch(52% 0.07 190);
 	--color-base-2: oklch(58% 0.07 185);
@@ -52,7 +52,7 @@ label:has(> input#teal) {
 }
 
 /* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
-body[data-theme='amoled'],
+:root[data-theme='amoled'],
 label:has(> input#amoled) {
 	--color-base-1: oklch(0 0 0);
 	--color-base-2: oklch(0 0 0);
@@ -61,12 +61,12 @@ label:has(> input#amoled) {
 	--shadow-strength: 0%;
 }
 
-body[data-theme='amoled'] textarea {
+:root[data-theme='amoled'] textarea {
 	border: 1px solid var(--color-primary);
 }
 
 /* Colors from OKSolar (https://meat.io/oksolar) */
-body[data-theme='solarizedDark'],
+:root[data-theme='solarizedDark'],
 label:has(> input#solarizedDark) {
 	--color-base-1: oklch(27.4% 0.05 219.6); /* base03 */
 	--color-base-2: oklch(32.1% 0.053 219.6); /* base02 */
@@ -76,7 +76,7 @@ label:has(> input#solarizedDark) {
 }
 
 /* Colors from OKSolar (https://meat.io/oksolar) */
-body[data-theme='solarizedLight'],
+:root[data-theme='solarizedLight'],
 label:has(> input#solarizedLight) {
 	--color-base-1: oklch(93.06% 0.026 92.4); /* base2 */
 	--color-base-2: oklch(97.35% 0.026 90.1); /* base3 */
@@ -85,7 +85,7 @@ label:has(> input#solarizedLight) {
 	--shadow-strength: var(--default-light-shadow-strength);
 }
 
-body[data-theme='gruvboxDark'],
+:root[data-theme='gruvboxDark'],
 label:has(> input#gruvboxDark) {
 	--color-base-1: oklch(21% 0 0);
 	--color-base-2: oklch(26% 0.01 45);
@@ -94,7 +94,7 @@ label:has(> input#gruvboxDark) {
 	--shadow-strength: 100%;
 }
 
-body[data-theme='gruvboxLight'],
+:root[data-theme='gruvboxLight'],
 label:has(> input#gruvboxLight) {
 	--color-base-1: oklch(85% 0.08 90);
 	--color-base-2: oklch(95% 0.06 90);
@@ -103,7 +103,7 @@ label:has(> input#gruvboxLight) {
 	--shadow-strength: var(--default-light-shadow-strength);
 }
 
-body[data-theme='catppuccinMocha'],
+:root[data-theme='catppuccinMocha'],
 label:has(> input#catppuccinMocha) {
 	--color-base-1: oklch(20% 0.02 270);
 	--color-base-2: oklch(28% 0.03 270);
@@ -112,7 +112,7 @@ label:has(> input#catppuccinMocha) {
 	--shadow-strength: 100%;
 }
 
-body[data-theme='catppuccinLatte'],
+:root[data-theme='catppuccinLatte'],
 label:has(> input#catppuccinLatte) {
 	--color-base-1: oklch(92% 0.01 250);
 	--color-base-2: oklch(96% 0.01 250);
@@ -121,7 +121,7 @@ label:has(> input#catppuccinLatte) {
 	--shadow-strength: var(--default-light-shadow-strength);
 }
 
-body[data-theme='dracula'],
+:root[data-theme='dracula'],
 label:has(> input#dracula) {
 	--color-base-1: oklch(24% 0.03 270);
 	--color-base-2: oklch(36% 0.03 270);
@@ -130,7 +130,7 @@ label:has(> input#dracula) {
 	--shadow-strength: 100%;
 }
 
-body[data-theme='nord'],
+:root[data-theme='nord'],
 label:has(> input#nord) {
 	--color-base-1: oklch(25% 0.03 250);
 	--color-base-2: oklch(30% 0.03 250);

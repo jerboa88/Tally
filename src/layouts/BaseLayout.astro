@@ -12,6 +12,10 @@ import Head from './Head.astro';
 type Props = WithChildren<true>;
 
 const currentLocaleId = getLocale(Astro);
+const vars = {
+	key: THEME.id,
+	defaultThemeId: THEME.default.id,
+};
 ---
 
 <!doctype html>
@@ -49,6 +53,12 @@ const currentLocaleId = getLocale(Astro);
 	}
 </style>
 
+<!-- Load the theme from localStorage as soon as possible to prevent FOUC -->
+<script is:inline async type="module" define:vars={vars}>
+	document.documentElement.dataset[key] =
+		localStorage.getItem(key) ?? defaultThemeId;
+</script>
+
 <script>
 	import { CLASS } from '@lib/config/class.ts';
 	import { THEME } from '@lib/config/theme.ts';
@@ -61,6 +71,6 @@ const currentLocaleId = getLocale(Astro);
 
 	// Add a data attribute to the page body when the theme changes
 	$theme.subscribe((value) => {
-		document.body.dataset[THEME.id] = value;
+		document.documentElement.dataset[THEME.id] = value;
 	});
 </script>
