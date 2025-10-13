@@ -29,9 +29,14 @@ function buildThemeLabel(id: ThemeId, themeData: Theme) {
 const msg = getLocaleStrings(Astro).themes;
 
 const entries: EntryProps[] = entriesOf(THEME.map).map(([themeId, theme]) => ({
-	id: themeId,
-	label: buildThemeLabel(themeId, theme),
-	checked: themeId === THEME.default.id,
+	label: {
+		text: buildThemeLabel(themeId, theme),
+		'data-theme': themeId,
+	},
+	input: {
+		id: themeId,
+		checked: themeId === THEME.default.id,
+	},
 }));
 ---
 

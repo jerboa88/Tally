@@ -19,12 +19,12 @@ const vars = {
 ---
 
 <!doctype html>
-<html lang={currentLocaleId}>
+<html lang={currentLocaleId} data-theme={THEME.default.id}>
 	<Head>
 		<slot name="head" />
 	</Head>
 
-	<body data-theme={THEME.default.id}>
+	<body>
 		<slot />
 	</body>
 </html>

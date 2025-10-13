@@ -7,14 +7,19 @@ import HiddenInput from './HiddenInput.astro';
 import Label from './Label.astro';
 
 type InputAttributes = WithChildren<false, HTMLAttributes<'input'>>;
+type LabelAttributes = WithChildren<false, HTMLAttributes<'label'>>;
 
 /**
  * Props for a single input entry within the group.
  *
- * @property label - The visible label text for this input
+ * @property label - Label configuration including text and HTML attributes
+ * @property input - Input element configuration and HTML attributes
  */
-export interface EntryProps extends InputAttributes {
-	label: string;
+export interface EntryProps {
+	label: LabelAttributes & {
+		text: string;
+	};
+	input: InputAttributes;
 }
 
 /**
@@ -46,12 +51,16 @@ const computedId = id ?? name;
 		name={computedId}
 	>
 		{
-			entries.map(({ label, ...restEntryProps }) => (
-				<Label>
-					<HiddenInput {...restEntryProps} name={computedId} {type} />
-					{label}
-				</Label>
-			))
+			entries.map(({ label, input }) => {
+				const { text, ...restLabelProps } = label;
+
+				return (
+					<Label {...restLabelProps}>
+						<HiddenInput {...input} name={computedId} {type} />
+						{text}
+					</Label>
+				);
+			})
 		}
 	</Form>
 </hgroup>
