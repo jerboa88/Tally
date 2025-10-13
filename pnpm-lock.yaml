@@ -32,6 +32,9 @@ importers:
       astro-capo:
         specifier: ^0.0.1
         version: 0.0.1(astro@5.14.4(@types/node@24.7.2)(lightningcss@1.30.1)(rollup@4.52.4)(terser@5.42.0)(typescript@5.9.3)(yaml@2.8.1))
+      astro-remove-whitespace:
+        specifier: ^1.0.1
+        version: 1.0.1(astro@5.14.4(@types/node@24.7.2)(lightningcss@1.30.1)(rollup@4.52.4)(terser@5.42.0)(typescript@5.9.3)(yaml@2.8.1))
       astro-robots-txt:
         specifier: ^1.0.0
         version: 1.0.0
@@ -838,6 +841,11 @@ packages:
     resolution: {integrity: sha512-KyQD1mzgEQnbqrKpYdoIZMAYejkOcIJocdGuQBH9Yzr4KqGzIR8P2DDNbV/FQXaSyq900lCZwWJH45tBIQCG8w==}
     peerDependencies:
       astro: '>= 2.8'
+
+  astro-remove-whitespace@1.0.1:
+    resolution: {integrity: sha512-+Q1RIqgTGJrEZPrIWiaGLaam91nMmB8JDp1J6YdzfBdQYKcX+6Xo12Zv3ikcReGVs/a+7QTc1PF0WtYBgKp9UQ==}
+    peerDependencies:
+      astro: ^4.0.0
 
   astro-robots-txt@1.0.0:
     resolution: {integrity: sha512-6JQSLid4gMhoWjOm85UHLkgrw0+hHIjnJVIUqxjU2D6feKlVyYukMNYjH44ZDZBK1P8hNxd33PgWlHzCASvedA==}
@@ -3505,6 +3513,10 @@ snapshots:
     dependencies:
       astro: 5.14.4(@types/node@24.7.2)(lightningcss@1.30.1)(rollup@4.52.4)(terser@5.42.0)(typescript@5.9.3)(yaml@2.8.1)
       ultrahtml: 1.6.0
+
+  astro-remove-whitespace@1.0.1(astro@5.14.4(@types/node@24.7.2)(lightningcss@1.30.1)(rollup@4.52.4)(terser@5.42.0)(typescript@5.9.3)(yaml@2.8.1)):
+    dependencies:
+      astro: 5.14.4(@types/node@24.7.2)(lightningcss@1.30.1)(rollup@4.52.4)(terser@5.42.0)(typescript@5.9.3)(yaml@2.8.1)
 
   astro-robots-txt@1.0.0:
     dependencies:

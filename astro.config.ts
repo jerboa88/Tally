@@ -2,6 +2,7 @@ import sitemap from '@astrojs/sitemap';
 import markdoc from '@astrojs/markdoc';
 import { defineConfig, fontProviders } from 'astro/config';
 import robotsTxt from 'astro-robots-txt';
+import removeWhitespace from 'astro-remove-whitespace';
 import { SITE } from './src/lib/config/site.ts';
 import { FONTS } from './src/lib/config/fonts.ts';
 import { SOCIAL_PREVIEW } from './src/lib/config/social-preview.ts';
@@ -70,5 +71,7 @@ export default defineConfig({
 			},
 		}),
 		snapshot(ASTRO_SNAPSHOT_CONFIG),
+		// Workaround for https://github.com/withastro/prettier-plugin-astro/issues/308
+		removeWhitespace(),
 	],
 });

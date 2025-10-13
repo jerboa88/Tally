@@ -38,6 +38,7 @@
 		"@nanostores/persistent": "^1.1.0",
 		"astro": "^5.14.4",
 		"astro-capo": "^0.0.1",
+		"astro-remove-whitespace": "^1.0.1",
 		"astro-robots-txt": "^1.0.0",
 		"ava": "^6.4.1",
 		"nanostores": "^1.0.1",
