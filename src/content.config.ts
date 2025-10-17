@@ -13,5 +13,4 @@ const pageSchema = z.object({});
  */
 export const collections = {
 	en: defineCollection({ schema: pageSchema }),
-	es: defineCollection({ schema: pageSchema }),
 };

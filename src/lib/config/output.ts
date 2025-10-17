@@ -26,7 +26,7 @@ export const OUTPUT = {
 	},
 	character: {
 		id: 'character',
-		fields: ['spaces', 'letters', 'digits', 'symbols'],
+		fields: ['spaces', 'letters', 'digits', 'punctuation', 'symbols'],
 	},
 } as const satisfies OutputConfig;
 
