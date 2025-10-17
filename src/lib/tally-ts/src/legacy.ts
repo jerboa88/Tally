@@ -106,6 +106,8 @@ function isEndMark(character: string): boolean {
  * Uses grapheme segmentation to properly handle Unicode characters. Logs
  * processing time to the console for performance monitoring.
  *
+ * @deprecated Use the new class-based counter instead.
+ *
  * @param text - The text to analyze
  * @param locales - The locale(s) to use for grapheme segmentation (default: 'en')
  * @returns An object containing all computed counts
