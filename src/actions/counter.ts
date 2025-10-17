@@ -4,10 +4,12 @@ import {
 	$warnOnLargeInputText,
 	$outputCounts,
 } from '@stores/index.ts';
-import { getCounts } from '@lib/tally-ts/index.ts';
-import { getLocaleStrings } from '@lib/i18n/index.ts';
+import { getLocale, getLocaleStrings } from '@lib/i18n/index.ts';
+import { Tally } from '@lib/tally-ts/src/index.ts';
 
-const msg = getLocaleStrings().input.largeInputWarning.message;
+const currentLocaleId = getLocale();
+const msg = getLocaleStrings(currentLocaleId).input.largeInputWarning.message;
+const tally = new Tally(currentLocaleId);
 
 /**
  * Updates the output counts based on the current input text.
@@ -30,7 +32,24 @@ export async function updateCounts() {
 		}
 	}
 
-	const counts = await getCounts(text);
+	const startTime = performance.now();
+	const { total, by, related } = tally.countGraphemes(text);
+	const counts = {
+		characters: total,
+		words: tally.countWords(text).total,
+		sentences: tally.countSentences(text).total,
+		paragraphs: related.paragraphs.total,
+		lines: related.lines.total,
+		spaces: by.spaces.total,
+		letters: by.letters.total,
+		digits: by.digits.total,
+		punctuation: by.punctuation.total,
+		symbols: by.symbols.total,
+	};
+
+	console.debug(
+		`Processed text in ${(performance.now() - startTime).toFixed(0)}ms`,
+	);
 
 	$outputCounts.set(counts);
 }
