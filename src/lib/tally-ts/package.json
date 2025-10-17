@@ -46,7 +46,8 @@
 		"url": "git+https://github.com/jerboa88/tally-ts.git"
 	},
 	"devDependencies": {
-		"@types/bun": "latest"
+		"@types/bun": "latest",
+		"prettier": "3.6.2"
 	},
 	"peerDependencies": {
 		"typescript": "^5"
