@@ -1,7 +1,48 @@
 {
 	"name": "tally",
-	"version": "3.0.0",
+	"version": "4.0.0",
 	"description": "Your favorite dark mode word counter, now with even more themes! Count the number of characters, words, sentences, paragraphs, and lines in your text instantly with Tally.",
+	"keywords": [
+		"character counter",
+		"word counter",
+		"sentence counter",
+		"paragraph counter",
+		"line counter",
+		"text analysis",
+		"text analyzer",
+		"text statistics",
+		"online tool"
+	],
+	"homepage": "https://johng.io/p/tally",
+	"bugs": "https://github.com/jerboa88/Tally/issues",
+	"license": "AGPL-3.0-only",
+	"author": {
+		"name": "John Goodliff",
+		"url": "https://johng.io"
+	},
+	"funding": [
+		{
+			"type": "individual",
+			"url": "https://johng.io/funding"
+		},
+		{
+			"type": "GitHub Sponsors",
+			"url": "https://github.com/sponsors/jerboa88"
+		},
+		{
+			"type": "Patreon",
+			"url": "https://patreon.com/jerboa88"
+		},
+		{
+			"type": "Brave Creators",
+			"url": "https://publishers.basicattentiontoken.org/en/c/johng"
+		}
+	],
+	"type": "module",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/jerboa88/Tally.git"
+	},
 	"scripts": {
 		"dev": "astro dev",
 		"build": "astro build",
@@ -15,20 +56,6 @@
 		"upgrade-interactive": "pnpx npm-check-updates -i --format group -p pnpm",
 		"postinstall": "pnpx puppeteer browsers install chrome"
 	},
-	"keywords": [
-		"character counter",
-		"word counter",
-		"sentence counter",
-		"paragraph counter",
-		"line counter",
-		"text analysis",
-		"text analyzer",
-		"text statistics",
-		"online tool"
-	],
-	"author": "John Goodliff (https://johng.io)",
-	"license": "MIT",
-	"type": "module",
 	"devDependencies": {
 		"@astrojs/check": "^0.9.4",
 		"@astrojs/markdoc": "^0.15.8",
