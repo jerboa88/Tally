@@ -79,19 +79,23 @@ const EN: LocaleMessages = {
 			lines: {
 				label: 'Lines',
 			},
-			// Space character count label
+			// Space count label
 			spaces: {
 				label: 'Spaces',
 			},
-			// Letter (a-z, A-Z) count label
+			// Letter count label
 			letters: {
 				label: 'Letters',
 			},
-			// Digit (0-9) count label
+			// Digit count label
 			digits: {
 				label: 'Digits',
 			},
-			// Symbol/special character count label
+			// Punctuation count label
+			punctuation: {
+				label: 'Punctuation',
+			},
+			// Symbol/special count label
 			symbols: {
 				label: 'Symbols',
 			},
