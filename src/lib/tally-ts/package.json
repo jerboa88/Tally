@@ -45,11 +45,15 @@
 		"type": "git",
 		"url": "git+https://github.com/jerboa88/tally-ts.git"
 	},
+	"scripts": {
+		"typecheck": "tsc --noEmit",
+		"format:check": "prettier --check .",
+		"format:write": "prettier --write .",
+		"upgrade-interactive": "pnpx npm-check-updates -i --format group -p bun"
+	},
 	"devDependencies": {
 		"@types/bun": "latest",
-		"prettier": "3.6.2"
-	},
-	"peerDependencies": {
-		"typescript": "^5"
+		"prettier": "3.6.2",
+		"typescript": "^5.9.3"
 	}
 }
