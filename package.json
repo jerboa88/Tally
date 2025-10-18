@@ -38,6 +38,7 @@
 			"url": "https://publishers.basicattentiontoken.org/en/c/johng"
 		}
 	],
+	"private": true,
 	"type": "module",
 	"repository": {
 		"type": "git",
@@ -48,33 +49,34 @@
 		"build": "astro build",
 		"preview": "astro preview",
 		"serve": "astro preview",
-		"astro": "astro",
-		"test": "ava",
 		"typecheck": "astro check",
 		"format:check": "prettier --check .",
 		"format:write": "prettier --write .",
-		"upgrade-interactive": "pnpx npm-check-updates -i --format group -p pnpm"
+		"upgrade-interactive": "ncu -i --format group"
 	},
 	"devDependencies": {
 		"@astrojs/check": "^0.9.4",
 		"@astrojs/markdoc": "^0.15.8",
 		"@astrojs/sitemap": "^3.6.0",
-		"@lucide/astro": "^0.545.0",
+		"@lucide/astro": "^0.546.0",
 		"@nanostores/logger": "^1.0.0",
 		"@nanostores/persistent": "^1.1.0",
-		"astro": "^5.14.4",
+		"@types/bun": "latest",
+		"astro": "^5.14.6",
 		"astro-capo": "^0.0.1",
 		"astro-remove-whitespace": "^1.0.1",
 		"astro-robots-txt": "^1.0.0",
-		"ava": "^6.4.1",
 		"nanostores": "^1.0.1",
+		"npm-check-updates": "^19.1.1",
 		"prettier": "^3.6.2",
 		"prettier-plugin-astro": "^0.14.1",
 		"prettier-plugin-astro-organize-imports": "^0.4.11",
-		"puppeteer": "^24.24.0",
-		"radashi": "^12.6.2",
+		"radashi": "^12.7.0",
 		"sharp": "^0.34.4",
 		"typescript": "^5.9.3"
 	},
-	"packageManager": "pnpm@10.18.2+sha512.9fb969fa749b3ade6035e0f109f0b8a60b5d08a1a87fdf72e337da90dcc93336e2280ca4e44f2358a649b83c17959e9993e777c2080879f3801e6f0d999ad3dd"
+	"dependencies": {
+		"astro-snapshot": "./src/lib/astro-snapshot",
+		"tally-ts": "./src/lib/tally-ts"
+	}
 }

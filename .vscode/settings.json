@@ -4,7 +4,7 @@
 		"**/.astro": true,
 		"**/dist": true,
 		"**/node_modules": true,
-		"**/pnpm-lock.yaml": true
+		"**/bun.lock": true
 	},
 	"prettier.documentSelectors": ["**/*.astro"],
 	"[astro]": {

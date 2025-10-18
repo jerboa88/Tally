@@ -49,11 +49,13 @@
 		"typecheck": "tsc --noEmit",
 		"format:check": "prettier --check .",
 		"format:write": "prettier --write .",
-		"upgrade-interactive": "pnpx npm-check-updates -i --format group -p bun"
+		"upgrade-interactive": "bunx ncu -i --format group"
 	},
 	"devDependencies": {
 		"@types/bun": "latest",
+		"npm-check-updates": "^19.1.1",
 		"prettier": "3.6.2",
 		"typescript": "^5.9.3"
-	}
+	},
+	"private": true
 }
