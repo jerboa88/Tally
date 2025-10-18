@@ -2,11 +2,11 @@
 /* --------------- */
 
 ::-moz-selection {
-	background-color: var(--color-selection);
+	background-color: var(--selection);
 }
 
 ::selection {
-	background-color: var(--color-selection);
+	background-color: var(--selection);
 }
 
 /* Base styles */
@@ -18,14 +18,14 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: var(--font-family-header);
+	font-family: var(--font-header);
 }
 
 * {
-	outline: var(--border-width-base) solid transparent;
+	outline: var(--border-md) solid transparent;
 
 	&:focus-visible {
-		outline-color: var(--color-primary);
+		outline-color: var(--primary);
 	}
 }
 

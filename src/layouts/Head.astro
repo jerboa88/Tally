@@ -119,7 +119,7 @@ const msg = getLocaleStrings(currentLocaleId).site;
 		'meta[name=theme-color]',
 		'meta[name=apple-mobile-web-app-status-bar-style]',
 	] as const;
-	const BASE_COLOR_VARIABLE_NAME = '--color-base-1' as const;
+	const BASE_COLOR_VARIABLE_NAME = '--bg-1' as const;
 
 	const metaTags = META_TAG_SELECTOR_ATTRIBUTES.map((metaTagSelector) =>
 		document.head.querySelector(metaTagSelector),

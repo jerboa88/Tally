@@ -41,23 +41,23 @@ const props = Astro.props;
 	header {
 		display: flex;
 		width: 100%;
-		max-width: var(--max-width-page);
+		max-width: var(--max-w);
 		flex-direction: column;
 		align-items: center;
-		gap: var(--padding-base);
+		gap: var(--p-md);
 		width: fit-content;
-		margin-block-start: var(--padding-lg);
-		margin-inline: var(--padding-base);
+		margin-block-start: var(--p-lg);
+		margin-inline: var(--p-md);
 		view-transition-name: header;
 
 		svg {
 			width: 10rem;
 			height: fit-content;
-			filter: var(--drop-shadow-base);
+			filter: var(--drop-shadow-md);
 		}
 
 		> p {
-			padding: 0 var(--padding-base);
+			padding: 0 var(--p-md);
 			text-wrap-style: balance;
 			text-align: center;
 			view-transition-name: header-description;

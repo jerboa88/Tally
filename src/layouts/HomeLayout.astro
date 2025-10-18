@@ -43,21 +43,21 @@ const moreEntry = assertDefined(await getEntry(currentLocaleId, 'related'));
 		display: flex;
 		flex-direction: column;
 		justify-content: space-evenly;
-		gap: var(--padding-lg);
+		gap: var(--p-lg);
 		flex: 1;
-		max-width: var(--max-width-page);
-		margin: var(--padding-base);
+		max-width: var(--max-w);
+		margin: var(--p-md);
 		view-transition-name: main;
 
 		> article {
-			padding: 0 var(--padding-base);
+			padding: 0 var(--p-md);
 		}
 	}
 
 	section {
 		display: flex;
 		flex-direction: column;
-		gap: var(--padding-base);
+		gap: var(--p-md);
 		view-transition-name: counter-section;
 	}
 </style>

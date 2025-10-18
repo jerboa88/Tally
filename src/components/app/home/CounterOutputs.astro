@@ -11,6 +11,21 @@ type Props = WithChildren<false>;
 
 {Object.values(OUTPUT).map((outputGroup) => <OutputGroup {...outputGroup} />)}
 
+<style>
+	@keyframes pulse {
+		0% {
+			transform: scale(1.1);
+		}
+		100% {
+			transform: scale(1);
+		}
+	}
+
+	:global(.pulse) {
+		animation: pulse var(--duration-md) ease-out;
+	}
+</style>
+
 <script>
 	import { CLASS } from '@lib/config/class.ts';
 	import { OUTPUT, type OutputId } from '@lib/config/output.ts';
@@ -27,8 +42,8 @@ type Props = WithChildren<false>;
 	// Build a map of all output elements by their IDs
 	const outputMap: OutputMap = Object.fromEntries(
 		Object.values(OUTPUT).flatMap(({ fields }) =>
-			fields.map((id) => [id, getDefinedElementById<HTMLOutputElement>(id)])
-		)
+			fields.map((id) => [id, getDefinedElementById<HTMLOutputElement>(id)]),
+		),
 	) as OutputMap;
 
 	// Update outputs when counts change

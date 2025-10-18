@@ -1,30 +1,11 @@
-/* Animations */
-/* ---------- */
-
-@keyframes pulse {
-	0% {
-		transform: scale(1.1);
-	}
-	100% {
-		transform: scale(1);
-	}
-}
-
 /* Utility classes */
 /* --------------- */
 
 .enable-transitions {
-	--transition-duration-base: 0.125s;
-	--transition-duration-long: 0.5s;
-
 	* {
 		transition-property: background-color, color, outline-color, opacity;
-		transition-duration: var(--transition-duration-long);
+		transition-duration: 0.5s;
 	}
-}
-
-.pulse {
-	animation: pulse var(--transition-duration-base) ease-out;
 }
 
 /* Hide an element but keep it accessible to screen readers */

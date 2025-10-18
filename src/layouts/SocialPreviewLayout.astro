@@ -47,8 +47,9 @@ const { type } = Astro.props;
 </BaseLayout>
 
 <style>
+	/* Use stronger shadows than the default */
 	body {
-		--color-shadow: oklch(0 0 0);
+		--shadow: oklch(0 0 0);
 	}
 
 	main {
@@ -60,7 +61,7 @@ const { type } = Astro.props;
 		overflow: hidden;
 		background-image: radial-gradient(
 			farthest-corner circle at 50% 100% in oklch,
-			var(--color-base-3),
+			var(--bg-3),
 			oklch(0% 0 0 / 0.5)
 		);
 	}
@@ -78,15 +79,15 @@ const { type } = Astro.props;
 
 	span {
 		width: fit-content;
-		border-radius: var(--border-radius-base);
-		padding: var(--padding-sm);
-		background-color: var(--color-base-2);
-		font-family: var(--font-family-header);
+		border-radius: var(--radius-md);
+		padding: var(--p-sm);
+		background-color: var(--bg-2);
+		font-family: var(--font-header);
 	}
 
 	p {
-		margin: 0 var(--padding-base);
-		font-size: var(--font-size-lg);
+		margin: 0 var(--p-md);
+		font-size: var(--font-lg);
 	}
 
 	header {
@@ -104,20 +105,20 @@ const { type } = Astro.props;
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: space-between;
-		margin-block-end: calc(-2 * var(--padding-lg));
-		margin-inline: calc(-1 * var(--padding-base));
+		margin-block-end: calc(-2 * var(--p-lg));
+		margin-inline: calc(-1 * var(--p-md));
 		overflow: hidden;
-		background-color: var(--color-base-2);
-		border-radius: var(--border-radius-base);
+		background-color: var(--bg-2);
+		border-radius: var(--radius-md);
 		box-shadow: var(--box-shadow-lg);
 		z-index: 0;
 	}
 
 	img:nth-of-type(2) {
 		width: 40%;
-		margin-block-end: calc(-4.5 * var(--padding-lg));
-		margin-inline: calc(-2 * var(--padding-lg));
+		margin-block-end: calc(-4.5 * var(--p-lg));
+		margin-inline: calc(-2 * var(--p-lg));
 		z-index: 1;
-		border: var(--border-width-base) solid var(--color-primary);
+		border: var(--border-md) solid var(--primary);
 	}
 </style>

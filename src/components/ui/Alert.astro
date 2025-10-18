@@ -21,11 +21,11 @@ const { type = 'info', ...restProps } = Astro.props;
 <style>
 	blockquote {
 		margin-inline: 0;
-		padding: var(--padding-base);
-		border-width: var(--border-width-base);
+		padding: var(--p-md);
+		border-width: var(--border-md);
 		border-style: solid;
-		border-radius: var(--border-radius-base);
-		border-color: var(--color-primary);
+		border-radius: var(--radius-md);
+		border-color: var(--primary);
 
 		> p {
 			margin: 0;
@@ -33,13 +33,13 @@ const { type = 'info', ...restProps } = Astro.props;
 
 		&::before {
 			display: block;
-			padding-block-end: var(--padding-sm);
-			font-weight: var(--font-weight-bold);
+			padding-block-end: var(--p-sm);
+			font-weight: var(--bold);
 		}
 
 		&[data-type='info']::before {
 			content: 'ⓘ Note';
-			color: var(--color-primary);
+			color: var(--primary);
 		}
 	}
 </style>
