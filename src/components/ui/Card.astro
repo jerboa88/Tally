@@ -23,6 +23,7 @@ const { as: Tag = 'div', ...restProps } = Astro.props;
 		border-radius: var(--radius-md);
 		box-shadow: var(--box-shadow-md);
 		overflow: hidden;
+		contain: paint;
 
 		/* Outlines are cut off when using `overflow: hidden` so use a negative offset instead */
 		> * {

@@ -55,3 +55,10 @@ const isSvg = srcString.endsWith('.svg');
 		<AstroPicture inferSize={isRemote} formats={['avif', 'webp']} {...props} />
 	)
 }
+
+<style>
+	image,
+	picture {
+		contain: size;
+	}
+</style>
