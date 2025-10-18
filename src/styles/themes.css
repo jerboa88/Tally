@@ -1,6 +1,6 @@
 /* Auto (dark) / Dark theme */
 /* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
-[data-theme='auto'] {
+[data-theme='auto'], [data-theme='dark'] {
 	--color-base-1: oklch(20.5% 0 0); /* Neutral 900 */
 	--color-base-2: oklch(26.9% 0 0); /* Neutral 800 */
 	--color-text: oklch(98.5% 0 0); /* Neutral 50 */
