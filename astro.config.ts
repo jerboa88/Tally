@@ -1,14 +1,17 @@
-import sitemap from '@astrojs/sitemap';
 import markdoc from '@astrojs/markdoc';
-import { defineConfig, fontProviders } from 'astro/config';
-import robotsTxt from 'astro-robots-txt';
+import sitemap from '@astrojs/sitemap';
+import betterImageService from 'astro-better-image-service';
 import removeWhitespace from 'astro-remove-whitespace';
-import { SITE } from './src/lib/config/site.ts';
-import { FONTS } from './src/lib/config/fonts.ts';
-import { SOCIAL_PREVIEW } from './src/lib/config/social-preview.ts';
+import robotsTxt from 'astro-robots-txt';
+import { defineConfig, fontProviders } from 'astro/config';
+import {
+	ASTRO_SNAPSHOT_CONFIG,
+	I18N_CONFIG,
+} from './src/config-transformer.ts';
 import snapshot from './src/lib/astro-snapshot/src/index.ts';
-import { ASTRO_SNAPSHOT_CONFIG } from './src/config-transformer.ts';
-import { I18N_CONFIG } from './src/config-transformer.ts';
+import { FONTS } from './src/lib/config/fonts.ts';
+import { SITE } from './src/lib/config/site.ts';
+import { SOCIAL_PREVIEW } from './src/lib/config/social-preview.ts';
 
 // https://astro.build/config
 export default defineConfig({
@@ -40,6 +43,8 @@ export default defineConfig({
 		})),
 	},
 	integrations: [
+		// This uses the highest compression ratio by default
+		betterImageService(),
 		markdoc(),
 		robotsTxt({
 			sitemapBaseFileName: `${SITE.sitemapPrefix}-index`,
