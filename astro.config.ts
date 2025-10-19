@@ -1,7 +1,7 @@
 import markdoc from '@astrojs/markdoc';
 import sitemap from '@astrojs/sitemap';
+import playformCompress from '@playform/compress';
 import betterImageService from 'astro-better-image-service';
-import removeWhitespace from 'astro-remove-whitespace';
 import robotsTxt from 'astro-robots-txt';
 import { defineConfig, fontProviders } from 'astro/config';
 import {
@@ -77,11 +77,21 @@ export default defineConfig({
 		}),
 		snapshot(ASTRO_SNAPSHOT_CONFIG),
 		// Workaround for https://github.com/withastro/prettier-plugin-astro/issues/308
-		removeWhitespace(),
+		playformCompress({
+			HTML: {
+				'html-minifier-terser': {
+					minifyCSS: false,
+					collapseWhitespace: true,
+				},
+			},
+			CSS: {
+				csso: false,
+				lightningcss: {
+					minify: true,
+				},
+			},
+			Image: false,
+			SVG: false,
+		}),
 	],
-	vite: {
-		build: {
-			cssMinify: 'lightningcss',
-		},
-	},
 });
