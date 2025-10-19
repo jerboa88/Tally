@@ -1,125 +1,134 @@
+:root {
+	/* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
+	--light-bg-1: oklch(92.2% 0 0); /* Neutral 200  */
+	--light-bg-2: oklch(98.5% 0 0); /* Neutral 50 */
+	--light-content: oklch(14.5% 0 0); /* Neutral 950 */
+	--light-primary: oklch(45.7% 0.24 277.023); /* Indigo 700 */
+	--light-shadow-mix: 30%;
+}
+
 /* Auto (dark) / Dark theme */
 /* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
-[data-theme='auto'] {
-	--color-base-1: oklch(20.5% 0 0); /* Neutral 900 */
-	--color-base-2: oklch(26.9% 0 0); /* Neutral 800 */
-	--color-text: oklch(98.5% 0 0); /* Neutral 50 */
-	--color-primary: oklch(70.7% 0.165 254.624); /* Blue 400 */
-	--shadow-strength: 100%;
+[data-theme='auto'], [data-theme='dark'] {
+	--bg-1: oklch(20.5% 0 0); /* Neutral 900 */
+	--bg-2: oklch(26.9% 0 0); /* Neutral 800 */
+	--fg: oklch(98.5% 0 0); /* Neutral 50 */
+	--primary: oklch(70.7% 0.165 254.624); /* Blue 400 */
+	--shadow-mix: 100%;
 }
 
 /* Auto (light) theme */
 /* Make the default theme light if the user prefers light mode */
 @media (prefers-color-scheme: light) {
 	[data-theme='auto'] {
-		--color-base-1: var(--default-light-color-base-1);
-		--color-base-2: var(--default-light-color-base-2);
-		--color-text: var(--default-light-color-text);
-		--color-primary: var(--default-light-color-primary);
-		--shadow-strength: var(--default-light-shadow-strength);
+		--bg-1: var(--light-bg-1);
+		--bg-2: var(--light-bg-2);
+		--fg: var(--light-content);
+		--primary: var(--light-primary);
+		--shadow-mix: var(--light-shadow-mix);
 	}
 }
 
 /* Light theme */
 [data-theme='light'] {
-	--color-base-1: var(--default-light-color-base-1);
-	--color-base-2: var(--default-light-color-base-2);
-	--color-text: var(--default-light-color-text);
-	--color-primary: var(--default-light-color-primary);
-	--shadow-strength: var(--default-light-shadow-strength);
+	--bg-1: var(--light-bg-1);
+	--bg-2: var(--light-bg-2);
+	--fg: var(--light-content);
+	--primary: var(--light-primary);
+	--shadow-mix: var(--light-shadow-mix);
 }
 
 [data-theme='dusk'] {
-	--color-base-1: oklch(15% 0.018 270);
-	--color-base-2: oklch(22% 0.04 330);
-	--color-text: oklch(90% 0.08 340);
-	--color-primary: oklch(0.64 0.21 22.89);
-	--shadow-strength: 100%;
+	--bg-1: oklch(15% 0.018 270);
+	--bg-2: oklch(22% 0.04 330);
+	--fg: oklch(90% 0.08 340);
+	--primary: oklch(0.64 0.21 22.89);
+	--shadow-mix: 100%;
 }
 
 [data-theme='teal'] {
-	--color-base-1: oklch(52% 0.07 190);
-	--color-base-2: oklch(58% 0.07 185);
-	--color-text: oklch(100% 0 0);
-	--color-primary: oklch(85% 0.085 30);
-	--shadow-strength: var(--default-light-shadow-strength);
+	--bg-1: oklch(52% 0.07 190);
+	--bg-2: oklch(58% 0.07 185);
+	--fg: oklch(100% 0 0);
+	--primary: oklch(85% 0.085 30);
+	--shadow-mix: var(--light-shadow-mix);
 }
 
 /* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
 [data-theme='amoled'] {
-	--color-base-1: oklch(0 0 0);
-	--color-base-2: oklch(0 0 0);
-	--color-text: oklch(92.2% 0 0); /* Neutral 200 */
-	--color-primary: oklch(92.2% 0 0); /* Neutral 200 */
-	--shadow-strength: 0%;
+	--bg-1: oklch(0 0 0);
+	--bg-2: oklch(0 0 0);
+	--fg: oklch(92.2% 0 0); /* Neutral 200 */
+	--primary: oklch(92.2% 0 0); /* Neutral 200 */
+	--shadow-mix: 0%;
 
 	textarea {
-		border: 1px solid var(--color-primary);
+		border: var(--border-md) solid var(--primary);
 	}
 }
 
 /* Colors from OKSolar (https://meat.io/oksolar) */
 [data-theme='solarizedDark'] {
-	--color-base-1: oklch(27.4% 0.05 219.6); /* base03 */
-	--color-base-2: oklch(32.1% 0.053 219.6); /* base02 */
-	--color-text: oklch(71.8% 0.017 198); /* base0 */
-	--color-primary: oklch(63.1% 0.166 50.4); /* orange */
-	--shadow-strength: 100%;
+	--bg-1: oklch(27.4% 0.05 219.6); /* base03 */
+	--bg-2: oklch(32.1% 0.053 219.6); /* base02 */
+	--fg: oklch(71.8% 0.017 198); /* base0 */
+	--primary: oklch(63.1% 0.166 50.4); /* orange */
+	--shadow-mix: 100%;
 }
 
 /* Colors from OKSolar (https://meat.io/oksolar) */
 [data-theme='solarizedLight'] {
-	--color-base-1: oklch(93.06% 0.026 92.4); /* base2 */
-	--color-base-2: oklch(97.35% 0.026 90.1); /* base3 */
-	--color-text: oklch(54.4% 0.017 219.6); /* base00 */
-	--color-primary: oklch(63.1% 0.221 21.6); /* red */
-	--shadow-strength: var(--default-light-shadow-strength);
+	--bg-1: oklch(93.06% 0.026 92.4); /* base2 */
+	--bg-2: oklch(97.35% 0.026 90.1); /* base3 */
+	--fg: oklch(54.4% 0.017 219.6); /* base00 */
+	--primary: oklch(63.1% 0.221 21.6); /* red */
+	--shadow-mix: var(--light-shadow-mix);
 }
 
 [data-theme='gruvboxDark'] {
-	--color-base-1: oklch(21% 0 0);
-	--color-base-2: oklch(26% 0.01 45);
-	--color-text: oklch(85% 0.08 90);
-	--color-primary: oklch(62% 0.2 75);
-	--shadow-strength: 100%;
+	--bg-1: oklch(21% 0 0);
+	--bg-2: oklch(26% 0.01 45);
+	--fg: oklch(85% 0.08 90);
+	--primary: oklch(62% 0.2 75);
+	--shadow-mix: 100%;
 }
 
 [data-theme='gruvboxLight'] {
-	--color-base-1: oklch(85% 0.08 90);
-	--color-base-2: oklch(95% 0.06 90);
-	--color-text: oklch(26% 0.01 45);
-	--color-primary: oklch(62% 0.2 75);
-	--shadow-strength: var(--default-light-shadow-strength);
+	--bg-1: oklch(85% 0.08 90);
+	--bg-2: oklch(95% 0.06 90);
+	--fg: oklch(26% 0.01 45);
+	--primary: oklch(62% 0.2 75);
+	--shadow-mix: var(--light-shadow-mix);
 }
 
 [data-theme='catppuccinMocha'] {
-	--color-base-1: oklch(20% 0.02 270);
-	--color-base-2: oklch(28% 0.03 270);
-	--color-text: oklch(90% 0.06 270);
-	--color-primary: oklch(75% 0.18 270);
-	--shadow-strength: 100%;
+	--bg-1: oklch(20% 0.02 270);
+	--bg-2: oklch(28% 0.03 270);
+	--fg: oklch(90% 0.06 270);
+	--primary: oklch(75% 0.18 270);
+	--shadow-mix: 100%;
 }
 
 [data-theme='catppuccinLatte'] {
-	--color-base-1: oklch(92% 0.01 250);
-	--color-base-2: oklch(96% 0.01 250);
-	--color-text: oklch(30% 0.02 260);
-	--color-primary: oklch(68% 0.18 275);
-	--shadow-strength: var(--default-light-shadow-strength);
+	--bg-1: oklch(92% 0.01 250);
+	--bg-2: oklch(96% 0.01 250);
+	--fg: oklch(30% 0.02 260);
+	--primary: oklch(68% 0.18 275);
+	--shadow-mix: var(--light-shadow-mix);
 }
 
 [data-theme='dracula'] {
-	--color-base-1: oklch(24% 0.03 270);
-	--color-base-2: oklch(36% 0.03 270);
-	--color-text: oklch(98% 0.01 100);
-	--color-primary: oklch(70% 0.2 300);
-	--shadow-strength: 100%;
+	--bg-1: oklch(24% 0.03 270);
+	--bg-2: oklch(36% 0.03 270);
+	--fg: oklch(98% 0.01 100);
+	--primary: oklch(70% 0.2 300);
+	--shadow-mix: 100%;
 }
 
 [data-theme='nord'] {
-	--color-base-1: oklch(25% 0.03 250);
-	--color-base-2: oklch(30% 0.03 250);
-	--color-text: oklch(88% 0.03 250);
-	--color-primary: oklch(65% 0.18 250);
-	--shadow-strength: 100%;
+	--bg-1: oklch(25% 0.03 250);
+	--bg-2: oklch(30% 0.03 250);
+	--fg: oklch(88% 0.03 250);
+	--primary: oklch(65% 0.18 250);
+	--shadow-mix: 100%;
 }

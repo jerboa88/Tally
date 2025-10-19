@@ -21,9 +21,7 @@ const { icon: Icon, label, ...restProps } = Astro.props;
 
 <Link {...restProps}>
 	{Icon && <Icon size={16} aria-hidden="true" />}
-	<slot>
-		{label}
-	</slot>
+	<slot>{label}</slot>
 </Link>
 
 <style>
@@ -32,11 +30,11 @@ const { icon: Icon, label, ...restProps } = Astro.props;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
-		gap: var(--padding-xs);
+		gap: var(--p-xs);
 		flex-grow: 1;
-		padding: var(--padding-sm);
-		background: var(--color-base-2);
-		color: var(--color-text);
+		padding: var(--p-sm);
+		background: var(--bg-2);
+		color: var(--fg);
 		text-align: center;
 		white-space: nowrap;
 		cursor: pointer;

@@ -10,9 +10,8 @@ type Props = WithChildren<true, HTMLAttributes<'label'>>;
 const props = Astro.props;
 ---
 
-<label {...props}>
-	<slot />
-</label>
+<!-- This must be on the same line to prevent whitespace from being inserted -->
+<label {...props}><slot /></label>
 
 <style>
 	label {
@@ -20,12 +19,12 @@ const props = Astro.props;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
-		gap: var(--padding-xs);
-		flex-basis: calc(50% - 2 * var(--padding-sm));
+		gap: var(--p-xs);
+		flex-basis: calc(50% - 2 * var(--p-sm));
 		flex-grow: 1;
-		padding: var(--padding-sm);
-		background: var(--color-base-1);
-		color: var(--color-text);
+		padding: var(--p-sm);
+		background: var(--bg-1);
+		color: var(--fg);
 		text-align: center;
 		white-space: nowrap;
 
@@ -35,11 +34,11 @@ const props = Astro.props;
 		}
 
 		&:has(> input:active) {
-			opacity: var(--opacity-max);
+			opacity: 1;
 		}
 
 		&:has(> input[type='checkbox']:not(:checked)) {
-			box-shadow: var(--box-shadow-inset-base);
+			box-shadow: var(--box-shadow-inset-md);
 		}
 
 		&:has(> input[type='checkbox'])::before {
@@ -48,16 +47,16 @@ const props = Astro.props;
 
 		/* Applies to both radio and checkbox inputs */
 		&:has(> input:checked) {
-			font-weight: var(--font-weight-bolder);
-			background: var(--color-base-3);
-			box-shadow: var(--box-shadow-base);
-			opacity: var(--opacity-max);
-			box-shadow: var(--box-shadow-base);
+			font-weight: var(--bolder);
+			background: var(--bg-3);
+			box-shadow: var(--box-shadow-md);
+			opacity: 1;
+			box-shadow: var(--box-shadow-md);
 			z-index: 1;
 
 			&::before {
 				content: '✓ ';
-				font-weight: var(--font-weight-bolder);
+				font-weight: var(--bolder);
 			}
 		}
 	}

@@ -11,9 +11,8 @@ type Props = WithChildren<true, HTMLAttributes<'form'>>;
 const props = Astro.props;
 ---
 
-<Card as="form" {...props}>
-	<slot />
-</Card>
+<!-- This must be on the same line to prevent whitespace from being inserted -->
+<Card as="form" {...props}><slot /></Card>
 
 <style>
 	form {
@@ -24,15 +23,15 @@ const props = Astro.props;
 
 		&:hover {
 			> label {
-				transition-duration: var(--transition-duration-base);
+				transition-duration: var(--duration-md);
 
 				&:has(> input) {
-					opacity: var(--opacity-hover);
+					opacity: var(--opacity-md);
 				}
 
 				&:has(> input:hover) {
-					opacity: var(--opacity-max);
-					box-shadow: var(--box-shadow-base);
+					opacity: 1;
+					box-shadow: var(--box-shadow-md);
 				}
 			}
 		}

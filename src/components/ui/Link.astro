@@ -52,27 +52,26 @@ if (isExternalUrl(href)) {
 rel = [...relsSet].join(' ');
 ---
 
-<a {href} {rel} title={tooltip} aria-label={tooltip} {...restProps}>
-	<slot />
-</a>
+<!-- This must be on the same line to prevent whitespace from being inserted -->
+<a {href} {rel} title={tooltip} aria-label={tooltip} {...restProps}><slot /></a>
 
 <style>
 	a {
 		text-decoration: none;
-		transition-duration: var(--transition-duration-base);
+		transition-duration: var(--duration-md);
 
 		&:hover {
-			opacity: var(--opacity-hover);
+			opacity: var(--opacity-md);
 		}
 
 		&:active {
-			opacity: var(--opacity-max);
+			opacity: 1;
 		}
 
 		&:not(:has(img, svg)) {
-			padding-block-end: var(--border-width-base);
-			color: var(--color-primary);
-			border-block-end: var(--border-width-base) solid var(--color-primary);
+			padding-block-end: var(--border-md);
+			color: var(--primary);
+			border-block-end: var(--border-md) solid var(--primary);
 		}
 	}
 </style>

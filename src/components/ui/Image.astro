@@ -46,12 +46,29 @@ const props = Astro.props;
 const { src: srcString, isRemote } = await getSrcString(props.src);
 
 const isSvg = srcString.endsWith('.svg');
+const commonProps = {
+	inferSize: isRemote,
+	...props,
+} as const satisfies Props;
 ---
 
 {
 	isSvg ? (
-		<AstroImage inferSize={isRemote} format="svg" {...props} />
+		<AstroImage {...commonProps} format="svg" />
 	) : (
-		<AstroPicture inferSize={isRemote} formats={['avif', 'webp']} {...props} />
+		// We can't use CSS variables in the sizes attribute, but this must match var(--max-w) defined in src/styles/vars.css
+		<AstroPicture
+			{...commonProps}
+			formats={['avif', 'webp']}
+			quality={60}
+			sizes="auto,(width<=56rem) 100vw,56rem"
+		/>
 	)
 }
+
+<style>
+	image,
+	picture {
+		contain: size;
+	}
+</style>

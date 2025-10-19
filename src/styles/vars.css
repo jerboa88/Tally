@@ -1,75 +1,62 @@
 :root {
-	/* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
-	--default-light-color-base-1: oklch(92.2% 0 0); /* Neutral 200  */
-	--default-light-color-base-2: oklch(98.5% 0 0); /* Neutral 50 */
-	--default-light-color-text: oklch(14.5% 0 0); /* Neutral 950 */
-	--default-light-color-shadow: none;
-	--default-light-color-primary: oklch(45.7% 0.24 277.023); /* Indigo 700 */
-	--default-light-shadow-strength: 30%;
+	/* Color mix ratios */
+	--mix-sm: 2.5%;
+	--mix-md: 10%;
+	--mix-lg: 50%;
 
-	--color-mix-ratio-sm: 2.5%;
-	--color-mix-ratio-base: 10%;
-	--color-mix-ratio-lg: 50%;
+	/* Opacity */
+	--opacity-md: 0.7;
 
-	--opacity-min: 0;
-	--opacity-hover: 0.7;
-	--opacity-max: 1;
+	/* Padding */
+	--p-xs: calc(var(--p-md) / 4);
+	--p-sm: calc(var(--p-md) / 2);
+	--p-md: 1.5rem;
+	--p-lg: calc(var(--p-md) * 2);
 
-	--padding-base: 1.5rem;
-	--padding-xs: calc(var(--padding-base) / 4);
-	--padding-sm: calc(var(--padding-base) / 2);
-	--padding-lg: calc(var(--padding-base) * 2);
+	/* Font size */
+	--font-md: 1rem;
+	--font-lg: 1.5rem;
 
-	--font-size-base: 1rem;
-	--font-size-lg: 1.5rem;
-	--font-size-xl: 4rem;
+	/* Font weight */
+	--normal: 300;
+	--bold: 500;
+	--bolder: 700;
 
-	/* Variable names defined in /src/lib/config/fonts.ts */
-	--font-family-header: var(--font-roboto-slab);
-	--font-family-base: var(--font-roboto-flex);
+	/* Max width */
+	--max-w: 56rem;
 
-	--font-weight-base: 300;
-	--font-weight-bold: 500;
-	--font-weight-bolder: 700;
+	/* Border width */
+	--border-md: 1px;
 
-	--icon-size: 1rem;
+	/* Border radius */
+	--radius-md: 0.75rem;
 
-	--max-width-page: 56rem;
-	--min-height-textarea: 18rem;
-
-	--border-width-base: 1px;
-
-	--border-radius-base: 0.75rem;
-
-	--pulse-scale: 1.1;
+	/* Transition duration */
+	--duration-md: 0.125s;
 }
 
 body {
 	/* Generate additional colors from the provided theme colors */
-	--color-base-3: color-mix(
+	--bg-3: color-mix(
 		in oklch shorter hue,
-		var(--color-base-2),
-		var(--color-text) var(--color-mix-ratio-sm)
+		var(--bg-2),
+		var(--fg) var(--mix-sm)
 	);
-	--color-selection: color-mix(
+	--selection: color-mix(
 		in oklch shorter hue,
-		var(--color-primary),
-		transparent var(--color-mix-ratio-lg)
+		var(--primary),
+		transparent var(--mix-lg)
 	);
-	--color-shadow: color-mix(
+	--shadow: color-mix(
 		in oklch shorter hue,
-		oklch(0 0 0 / 0.25) var(--shadow-strength),
+		oklch(0 0 0 / 0.25) var(--shadow-mix),
 		transparent
 	);
 	/* Shadows from Tailwind CSS 4 */
-	--box-shadow-base:
-		0 1px 3px 0 var(--color-shadow), 0 1px 2px -1px var(--color-shadow);
-	--box-shadow-lg: 0 20px 25px -5px var(--color-shadow), 0 8px 10px -6px var(--color-shadow);
-	--box-shadow-inset-base: inset 0 2px 4px var(--color-shadow);
-	--text-shadow-base:
-		0px 1px 0px var(--color-shadow), 0px 1px 1px var(--color-shadow),
-		0px 2px 2px var(--color-shadow);
-	--text-shadow-sm: 0px 1px 1px var(--color-shadow);
-	--drop-shadow-base: drop-shadow(0 1px 0.3px var(--color-shadow))
-		drop-shadow(0 1px 0.2px var(--color-shadow));
+	--box-shadow-md:
+		0 1px 3px 0 var(--shadow), 0 1px 2px -1px var(--shadow);
+	--box-shadow-lg: 0 20px 25px -5px var(--shadow), 0 8px 10px -6px var(--shadow);
+	--box-shadow-inset-md: inset 0 2px 4px var(--shadow);
+	--drop-shadow-md: drop-shadow(0 1px 0.3px var(--shadow))
+		drop-shadow(0 1px 0.2px var(--shadow));
 }

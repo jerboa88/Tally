@@ -40,14 +40,14 @@ type FontsConfig = [
 export const FONTS = [
 	{
 		name: 'Roboto Slab',
-		cssVariable: '--font-roboto-slab',
-		weights: ['100 900'],
+		cssVariable: '--font-header',
+		weights: ['300 700'],
 		fallbacks: ['Roboto Slab Variable', 'Roboto Slab', 'sans-serif'],
 	},
 	{
 		name: 'Roboto Flex',
-		cssVariable: '--font-roboto-flex',
-		weights: ['100 900'],
+		cssVariable: '--font-base',
+		weights: ['300 700'],
 		fallbacks: [
 			'Roboto Flex Variable',
 			'Roboto Flex',

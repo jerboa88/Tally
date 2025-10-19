@@ -10,12 +10,11 @@ type Props = WithChildren<true, HTMLAttributes<'strong'>>;
 const props = Astro.props;
 ---
 
-<strong {...props}>
-	<slot />
-</strong>
+<!-- This must be on the same line to prevent whitespace from being inserted -->
+<strong {...props}><slot /></strong>
 
 <style>
 	strong {
-		font-weight: var(--font-weight-bold);
+		font-weight: var(--bold);
 	}
 </style>

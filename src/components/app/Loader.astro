@@ -29,20 +29,20 @@ const msg = getLocaleStrings(LOCALE.default).loader.label;
 
 <style>
 	figure {
-		--blue: var(--color-primary);
+		--blue: var(--primary);
 		--blue-dark: color-mix(
 			in oklch shorter hue,
-			var(--color-primary),
-			#000 var(--color-mix-ratio-base)
+			var(--primary),
+			#000 var(--mix-md)
 		);
 		--key: #fff;
 		--paper: #eef0fd;
 		--text: #00000049;
-		--tool: var(--color-text);
+		--tool: var(--fg);
 		--duration: 3s;
 
 		position: relative;
-		filter: var(--drop-shadow-base);
+		filter: var(--drop-shadow-md);
 		animation: bounce var(--duration) linear infinite;
 	}
 
@@ -51,8 +51,8 @@ const msg = getLocaleStrings(LOCALE.default).loader.label;
 	}
 
 	h1 {
-		font-family: var(--font-family-header);
-		font-size: var(--font-size-base);
+		font-family: var(--font-header);
+		font-size: var(--font-md);
 	}
 
 	.slide {

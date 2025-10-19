@@ -1,6 +1,10 @@
 ---
 import { THEME } from '@lib/config/theme.ts';
 import { getLocale } from '@lib/i18n/index.ts';
+import '../styles/base.css';
+import '../styles/themes.css';
+import '../styles/utils.css';
+import '../styles/vars.css';
 import type { WithChildren } from '../types.ts';
 import Head from './Head.astro';
 
@@ -22,6 +26,11 @@ const vars = {
 <html lang={currentLocaleId} data-theme={THEME.default.id}>
 	<Head>
 		<slot name="head" />
+		<!-- Load the theme from localStorage as soon as possible to prevent FOUC -->
+		<script is:inline async type="module" define:vars={vars}>
+			document.documentElement.dataset[key] =
+				localStorage.getItem(key) ?? defaultThemeId;
+		</script>
 	</Head>
 
 	<body>
@@ -29,35 +38,22 @@ const vars = {
 	</body>
 </html>
 
-<style is:global>
-	@import '../styles/base.css';
-	@import '../styles/vars.css';
-	@import '../styles/themes.css';
-	@import '../styles/utils.css';
-</style>
-
 <style>
 	body {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
-		gap: var(--padding-base);
+		gap: var(--p-md);
 		min-height: 100dvh;
 		margin: 0;
-		background-color: var(--color-base-1);
-		color: var(--color-text);
-		font-family: var(--font-family-base);
-		font-weight: var(--font-weight-base);
+		background-color: var(--bg-1);
+		color: var(--fg);
+		font-family: var(--font-base);
+		font-weight: var(--normal);
 		line-height: 1.5;
 	}
 </style>
-
-<!-- Load the theme from localStorage as soon as possible to prevent FOUC -->
-<script is:inline async type="module" define:vars={vars}>
-	document.documentElement.dataset[key] =
-		localStorage.getItem(key) ?? defaultThemeId;
-</script>
 
 <script>
 	import { CLASS } from '@lib/config/class.ts';

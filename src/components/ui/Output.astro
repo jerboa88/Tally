@@ -28,9 +28,23 @@ const { id, ...restProps } = Astro.props;
 </output>
 
 <style>
+	@keyframes pulse {
+		0% {
+			transform: scale(1.1);
+		}
+		100% {
+			transform: scale(1);
+		}
+	}
+
 	output {
-		font-family: var(--font-family-header);
-		font-size: var(--font-size-lg);
-		font-weight: var(--font-weight-bold);
+		font-family: var(--font-header);
+		font-size: var(--font-lg);
+		font-weight: var(--bold);
+		contain: content;
+	}
+
+	.pulse {
+		animation: pulse var(--duration-md) ease-out;
 	}
 </style>

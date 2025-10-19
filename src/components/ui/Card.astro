@@ -14,19 +14,19 @@ type Props<Tag extends HTMLTag> = Polymorphic<{
 const { as: Tag = 'div', ...restProps } = Astro.props;
 ---
 
-<Tag {...restProps}>
-	<slot />
-</Tag>
+<!-- This must be on the same line to prevent whitespace from being inserted -->
+<Tag {...restProps}><slot /></Tag>
 
 <style>
 	* {
-		border-radius: var(--border-radius-base);
-		box-shadow: var(--box-shadow-base);
+		border-radius: var(--radius-md);
+		box-shadow: var(--box-shadow-md);
 		overflow: hidden;
+		contain: paint;
 
 		/* Outlines are cut off when using `overflow: hidden` so use a negative offset instead */
 		> * {
-			outline-offset: calc(-1 * var(--padding-xs));
+			outline-offset: calc(-1 * var(--p-xs));
 		}
 	}
 </style>
