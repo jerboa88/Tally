@@ -14,9 +14,8 @@ type Props<Tag extends HTMLTag> = Polymorphic<{
 const { as: Tag = 'div', ...restProps } = Astro.props;
 ---
 
-<Tag {...restProps}>
-	<slot />
-</Tag>
+<!-- This must be on the same line to prevent whitespace from being inserted -->
+<Tag {...restProps}><slot /></Tag>
 
 <style>
 	* {

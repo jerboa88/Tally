@@ -10,9 +10,8 @@ type Props = WithChildren<true, HTMLAttributes<'label'>>;
 const props = Astro.props;
 ---
 
-<label {...props}>
-	<slot />
-</label>
+<!-- This must be on the same line to prevent whitespace from being inserted -->
+<label {...props}><slot /></label>
 
 <style>
 	label {

@@ -21,9 +21,7 @@ const { icon: Icon, label, ...restProps } = Astro.props;
 
 <Link {...restProps}>
 	{Icon && <Icon size={16} aria-hidden="true" />}
-	<slot>
-		{label}
-	</slot>
+	<slot>{label}</slot>
 </Link>
 
 <style>

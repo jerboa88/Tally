@@ -14,9 +14,8 @@ interface Props extends WithChildren<true, HTMLAttributes<'blockquote'>> {
 const { type = 'info', ...restProps } = Astro.props;
 ---
 
-<blockquote data-type={type} {...restProps}>
-	<slot />
-</blockquote>
+<!-- This must be on the same line to prevent whitespace from being inserted -->
+<blockquote data-type={type} {...restProps}><slot /></blockquote>
 
 <style>
 	blockquote {
@@ -36,10 +35,10 @@ const { type = 'info', ...restProps } = Astro.props;
 			padding-block-end: var(--p-sm);
 			font-weight: var(--bold);
 		}
+	}
 
-		&[data-type='info']::before {
-			content: 'ⓘ Note';
-			color: var(--primary);
-		}
+	[data-type='info']::before {
+		content: 'ⓘ Note';
+		color: var(--primary);
 	}
 </style>

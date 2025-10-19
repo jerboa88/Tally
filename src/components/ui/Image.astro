@@ -56,11 +56,11 @@ const commonProps = {
 	isSvg ? (
 		<AstroImage {...commonProps} format="svg" />
 	) : (
+		// We can't use CSS variables in the sizes attribute, but this must match var(--max-w) defined in src/styles/vars.css
 		<AstroPicture
 			{...commonProps}
 			formats={['avif', 'webp']}
 			quality={60}
-			// We can't use CSS variables in the sizes attribute, but this must match var(--max-w) defined in src/styles/vars.css
 			sizes="auto,(width<=56rem) 100vw,56rem"
 		/>
 	)

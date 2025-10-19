@@ -11,9 +11,8 @@ type Props = WithChildren<true, HTMLAttributes<'form'>>;
 const props = Astro.props;
 ---
 
-<Card as="form" {...props}>
-	<slot />
-</Card>
+<!-- This must be on the same line to prevent whitespace from being inserted -->
+<Card as="form" {...props}><slot /></Card>
 
 <style>
 	form {
