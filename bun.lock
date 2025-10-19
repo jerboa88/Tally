@@ -15,6 +15,7 @@
         "astro-remove-whitespace": "^1.0.1",
         "astro-robots-txt": "^1.0.0",
         "astro-snapshot": "./src/lib/astro-snapshot",
+        "lightningcss": "^1.30.2",
         "nanostores": "^1.0.1",
         "radashi": "^12.7.0",
         "sharp": "^0.34.4",

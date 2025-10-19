@@ -79,4 +79,9 @@ export default defineConfig({
 		// Workaround for https://github.com/withastro/prettier-plugin-astro/issues/308
 		removeWhitespace(),
 	],
+	vite: {
+		build: {
+			cssMinify: 'lightningcss',
+		},
+	},
 });
