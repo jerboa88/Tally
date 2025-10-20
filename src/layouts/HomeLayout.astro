@@ -6,6 +6,7 @@ import CounterOutputs from '@components/app/home/CounterOutputs.astro';
 import Nav from '@components/app/home/Nav.astro';
 import Article from '@components/ui/Article.astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
+import { LOCALE } from '@lib/config/locale.ts';
 import { getLocale } from '@lib/i18n';
 import { assertDefined } from '@utils/index.ts';
 import { getEntry } from 'astro:content';
@@ -20,6 +21,9 @@ type Props = WithChildren<false>;
 
 const currentLocaleId = getLocale(Astro);
 
+const alertEntry =
+	LOCALE.map[currentLocaleId].wip &&
+	assertDefined(await getEntry(currentLocaleId, 'experimental-locale-alert'));
 const aboutEntry = assertDefined(await getEntry(currentLocaleId, 'about'));
 const moreEntry = assertDefined(await getEntry(currentLocaleId, 'related'));
 ---
@@ -31,6 +35,7 @@ const moreEntry = assertDefined(await getEntry(currentLocaleId, 'related'));
 			<CounterInput />
 			<CounterOutputs />
 			<Nav />
+			{alertEntry && <Article entry={alertEntry} />}
 		</section>
 		<Article entry={aboutEntry} />
 		<Article entry={moreEntry} />
