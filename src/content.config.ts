@@ -1,4 +1,6 @@
+import { LOCALE } from '@lib/config/locale.ts';
 import { defineCollection, z } from 'astro:content';
+import { mapEntries } from 'radashi';
 
 /**
  * Shared Zod schema for page frontmatter across all locales.
@@ -11,6 +13,7 @@ const pageSchema = z.object({});
  * Each locale has its own collection to organize markdown content by language
  * (ex. src/content/en/, src/content/es/).
  */
-export const collections = {
-	en: defineCollection({ schema: pageSchema }),
-};
+export const collections = mapEntries(LOCALE.map, (key) => [
+	key,
+	defineCollection({ schema: pageSchema }),
+]);
