@@ -1,11 +1,11 @@
-import { keysOf } from './utils/index.ts';
-import { LOCALE, type LocaleId } from './lib/config/locale.ts';
-import { SITE } from './lib/config/site.ts';
+import { cartesianProduct, objectify } from 'radashi';
+import { LOCALE, type LocaleId } from './config/locale.ts';
+import { SITE } from './config/site.ts';
 import {
 	SOCIAL_PREVIEW,
 	type SocialPreviewId,
-} from './lib/config/social-preview.ts';
-import { cartesianProduct, objectify } from 'radashi';
+} from './config/social-preview.ts';
+import { keysOf } from './utils/index.ts';
 
 /**
  * Creates a page configuration entry for screenshot generation.

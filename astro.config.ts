@@ -9,9 +9,9 @@ import {
 	I18N_CONFIG,
 } from './src/config-transformer.ts';
 import snapshot from './src/lib/astro-snapshot/src/index.ts';
-import { FONTS } from './src/lib/config/fonts.ts';
-import { SITE } from './src/lib/config/site.ts';
-import { SOCIAL_PREVIEW } from './src/lib/config/social-preview.ts';
+import { FONTS } from './src/config/fonts.ts';
+import { SITE } from './src/config/site.ts';
+import { SOCIAL_PREVIEW } from './src/config/social-preview.ts';
 
 // https://astro.build/config
 export default defineConfig({

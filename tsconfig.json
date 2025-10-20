@@ -5,12 +5,14 @@
 	"compilerOptions": {
 		"paths": {
 			"@components/*": ["./src/components/*"],
-			"@layouts/*": ["./src/layouts/*"],
-			"@stores/*": ["./src/stores/*"],
+			"@config/*": ["./src/config/*"],
 			"@effects/*": ["./src/effects/*"],
+			"@i18n/*": ["./src/i18n/*"],
+			"@images/*": ["./src/images/*"],
+			"@layouts/*": ["./src/layouts/*"],
 			"@lib/*": ["./src/lib/*"],
+			"@stores/*": ["./src/stores/*"],
 			"@utils/*": ["./src/utils/*"],
-			"@images/*": ["./src/images/*"]
 		}
 	}
 }

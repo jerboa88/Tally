@@ -1,5 +1,5 @@
 ---
-import { OUTPUT } from '@lib/config/output.ts';
+import { OUTPUT } from '@config/output.ts';
 import type { WithChildren } from '../../../types.ts';
 import OutputGroup from './OutputGroup.astro';
 
@@ -12,9 +12,9 @@ type Props = WithChildren<false>;
 {Object.values(OUTPUT).map((outputGroup) => <OutputGroup {...outputGroup} />)}
 
 <script>
-	import { CLASS } from '@lib/config/class.ts';
-	import { OUTPUT, type OutputId } from '@lib/config/output.ts';
-	import { getLocale, getLocaleStrings } from '@lib/i18n/index.ts';
+	import { CLASS } from '@config/class.ts';
+	import { OUTPUT, type OutputId } from '@config/output.ts';
+	import { getLocale, getLocaleStrings } from '@i18n/index.ts';
 	import { $outputCounts } from '@stores/index.ts';
 	import { entriesOf, getDefinedElementById } from '@utils/index.ts';
 

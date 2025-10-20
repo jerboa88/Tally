@@ -1,6 +1,6 @@
-import type { OptionId } from '@lib/config/option.ts';
-import type { OutputId } from '@lib/config/output.ts';
-import type { ThemeId } from '@lib/config/theme.ts';
+import type { OptionId } from '@config/option.ts';
+import type { OutputId } from '@config/output.ts';
+import type { ThemeId } from '@config/theme.ts';
 
 /**
  * A map of output IDs to their localized labels.

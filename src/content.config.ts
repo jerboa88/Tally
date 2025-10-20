@@ -1,4 +1,4 @@
-import { LOCALE } from '@lib/config/locale.ts';
+import { LOCALE } from '@config/locale.ts';
 import { defineCollection, z } from 'astro:content';
 import { mapEntries } from 'radashi';
 

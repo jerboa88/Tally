@@ -1,12 +1,12 @@
 ---
+import { FONTS } from '@config/fonts.ts';
+import { SITE } from '@config/site';
+import { THEME } from '@config/theme.ts';
+import { getLocale, getLocaleStrings } from '@i18n/index.ts';
 import iconIco from '@images/favicon.ico';
 import iconPng from '@images/icon-solid.png';
 import iconSvg from '@images/icon.svg';
 import logoSvg from '@images/logo.svg';
-import { FONTS } from '@lib/config/fonts.ts';
-import { SITE } from '@lib/config/site';
-import { THEME } from '@lib/config/theme.ts';
-import { getLocale, getLocaleStrings } from '@lib/i18n/index.ts';
 import { pathToAbsoluteUrl } from '@utils/index.ts';
 import { Head as CapoHead } from 'astro-capo';
 import { Font, getImage } from 'astro:assets';

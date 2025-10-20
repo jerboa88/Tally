@@ -1,4 +1,4 @@
-import { INPUT } from '@lib/config/input.ts';
+import { INPUT } from '@config/input.ts';
 import {
 	$enableDebugLogging,
 	$inputText,

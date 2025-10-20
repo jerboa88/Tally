@@ -1,5 +1,5 @@
 import type { AstroGlobal } from 'astro';
-import { LOCALE, type LocaleId } from '@lib/config/locale.ts';
+import { LOCALE, type LocaleId } from '@config/locale.ts';
 import { assertDefined, keysOf } from '@utils/index.ts';
 import type { LocaleMessages } from './types.ts';
 import { objectify } from 'radashi';

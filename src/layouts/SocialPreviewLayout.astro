@@ -1,13 +1,13 @@
 ---
 import ButtonLink from '@components/ui/ButtonLink.astro';
 import Card from '@components/ui/Card.astro';
+import { SITE } from '@config/site.ts';
+import type { SocialPreviewId } from '@config/social-preview.ts';
+import { getLocaleStrings } from '@i18n/index.ts';
 import themeDark from '@images/theme_dark.png';
 import themeLight from '@images/theme_light.png';
 import themeTeal from '@images/theme_teal.png';
 import BaseLayout from '@layouts/BaseLayout.astro';
-import { SITE } from '@lib/config/site.ts';
-import type { SocialPreviewId } from '@lib/config/social-preview.ts';
-import { getLocaleStrings } from '@lib/i18n/index.ts';
 import { Link } from '@lucide/astro';
 import type { WithChildren } from '../types.ts';
 

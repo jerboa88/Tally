@@ -1,10 +1,10 @@
 import { atom } from 'nanostores';
 import { persistentAtom } from '@nanostores/persistent';
-import { THEME, type ThemeId } from '@lib/config/theme.ts';
-import { OPTION } from '@lib/config/option.ts';
-import { INPUT } from '@lib/config/input.ts';
+import { THEME, type ThemeId } from '@config/theme.ts';
+import { OPTION } from '@config/option.ts';
+import { INPUT } from '@config/input.ts';
 import { persistentBooleanAtom } from './utils.ts';
-import { type OutputId } from '@lib/config/output.ts';
+import { type OutputId } from '@config/output.ts';
 
 /**
  * The currently selected theme ID.

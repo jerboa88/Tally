@@ -1,10 +1,10 @@
-import { INPUT } from '@lib/config/input.ts';
+import { INPUT } from '@config/input.ts';
 import {
 	$inputText,
 	$warnOnLargeInputText,
 	$outputCounts,
 } from '@stores/index.ts';
-import { getLocale, getLocaleStrings } from '@lib/i18n/index.ts';
+import { getLocale, getLocaleStrings } from '@i18n/index.ts';
 import { Tally } from '@lib/tally-ts/src/index.ts';
 
 const currentLocaleId = getLocale();

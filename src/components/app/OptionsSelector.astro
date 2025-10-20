@@ -1,8 +1,8 @@
 ---
 import type { EntryProps } from '@components/ui/InputGroup.astro';
 import InputGroup from '@components/ui/InputGroup.astro';
-import { OPTION } from '@lib/config/option.ts';
-import { getLocaleStrings } from '@lib/i18n/index.ts';
+import { OPTION } from '@config/option.ts';
+import { getLocaleStrings } from '@i18n/index.ts';
 import { keysOf } from '@utils/index.ts';
 import type { WithChildren } from '../../types.ts';
 
@@ -28,7 +28,7 @@ const entries: EntryProps[] = keysOf(OPTION.map).map((id) => ({
 <InputGroup {entries} id={OPTION.id} title={msg.title} type="checkbox" />
 
 <script>
-	import { OPTION, type OptionId } from '@lib/config/option.ts';
+	import { OPTION, type OptionId } from '@config/option.ts';
 	import {
 		$enableDebugLogging,
 		$rememberInputText,

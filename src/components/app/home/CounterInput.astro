@@ -1,7 +1,7 @@
 ---
 import Textarea from '@components/ui/Textarea.astro';
-import { INPUT } from '@lib/config/input';
-import { getLocaleStrings } from '@lib/i18n/index.ts';
+import { INPUT } from '@config/input';
+import { getLocaleStrings } from '@i18n/index.ts';
 import type { WithChildren } from '../../../types.ts';
 
 /**
@@ -22,7 +22,7 @@ const { label, placeholder } = getLocaleStrings(Astro).input;
 />
 
 <script>
-	import { INPUT } from '@lib/config/input.ts';
+	import { INPUT } from '@config/input.ts';
 	import { $inputText } from '@stores/index.ts';
 	import { debounce, getDefinedElementById } from '@utils/index.ts';
 

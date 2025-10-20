@@ -1,4 +1,4 @@
-import type { HttpsUrl } from '../../types.ts';
+import type { HttpsUrl } from '../types.ts';
 
 /**
  * The complete site configuration structure.

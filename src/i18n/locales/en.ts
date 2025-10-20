@@ -1,4 +1,4 @@
-import { SITE } from '@lib/config/site';
+import { SITE } from '@config/site';
 import type { LocaleMessages } from '../types.ts';
 
 // A short tagline shown beside the app name in some cases for additional context

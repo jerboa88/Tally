@@ -1,4 +1,4 @@
-import { SITE } from '@lib/config/site';
+import { SITE } from '@config/site';
 import type { LocaleMessages } from '../types.ts';
 
 const TAGLINE = 'Contador de palabras' as const;

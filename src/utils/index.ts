@@ -1,5 +1,5 @@
 // This file is imported by astro.config.ts which doesn't support aliases, so we can't use them here either
-import { SITE } from '../lib/config/site.ts';
+import { SITE } from '../config/site.ts';
 import type { HttpsUrl } from '../types.ts';
 
 /**

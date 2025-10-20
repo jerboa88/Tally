@@ -1,9 +1,8 @@
 ---
 import type { EntryProps } from '@components/ui/InputGroup.astro';
 import InputGroup from '@components/ui/InputGroup.astro';
-import type { Locale } from '@lib/config/locale.ts';
-import { LOCALE, type LocaleId } from '@lib/config/locale.ts';
-import { getLocale, getLocaleInfo, getLocaleStrings } from '@lib/i18n/index.ts';
+import { LOCALE, type Locale, type LocaleId } from '@config/locale.ts';
+import { getLocale, getLocaleInfo, getLocaleStrings } from '@i18n/index.ts';
 import { entriesOf } from '@utils/index.ts';
 import type { WithChildren } from '../../types.ts';
 
@@ -46,14 +45,14 @@ const entries: EntryProps[] = entriesOf(LOCALE.map).map(
 			id: localeId,
 			checked: localeId === currentLocaleId,
 		},
-	})
+	}),
 );
 ---
 
 <InputGroup {entries} id={LOCALE.id} title={msg.title} type="radio" />
 
 <script>
-	import { LOCALE } from '@lib/config/locale.ts';
+	import { LOCALE } from '@config/locale.ts';
 	import { entriesOf, getDefinedElementById } from '@utils/index.ts';
 	import { getRelativeLocaleUrl } from 'astro/virtual-modules/i18n.js';
 	import { mapEntries } from 'radashi';
@@ -67,7 +66,7 @@ const entries: EntryProps[] = entriesOf(LOCALE.map).map(
 	for (const [id, radio] of entriesOf(localeRadioMap)) {
 		radio.addEventListener(
 			'change',
-			() => (window.location.href = getRelativeLocaleUrl(id))
+			() => (window.location.href = getRelativeLocaleUrl(id)),
 		);
 	}
 </script>

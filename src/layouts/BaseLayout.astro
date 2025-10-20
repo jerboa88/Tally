@@ -1,6 +1,6 @@
 ---
-import { THEME } from '@lib/config/theme.ts';
-import { getLocale } from '@lib/i18n/index.ts';
+import { THEME } from '@config/theme.ts';
+import { getLocale } from '@i18n/index.ts';
 import '../styles/base.css';
 import '../styles/themes.css';
 import '../styles/utils.css';
@@ -56,8 +56,8 @@ const vars = {
 </style>
 
 <script>
-	import { CLASS } from '@lib/config/class.ts';
-	import { THEME } from '@lib/config/theme.ts';
+	import { CLASS } from '@config/class.ts';
+	import { THEME } from '@config/theme.ts';
 	import { $theme } from '@stores/index.ts';
 
 	// Enable transitions after page load

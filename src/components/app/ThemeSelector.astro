@@ -1,7 +1,7 @@
 ---
 import InputGroup, { type EntryProps } from '@components/ui/InputGroup.astro';
-import { type Theme, THEME, type ThemeId } from '@lib/config/theme.ts';
-import { getLocaleStrings } from '@lib/i18n/index.ts';
+import { type Theme, THEME, type ThemeId } from '@config/theme.ts';
+import { getLocaleStrings } from '@i18n/index.ts';
 import { entriesOf } from '@utils/index.ts';
 import type { WithChildren } from '../../types.ts';
 
@@ -57,7 +57,7 @@ const entries: EntryProps[] = entriesOf(THEME.map).map(([themeId, theme]) => ({
 </style>
 
 <script>
-	import { THEME } from '@lib/config/theme.ts';
+	import { THEME } from '@config/theme.ts';
 	import { $theme } from '@stores/index.ts';
 	import { entriesOf, getDefinedElementById } from '@utils/index.ts';
 	import { mapEntries } from 'radashi';

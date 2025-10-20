@@ -1,9 +1,9 @@
 ---
 import Link from '@components/ui/Link.astro';
+import { CLASS } from '@config/class.ts';
+import { SITE } from '@config/site.ts';
+import { getLocale, getLocaleStrings } from '@i18n/index.ts';
 import Logo from '@images/logo.svg';
-import { CLASS } from '@lib/config/class.ts';
-import { SITE } from '@lib/config/site.ts';
-import { getLocale, getLocaleStrings } from '@lib/i18n/index.ts';
 import type { HTMLAttributes } from 'astro/types';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import type { WithChildren } from '../../types.ts';
