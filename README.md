@@ -24,12 +24,10 @@
 
 **Tally - Word Counter** is a free online tool to count the number of characters, words, paragraphs, and lines in your text. It can also show counts for different types of characters like letters, digits, spaces, punctuation, and symbols/special characters. Make sure you have the right number of words for your essay or post by counting them instantly with **Tally**.
 
-Also check out the [Tally Chrome Extension].
-
 ### Features
 
 - **🧮 View text metrics:** Count the number of characters, words, sentences, paragraphs, and lines in your text.
-- **📊 View character composition:** View the number of spaces, digits, letters, and symbols/special characters in the input.
+- **📊 View character composition:** View the number of spaces, digits, letters, punctuation, and symbols/special characters in the input.
 - **🚀 Real-time updates:** Optimized for speed, **Tally** updates the counts in real-time as you type.
 - **🌍 Multilingual support:** Accurate word and character segmentation across many languages and scripts.
 - **🎨 Themes:** Save your eyes with the built-in dark mode, or try one of the other included themes.
