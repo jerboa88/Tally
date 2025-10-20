@@ -47,6 +47,11 @@ export type LocaleMessages = {
 	loader: {
 		label: Capitalize<string>;
 	};
+	alert: {
+		note: {
+			title: Capitalize<string>;
+		};
+	};
 	header: {
 		label: Capitalize<string>;
 	};
