@@ -19,12 +19,13 @@ export default defineConfig({
 	base: SITE.basePath,
 	srcDir: SITE.srcDir,
 	output: 'static',
-	trailingSlash: 'never',
+	trailingSlash: 'always',
 	server: {
 		host: true,
 	},
 	build: {
 		assets: 'assets',
+		format: 'directory',
 	},
 	prefetch: {
 		prefetchAll: true,
@@ -52,7 +53,6 @@ export default defineConfig({
 		sitemap({
 			filenameBase: SITE.sitemapPrefix,
 			changefreq: 'monthly',
-			priority: 1,
 			lastmod: new Date(),
 			i18n: I18N_CONFIG.sitemap,
 			serialize(item) {
@@ -81,7 +81,7 @@ export default defineConfig({
 			HTML: {
 				'html-minifier-terser': {
 					minifyCSS: false,
-					collapseWhitespace: true,
+					// collapseWhitespace: true,
 				},
 			},
 			CSS: {

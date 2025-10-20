@@ -20,7 +20,7 @@ function keysToPagesConfigEntry([localeId, socialPreviewId]: [
 	const { width, height } = SOCIAL_PREVIEW.map[socialPreviewId];
 
 	return [
-		`/${localeId}/${SOCIAL_PREVIEW.id}/${socialPreviewId}`,
+		`/${localeId}/${SOCIAL_PREVIEW.id}/${socialPreviewId}/`,
 		{
 			outputPath: `${SITE.srcDir}/images/${SOCIAL_PREVIEW.id}/${localeId}/${socialPreviewId}.png`,
 			width,
