@@ -32,6 +32,9 @@ const localeMap = {
 	es: {
 		wip: true,
 	},
+	fr: {
+		wip: true,
+	},
 } as const satisfies LocaleMap;
 
 /**
