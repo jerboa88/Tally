@@ -19,21 +19,21 @@ const { type = 'info', ...restProps } = Astro.props;
 
 <style>
 	blockquote {
-		margin-inline: 0;
+		margin: 0;
 		padding: var(--p-md);
 		border-width: var(--border-md);
 		border-style: solid;
 		border-radius: var(--radius-md);
 		border-color: var(--primary);
 
-		> p {
-			margin: 0;
-		}
-
 		&::before {
 			display: block;
 			padding-block-end: var(--p-sm);
 			font-weight: var(--bold);
+		}
+
+		p {
+			margin: 0;
 		}
 	}
 
