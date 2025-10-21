@@ -1,6 +1,6 @@
 import { runTests } from './utils.ts';
 
-const locale = 'es' as const;
+const locale = 'fr' as const;
 const testCases = [
 	{
 		label: 'empty string',
@@ -44,21 +44,21 @@ const testCases = [
 		label: '1 word',
 		// https://tatoeba.org/en/sentences/show/1437
 		// CC BY 2.0 FR (https://creativecommons.org/licenses/by/2.0/fr/)
-		input: '¡Felicidades!',
+		input: 'Félicitations !',
 		expectedGraphemes: {
-			total: 13,
+			total: 15,
 			by: {
 				spaces: {
-					total: 0,
+					total: 1,
 				},
 				letters: {
-					total: 11,
+					total: 13,
 				},
 				digits: {
 					total: 0,
 				},
 				punctuation: {
-					total: 2,
+					total: 1,
 				},
 				symbols: {
 					total: 0,
@@ -84,15 +84,15 @@ const testCases = [
 		label: '1 sentence',
 		// https://tatoeba.org/en/sentences/show/1308
 		// CC BY 2.0 FR (https://creativecommons.org/licenses/by/2.0/fr/)
-		input: 'Te extraño.',
+		input: 'Tu me manques.',
 		expectedGraphemes: {
-			total: 11,
+			total: 14,
 			by: {
 				spaces: {
-					total: 1,
+					total: 2,
 				},
 				letters: {
-					total: 9,
+					total: 11,
 				},
 				digits: {
 					total: 0,
@@ -114,7 +114,7 @@ const testCases = [
 			},
 		},
 		expectedWords: {
-			total: 2,
+			total: 3,
 		},
 		expectedSentences: {
 			total: 1,
@@ -124,17 +124,16 @@ const testCases = [
 		label: '1 sentence w/ punctuation',
 		// https://tatoeba.org/en/sentences/show/1360
 		// CC BY 2.0 FR (https://creativecommons.org/licenses/by/2.0/fr/)
-		input:
-			'Cuando yo estaba en el instituto, me levantaba a las 6 todas las mañanas.',
+		input: "À l'époque du lycée je me levais à 6h tous les matins.",
 		expectedGraphemes: {
-			total: 73,
+			total: 54,
 			by: {
 				spaces: {
-					total: 13,
+					total: 11,
 				},
 				letters: {
-					// Cuandoyoestabaenelinstitutomelevantabaalastodaslasmañanas
-					total: 57,
+					// Àlépoquedulycéejemelevaisàhtouslesmatins
+					total: 40,
 				},
 				digits: {
 					total: 1,
@@ -156,7 +155,7 @@ const testCases = [
 			},
 		},
 		expectedWords: {
-			total: 13,
+			total: 12,
 		},
 		expectedSentences: {
 			total: 1,
@@ -166,22 +165,22 @@ const testCases = [
 		label: '2 sentences',
 		// https://tatoeba.org/en/sentences/show/1370
 		// CC BY 2.0 FR (https://creativecommons.org/licenses/by/2.0/fr/)
-		input: 'No puedo decírselo ahora. Ya no es tan simple.',
+		input: "Je ne peux pas lui dire maintenant. Ce n'est plus aussi simple.",
 		expectedGraphemes: {
-			total: 46,
+			total: 63,
 			by: {
 				spaces: {
-					total: 8,
+					total: 11,
 				},
 				letters: {
-					// NopuedodecírseloahoraYanoestansimple
-					total: 36,
+					// JenepeuxpasluidiremaintenantCenestplusaussisimple
+					total: 49,
 				},
 				digits: {
 					total: 0,
 				},
 				punctuation: {
-					total: 2,
+					total: 3,
 				},
 				symbols: {
 					total: 0,
@@ -197,7 +196,7 @@ const testCases = [
 			},
 		},
 		expectedWords: {
-			total: 9,
+			total: 12,
 		},
 		expectedSentences: {
 			total: 2,
@@ -205,24 +204,24 @@ const testCases = [
 	},
 	{
 		label: '2 paragraphs',
-		// https://www.un.org/es/about-us/universal-declaration-of-human-rights: Articles 3 & 4
+		// https://www.un.org/fr/about-us/universal-declaration-of-human-rights: Articles 3 & 4
 		input:
-			'Todo individuo tiene derecho a la vida, a la libertad y a la seguridad de su persona.\n\nNadie estará sometido a esclavitud ni a servidumbre, la esclavitud y la trata de esclavos están prohibidas en todas sus formas.',
+			"Tout individu a droit à la vie, à la liberté et à la sûreté de sa personne.\n\nNul ne sera tenu en esclavage ni en servitude; l'esclavage et la traite des esclaves sont interdits sous toutes leurs formes.",
 		expectedGraphemes: {
-			total: 214,
+			total: 202,
 			by: {
 				spaces: {
 					total: 36,
 				},
 				letters: {
-					// TodoindividuotienederechoalavidaalalibertadyalaseguridaddesupersonaNadieestarásometidoaesclavitudniaservidumbrelaesclavitudylatratadeesclavosestánprohibidasentodassusformas
-					total: 172,
+					// ToutindividuadroitàlavieàlalibertéetàlasûretédesapersonneNulneseratenuenesclavagenienservitudelesclavageetlatraitedesesclavessontinterditssoustoutesleursformes
+					total: 159,
 				},
 				digits: {
 					total: 0,
 				},
 				punctuation: {
-					total: 4,
+					total: 5,
 				},
 				symbols: {
 					total: 0,
