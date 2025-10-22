@@ -41,6 +41,9 @@ const localeMap = {
 	de: {
 		wip: true,
 	},
+	id: {
+		wip: true,
+	},
 } as const satisfies LocaleMap;
 
 /**
