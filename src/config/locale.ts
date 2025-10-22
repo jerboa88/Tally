@@ -36,6 +36,9 @@ const localeMap = {
 		wip: true,
 	},
 	it: {
+    wip: true,
+  },
+	de: {
 		wip: true,
 	},
 } as const satisfies LocaleMap;
