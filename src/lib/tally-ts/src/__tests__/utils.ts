@@ -38,7 +38,11 @@ function entriesOf<T extends object>(obj: T): [keyof T, T[keyof T]][] {
  * @param locale - The locale to use for creating the Tally instance
  * @param testCases - Array of test cases with inputs and expected outputs
  */
-export function runTests(locale: Locale, testCases: TestCases) {
+export function runTests(
+	locale: Locale,
+	testCases: TestCases,
+	skipCountWords = false,
+) {
 	const tally = new Tally(locale);
 
 	describe.each(testCases)(
@@ -75,12 +79,15 @@ export function runTests(locale: Locale, testCases: TestCases) {
 			});
 
 			// countWords()
-			describe(`words`, () => {
+			describe.skipIf(skipCountWords)(`words`, () => {
 				const words = tally.countWords(input);
+				const total = (
+					expectedWords as Exclude<typeof expectedWords, undefined>
+				).total;
 
 				// Total
-				test(`total count is ${expectedWords.total}`, () => {
-					expect(words.total).toBe(expectedWords.total);
+				test(`total count is ${total}`, () => {
+					expect(words.total).toBe(total);
 				});
 			});
 
