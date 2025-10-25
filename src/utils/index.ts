@@ -1,4 +1,5 @@
 // This file is imported by astro.config.ts which doesn't support aliases, so we can't use them here either
+import { tryit, type Result } from 'radashi';
 import { SITE } from '../config/site.ts';
 import type { HttpsUrl } from '../types.ts';
 
@@ -121,4 +122,50 @@ export function isExternalUrl(
  */
 export function pathToAbsoluteUrl(path: string) {
 	return new URL(path, SITE.url.base).href;
+}
+
+/**
+ * Parses a string into a boolean value.
+ *
+ * Accepts the following formats:
+ * - Number strings: '1' (true) or '0' (false)
+ * - Boolean strings: 'true' (true) or 'false' (false) - case insensitive
+ *
+ * @param value - The string value to parse into a boolean
+ * @returns A tuple of [error, result] where error is null on success,
+ *          or an Error object if the value cannot be parsed
+ *
+ * @example
+ * ```ts
+ * const [err1, result1] = parseBoolean('true');  // [null, true]
+ * const [err2, result2] = parseBoolean('1');     // [null, true]
+ * const [err3, result3] = parseBoolean('false'); // [null, false]
+ * const [err4, result4] = parseBoolean('0');     // [null, false]
+ * const [err5, result5] = parseBoolean('yes');   // [Error, undefined]
+ * ```
+ */
+export function parseBoolean(value: string): Result<boolean, Error> {
+	const truthyValues = ['true', '1'];
+	const falsyValues = ['false', '0'];
+
+	return tryit(() => {
+		const normalizedValue = value.trim().toLowerCase();
+
+		if (truthyValues.includes(normalizedValue)) return true;
+		if (falsyValues.includes(normalizedValue)) return false;
+
+		throw new Error(
+			`Cannot parse '${value}' into a boolean. Expected one of: ${[...truthyValues, ...falsyValues].join(', ')}.`,
+		);
+	})();
+}
+
+/**
+ * Decodes a URL query parameter, handling both URI encoding and plus-encoded spaces.
+ *
+ * @param param - The encoded query parameter string
+ * @returns The decoded string with spaces properly restored
+ */
+export function decodeQueryParam(param: string) {
+	return decodeURIComponent(param.replaceAll('+', ' '));
 }
