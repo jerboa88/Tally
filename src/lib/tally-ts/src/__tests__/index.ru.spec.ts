@@ -1,6 +1,6 @@
 import { runTests } from './utils.ts';
 
-const locale = 'en' as const;
+const locale = 'ru' as const;
 const testCases = [
 	{
 		label: 'empty string',
