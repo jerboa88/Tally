@@ -35,9 +35,9 @@ const freeTheme = {
 	sponsor: false,
 } as const satisfies Theme;
 
-const sponsorTheme = {
-	wip: false,
-	sponsor: true,
+const wipTheme = {
+	wip: true,
+	sponsor: false,
 } as const satisfies Theme;
 
 const themeMap = {
@@ -45,34 +45,16 @@ const themeMap = {
 	amoled: freeTheme,
 	light: freeTheme,
 	dark: freeTheme,
-	teal: sponsorTheme,
-	dusk: sponsorTheme,
-	solarizedLight: sponsorTheme,
-	solarizedDark: sponsorTheme,
-	gruvboxLight: {
-		wip: true,
-		sponsor: true,
-	},
-	gruvboxDark: {
-		wip: true,
-		sponsor: true,
-	},
-	catppuccinLatte: {
-		wip: true,
-		sponsor: true,
-	},
-	catppuccinMocha: {
-		wip: true,
-		sponsor: true,
-	},
-	nord: {
-		wip: true,
-		sponsor: true,
-	},
-	dracula: {
-		wip: true,
-		sponsor: true,
-	},
+	teal: wipTheme,
+	dusk: wipTheme,
+	solarizedLight: wipTheme,
+	solarizedDark: wipTheme,
+	gruvboxLight: wipTheme,
+	gruvboxDark: wipTheme,
+	catppuccinLatte: wipTheme,
+	catppuccinMocha: wipTheme,
+	nord: wipTheme,
+	dracula: wipTheme,
 } as const satisfies ThemeMap;
 
 /**
