@@ -202,17 +202,17 @@ const testCases = [
 	},
 	{
 		label: '2 paragraphs',
-		// https://www.un.org/en/about-us/universal-declaration-of-human-rights: Articles 3 & 4
+		// https://www.un.org/ru/about-us/universal-declaration-of-human-rights: Articles 3 & 4
 		input:
-			'Каждый человек имеет право на жизнь, свободу и личную неприкосновенность.\n\nНикто не должен содержаться в рабстве или подневольном состоянии; рабство и работорговля должны быть запрещены во всех их формах.',
+			'Каждый человек имеет право на жизнь, на свободу и на личную неприкосновенность.\n\nНикто не должен содержаться в рабстве или в подневольном состоянии; рабство и работорговля запрещаются во всех их видах.',
 		expectedGraphemes: {
-			total: 204,
+			total: 203,
 			by: {
 				spaces: {
-					total: 27,
+					total: 28,
 				},
 				letters: {
-					total: 142,
+					total: 167,
 				},
 				digits: {
 					total: 0,
@@ -234,7 +234,7 @@ const testCases = [
 			},
 		},
 		expectedWords: {
-			total: 29,
+			total: 30,
 		},
 		expectedSentences: {
 			total: 2,
