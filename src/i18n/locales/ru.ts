@@ -12,7 +12,7 @@ const DESCRIPTION =
  *
  * Contains translations for site metadata, UI labels, messages, and all user-facing text.
  */
-const EN: LocaleMessages = {
+const RU: LocaleMessages = {
 	site: {
 		// Full site title shown in browser tabs
 		title: `${SITE.title} - ${TAGLINE}`,
@@ -207,4 +207,4 @@ const EN: LocaleMessages = {
 	},
 } as const satisfies LocaleMessages;
 
-export default EN;
+export default RU;
