@@ -16,21 +16,12 @@ import Head from './Head.astro';
 type Props = WithChildren<true>;
 
 const currentLocaleId = getLocale(Astro);
-const vars = {
-	key: THEME.id,
-	defaultThemeId: THEME.default.id,
-};
 ---
 
 <!doctype html>
 <html lang={currentLocaleId} data-theme={THEME.default.id}>
 	<Head>
 		<slot name="head" />
-		<!-- Load the theme from localStorage as soon as possible to prevent FOUC -->
-		<script is:inline async type="module" define:vars={vars}>
-			document.documentElement.dataset[key] =
-				localStorage.getItem(key) ?? defaultThemeId;
-		</script>
 	</Head>
 
 	<body>
@@ -42,7 +33,7 @@ const vars = {
 	body {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
+		justify-content: start;
 		align-items: center;
 		gap: var(--p-md);
 		min-height: 100dvh;
@@ -54,19 +45,3 @@ const vars = {
 		line-height: 1.5;
 	}
 </style>
-
-<script>
-	import { CLASS } from '@config/class.ts';
-	import { THEME } from '@config/theme.ts';
-	import { $theme } from '@stores/index.ts';
-
-	// Enable transitions after page load
-	window.addEventListener('load', () => {
-		document.body.classList.add(CLASS.enableTransitions);
-	});
-
-	// Add a data attribute to the page body when the theme changes
-	$theme.subscribe((value) => {
-		document.documentElement.dataset[THEME.id] = value;
-	});
-</script>

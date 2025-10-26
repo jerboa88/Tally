@@ -1,13 +1,13 @@
 ---
 import Loader from '@components/app/Loader.astro';
-import BaseLayout from '@layouts/BaseLayout.astro';
+import PageLayout from '@layouts/PageLayout.astro';
 ---
 
-<BaseLayout>
+<PageLayout>
 	<main>
 		<Loader />
 	</main>
-</BaseLayout>
+</PageLayout>
 
 <style>
 	main {
@@ -27,5 +27,6 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
 	const detectedLocale = getBestMatchingLocale();
 
-	window.location.href = `/${detectedLocale}`;
+	// Forward query params to the destination page
+	window.location.href = `/${detectedLocale}/${location.search}`;
 </script>

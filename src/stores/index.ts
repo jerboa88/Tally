@@ -11,7 +11,15 @@ import { type OutputId } from '@config/output.ts';
  *
  * Persisted to localStorage.
  */
-export const $theme = persistentAtom<ThemeId>(THEME.id, THEME.default.id);
+export const $persistedTheme = persistentAtom<ThemeId>(
+	THEME.id,
+	THEME.default.id,
+);
+
+/**
+ * The currently selected theme ID.
+ */
+export const $theme = atom<ThemeId>($persistedTheme.get() ?? THEME.default.id);
 
 /**
  * Whether to remember input text between browser sessions.

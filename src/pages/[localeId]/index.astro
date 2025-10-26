@@ -1,11 +1,96 @@
 ---
+import Footer from '@components/app/Footer.astro';
+import Header from '@components/app/Header.astro';
+import CounterInput from '@components/app/home/CounterInput.astro';
+import CounterOutputs from '@components/app/home/CounterOutputs.astro';
+import Nav from '@components/app/home/Nav.astro';
+import Article from '@components/ui/Article.astro';
+import { INPUT } from '@config/input.ts';
 import { LOCALE } from '@config/locale.ts';
-import HomeLayout from '@layouts/HomeLayout.astro';
-import { keysOf } from '@utils/index.ts';
+import { getLocale } from '@i18n/index.ts';
+import PageLayout from '@layouts/PageLayout.astro';
+import { assertDefined, keysOf } from '@utils/index.ts';
+import { getEntry } from 'astro:content';
+import type { WithChildren } from '../../types.ts';
 
+/**
+ * Props for the main counting page.
+ *
+ * Explicitly disallows children as the page structure is predefined.
+ */
+type Props = WithChildren<false>;
+
+const currentLocaleId = getLocale(Astro);
+const inputPreloadVars = {
+	id: INPUT.id,
+	d: INPUT.default,
+};
+
+const alertEntry =
+	LOCALE.map[currentLocaleId].wip &&
+	assertDefined(await getEntry(currentLocaleId, 'experimental-locale-alert'));
+const aboutEntry = assertDefined(await getEntry(currentLocaleId, 'about'));
+const moreEntry = assertDefined(await getEntry(currentLocaleId, 'related'));
+
+/**
+ * Generates static paths for all supported locales.
+ *
+ * @returns An array of path objects with locale parameters for static site generation
+ */
 export function getStaticPaths() {
 	return keysOf(LOCALE.map).map((localeId) => ({ params: { localeId } }));
 }
 ---
 
-<HomeLayout />
+<PageLayout>
+	<Header />
+	<main>
+		<section>
+			<CounterInput />
+			<CounterOutputs />
+			<Nav />
+			{alertEntry && <Article entry={alertEntry} />}
+		</section>
+		<Article entry={aboutEntry} />
+		<Article entry={moreEntry} />
+	</main>
+	<Footer />
+	<!-- Preload the input text as soon as possible to prevent FOUC -->
+	<script is:inline async type="module" define:vars={inputPreloadVars}>
+		document.getElementById(id).value =
+			new URLSearchParams(document.location.search).get(id) ??
+			localStorage.getItem(id) ??
+			d;
+	</script>
+</PageLayout>
+
+<style>
+	main {
+		display: flex;
+		flex-direction: column;
+		justify-content: start;
+		gap: var(--p-lg);
+		flex: 1;
+		width: 100%;
+		max-width: var(--max-w);
+		padding: var(--p-md);
+		box-sizing: border-box;
+		view-transition-name: main;
+
+		> article {
+			padding: 0 var(--p-md);
+		}
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: var(--p-md);
+		view-transition-name: counter-section;
+	}
+</style>
+
+<script>
+	// Register store effects
+	import '@effects/index.ts';
+</script>
