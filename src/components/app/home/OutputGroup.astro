@@ -17,3 +17,9 @@ const { id, fields } = Astro.props;
 <Form {...wKey(id, 'output', 'form')}>
 	{fields.map((fieldId) => <LabelledOutput id={fieldId} />)}
 </Form>
+
+<style>
+	form {
+		background-color: var(--bg-2);
+	}
+</style>

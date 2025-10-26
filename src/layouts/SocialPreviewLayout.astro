@@ -1,15 +1,15 @@
 ---
 import ButtonLink from '@components/ui/ButtonLink.astro';
 import Card from '@components/ui/Card.astro';
+import { INPUT } from '@config/input.ts';
 import { SITE } from '@config/site.ts';
 import type { SocialPreviewId } from '@config/social-preview.ts';
-import { getLocaleStrings } from '@i18n/index.ts';
-import themeDark from '@images/theme_dark.png';
-import themeLight from '@images/theme_light.png';
-import themeTeal from '@images/theme_teal.png';
-import BaseLayout from '@layouts/BaseLayout.astro';
+import { THEME, type ThemeId } from '@config/theme.ts';
+import { getLocale, getLocaleStrings } from '@i18n/index.ts';
 import { Link } from '@lucide/astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import type { WithChildren } from '../types.ts';
+import BaseLayout from './BaseLayout.astro';
 
 /**
  * Props for the social media preview image layout.
@@ -20,7 +20,9 @@ interface Props extends WithChildren<false> {
 	type: SocialPreviewId;
 }
 
-const msg = getLocaleStrings(Astro);
+const currentLocaleId = getLocale(Astro);
+const msg = getLocaleStrings(currentLocaleId);
+const themeIds: ThemeId[] = ['light', 'dark', 'teal'];
 
 const label = new URL(SITE.url.base).host;
 
@@ -28,7 +30,7 @@ const { type } = Astro.props;
 ---
 
 <BaseLayout>
-	<meta slot="head" name="robots" content="noindex, nofollow" />
+	<meta slot="head" name="robots" content="noindex,nofollow" />
 	<main class={type}>
 		<header>
 			<Card>
@@ -39,17 +41,25 @@ const { type } = Astro.props;
 			</p>
 		</header>
 		<section>
-			<img src={themeLight.src} />
-			<img src={themeDark.src} />
-			<img src={themeTeal.src} />
+			{
+				themeIds.map((themeId) => (
+					<figure>
+						{/* the scrolling attribute is deprecated, but this is by far the easiest way to hide scrollbars in an iframe */}
+						<iframe
+							scrolling="no"
+							src={`${getRelativeLocaleUrl(currentLocaleId)}?${THEME.id}=${themeId}&${INPUT.id}=${msg.input.placeholder}`}
+						/>
+					</figure>
+				))
+			}
 		</section>
 	</main>
 </BaseLayout>
 
 <style>
 	/* Use stronger shadows than the default */
-	body.enable-transitions {
-		--shadow: oklch(0 0 0);
+	body {
+		--shadow: oklch(0 0 0) !important;
 	}
 
 	main {
@@ -58,36 +68,13 @@ const { type } = Astro.props;
 		justify-content: end;
 		align-items: center;
 		flex: 1;
+		width: 100%;
 		overflow: hidden;
 		background-image: radial-gradient(
 			farthest-corner circle at 50% 100% in oklch,
 			var(--bg-3),
 			oklch(0% 0 0 / 0.5)
 		);
-	}
-
-	a {
-		flex-grow: 0;
-	}
-
-	section {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: end;
-	}
-
-	span {
-		width: fit-content;
-		border-radius: var(--radius-md);
-		padding: var(--p-sm);
-		background-color: var(--bg-2);
-		font-family: var(--font-header);
-	}
-
-	p {
-		margin: 0 var(--p-md);
-		font-size: var(--font-lg);
 	}
 
 	header {
@@ -99,26 +86,54 @@ const { type } = Astro.props;
 		text-align: center;
 	}
 
-	img {
-		width: 25%;
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		margin-block-end: calc(-2 * var(--p-lg));
-		margin-inline: calc(-1 * var(--p-md));
-		overflow: hidden;
-		background-color: var(--bg-2);
-		border-radius: var(--radius-md);
-		box-shadow: var(--box-shadow-lg);
-		z-index: 0;
+	p {
+		margin: 0 var(--p-md);
+		font-size: var(--font-lg);
 	}
 
-	img:nth-of-type(2) {
-		width: 40%;
-		margin-block-end: calc(-4.5 * var(--p-lg));
-		margin-inline: calc(-2 * var(--p-lg));
-		z-index: 1;
-		border: var(--border-md) solid var(--primary);
+	section {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: end;
+	}
+
+	figure {
+		--scale: 75%;
+		--offset: 55%;
+
+		flex: 1;
+		height: 65vh;
+		width: 40vw;
+		margin-block-end: calc(-1 * var(--radius-md));
+		border-radius: var(--radius-md);
+		box-shadow: var(--box-shadow-lg);
+		overflow: hidden;
+
+		&:nth-of-type(1) {
+			transform-origin: 100% 100%;
+			transform: scale(var(--scale)) translateX(var(--offset));
+		}
+
+		&:nth-of-type(2) {
+			transform-origin: 50% 100%;
+			border: var(--border-md) solid var(--primary);
+			z-index: 1;
+		}
+
+		&:nth-of-type(3) {
+			transform-origin: 0% 100%;
+			transform: scale(var(--scale)) translateX(calc(-1 * var(--offset)));
+		}
+	}
+
+	iframe {
+		--scale: 0.55;
+
+		width: calc(100% / var(--scale));
+		height: calc(100% / var(--scale));
+		border: none;
+		transform-origin: 0 0;
+		transform: scale(var(--scale));
 	}
 </style>
