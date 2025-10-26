@@ -5,7 +5,7 @@ import type { LocaleMessages } from '../types.ts';
 const TAGLINE = 'Счётчик слов' as const;
 // A short description of the site
 const DESCRIPTION =
-	'Ваш любимый счётчик слов в темном режиме, теперь с еще большим количеством тем!' as const;
+	'Ваш любимый счётчик слов в темном режиме, теперь с ещё большим количеством тем!' as const;
 
 /**
  * English locale strings for the entire application.
@@ -19,18 +19,18 @@ const RU: LocaleMessages = {
 		// Short description shown below the page title
 		description: DESCRIPTION,
 		// Extended description for SEO and social sharing
-		longDescription: `${DESCRIPTION} Count the number of characters, words, sentences, paragraphs, and lines in your text instantly with ${SITE.title}.`,
+		longDescription: `${DESCRIPTION} Подсчитайте количество символов, слов, предложений, абзацев и строк в тексте мгновенно с помощью ${SITE.title}.`,
 		// SEO list of key features. Used in structured data markup
-		features: ['Word counting', 'Character counting', 'Character statistics'],
+		features: ['Подсчет слов', 'Подсчет символов', 'Статистика символов'],
 		// SEO browser requirements. Used in structured data markup
-		requirements: 'Requires a modern web browser',
+		requirements: 'Требуется современный веб-браузер',
 		// SEO keywords. Used in structured data markup
 		keywords: [
-			'character counter',
-			'word counter',
-			'sentence counter',
-			'paragraph counter',
-			'line counter',
+			'счётчик символов',
+			'счётчик слов',
+			'счётчик предложений',
+			'счётчик параграфов',
+			'счётчик строк',
 			'text analysis',
 			'text analyzer',
 			'text statistics',
@@ -39,7 +39,7 @@ const RU: LocaleMessages = {
 	},
 	loader: {
 		// Label shown below the loader on the loading page
-		label: 'Loading...',
+		label: 'Загрузка...',
 	},
 	alert: {
 		note: {
@@ -49,11 +49,11 @@ const RU: LocaleMessages = {
 	},
 	header: {
 		// Accessible label for the header/logo link
-		label: `${SITE.title} homepage`,
+		label: `Домашняя страница ${SITE.title}`,
 	},
 	input: {
 		// Accessible label for the text input area
-		label: 'Text input',
+		label: 'Ввод текста',
 		// Placeholder text shown in empty input area
 		placeholder: 'The quick brown cat jumps over the lazy dog...',
 		largeInputWarning: {
@@ -80,7 +80,7 @@ const RU: LocaleMessages = {
 			},
 			// Paragraph count label
 			paragraphs: {
-				label: 'Параграфы',
+				label: 'Абзацы',
 			},
 			// Line count label
 			lines: {
@@ -111,27 +111,27 @@ const RU: LocaleMessages = {
 	nav: {
 		viewSource: {
 			// Navigation link text for GitHub repository
-			label: 'View source',
+			label: 'Исходный код',
 			// A more verbose tooltip shown on hover
-			tooltip: 'View the source code on GitHub',
+			tooltip: 'Посмотреть исходный код на GitHub',
 		},
 		reportIssue: {
 			// Navigation link text for issue tracker
-			label: 'Report issue',
+			label: 'Сообщить о проблеме',
 			// A more verbose tooltip shown on hover
-			tooltip: 'Report an issue',
+			tooltip: 'Сообщить о проблеме',
 		},
 		sponsor: {
 			// Navigation link text for sponsorship page
-			label: 'Sponsor me',
+			label: 'Спонсировать меня',
 			// A more verbose tooltip shown on hover
-			tooltip: 'Sponsor this project',
+			tooltip: 'Поддержать этот проект',
 		},
 		moreProjects: {
 			// Navigation link text for author's other projects
-			label: 'More projects',
+			label: 'Больше проектов',
 			// A more verbose tooltip shown on hover
-			tooltip: 'View more projects by me',
+			tooltip: 'Посмотреть больше моих проектов',
 		},
 	},
 	locales: {
@@ -140,7 +140,7 @@ const RU: LocaleMessages = {
 	},
 	options: {
 		// Section title for user preferences
-		title: 'Options',
+		title: 'Настройки',
 		// Option names
 		map: {
 			warnOnLargeInputText: {
