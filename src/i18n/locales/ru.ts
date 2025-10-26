@@ -2,10 +2,10 @@ import { SITE } from '@config/site';
 import type { LocaleMessages } from '../types.ts';
 
 // A short tagline shown beside the app name in some cases for additional context
-const TAGLINE = 'Word Counter' as const;
+const TAGLINE = 'Счётчик слов' as const;
 // A short description of the site
 const DESCRIPTION =
-	'Your favorite dark mode word counter, now with even more themes!' as const;
+	'Ваш любимый счётчик слов в темном режиме, теперь с еще большим количеством тем!' as const;
 
 /**
  * English locale strings for the entire application.
@@ -64,47 +64,47 @@ const RU: LocaleMessages = {
 	},
 	output: {
 		// Placeholder text shown when no counts are available
-		placeholder: '-',
+		placeholder: '0',
 		map: {
 			// Character count label
 			characters: {
-				label: 'Characters',
+				label: 'Символы',
 			},
 			// Word count label
 			words: {
-				label: 'Words',
+				label: 'Слова',
 			},
 			// Sentence count label
 			sentences: {
-				label: 'Sentences',
+				label: 'Предложения',
 			},
 			// Paragraph count label
 			paragraphs: {
-				label: 'Paragraphs',
+				label: 'Параграфы',
 			},
 			// Line count label
 			lines: {
-				label: 'Lines',
+				label: 'Строки',
 			},
 			// Space count label
 			spaces: {
-				label: 'Spaces',
+				label: 'Пробелы',
 			},
 			// Letter count label
 			letters: {
-				label: 'Letters',
+				label: 'Буквы',
 			},
 			// Digit count label
 			digits: {
-				label: 'Digits',
+				label: 'Цифры',
 			},
 			// Punctuation count label
 			punctuation: {
-				label: 'Punctuation',
+				label: 'Знаки препинания',
 			},
 			// Symbol/special count label
 			symbols: {
-				label: 'Symbols',
+				label: 'Специальные символы',
 			},
 		},
 	},
@@ -136,7 +136,7 @@ const RU: LocaleMessages = {
 	},
 	locales: {
 		// Section title for language selector
-		title: 'Language',
+		title: 'Язык',
 	},
 	options: {
 		// Section title for user preferences
@@ -156,22 +156,22 @@ const RU: LocaleMessages = {
 	},
 	themes: {
 		// Section title for theme selector
-		title: 'Theme',
+		title: 'Тема',
 		// Theme names
 		map: {
 			// Automatic theme based on system preference
 			auto: {
-				label: 'Auto',
+				label: 'Авто',
 			},
 			// Pure black theme for OLED displays
 			amoled: {
 				label: 'AMOLED',
 			},
 			light: {
-				label: 'Light',
+				label: 'Светлая',
 			},
 			dark: {
-				label: 'Dark',
+				label: 'Тёмная',
 			},
 			teal: {
 				label: 'Teal',
