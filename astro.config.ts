@@ -44,8 +44,22 @@ export default defineConfig({
 		})),
 	},
 	integrations: [
-		// This uses the highest compression ratio by default
-		betterImageService(),
+		betterImageService({
+			sharp: {
+				webp: {
+					effort: 6,
+					// Webp has some pretty awful banding on gradients in social preview images regardless of the quality setting, so we use near-lossless mode to prevent this
+					nearLossless: true,
+				},
+				avif: {
+					quality: 60,
+					effort: 9,
+				},
+				png: {
+					compressionLevel: 9,
+				},
+			},
+		}),
 		markdoc(),
 		robotsTxt({
 			sitemapBaseFileName: `${SITE.sitemapPrefix}-index`,
@@ -81,7 +95,6 @@ export default defineConfig({
 			HTML: {
 				'html-minifier-terser': {
 					minifyCSS: false,
-					// collapseWhitespace: true,
 				},
 			},
 			CSS: {

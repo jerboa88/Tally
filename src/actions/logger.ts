@@ -5,6 +5,7 @@ import {
 	$rememberInputText,
 	$theme,
 	$persistedInputText,
+	$persistedTheme,
 } from '@stores/index.ts';
 import { logger } from '@nanostores/logger';
 
@@ -27,6 +28,7 @@ export function toggleDebugLogging(enable: boolean) {
 			$rememberInputText,
 			$theme,
 			$inputText,
+			$persistedTheme,
 			$persistedInputText,
 			$outputCounts,
 		});

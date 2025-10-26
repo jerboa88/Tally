@@ -1,0 +1,125 @@
+---
+import { THEME } from '@config/theme.ts';
+import type { WithChildren } from '../types.ts';
+import BaseLayout from './BaseLayout.astro';
+import Head from './Head.astro';
+
+/**
+ * Props for the page layout wrapper.
+ *
+ * Allows children content for the main body and head slot.
+ */
+type Props = WithChildren<true>;
+
+const themePreloadVars = {
+	id: THEME.id,
+	d: THEME.default,
+};
+---
+
+<BaseLayout>
+	<Head>
+		<slot name="head" />
+		<!-- Preload the theme as soon as possible to prevent FOUC -->
+		<script is:inline async type="module" define:vars={themePreloadVars}>
+			document.documentElement.dataset[id] =
+				new URLSearchParams(document.location.search).get(id) ??
+				localStorage.getItem(id) ??
+				d;
+		</script>
+	</Head>
+
+	<body>
+		<slot />
+	</body>
+</BaseLayout>
+
+<script>
+	import { CLASS } from '@config/class.ts';
+	import { INPUT } from '@config/input.ts';
+	import { OPTION } from '@config/option.ts';
+	import { THEME, type ThemeId } from '@config/theme.ts';
+	import {
+		$enableDebugLogging,
+		$inputText,
+		$rememberInputText,
+		$theme,
+		$warnOnLargeInputText,
+	} from '@stores/index.ts';
+	import { decodeQueryParam, entriesOf, parseBoolean } from '@utils/index.ts';
+	import type { WritableAtom } from 'nanostores';
+	import { isResultOk } from 'radashi';
+
+	/**
+	 * Parses a boolean query parameter and updates the corresponding store.
+	 *
+	 * Logs a warning if the parameter value cannot be parsed as a boolean.
+	 *
+	 * @param value - The query parameter value to parse
+	 * @param store - The store to update with the parsed boolean
+	 */
+	function handleBooleanParam(value: string, store: WritableAtom<boolean>) {
+		const result = parseBoolean(value);
+
+		if (isResultOk(result)) {
+			store.set(result[1]);
+		} else {
+			console.warn(result[0]);
+		}
+	}
+
+	// Enable transitions after page load
+	window.addEventListener('load', () => {
+		document.body.classList.add(CLASS.enableTransitions);
+	});
+
+	// Add a data attribute to the page body when the theme changes
+	$theme.subscribe((value) => {
+		document.documentElement.dataset[THEME.id] = value;
+	});
+
+	const params = new URLSearchParams(document.location.search);
+	const paramMap = {
+		[THEME.id]: {
+			store: $theme,
+			handler: (value: string) => {
+				if (value in THEME.map) {
+					$theme.set(value as ThemeId);
+				} else {
+					console.warn(`Theme '${value}' from param not found`);
+				}
+			},
+		},
+		[OPTION.map.rememberInputText.id]: {
+			store: $rememberInputText,
+			handler: (value: string) => handleBooleanParam(value, $rememberInputText),
+		},
+		[OPTION.map.warnOnLargeInputText.id]: {
+			store: $warnOnLargeInputText,
+			handler: (value: string) =>
+				handleBooleanParam(value, $warnOnLargeInputText),
+		},
+		[OPTION.map.enableDebugLogging.id]: {
+			store: $enableDebugLogging,
+			handler: (value: string) =>
+				handleBooleanParam(value, $enableDebugLogging),
+		},
+		[INPUT.id]: {
+			store: $inputText,
+			handler: (value: string) => {
+				$inputText.set(decodeQueryParam(value));
+			},
+		},
+	};
+
+	// Process all params
+	for (const [key, config] of entriesOf(paramMap)) {
+		const value = params.get(key);
+
+		if (value) {
+			console.debug(`Found query param: '${key}'`);
+
+			config.handler(value);
+		}
+	}
+</script>
