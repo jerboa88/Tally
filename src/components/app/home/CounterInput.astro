@@ -26,15 +26,12 @@ const { label, placeholder } = getLocaleStrings(Astro).input;
 	import { $inputText } from '@stores/index.ts';
 	import { debounce, getDefinedElementById } from '@utils/index.ts';
 
+	// Setting the initial textarea value is handled by the preload script on the counter page
 	const updateInputText = debounce(() => $inputText.set(input.value));
 
 	const input = getDefinedElementById<HTMLTextAreaElement>(INPUT.id);
 
 	input.addEventListener('input', updateInputText);
-
-	$inputText.subscribe((value) => {
-		input.value = value;
-	});
 
 	input.disabled = false;
 </script>
