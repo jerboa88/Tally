@@ -24,9 +24,10 @@ import PageLayout from '@layouts/PageLayout.astro';
 
 <script>
 	import { getBestMatchingLocale } from '@i18n/index.ts';
+	import { getRelativeLocaleUrl } from 'astro:i18n';
 
 	const detectedLocale = getBestMatchingLocale();
 
 	// Forward query params to the destination page
-	window.location.href = `/${detectedLocale}/${location.search}`;
+	window.location.href = `${getRelativeLocaleUrl(detectedLocale)}${location.search}`;
 </script>
