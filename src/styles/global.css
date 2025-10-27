@@ -1,0 +1,31 @@
+/* Base styles */
+/* ----------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--f-header);
+}
+
+* {
+	outline: var(--b-md) solid transparent;
+
+	&:focus-visible {
+		outline-color: var(--p);
+	}
+}
+
+@view-transition {
+	navigation: auto;
+}
+
+::selection {
+	background-color: color-mix(
+		in oklch shorter hue,
+		var(--p),
+		transparent var(--mix-lg)
+	);;
+}

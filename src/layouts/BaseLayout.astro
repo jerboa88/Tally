@@ -1,10 +1,10 @@
 ---
 import { THEME } from '@config/theme.ts';
 import { getLocale } from '@i18n/index.ts';
-import '../styles/base.css';
+import '../styles/global.css';
 import '../styles/themes.css';
+import '../styles/tokens.css';
 import '../styles/utils.css';
-import '../styles/vars.css';
 import type { WithChildren } from '../types.ts';
 import Head from './Head.astro';
 
@@ -33,15 +33,14 @@ const currentLocaleId = getLocale(Astro);
 	body {
 		display: flex;
 		flex-direction: column;
-		justify-content: start;
 		align-items: center;
 		gap: var(--p-md);
 		min-height: 100dvh;
 		margin: 0;
 		background-color: var(--bg-1);
 		color: var(--fg);
-		font-family: var(--font-base);
-		font-weight: var(--normal);
+		font-family: var(--f-body);
+		font-weight: var(--f-normal);
 		line-height: 1.5;
 	}
 </style>

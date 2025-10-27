@@ -1,57 +1,67 @@
+/* Themes
+   ------
+   --bg-1 : Primary background color (low elevation)
+   --bg-2 : Secondary background color (medium elevation)
+   --fg   : Foreground (text/content) color
+   --p    : Primary accent color
+   --s-mix: Shadow mix percentage for blending effects
+*/
+
+/* Default light theme */
+/* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
 :root {
-	/* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
-	--light-bg-1: oklch(92.2% 0 0); /* Neutral 200  */
-	--light-bg-2: oklch(98.5% 0 0); /* Neutral 50 */
-	--light-content: oklch(14.5% 0 0); /* Neutral 950 */
-	--light-primary: oklch(45.7% 0.24 277.023); /* Indigo 700 */
-	--light-shadow-mix: 30%;
+	--l-bg-1: oklch(92.2% 0 0); /* Neutral 200  */
+	--l-bg-2: oklch(98.5% 0 0); /* Neutral 50 */
+	--l-fg: oklch(14.5% 0 0); /* Neutral 950 */
+	--l-p: oklch(45.7% 0.24 277.023); /* Indigo 700 */
+	--l-s-mix: 30%;
 }
 
-/* Auto (dark) / Dark theme */
+/* Auto (dark) theme / Dark theme */
 /* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
 [data-theme='auto'], [data-theme='dark'] {
 	--bg-1: oklch(20.5% 0 0); /* Neutral 900 */
 	--bg-2: oklch(26.9% 0 0); /* Neutral 800 */
 	--fg: oklch(98.5% 0 0); /* Neutral 50 */
-	--primary: oklch(70.7% 0.165 254.624); /* Blue 400 */
-	--shadow-mix: 100%;
+	--p: oklch(70.7% 0.165 254.624); /* Blue 400 */
+	--s-mix: 100%;
 }
 
 /* Auto (light) theme */
 /* Make the default theme light if the user prefers light mode */
 @media (prefers-color-scheme: light) {
 	[data-theme='auto'] {
-		--bg-1: var(--light-bg-1);
-		--bg-2: var(--light-bg-2);
-		--fg: var(--light-content);
-		--primary: var(--light-primary);
-		--shadow-mix: var(--light-shadow-mix);
+		--bg-1: var(--l-bg-1);
+		--bg-2: var(--l-bg-2);
+		--fg: var(--l-fg);
+		--p: var(--l-p);
+		--s-mix: var(--l-s-mix);
 	}
 }
 
 /* Light theme */
 [data-theme='light'] {
-	--bg-1: var(--light-bg-1);
-	--bg-2: var(--light-bg-2);
-	--fg: var(--light-content);
-	--primary: var(--light-primary);
-	--shadow-mix: var(--light-shadow-mix);
+	--bg-1: var(--l-bg-1);
+	--bg-2: var(--l-bg-2);
+	--fg: var(--l-fg);
+	--p: var(--l-p);
+	--s-mix: var(--l-s-mix);
 }
 
 [data-theme='dusk'] {
 	--bg-1: oklch(15% 0.018 270);
 	--bg-2: oklch(22% 0.04 330);
 	--fg: oklch(90% 0.08 340);
-	--primary: oklch(0.64 0.21 22.89);
-	--shadow-mix: 100%;
+	--p: oklch(0.64 0.21 22.89);
+	--s-mix: 100%;
 }
 
 [data-theme='teal'] {
 	--bg-1: oklch(52% 0.07 190);
 	--bg-2: oklch(58% 0.07 185);
 	--fg: oklch(100% 0 0);
-	--primary: oklch(85% 0.085 30);
-	--shadow-mix: var(--light-shadow-mix);
+	--p: oklch(85% 0.085 30);
+	--s-mix: var(--l-s-mix);
 }
 
 /* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
@@ -59,11 +69,11 @@
 	--bg-1: oklch(0 0 0);
 	--bg-2: oklch(0 0 0);
 	--fg: oklch(92.2% 0 0); /* Neutral 200 */
-	--primary: oklch(92.2% 0 0); /* Neutral 200 */
-	--shadow-mix: 0%;
+	--p: oklch(92.2% 0 0); /* Neutral 200 */
+	--s-mix: 0%;
 
 	textarea {
-		border: var(--border-md) solid var(--primary);
+		border: var(--b-md) solid var(--p);
 	}
 }
 
@@ -72,8 +82,8 @@
 	--bg-1: oklch(27.4% 0.05 219.6); /* base03 */
 	--bg-2: oklch(32.1% 0.053 219.6); /* base02 */
 	--fg: oklch(71.8% 0.017 198); /* base0 */
-	--primary: oklch(63.1% 0.166 50.4); /* orange */
-	--shadow-mix: 100%;
+	--p: oklch(63.1% 0.166 50.4); /* orange */
+	--s-mix: 100%;
 }
 
 /* Colors from OKSolar (https://meat.io/oksolar) */
@@ -81,54 +91,54 @@
 	--bg-1: oklch(93.06% 0.026 92.4); /* base2 */
 	--bg-2: oklch(97.35% 0.026 90.1); /* base3 */
 	--fg: oklch(54.4% 0.017 219.6); /* base00 */
-	--primary: oklch(63.1% 0.221 21.6); /* red */
-	--shadow-mix: var(--light-shadow-mix);
+	--p: oklch(63.1% 0.221 21.6); /* red */
+	--s-mix: var(--l-s-mix);
 }
 
 [data-theme='gruvboxDark'] {
 	--bg-1: oklch(21% 0 0);
 	--bg-2: oklch(26% 0.01 45);
 	--fg: oklch(85% 0.08 90);
-	--primary: oklch(62% 0.2 75);
-	--shadow-mix: 100%;
+	--p: oklch(62% 0.2 75);
+	--s-mix: 100%;
 }
 
 [data-theme='gruvboxLight'] {
 	--bg-1: oklch(85% 0.08 90);
 	--bg-2: oklch(95% 0.06 90);
 	--fg: oklch(26% 0.01 45);
-	--primary: oklch(62% 0.2 75);
-	--shadow-mix: var(--light-shadow-mix);
+	--p: oklch(62% 0.2 75);
+	--s-mix: var(--l-s-mix);
 }
 
 [data-theme='catppuccinMocha'] {
 	--bg-1: oklch(20% 0.02 270);
 	--bg-2: oklch(28% 0.03 270);
 	--fg: oklch(90% 0.06 270);
-	--primary: oklch(75% 0.18 270);
-	--shadow-mix: 100%;
+	--p: oklch(75% 0.18 270);
+	--s-mix: 100%;
 }
 
 [data-theme='catppuccinLatte'] {
 	--bg-1: oklch(92% 0.01 250);
 	--bg-2: oklch(96% 0.01 250);
 	--fg: oklch(30% 0.02 260);
-	--primary: oklch(68% 0.18 275);
-	--shadow-mix: var(--light-shadow-mix);
+	--p: oklch(68% 0.18 275);
+	--s-mix: var(--l-s-mix);
 }
 
 [data-theme='dracula'] {
 	--bg-1: oklch(24% 0.03 270);
 	--bg-2: oklch(36% 0.03 270);
 	--fg: oklch(98% 0.01 100);
-	--primary: oklch(70% 0.2 300);
-	--shadow-mix: 100%;
+	--p: oklch(70% 0.2 300);
+	--s-mix: 100%;
 }
 
 [data-theme='nord'] {
 	--bg-1: oklch(25% 0.03 250);
 	--bg-2: oklch(30% 0.03 250);
 	--fg: oklch(88% 0.03 250);
-	--primary: oklch(65% 0.18 250);
-	--shadow-mix: 100%;
+	--p: oklch(65% 0.18 250);
+	--s-mix: 100%;
 }

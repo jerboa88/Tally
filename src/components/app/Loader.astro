@@ -29,12 +29,8 @@ const msg = getLocaleStrings(LOCALE.default).loader.label;
 
 <style>
 	figure {
-		--blue: var(--primary);
-		--blue-dark: color-mix(
-			in oklch shorter hue,
-			var(--primary),
-			#000 var(--mix-md)
-		);
+		--blue: var(--p);
+		--blue-dark: color-mix(in oklch shorter hue, var(--p), #000 var(--mix-md));
 		--key: #fff;
 		--paper: #eef0fd;
 		--text: #00000049;
@@ -42,7 +38,7 @@ const msg = getLocaleStrings(LOCALE.default).loader.label;
 		--duration: 3s;
 
 		position: relative;
-		filter: var(--drop-shadow-md);
+		filter: var(--s-drop-md);
 		animation: bounce var(--duration) linear infinite;
 	}
 
@@ -51,8 +47,8 @@ const msg = getLocaleStrings(LOCALE.default).loader.label;
 	}
 
 	h1 {
-		font-family: var(--font-header);
-		font-size: var(--font-md);
+		font-family: var(--f-header);
+		font-size: var(--f-md);
 	}
 
 	.slide {

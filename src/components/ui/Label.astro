@@ -38,7 +38,7 @@ const props = Astro.props;
 		}
 
 		&:has(> input[type='checkbox']:not(:checked)) {
-			box-shadow: var(--box-shadow-inset-md);
+			box-shadow: var(--s-box-inset-md);
 		}
 
 		&:has(> input[type='checkbox'])::before {
@@ -47,16 +47,16 @@ const props = Astro.props;
 
 		/* Applies to both radio and checkbox inputs */
 		&:has(> input:checked) {
-			font-weight: var(--bolder);
+			font-weight: var(--f-bolder);
 			background-color: var(--bg-3);
-			box-shadow: var(--box-shadow-md);
+			box-shadow: var(--s-box-md);
 			opacity: 1;
-			box-shadow: var(--box-shadow-md);
+			box-shadow: var(--s-box-md);
 			z-index: 1;
 
 			&::before {
 				content: '✓ ';
-				font-weight: var(--bolder);
+				font-weight: var(--f-bolder);
 			}
 		}
 	}

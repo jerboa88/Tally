@@ -23,10 +23,10 @@ const props = Astro.props;
 		padding: var(--p-md);
 		background-color: var(--bg-2);
 		color: var(--fg);
-		font-family: var(--font-base);
-		font-size: var(--font-md);
-		font-weight: var(--normal);
-		transition-duration: var(--duration-md);
+		font-family: var(--f-body);
+		font-size: var(--f-md);
+		font-weight: var(--f-normal);
+		transition-duration: var(--d-md);
 		resize: block;
 		view-transition-name: input;
 		line-height: inherit;
@@ -39,7 +39,7 @@ const props = Astro.props;
 		}
 
 		&:disabled {
-			opacity: var(--opacity-md);
+			opacity: var(--o-md);
 		}
 
 		&::-webkit-scrollbar {
@@ -47,9 +47,9 @@ const props = Astro.props;
 		}
 
 		&::-webkit-scrollbar-thumb {
-			border-radius: var(--radius-md);
+			border-radius: var(--r-md);
 			background-color: var(--fg);
-			box-shadow: var(--box-shadow-md);
+			box-shadow: var(--s-box-md);
 			cursor: pointer;
 		}
 
