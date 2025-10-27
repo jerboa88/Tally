@@ -2,9 +2,10 @@
 import Article from '@components/ui/Article.astro';
 import { LOCALE } from '@config/locale.ts';
 import { getLocale } from '@i18n/index.ts';
-import { assertDefined, keysOf, wKey } from '@utils/index.ts';
+import { keysOf, wKey } from '@utils/index.ts';
 import type { HTMLAttributes } from 'astro/types';
 import { getEntry } from 'astro:content';
+import { assert } from 'radashi';
 import type { WithChildren } from '../../types.ts';
 import LocaleSelector from './LocaleSelector.astro';
 import OptionsSelector from './OptionsSelector.astro';
@@ -19,8 +20,12 @@ type Props = WithChildren<false, HTMLAttributes<'footer'>>;
 
 const hasMultipleLocales = keysOf(LOCALE.map).length > 1;
 const currentLocaleId = getLocale(Astro);
-const creditsEntry = assertDefined(await getEntry(currentLocaleId, 'credits'));
-const privacyEntry = assertDefined(await getEntry(currentLocaleId, 'privacy'));
+
+const creditsEntry = await getEntry(currentLocaleId, 'credits');
+const privacyEntry = await getEntry(currentLocaleId, 'privacy');
+
+assert(creditsEntry, "'credits' entry does not exist");
+assert(privacyEntry, "'privacy' entry does not exist");
 
 const props = Astro.props;
 ---

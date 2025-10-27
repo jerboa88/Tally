@@ -9,8 +9,9 @@ import { INPUT } from '@config/input.ts';
 import { LOCALE } from '@config/locale.ts';
 import { getLocale } from '@i18n/index.ts';
 import PageLayout from '@layouts/PageLayout.astro';
-import { assertDefined, keysOf } from '@utils/index.ts';
+import { keysOf } from '@utils/index.ts';
 import { getEntry } from 'astro:content';
+import { assert } from 'radashi';
 import type { WithChildren } from '../../types.ts';
 
 /**
@@ -20,17 +21,48 @@ import type { WithChildren } from '../../types.ts';
  */
 type Props = WithChildren<false>;
 
+/**
+ * Conditionally loads a content entry by ID.
+ *
+ * @typeParam TId - The content entry ID type
+ * @param id - The content entry ID to load
+ * @param condition - Whether to load the entry
+ * @param error - Optional error message if the entry doesn't exist
+ * @returns The content entry if condition is true, otherwise false
+ * @throws {Error} If the entry doesn't exist when condition is true
+ */
+async function getEntryIf<TId extends string>(
+	id: TId,
+	condition: boolean,
+	error?: string,
+) {
+	if (!condition) {
+		return false;
+	}
+
+	const entry = await getEntry(currentLocaleId, id);
+
+	assert(entry, error);
+
+	return entry;
+}
+
 const currentLocaleId = getLocale(Astro);
 const inputPreloadVars = {
 	id: INPUT.id,
 	d: INPUT.default,
 };
 
-const alertEntry =
-	LOCALE.map[currentLocaleId].wip &&
-	assertDefined(await getEntry(currentLocaleId, 'experimental-locale-alert'));
-const aboutEntry = assertDefined(await getEntry(currentLocaleId, 'about'));
-const moreEntry = assertDefined(await getEntry(currentLocaleId, 'related'));
+const aboutEntry = await getEntry(currentLocaleId, 'about');
+const relatedEntry = await getEntry(currentLocaleId, 'related');
+const alertEntry = await getEntryIf(
+	'experimental-locale-alert',
+	LOCALE.map[currentLocaleId].wip,
+	"'alert' entry does not exist",
+);
+
+assert(aboutEntry, "'about' entry does not exist");
+assert(relatedEntry, "'related' entry does not exist");
 
 /**
  * Generates static paths for all supported locales.
@@ -52,7 +84,7 @@ export function getStaticPaths() {
 			{alertEntry && <Article entry={alertEntry} />}
 		</section>
 		<Article entry={aboutEntry} />
-		<Article entry={moreEntry} />
+		<Article entry={relatedEntry} />
 	</main>
 	<Footer />
 	<!-- Preload the input text as soon as possible to prevent FOUC -->

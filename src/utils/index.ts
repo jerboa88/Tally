@@ -1,5 +1,5 @@
 // This file is imported by astro.config.ts which doesn't support aliases, so we can't use them here either
-import { tryit, type Result } from 'radashi';
+import { assert, identity, tryit, type Result } from 'radashi';
 import { SITE } from '../config/site.ts';
 import type { HttpsUrl } from '../types.ts';
 
@@ -24,24 +24,6 @@ export function entriesOf<T extends object>(obj: T): [keyof T, T[keyof T]][] {
 }
 
 /**
- * Asserts that a value is defined (not null or undefined) and returns it.
- *
- * @param value - The value to check
- * @param label - A label for the value to use in the error message (default: 'value')
- * @returns The value if defined
- * @throws {Error} If the value is null or undefined
- */
-export function assertDefined<T>(
-	value: T | null | undefined,
-	label = 'value',
-): T {
-	if (value === null || value === undefined) {
-		throw new Error(`Expected ${label} to be defined`);
-	}
-	return value;
-}
-
-/**
  * Gets a DOM element by ID and asserts it exists.
  *
  * @typeParam T - The expected HTML element type (default: HTMLElement)
@@ -52,35 +34,11 @@ export function assertDefined<T>(
 export function getDefinedElementById<T extends HTMLElement = HTMLElement>(
 	id: string,
 ): T {
-	return assertDefined(
-		document.getElementById(id) as T | null,
-		`element with id '${id}'`,
-	);
-}
+	const element = document.getElementById(id) as T | null;
 
-/**
- * Debounces a function to limit how often it can be called.
- *
- * @remarks
- * The default delay of 35ms is just above the default keyboard auto-repeat rates of most operating systems.
- *
- * @param fn - The function to debounce
- * @param delay - The delay in milliseconds (default: 35)
- * @returns The debounced function
- */
-export function debounce<T extends (...args: any[]) => void>(
-	fn: T,
-	delay = 35,
-) {
-	let timeoutId: number | undefined;
+	assert(element, `element with id '${id}' does not exist`);
 
-	return (...args: Parameters<T>) => {
-		window.clearTimeout(timeoutId);
-
-		timeoutId = window.setTimeout(() => {
-			fn(...args);
-		}, delay);
-	};
+	return element;
 }
 
 /**
@@ -90,7 +48,7 @@ export function debounce<T extends (...args: any[]) => void>(
  * @returns An object containing the style property with viewTransitionName
  */
 export function wKey(...keys: (string | undefined | null)[]) {
-	const key = keys.filter((k) => k).join('-');
+	const key = keys.filter(identity).join('-');
 
 	return {
 		style: {
@@ -104,14 +62,9 @@ export function wKey(...keys: (string | undefined | null)[]) {
  *
  * @param urlString - The URL string to check
  * @returns True if the URL starts with "https://"
- * @throws {Error} If urlString is null or undefined
  */
-export function isExternalUrl(
-	urlString: string | undefined,
-): urlString is HttpsUrl {
-	const definedUrlString = assertDefined(urlString, 'URL string');
-
-	return definedUrlString.startsWith('https://');
+export function isExternalUrl(urlString: string): urlString is HttpsUrl {
+	return urlString.startsWith('https://');
 }
 
 /**

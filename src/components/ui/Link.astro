@@ -1,6 +1,7 @@
 ---
 import { isExternalUrl } from '@utils/index.ts';
 import type { HTMLAttributes } from 'astro/types';
+import { assert } from 'radashi';
 import type { WithChildren } from '../../types.ts';
 
 type AnchorAttributes = HTMLAttributes<'a'>;
@@ -44,6 +45,8 @@ let { rel, to, href, tooltip, ...restProps } = internalProps;
 href ??= to;
 
 const relsSet = new Set(rel?.split(' '));
+
+assert(href, "one of 'href' or 'to' attributes must be provided to Link");
 
 if (isExternalUrl(href)) {
 	relsSet.add('external');

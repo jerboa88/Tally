@@ -1,8 +1,8 @@
 import type { AstroGlobal } from 'astro';
 import { LOCALE, type LocaleId } from '@config/locale.ts';
-import { assertDefined, keysOf } from '@utils/index.ts';
+import { keysOf } from '@utils/index.ts';
 import type { LocaleMessages } from './types.ts';
-import { objectify } from 'radashi';
+import { assert, identity, objectify } from 'radashi';
 
 const localeIds = keysOf(LOCALE.map);
 
@@ -13,7 +13,7 @@ const modules = import.meta.glob<LocaleMessages>('./locales/*.ts', {
 
 const localeMessageMap = objectify(
 	localeIds,
-	(localeId) => localeId,
+	identity<LocaleId>,
 	loadModuleById,
 );
 
@@ -69,9 +69,7 @@ export function getLocaleStrings(localeId?: LocaleId): LocaleMessages;
 export function getLocaleStrings(arg?: AstroGlobal | LocaleId): LocaleMessages {
 	const localeId = typeof arg === 'string' ? arg : getLocale(arg);
 
-	return (
-		localeMessageMap[localeId as LocaleId] ?? localeMessageMap[LOCALE.default]
-	);
+	return localeMessageMap[localeId] ?? localeMessageMap[LOCALE.default];
 }
 
 /**
@@ -110,11 +108,9 @@ export function getLocaleInfo(localeId: LocaleId) {
 		type: 'language',
 	});
 	const regionDisplay = new Intl.DisplayNames([localeId], { type: 'region' });
+	const languageName = languageDisplay.of(language);
 
-	const languageName = assertDefined(
-		languageDisplay.of(language),
-		`language name for ${language}`,
-	);
+	assert(languageName, `language name for ${language} does not exist`);
 
 	// Only include regionName if explicitly specified in input
 	const regionName = locale.region
