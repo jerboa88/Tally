@@ -69,7 +69,7 @@ Typing or pasting type into the editor will update the counts in real-time. The 
 ### Languages
 
 > [!NOTE]
-> Some languages are marked as _**experimental**_. This means that the translations haven't been reviewed and/or counting accuracy has not been extensively tested for that language. If you encounter any issues with a language, please [open an issue].
+> Some languages are marked as _**experimental**_. This means that the translations haven't been reviewed and/or counting accuracy has not been extensively tested for that language. If you encounter any issues with a language, please [open an issue](https://github.com/jerboa88/Tally/issues).
 
 You can change the language with the language selector. Choosing a language changes the UI text to that language and adjusts the segmentation rules that determine how graphemes, words, and sentences are counted.
 
@@ -110,6 +110,51 @@ It can take a while to process extremely large inputs, so this option helps you 
 
 When you toggle _**Enable debug logging**_, the application emits extra diagnostic messages to the browser console to help you inspect internal state changes and other info for debugging purposes. This is disabled by default.
 
+## 🤖 Advanced Usage
+
+### Using URL query parameters
+
+> [!TIP]
+> You can pass your search parameters directly to https://tally.johng.io/, but if you already know what language you want to use, it is faster to use the language-specific URL (ex. https://tally.johng.io/de/).
+
+You can prefill the editor and set options by adding query parameters to the URL. This is useful for sharing preconfigured counts, automating tests, or customizing **Tally** without having to save data to local storage.
+
+For example, perhaps you want to use the _**Teal**_ theme and disable the warning about large inputs, but you have your browser configured to clear the cache after every session. You could bookmark the following URL: https://tally.johng.io/en/?theme=teal&warnOnLargeInputText=false and your preferences will be restored every time the page loads.
+
+#### Input
+
+Set `input` to a URL-encoded string to prefill the editor with this text.
+
+**Example:** https://tally.johng.io/en/?input=Whoa!+This+text+was+passed+via+query+params.
+
+> [!TIP]
+> You can configure your browser to use Tally as a custom search engine so that you can perform quick counts from the address bar. For example, with the following configuration:
+>
+> ![Screenshot of Tally's available themes](docs/images/chrome-site-search.png)
+>
+> typing
+> `tally` <kbd>tab</kbd> `your input text here` into your address bar will open **Tally** with the counts already calculated.
+>
+> See your browser's documentation on how to configure this:
+>
+> - **Chromium:** https://support.google.com/chrome/answer/95426
+> - **Firefox:**: https://support.mozilla.org/en-US/kb/add-custom-search-engine-firefox
+
+#### Theme
+
+Set `theme` to a theme ID to apply that theme. You can find the full list of theme IDs in [src/config/theme.ts](src/config/theme.ts) (it is usually just the English theme name converted to camelcase).
+
+**Example:** https://tally.johng.io/en/?theme=catppuccinLatte
+
+#### Options
+
+> [!TIP]
+> You can either use numbers like `1` or `0` or textual values like `true` or `false` to set options.
+
+You can also set any of the supported options by passing query params. You can find the full list of option IDs in [src/config/option.ts](src/config/option.ts) (it is usually just the English option name converted to camelcase).
+
+**Example:** https://tally.johng.io/en/?warnOnLargeInputText=false&rememberInputText=1&enableDebugLogging=0
+
 ## 🧾 License
 
 Copyright © 2025 [John Goodliff](https://johng.io).
@@ -121,7 +166,7 @@ This project is licensed under the AGPL-3.0 License. See [LICENSE](LICENSE) for 
 
 ## 🖇️ Related
 
-- **👤 [Tally Chrome Extension]**: A Chrome extension to easily count the number of words, characters, and paragraphs on any site
+- **👤 [Tally Chrome Extension](https://github.com/jerboa88/Tally-Extension)**: A Chrome extension to easily count the number of words, characters, and paragraphs on any site
 - **👤 [Mergist](https://mergist.johng.io)**: Mergist is an online tool to combine multiple PDF files into one. Mergist has no ads, no file size limits, and your files never leave your device
 - **👤 [Shared File Finder for Google Drive](https://github.com/jerboa88/Shared-File-Finder-for-Google-Drive)**: An Apps Script that finds all files/folders on Google Drive that are shared with others and adds them to a Google Sheet
 
@@ -138,6 +183,3 @@ If you can't donate but still want to contribute, don't worry. There are many ot
 - ⭐ starring the project
 
 I appreciate the support!
-
-[Tally Chrome Extension]: https://github.com/jerboa88/Tally-Extension
-[open an issue]: https://github.com/jerboa88/Tally/issues
