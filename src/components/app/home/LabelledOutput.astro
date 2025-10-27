@@ -21,7 +21,7 @@ const msg = getLocaleStrings(Astro).output;
 const label = msg.map[id].label;
 ---
 
-<Label {...wKey(id, 'label')}>
+<Label aria-live="polite" aria-atomic="true" {...wKey(id, 'label')}>
 	{label}
 	<Output {id} />
 </Label>

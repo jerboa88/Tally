@@ -3,47 +3,42 @@ import { getLocaleStrings } from '@i18n/index.ts';
 import { Info } from '@lucide/astro';
 import type { HTMLAttributes } from 'astro/types';
 import type { WithChildren } from '../../types.ts';
+import Strong from './Strong.astro';
 
 /**
- * Props for an alert/notification blockquote with configurable styling. Used by Markdoc.
+ * Props for an alert/notification aside with configurable styling. Used by Markdoc.
  */
-type Props = WithChildren<true, HTMLAttributes<'blockquote'>>;
+type Props = WithChildren<true, HTMLAttributes<'aside'>>;
 
 const msg = getLocaleStrings(Astro).alert.note.title;
 
 const props = Astro.props;
 ---
 
-<blockquote {...props}>
-	<h4>
+<aside role="note" {...props}>
+	<Strong>
 		<Info size={16} aria-hidden="true" />
 		{msg}
-	</h4>
+	</Strong>
 	<slot />
-</blockquote>
+</aside>
 
 <style>
-	blockquote {
-		margin: 0;
+	aside {
+		display: flex;
+		flex-direction: column;
+		gap: var(--p-sm);
 		padding: var(--p-md);
-		border-width: var(--border-md);
-		border-style: solid;
 		border-radius: var(--radius-md);
-		border-color: var(--primary);
+		border: var(--border-md) solid var(--primary);
 
-		&::before {
-			display: block;
-			padding-block-end: var(--p-sm);
-			font-weight: var(--bold);
-		}
-
-		h4 {
+		strong {
 			display: inline-flex;
 			flex-direction: row;
 			align-items: center;
 			gap: var(--p-xs);
-			margin-block-start: 0;
 			color: var(--primary);
+			font-family: var(--font-header);
 		}
 
 		p {
