@@ -144,7 +144,7 @@ const EN: LocaleMessages = {
 		// Option names
 		map: {
 			warnOnLargeInputText: {
-				label: 'Warn on large input input',
+				label: 'Warn on large input text',
 			},
 			rememberInputText: {
 				label: 'Remember input text',
