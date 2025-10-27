@@ -55,7 +55,7 @@
 		"upgrade-interactive": "ncu -i --format group"
 	},
 	"devDependencies": {
-		"@astrojs/check": "^0.9.4",
+		"@astrojs/check": "0.9.5",
 		"@types/bun": "latest",
 		"npm-check-updates": "^19.1.1",
 		"prettier-plugin-astro-organize-imports": "^0.4.11",
@@ -70,7 +70,7 @@
 		"@nanostores/logger": "^1.0.0",
 		"@nanostores/persistent": "^1.1.0",
 		"@playform/compress": "^0.2.0",
-		"astro": "^5.14.6",
+		"astro": "5.15.1",
 		"astro-better-image-service": "^2.1.9",
 		"astro-capo": "^0.0.1",
 		"astro-robots-txt": "^1.0.0",
