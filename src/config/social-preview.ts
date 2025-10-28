@@ -1,12 +1,12 @@
 /**
  * Configuration for a single social preview.
  *
- * @property id - The identifier for the preview type (e.g., 'og' for Open Graph, 'twitter' for Twitter
+ * @property includeInHead - Whether to include this preview in the HTML head section
  * @property width - The width of the preview image in pixels
  * @property height - The height of the preview image in pixels
  */
 type SocialPreview = {
-	id: string;
+	includeInHead: boolean;
 	width: number;
 	height: number;
 };
@@ -28,14 +28,19 @@ type SocialPreviewConfig = {
 
 const socialPreviewMap = {
 	og: {
-		id: 'og',
+		includeInHead: true,
 		width: 1200,
 		height: 630,
 	},
 	twitter: {
-		id: 'twitter',
+		includeInHead: true,
 		width: 1200,
 		height: 675,
+	},
+	story: {
+		includeInHead: false,
+		width: 1080,
+		height: 1920,
 	},
 } as const satisfies SocialPreviewMap;
 
@@ -50,5 +55,4 @@ export const SOCIAL_PREVIEW = {
 /**
  * Union type of all valid social preview IDs ('og' | 'twitter').
  */
-export type SocialPreviewId =
-	(typeof socialPreviewMap)[keyof typeof socialPreviewMap]['id'];
+export type SocialPreviewId = keyof typeof socialPreviewMap;
