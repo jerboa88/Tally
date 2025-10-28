@@ -1,0 +1,18 @@
+---
+import type { WithChildren } from '../../types.ts';
+
+/**
+ * Props for rendering a JSON-LD structured data script tag.
+ *
+ * Explicitly disallows children as script tags with set:html cannot have children.
+ *
+ * @property obj - The object to serialize as JSON-LD
+ */
+interface Props extends WithChildren<false> {
+	obj?: object;
+}
+
+const { obj } = Astro.props;
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(obj)} />
