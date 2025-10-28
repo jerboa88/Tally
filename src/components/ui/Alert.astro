@@ -3,6 +3,7 @@ import { getLocaleStrings } from '@i18n/index.ts';
 import { Info } from '@lucide/astro';
 import type { HTMLAttributes } from 'astro/types';
 import type { WithChildren } from '../../types.ts';
+import Icon from './Icon.astro';
 import Strong from './Strong.astro';
 
 /**
@@ -17,7 +18,7 @@ const props = Astro.props;
 
 <aside role="note" {...props}>
 	<Strong>
-		<Info size={16} aria-hidden="true" />
+		<Icon icon={Info} />
 		{msg}
 	</Strong>
 	<slot />

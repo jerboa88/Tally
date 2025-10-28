@@ -1,7 +1,8 @@
 ---
-import type { AstroComponent } from '@lucide/astro';
+import { type Icon as IconType } from '@lucide/astro';
 import type { ComponentProps } from 'astro/types';
 import type { WithChildren } from '../../types.ts';
+import Icon from './Icon.astro';
 import Link from './Link.astro';
 
 /**
@@ -12,15 +13,15 @@ import Link from './Link.astro';
  */
 interface Props
 	extends WithChildren<false, Omit<ComponentProps<typeof Link>, 'children'>> {
-	icon?: AstroComponent;
+	icon?: typeof IconType;
 	label?: string;
 }
 
-const { icon: Icon, label, ...restProps } = Astro.props;
+const { icon, label, ...restProps } = Astro.props;
 ---
 
 <Link {...restProps}>
-	{Icon && <Icon size={16} aria-hidden="true" />}
+	{icon && <Icon {icon} />}
 	<slot>{label}</slot>
 </Link>
 

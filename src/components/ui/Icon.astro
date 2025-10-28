@@ -1,0 +1,24 @@
+---
+import { type IconProps, type Icon as IconType } from '@lucide/astro';
+
+/**
+ * Props for rendering a Lucide icon component.
+ *
+ * @property icon - The Lucide icon component to render
+ */
+interface Props extends IconProps {
+	icon: typeof IconType;
+}
+
+const { icon: IconComponent, ...restProps } = Astro.props;
+---
+
+<IconComponent aria-hidden="true" {...restProps} />
+
+<style>
+	/* Match the icon size to the font size of the parent element */
+	svg {
+		width: 1em;
+		height: 1em;
+	}
+</style>
