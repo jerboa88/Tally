@@ -11,28 +11,29 @@
 	--o-md: 0.7;
 
 	/* Padding */
-	--p-xs: calc(var(--p-md) / 4);
+	--p-xs: calc(var(--p-sm) / 2);
 	--p-sm: calc(var(--p-md) / 2);
-	--p-md: 1.5rem;
+	--p-md: 1.5em;
 	--p-lg: calc(var(--p-md) * 2);
 
 	/* Font size */
 	--f-md: 1rem;
-	--f-lg: 1.5rem;
+	--f-lg: calc(var(--f-md) * 1.5);
+	--f-xl: calc(var(--f-lg) * 1.25);
 
 	/* Font weight */
 	--f-normal: 300;
-	--f-bold: 500;
-	--f-bolder: 700;
+	--f-bold: calc(var(--f-normal) + 200);
+	--f-bolder: calc(var(--f-bold) + 200);
 
 	/* Max width */
 	--max-w: 56rem;
 
 	/* Border width */
-	--b-md: 1px;
+	--b-md: 0.0625em;
 
 	/* Border radius */
-	--r-md: 0.75rem;
+	--r-md: var(--p-sm);
 
 	/* Transition duration */
 	--d-md: 0.125s;
