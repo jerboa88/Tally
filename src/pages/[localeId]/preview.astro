@@ -17,11 +17,21 @@ import type { WithChildren } from '../../types.ts';
  */
 type Props = WithChildren<false>;
 
+/**
+ * Generates an iframe URL with theme and placeholder text query parameters.
+ *
+ * @param themeId - The theme ID to apply in the preview
+ * @returns A relative URL with query parameters for theme and input text
+ */
+function getIframePath(themeId: ThemeId) {
+	return `${basePath}?${THEME.id}=${themeId}&${INPUT.id}=${msg.input.placeholder}`;
+}
+
+const themeIds: ThemeId[] = ['light', 'dark', 'teal'];
 const currentLocaleId = getLocale(Astro);
 const msg = getLocaleStrings(currentLocaleId);
-const themeIds: ThemeId[] = ['light', 'dark', 'teal'];
-
 const label = new URL(SITE.url.base).host;
+const basePath = getRelativeLocaleUrl(currentLocaleId);
 
 /**
  * Generates static paths for all supported locales.
@@ -49,13 +59,7 @@ export function getStaticPaths() {
 				themeIds.map((themeId) => (
 					<figure>
 						{/* the scrolling attribute is deprecated, but this is by far the easiest way to hide scrollbars in an iframe */}
-						<iframe
-							scrolling="no"
-							src={getRelativeLocaleUrl(
-								currentLocaleId,
-								`?${THEME.id}=${themeId}&${INPUT.id}=${msg.input.placeholder}`,
-							)}
-						/>
+						<iframe scrolling="no" src={getIframePath(themeId)} />
 					</figure>
 				))
 			}
