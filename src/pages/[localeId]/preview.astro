@@ -2,23 +2,20 @@
 import ButtonLink from '@components/ui/ButtonLink.astro';
 import Card from '@components/ui/Card.astro';
 import { INPUT } from '@config/input.ts';
+import { LOCALE } from '@config/locale.ts';
 import { SITE } from '@config/site.ts';
-import type { SocialPreviewId } from '@config/social-preview.ts';
-import { THEME, type ThemeId } from '@config/theme.ts';
+import { type ThemeId, THEME } from '@config/theme.ts';
 import { getLocale, getLocaleStrings } from '@i18n/index.ts';
+import BaseLayout from '@layouts/BaseLayout.astro';
 import { Link } from '@lucide/astro';
+import { keysOf } from '@utils/index.ts';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import type { WithChildren } from '../types.ts';
-import BaseLayout from './BaseLayout.astro';
+import type { WithChildren } from '../../types.ts';
 
 /**
  * Props for the social media preview image layout.
- *
- * @property type - The social platform type, determining dimensions ('og' for Open Graph 1200x630, 'twitter' for Twitter Card 800x418)
  */
-interface Props extends WithChildren<false> {
-	type: SocialPreviewId;
-}
+type Props = WithChildren<false>;
 
 const currentLocaleId = getLocale(Astro);
 const msg = getLocaleStrings(currentLocaleId);
@@ -26,12 +23,19 @@ const themeIds: ThemeId[] = ['light', 'dark', 'teal'];
 
 const label = new URL(SITE.url.base).host;
 
-const { type } = Astro.props;
+/**
+ * Generates static paths for all supported locales.
+ *
+ * @returns An array of path objects with locale parameters for static site generation
+ */
+export function getStaticPaths() {
+	return keysOf(LOCALE.map).map((localeId) => ({ params: { localeId } }));
+}
 ---
 
 <BaseLayout>
 	<meta slot="head" name="robots" content="noindex,nofollow" />
-	<main class={type}>
+	<main>
 		<header>
 			<Card>
 				<ButtonLink to={SITE.url.base} {label} icon={Link} />
@@ -47,7 +51,10 @@ const { type } = Astro.props;
 						{/* the scrolling attribute is deprecated, but this is by far the easiest way to hide scrollbars in an iframe */}
 						<iframe
 							scrolling="no"
-							src={`${getRelativeLocaleUrl(currentLocaleId)}?${THEME.id}=${themeId}&${INPUT.id}=${msg.input.placeholder}`}
+							src={getRelativeLocaleUrl(
+								currentLocaleId,
+								`?${THEME.id}=${themeId}&${INPUT.id}=${msg.input.placeholder}`,
+							)}
 						/>
 					</figure>
 				))
@@ -70,6 +77,7 @@ const { type } = Astro.props;
 		flex: 1;
 		width: 100%;
 		overflow: hidden;
+		font-size: calc(1vw + 1vh);
 		background-image: radial-gradient(
 			farthest-corner circle at 50% 100% in oklch,
 			var(--bg-3),
@@ -87,8 +95,8 @@ const { type } = Astro.props;
 	}
 
 	p {
-		margin: 0 var(--p-md);
-		font-size: var(--f-lg);
+		margin: 0 var(--p-lg);
+		font-size: larger;
 	}
 
 	section {
@@ -135,5 +143,11 @@ const { type } = Astro.props;
 		border: none;
 		transform-origin: 0 0;
 		transform: scale(var(--scale));
+	}
+
+	@media (height >= 56rem) {
+		iframe {
+			--scale: 1.1;
+		}
 	}
 </style>
