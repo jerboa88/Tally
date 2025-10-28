@@ -11,7 +11,7 @@ import { keysOf } from './utils/index.ts';
  */
 export const ASTRO_SNAPSHOT_CONFIG = {
 	pages: mapEntries(LOCALE.map, (localeId) => [
-		`/${localeId}/${SOCIAL_PREVIEW.id}/` as const,
+		`/${localeId}/${SOCIAL_PREVIEW.id}` as const,
 		keysOf(SOCIAL_PREVIEW.map).map((socialPreviewId) => {
 			const { width, height } = SOCIAL_PREVIEW.map[socialPreviewId];
 
