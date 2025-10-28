@@ -10,6 +10,7 @@ import logoSvg from '@images/logo.svg';
 import { pathToAbsoluteUrl } from '@utils/index.ts';
 import { Head as CapoHead } from 'astro-capo';
 import { Font, getImage } from 'astro:assets';
+import JsonLd from './JsonLd.astro';
 import SocialImageMetadata from './SocialImageMetadata.astro';
 
 /**
@@ -31,6 +32,7 @@ const appleTouchIcon = await getImage({
 
 const currentLocaleId = getLocale(Astro);
 const msg = getLocaleStrings(currentLocaleId).site;
+const canonicalUrl = Astro.url;
 ---
 
 <CapoHead>
@@ -46,7 +48,7 @@ const msg = getLocaleStrings(currentLocaleId).site;
 	<!-- Open Graph tags -->
 	<meta property="og:title" content={msg.title} />
 	<meta property="og:description" content={msg.description} />
-	<meta property="og:url" content={SITE.url.base} />
+	<meta property="og:url" content={canonicalUrl} />
 	<meta property="og:type" content="website" />
 	<meta property="og:locale" content={currentLocaleId} />
 	<!-- Unofficial tag -->
@@ -72,16 +74,16 @@ const msg = getLocaleStrings(currentLocaleId).site;
 	/>
 	<link rel="icon" sizes="any" type="image/svg+xml" href={iconSvg.src} />
 
+	<!-- Links -->
+	<link rel="canonical" href={canonicalUrl} />
 	<link rel="sitemap" href={`/${SITE.sitemapPrefix}-index.xml`} />
 
 	<!-- Fonts -->
 	{FONTS.map(({ cssVariable }) => <Font {cssVariable} preload />)}
 
-	<!-- JSON-LD WebApplication -->
-	<script
-		is:inline
-		type="application/ld+json"
-		set:html={JSON.stringify({
+	<!-- Structured data -->
+	<JsonLd
+		obj={{
 			'@context': 'https://schema.org',
 			'@type': 'WebApplication',
 			name: msg.title,
@@ -103,7 +105,7 @@ const msg = getLocaleStrings(currentLocaleId).site;
 			},
 			featureList: msg.features,
 			keywords: msg.keywords,
-		})}
+		}}
 	/>
 
 	<slot />
