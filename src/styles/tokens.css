@@ -17,7 +17,7 @@
 	--p-lg: calc(var(--p-md) * 2);
 
 	/* Font size */
-	--f-md: 1rem;
+	--f-md: 1em;
 	--f-lg: calc(var(--f-md) * 1.5);
 	--f-xl: calc(var(--f-lg) * 1.25);
 
