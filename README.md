@@ -59,7 +59,7 @@ Counting functionality is provided by the included **tally-ts** library. Refer t
 
 ## 🕹️ Usage
 
-You can access **Tally** at [https://tally.johng.io/](https://tally.johng.io/). If your preferred language is supported, you will automatically be redirected to the appropriate page. If not, we'll show the English version, but you can always manually change the language later.
+You can access **Tally** at [tally.johng.io]. If your preferred language is supported, you will automatically be redirected to the appropriate page. If not, we'll show the English version, but you can always manually change the language later.
 
 Typing or pasting type into the editor will update the counts in real-time. The output counts are currently separated into 2 sections:
 
@@ -115,17 +115,17 @@ When you toggle _**Enable debug logging**_, the application emits extra diagnost
 ### Using URL query parameters
 
 > [!TIP]
-> You can pass your search parameters directly to https://tally.johng.io/, but if you already know what language you want to use, it is faster to use the language-specific URL (ex. https://tally.johng.io/de/).
+> You can pass your search parameters directly to [tally.johng.io], but if you already know what language you want to use, it is faster to use the language-specific URL (ex. [tally.johng.io/de](https://tally.johng.io/de)).
 
 You can prefill the editor and set options by adding query parameters to the URL. This is useful for sharing preconfigured counts, automating tests, or customizing **Tally** without having to save data to local storage.
 
-For example, perhaps you want to use the _**Teal**_ theme and disable the warning about large inputs, but you have your browser configured to clear the cache after every session. You could bookmark the following URL: https://tally.johng.io/en/?theme=teal&warnOnLargeInputText=false and your preferences will be restored every time the page loads.
+For example, perhaps you want to use the _**Teal**_ theme and disable the warning about large inputs, but you have your browser configured to clear the cache after every session. You could bookmark [tally.johng.io/en?theme=teal&warnOnLargeInputText=false](https://tally.johng.io/en?theme=teal&warnOnLargeInputText=false) and your preferences will be restored every time the page loads.
 
 #### Input
 
 Set `input` to a URL-encoded string to prefill the editor with this text.
 
-**Example:** https://tally.johng.io/en/?input=Whoa!+This+text+was+passed+via+query+params.
+**Example:** [tally.johng.io/en?input=Whoa!+This+text+was+passed+via+query+params](https://tally.johng.io/en?input=Whoa!+This+text+was+passed+via+query+params).
 
 > [!TIP]
 > You can configure your browser to use Tally as a custom search engine so that you can perform quick counts from the address bar. For example, with the following configuration:
@@ -137,14 +137,14 @@ Set `input` to a URL-encoded string to prefill the editor with this text.
 >
 > See your browser's documentation on how to configure this:
 >
-> - **Chromium:** https://support.google.com/chrome/answer/95426
-> - **Firefox:**: https://support.mozilla.org/en-US/kb/add-custom-search-engine-firefox
+> - [Chromium](https://support.google.com/chrome/answer/95426)
+> - [Firefox](https://support.mozilla.org/en-US/kb/add-custom-search-engine-firefox)
 
 #### Theme
 
 Set `theme` to a theme ID to apply that theme. You can find the full list of theme IDs in [src/config/theme.ts](src/config/theme.ts) (it is usually just the English theme name converted to camelcase).
 
-**Example:** https://tally.johng.io/en/?theme=catppuccinLatte
+**Example:** [tally.johng.io/en?theme=catppuccinLatte](https://tally.johng.io/en?theme=catppuccinLatte)
 
 #### Options
 
@@ -153,13 +153,13 @@ Set `theme` to a theme ID to apply that theme. You can find the full list of the
 
 You can also set any of the supported options by passing query params. You can find the full list of option IDs in [src/config/option.ts](src/config/option.ts) (it is usually just the English option name converted to camelcase).
 
-**Example:** https://tally.johng.io/en/?warnOnLargeInputText=false&rememberInputText=1&enableDebugLogging=0
+**Example:** [tally.johng.io/en?warnOnLargeInputText=false&rememberInputText=1&enableDebugLogging=0](https://tally.johng.io/en?warnOnLargeInputText=false&rememberInputText=1&enableDebugLogging=0)
 
 ## 🧾 License
 
 Copyright © 2025 [John Goodliff](https://johng.io).
 
-This project is licensed under the AGPL-3.0 License. See [LICENSE](LICENSE) for details. The following included libraries have their own licenses:
+This project is licensed under the AGPL-3.0 License. See the [LICENSE](LICENSE) for details. The following included libraries have their own licenses:
 
 - **tally-ts**: MIT License
 - **astro-snapshot**: MIT License
@@ -183,3 +183,5 @@ If you can't donate but still want to contribute, don't worry. There are many ot
 - ⭐ starring the project
 
 I appreciate the support!
+
+[tally.johng.io]: https://tally.johng.io

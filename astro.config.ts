@@ -19,13 +19,13 @@ export default defineConfig({
 	base: SITE.basePath,
 	srcDir: SITE.srcDir,
 	output: 'static',
-	trailingSlash: 'always',
+	trailingSlash: 'never',
 	server: {
 		host: true,
 	},
 	build: {
 		assets: 'assets',
-		format: 'directory',
+		format: 'file',
 	},
 	prefetch: {
 		prefetchAll: true,
@@ -73,7 +73,7 @@ export default defineConfig({
 				const path = new URL(item.url).pathname;
 
 				// Don't include social preview pages in the sitemap
-				if (path.includes(`/${SOCIAL_PREVIEW.id}/`)) {
+				if (path.includes(`/${SOCIAL_PREVIEW.id}`)) {
 					return undefined;
 				}
 
