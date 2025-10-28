@@ -34,32 +34,28 @@ const RU: LocaleMessages = {
 			'text analysis',
 			'text analyzer',
 			'text statistics',
-			'online tool',
+			'онлайн инструмент',
 		],
 	},
 	loader: {
-		// Label shown below the loader on the loading page
 		label: 'Загрузка...',
 	},
 	alert: {
 		note: {
-			// Title for alerts of type 'note'
-			title: 'Note',
+			title: 'Примечание',
 		},
 	},
 	header: {
-		// Accessible label for the header/logo link
 		label: `Домашняя страница ${SITE.title}`,
 	},
 	input: {
-		// Accessible label for the text input area
 		label: 'Ввод текста',
 		// Placeholder text shown in empty input area
-		placeholder: 'The quick brown cat jumps over the lazy dog...',
+		placeholder: 'Шустрая бурая лисица прыгает через ленивого пса...',
 		largeInputWarning: {
 			// Warning message shown when input exceeds character limit
 			message:
-				"You've entered a large amount of text. This may cause performance issues. Do you want to continue?\n\n(You can disable this warning in the options.)",
+				"Вы ввели огромное количество текста. Это может вызвать проблемы с производительностью. Do you want to continue?\n\n(Вы можете отключить это предупреждение в настройках)",
 		},
 	},
 	output: {
@@ -110,32 +106,23 @@ const RU: LocaleMessages = {
 	},
 	nav: {
 		viewSource: {
-			// Navigation link text for GitHub repository
 			label: 'Исходный код',
-			// A more verbose tooltip shown on hover
 			tooltip: 'Посмотреть исходный код на GitHub',
 		},
 		reportIssue: {
-			// Navigation link text for issue tracker
 			label: 'Сообщить о проблеме',
-			// A more verbose tooltip shown on hover
 			tooltip: 'Сообщить о проблеме',
 		},
 		sponsor: {
-			// Navigation link text for sponsorship page
 			label: 'Спонсировать меня',
-			// A more verbose tooltip shown on hover
 			tooltip: 'Поддержать этот проект',
 		},
 		moreProjects: {
-			// Navigation link text for author's other projects
 			label: 'Больше проектов',
-			// A more verbose tooltip shown on hover
 			tooltip: 'Посмотреть больше моих проектов',
 		},
 	},
 	locales: {
-		// Section title for language selector
 		title: 'Язык',
 	},
 	options: {
