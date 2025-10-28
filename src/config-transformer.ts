@@ -1,54 +1,8 @@
-import { cartesianProduct, objectify } from 'radashi';
-import { LOCALE, type LocaleId } from './config/locale.ts';
+import { mapEntries } from 'radashi';
+import { LOCALE } from './config/locale.ts';
 import { SITE } from './config/site.ts';
-import {
-	SOCIAL_PREVIEW,
-	type SocialPreviewId,
-} from './config/social-preview.ts';
+import { SOCIAL_PREVIEW } from './config/social-preview.ts';
 import { keysOf } from './utils/index.ts';
-
-/**
- * Creates a page configuration entry for screenshot generation.
- *
- * @param keys - A tuple containing the locale ID and social preview type
- * @returns A configuration entry with the route path and output settings (path, dimensions)
- */
-function keysToPagesConfigEntry([localeId, socialPreviewId]: [
-	LocaleId,
-	SocialPreviewId,
-]) {
-	const { width, height } = SOCIAL_PREVIEW.map[socialPreviewId];
-
-	return [
-		`/${localeId}/${SOCIAL_PREVIEW.id}/${socialPreviewId}/`,
-		{
-			outputPath: `${SITE.srcDir}/images/${SOCIAL_PREVIEW.id}/${localeId}/${socialPreviewId}.png`,
-			width,
-			height,
-		},
-	] as const;
-}
-
-/**
- * Generates the complete configuration map for all social preview screenshots.
- *
- * Creates a Cartesian product of all locales and social preview types, then
- * maps each combination to its screenshot configuration.
- *
- * @returns A record mapping route paths to their screenshot configurations
- */
-function generatePageConfigMap() {
-	const keyMatrix = cartesianProduct(
-		keysOf(LOCALE.map),
-		keysOf(SOCIAL_PREVIEW.map),
-	);
-
-	return objectify(
-		keyMatrix.map(keysToPagesConfigEntry),
-		(entry) => entry[0],
-		(entry) => [entry[1]],
-	);
-}
 
 /**
  * Configuration for the Astro Snapshot integration.
@@ -56,7 +10,19 @@ function generatePageConfigMap() {
  * Defines which pages to screenshot and their output settings for social media previews.
  */
 export const ASTRO_SNAPSHOT_CONFIG = {
-	pages: generatePageConfigMap(),
+	pages: mapEntries(LOCALE.map, (localeId) => [
+		`/${localeId}/${SOCIAL_PREVIEW.id}/` as const,
+		keysOf(SOCIAL_PREVIEW.map).map((socialPreviewId) => {
+			const { width, height } = SOCIAL_PREVIEW.map[socialPreviewId];
+
+			return {
+				outputPath:
+					`${SITE.srcDir}/images/${SOCIAL_PREVIEW.id}/${localeId}/${socialPreviewId}.png` as const,
+				width,
+				height,
+			};
+		}),
+	]),
 } as const;
 
 const localIds = keysOf(LOCALE.map);
