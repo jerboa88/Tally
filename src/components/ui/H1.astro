@@ -1,0 +1,22 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import type { WithChildren } from '../../types.ts';
+
+/**
+ * Props for a styled h1 heading element.
+ */
+type Props = WithChildren<true, HTMLAttributes<'h1'>>;
+
+const props = Astro.props;
+---
+
+<!-- This must be on the same line to prevent whitespace from being inserted -->
+<h1 {...props}><slot /></h1>
+
+<style>
+	h1 {
+		margin: 0;
+		color: var(--p);
+		font-size: var(--f-2xl);
+	}
+</style>

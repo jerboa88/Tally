@@ -20,6 +20,7 @@
 	--f-md: 1em;
 	--f-lg: calc(var(--f-md) * 1.5);
 	--f-xl: calc(var(--f-lg) * 1.25);
+	--f-2xl: calc(var(--f-xl) * 2);
 
 	/* Font weight */
 	--f-normal: 300;
