@@ -162,7 +162,6 @@ Copyright © 2025 [John Goodliff](https://johng.io).
 This project is licensed under the AGPL-3.0 License. See the [LICENSE](LICENSE) for details. The following included libraries have their own licenses:
 
 - **tally-ts**: MIT License
-- **astro-snapshot**: MIT License
 
 ## 🖇️ Related
 
