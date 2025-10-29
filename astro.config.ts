@@ -8,7 +8,7 @@ import {
 	ASTRO_SNAPSHOT_CONFIG,
 	I18N_CONFIG,
 } from './src/config-transformer.ts';
-import snapshot from './src/lib/astro-snapshot/src/index.ts';
+import snapshot from 'astro-snapshot';
 import { FONTS } from './src/config/fonts.ts';
 import { SITE } from './src/config/site.ts';
 import { SOCIAL_PREVIEW } from './src/config/social-preview.ts';
