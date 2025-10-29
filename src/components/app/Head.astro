@@ -2,7 +2,7 @@
 import { FONTS } from '@config/fonts.ts';
 import { SITE } from '@config/site';
 import { THEME } from '@config/theme.ts';
-import { getLocale, getLocaleStrings } from '@i18n/index.ts';
+import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import iconIco from '@images/favicon.ico';
 import iconPng from '@images/icon-solid.png';
 import iconSvg from '@images/icon.svg';
@@ -35,7 +35,7 @@ const appleTouchIcon = await getImage({
 });
 
 const currentLocaleId = getLocale(Astro);
-const msg = getLocaleStrings(currentLocaleId).site;
+const msg = getLocaleMessages(currentLocaleId).site;
 
 const { title, description: pageDescription } = Astro.props;
 

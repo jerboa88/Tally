@@ -5,7 +5,7 @@ import { INPUT } from '@config/input.ts';
 import { LOCALE } from '@config/locale.ts';
 import { SITE } from '@config/site.ts';
 import { type ThemeId, THEME } from '@config/theme.ts';
-import { getLocale, getLocaleStrings } from '@i18n/index.ts';
+import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { Link } from '@lucide/astro';
 import { keysOf } from '@utils/index.ts';
@@ -35,7 +35,7 @@ const pageMsg = {
 } as const;
 
 const currentLocaleId = getLocale(Astro);
-const msg = getLocaleStrings(currentLocaleId);
+const msg = getLocaleMessages(currentLocaleId);
 const label = new URL(SITE.url.base).host;
 const basePath = getRelativeLocaleUrl(currentLocaleId);
 

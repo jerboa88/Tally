@@ -59,14 +59,16 @@ export function getLocale(astro?: AstroGlobal): LocaleId {
 }
 
 /**
- * Gets the translation strings for the current or specified locale.
+ * Gets translation strings for the current or specified locale.
  *
  * @param arg - Optional Astro context or locale ID
- * @returns The locale strings object
+ * @returns The locale messages object
  */
-export function getLocaleStrings(astro?: AstroGlobal): LocaleMessages;
-export function getLocaleStrings(localeId?: LocaleId): LocaleMessages;
-export function getLocaleStrings(arg?: AstroGlobal | LocaleId): LocaleMessages {
+export function getLocaleMessages(astro?: AstroGlobal): LocaleMessages;
+export function getLocaleMessages(localeId?: LocaleId): LocaleMessages;
+export function getLocaleMessages(
+	arg?: AstroGlobal | LocaleId,
+): LocaleMessages {
 	const localeId = typeof arg === 'string' ? arg : getLocale(arg);
 
 	return localeMessageMap[localeId] ?? localeMessageMap[LOCALE.default];

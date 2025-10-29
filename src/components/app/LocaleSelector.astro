@@ -2,7 +2,7 @@
 import type { EntryProps } from '@components/ui/InputGroup.astro';
 import InputGroup from '@components/ui/InputGroup.astro';
 import { LOCALE, type Locale, type LocaleId } from '@config/locale.ts';
-import { getLocale, getLocaleInfo, getLocaleStrings } from '@i18n/index.ts';
+import { getLocale, getLocaleInfo, getLocaleMessages } from '@i18n/index.ts';
 import { entriesOf } from '@utils/index.ts';
 import type { WithChildren } from '../../types.ts';
 
@@ -34,7 +34,7 @@ function buildLocaleLabel(id: LocaleId, locale: Locale) {
 }
 
 const currentLocaleId = getLocale(Astro);
-const msg = getLocaleStrings(currentLocaleId).locales;
+const msg = getLocaleMessages(currentLocaleId).locales;
 
 const entries: EntryProps[] = entriesOf(LOCALE.map).map(
 	([localeId, locale]) => ({
