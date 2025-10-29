@@ -107,7 +107,9 @@ const pageCanonicalUrl = new URL(
 				browserRequirements: msg.requirements,
 				creator: {
 					'@type': 'Person',
-					name: SITE.author.name,
+					name: SITE.author.name.full,
+					givenName: SITE.author.name.first,
+					familyName: SITE.author.name.last,
 					url: SITE.author.url.homepage,
 					sameAs: [SITE.author.url.github, SITE.author.url.linkedin],
 				},
