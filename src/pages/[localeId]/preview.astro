@@ -27,7 +27,13 @@ function getIframePath(themeId: ThemeId) {
 	return `${basePath}?${THEME.id}=${themeId}&${INPUT.id}=${msg.input.placeholder}`;
 }
 
-const themeIds: ThemeId[] = ['light', 'dark', 'teal'];
+const themeIds: ThemeId[] = ['light', 'dark', 'teal'] as const;
+// Hardcoded because these strings don't need to be translated (this page is not indexed)
+const pageMsg = {
+	title: 'Social preview',
+	description: `Social preview page for ${SITE.title}.`,
+} as const;
+
 const currentLocaleId = getLocale(Astro);
 const msg = getLocaleStrings(currentLocaleId);
 const label = new URL(SITE.url.base).host;
@@ -43,7 +49,7 @@ export function getStaticPaths() {
 }
 ---
 
-<BaseLayout>
+<BaseLayout {...pageMsg}>
 	<meta slot="head" name="robots" content="noindex,nofollow" />
 	<main>
 		<header>

@@ -16,9 +16,13 @@ import SocialImageMetadata from './SocialImageMetadata.astro';
 /**
  * Props for the document head section.
  *
+ * @property title - Optional title for the page (prepended to the site title)
+ * @property description - Description for the page
  * @property children - Optional additional head elements (e.g., page-specific meta tags)
  */
 type Props = {
+	title?: Capitalize<string>;
+	description: Capitalize<string>;
 	children?: astroHTML.JSX.Element;
 };
 
@@ -32,7 +36,11 @@ const appleTouchIcon = await getImage({
 
 const currentLocaleId = getLocale(Astro);
 const msg = getLocaleStrings(currentLocaleId).site;
-const canonicalUrl = Astro.url;
+
+const { title, description: pageDescription } = Astro.props;
+
+const pageTitle = title ? `${title} | ${msg.title}` : msg.title;
+const pageCanonicalUrl = Astro.url;
 ---
 
 <CapoHead>
@@ -41,15 +49,15 @@ const canonicalUrl = Astro.url;
 		name="viewport"
 		content="width=device-width,initial-scale=1,user-scalable=yes"
 	/>
-	<title>{msg.title}</title>
-	<meta name="description" content={msg.longDescription} />
+	<title>{pageTitle}</title>
+	<meta name="description" content={pageDescription} />
 	<meta name="author" content={SITE.author.name.full} />
 	<meta name="keywords" content={msg.keywords.join(',')} />
 
 	<!-- Open Graph tags -->
-	<meta property="og:title" content={msg.title} />
-	<meta property="og:description" content={msg.description} />
-	<meta property="og:url" content={canonicalUrl} />
+	<meta property="og:title" content={pageTitle} />
+	<meta property="og:description" content={pageDescription} />
+	<meta property="og:url" content={pageCanonicalUrl} />
 	<meta property="og:type" content="website" />
 	<meta property="og:locale" content={currentLocaleId} />
 	<!-- Unofficial tag -->
@@ -76,7 +84,7 @@ const canonicalUrl = Astro.url;
 	<link rel="icon" sizes="any" type="image/svg+xml" href={iconSvg.src} />
 
 	<!-- Links -->
-	<link rel="canonical" href={canonicalUrl} />
+	<link rel="canonical" href={pageCanonicalUrl} />
 	<link rel="sitemap" href={`/${SITE.sitemapPrefix}-index.xml`} />
 
 	<!-- Fonts -->

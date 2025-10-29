@@ -1,24 +1,26 @@
 ---
 import { THEME } from '@config/theme.ts';
+import type { ComponentProps } from 'astro/types';
 import type { WithChildren } from '../types.ts';
 import BaseLayout from './BaseLayout.astro';
-import Head from './Head.astro';
 
 /**
  * Props for the page layout wrapper.
  *
- * Allows children content for the main body and head slot.
+ * Allows children content for the main body and head slot. Accepts all BaseLayout props.
  */
-type Props = WithChildren<true>;
+type Props = WithChildren<true, ComponentProps<typeof BaseLayout>>;
 
 const themePreloadVars = {
 	id: THEME.id,
 	d: THEME.default,
-};
+} as const;
+
+const props = Astro.props;
 ---
 
-<BaseLayout>
-	<Head>
+<BaseLayout {...props}>
+	<Fragment slot="head">
 		<slot name="head" />
 		<!-- Preload the theme as soon as possible to prevent FOUC -->
 		<script is:inline async type="module" define:vars={themePreloadVars}>
@@ -27,7 +29,7 @@ const themePreloadVars = {
 				localStorage.getItem(id) ??
 				d;
 		</script>
-	</Head>
+	</Fragment>
 
 	<body>
 		<slot />
