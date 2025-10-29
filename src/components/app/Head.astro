@@ -40,7 +40,10 @@ const msg = getLocaleStrings(currentLocaleId).site;
 const { title, description: pageDescription } = Astro.props;
 
 const pageTitle = title ? `${title} | ${msg.title}` : msg.title;
-const pageCanonicalUrl = Astro.url;
+const pageCanonicalUrl = new URL(
+	Astro.url.pathname,
+	SITE.url.base,
+).href.replace('.html', '');
 ---
 
 <CapoHead>
@@ -116,7 +119,6 @@ const pageCanonicalUrl = Astro.url;
 			keywords: msg.keywords,
 		}}
 	/>
-
 	<slot />
 </CapoHead>
 
