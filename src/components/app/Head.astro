@@ -95,29 +95,39 @@ const pageCanonicalUrl = new URL(
 
 	<!-- Structured data -->
 	<JsonLd
-		obj={{
-			'@context': 'https://schema.org',
-			'@type': 'WebApplication',
-			name: msg.title,
-			url: SITE.url.base,
-			description: msg.description,
-			applicationCategory: 'Utility',
-			operatingSystem: 'All',
-			browserRequirements: msg.requirements,
-			creator: {
-				'@type': 'Person',
-				name: SITE.author.name,
-				url: SITE.author.url.homepage,
-				sameAs: [SITE.author.url.github, SITE.author.url.linkedin],
+		obj={[
+			{
+				'@context': 'https://schema.org',
+				'@type': 'WebApplication',
+				name: msg.title,
+				url: SITE.url.base,
+				description: msg.description,
+				applicationCategory: 'Utility',
+				operatingSystem: 'All',
+				browserRequirements: msg.requirements,
+				creator: {
+					'@type': 'Person',
+					name: SITE.author.name,
+					url: SITE.author.url.homepage,
+					sameAs: [SITE.author.url.github, SITE.author.url.linkedin],
+				},
+				offers: {
+					'@type': 'Offer',
+					price: '0',
+					priceCurrency: 'CAD',
+				},
+				featureList: msg.features,
+				keywords: msg.keywords,
 			},
-			offers: {
-				'@type': 'Offer',
-				price: '0',
-				priceCurrency: 'CAD',
+			{
+				'@context': 'https://schema.org',
+				'@type': 'WebPage',
+				name: pageTitle,
+				description: pageDescription,
+				url: pageCanonicalUrl,
+				inLanguage: currentLocaleId,
 			},
-			featureList: msg.features,
-			keywords: msg.keywords,
-		}}
+		]}
 	/>
 	<slot />
 </CapoHead>
