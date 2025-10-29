@@ -1,7 +1,7 @@
 ---
 import Textarea from '@components/ui/Textarea.astro';
 import { INPUT } from '@config/input';
-import { getLocaleStrings } from '@i18n/index.ts';
+import { getLocaleMessages } from '@i18n/index.ts';
 import type { WithChildren } from '../../../types.ts';
 
 /**
@@ -9,7 +9,7 @@ import type { WithChildren } from '../../../types.ts';
  */
 type Props = WithChildren<false>;
 
-const { label, placeholder } = getLocaleStrings(Astro).input;
+const { label, placeholder } = getLocaleMessages(Astro).input;
 ---
 
 <Textarea

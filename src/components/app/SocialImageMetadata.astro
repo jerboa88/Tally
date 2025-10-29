@@ -6,7 +6,7 @@ import {
 import { getLocale } from '@i18n/index.ts';
 import { entriesOf, pathToAbsoluteUrl } from '@utils/index.ts';
 import { getImage } from 'astro:assets';
-import type { WithChildren } from '../types.ts';
+import type { WithChildren } from '../../types.ts';
 
 /**
  * Props for generating social media preview meta tags.
@@ -23,12 +23,12 @@ type Props = WithChildren<false>;
 async function loadSocialImage(type: SocialPreviewId) {
 	// This should match the template string below
 	const filename =
-		`../images/${SOCIAL_PREVIEW.id}/${currentLocaleId}/${type}.png` as const;
+		`../../images/${SOCIAL_PREVIEW.id}/${currentLocaleId}/${type}.png` as const;
 
 	try {
 		// The import path must be an inline string for use with @rollup/plugin-dynamic-import-vars
 		const module: Promise<{ default: ImageMetadata }> = import(
-			`../images/${SOCIAL_PREVIEW.id}/${currentLocaleId}/${type}.png`
+			`../../images/${SOCIAL_PREVIEW.id}/${currentLocaleId}/${type}.png`
 		);
 		const image = await getImage({
 			src: module,

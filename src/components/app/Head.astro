@@ -2,7 +2,7 @@
 import { FONTS } from '@config/fonts.ts';
 import { SITE } from '@config/site';
 import { THEME } from '@config/theme.ts';
-import { getLocale, getLocaleStrings } from '@i18n/index.ts';
+import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import iconIco from '@images/favicon.ico';
 import iconPng from '@images/icon-solid.png';
 import iconSvg from '@images/icon.svg';
@@ -10,14 +10,19 @@ import logoSvg from '@images/logo.svg';
 import { pathToAbsoluteUrl } from '@utils/index.ts';
 import { Head as CapoHead } from 'astro-capo';
 import { Font, getImage } from 'astro:assets';
+import JsonLd from './JsonLd.astro';
 import SocialImageMetadata from './SocialImageMetadata.astro';
 
 /**
  * Props for the document head section.
  *
+ * @property title - Optional title for the page (prepended to the site title)
+ * @property description - Description for the page
  * @property children - Optional additional head elements (e.g., page-specific meta tags)
  */
 type Props = {
+	title?: Capitalize<string>;
+	description: Capitalize<string>;
 	children?: astroHTML.JSX.Element;
 };
 
@@ -30,7 +35,15 @@ const appleTouchIcon = await getImage({
 });
 
 const currentLocaleId = getLocale(Astro);
-const msg = getLocaleStrings(currentLocaleId).site;
+const msg = getLocaleMessages(currentLocaleId).site;
+
+const { title, description: pageDescription } = Astro.props;
+
+const pageTitle = title ? `${title} | ${msg.title}` : msg.title;
+const pageCanonicalUrl = new URL(
+	Astro.url.pathname,
+	SITE.url.base,
+).href.replace('.html', '');
 ---
 
 <CapoHead>
@@ -39,14 +52,15 @@ const msg = getLocaleStrings(currentLocaleId).site;
 		name="viewport"
 		content="width=device-width,initial-scale=1,user-scalable=yes"
 	/>
-	<title>{msg.title}</title>
-	<meta name="description" content={msg.longDescription} />
+	<title>{pageTitle}</title>
+	<meta name="description" content={pageDescription} />
 	<meta name="author" content={SITE.author.name.full} />
+	<meta name="keywords" content={msg.keywords.join(',')} />
 
 	<!-- Open Graph tags -->
-	<meta property="og:title" content={msg.title} />
-	<meta property="og:description" content={msg.description} />
-	<meta property="og:url" content={SITE.url.base} />
+	<meta property="og:title" content={pageTitle} />
+	<meta property="og:description" content={pageDescription} />
+	<meta property="og:url" content={pageCanonicalUrl} />
 	<meta property="og:type" content="website" />
 	<meta property="og:locale" content={currentLocaleId} />
 	<!-- Unofficial tag -->
@@ -72,40 +86,51 @@ const msg = getLocaleStrings(currentLocaleId).site;
 	/>
 	<link rel="icon" sizes="any" type="image/svg+xml" href={iconSvg.src} />
 
+	<!-- Links -->
+	<link rel="canonical" href={pageCanonicalUrl} />
 	<link rel="sitemap" href={`/${SITE.sitemapPrefix}-index.xml`} />
 
 	<!-- Fonts -->
 	{FONTS.map(({ cssVariable }) => <Font {cssVariable} preload />)}
 
-	<!-- JSON-LD WebApplication -->
-	<script
-		is:inline
-		type="application/ld+json"
-		set:html={JSON.stringify({
-			'@context': 'https://schema.org',
-			'@type': 'WebApplication',
-			name: msg.title,
-			url: SITE.url.base,
-			description: msg.description,
-			applicationCategory: 'Utility',
-			operatingSystem: 'All',
-			browserRequirements: msg.requirements,
-			creator: {
-				'@type': 'Person',
-				name: SITE.author.name,
-				url: SITE.author.url.homepage,
-				sameAs: [SITE.author.url.github, SITE.author.url.linkedin],
+	<!-- Structured data -->
+	<JsonLd
+		obj={[
+			{
+				'@context': 'https://schema.org',
+				'@type': 'WebApplication',
+				name: msg.title,
+				url: SITE.url.base,
+				description: msg.description,
+				applicationCategory: 'Utility',
+				operatingSystem: 'All',
+				browserRequirements: msg.requirements,
+				creator: {
+					'@type': 'Person',
+					name: SITE.author.name.full,
+					givenName: SITE.author.name.first,
+					familyName: SITE.author.name.last,
+					url: SITE.author.url.homepage,
+					sameAs: [SITE.author.url.github, SITE.author.url.linkedin],
+				},
+				offers: {
+					'@type': 'Offer',
+					price: '0',
+					priceCurrency: 'CAD',
+				},
+				featureList: msg.features,
+				keywords: msg.keywords,
 			},
-			offers: {
-				'@type': 'Offer',
-				price: '0',
-				priceCurrency: 'CAD',
+			{
+				'@context': 'https://schema.org',
+				'@type': 'WebPage',
+				name: pageTitle,
+				description: pageDescription,
+				url: pageCanonicalUrl,
+				inLanguage: currentLocaleId,
 			},
-			featureList: msg.features,
-			keywords: msg.keywords,
-		})}
+		]}
 	/>
-
 	<slot />
 </CapoHead>
 

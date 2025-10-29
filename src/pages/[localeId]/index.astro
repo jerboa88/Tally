@@ -7,7 +7,7 @@ import Nav from '@components/app/home/Nav.astro';
 import Article from '@components/ui/Article.astro';
 import { INPUT } from '@config/input.ts';
 import { LOCALE } from '@config/locale.ts';
-import { getLocale } from '@i18n/index.ts';
+import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import PageLayout from '@layouts/PageLayout.astro';
 import { keysOf } from '@utils/index.ts';
 import { getEntry } from 'astro:content';
@@ -48,10 +48,11 @@ async function getEntryIf<TId extends string>(
 }
 
 const currentLocaleId = getLocale(Astro);
+const msg = getLocaleMessages(currentLocaleId).site;
 const inputPreloadVars = {
 	id: INPUT.id,
 	d: INPUT.default,
-};
+} as const;
 
 const aboutEntry = await getEntry(currentLocaleId, 'about');
 const relatedEntry = await getEntry(currentLocaleId, 'related');
@@ -74,7 +75,7 @@ export function getStaticPaths() {
 }
 ---
 
-<PageLayout>
+<PageLayout description={msg.longDescription}>
 	<Header />
 	<main>
 		<section>

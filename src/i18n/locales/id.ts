@@ -28,9 +28,6 @@ const ID: LocaleMessages = {
 			'alat daring',
 		],
 	},
-	loader: {
-		label: 'Memuat...',
-	},
 	alert: {
 		note: {
 			title: 'Catatan',

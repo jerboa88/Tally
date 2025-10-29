@@ -1,11 +1,21 @@
 ---
 import Loader from '@components/app/Loader.astro';
+import { SITE } from '@config/site.ts';
 import PageLayout from '@layouts/PageLayout.astro';
+
+// Hardcoded because these strings don't need to be translated (this page is outside of the localized routes)
+const msg = {
+	title: 'Loading',
+	description: `Choose your preferred language to continue to ${SITE.title}.`,
+} as const;
 ---
 
-<PageLayout>
+<PageLayout {...msg}>
+	<meta slot="head" name="robots" content="noindex" />
 	<main>
-		<Loader />
+		<Loader>
+			<h1>{msg.title}...</h1>
+		</Loader>
 	</main>
 </PageLayout>
 
@@ -19,6 +29,10 @@ import PageLayout from '@layouts/PageLayout.astro';
 		width: 100%;
 		height: 100%;
 		view-transition-name: main;
+	}
+
+	h1 {
+		font-size: var(--f-md);
 	}
 </style>
 

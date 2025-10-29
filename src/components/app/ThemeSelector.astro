@@ -1,7 +1,7 @@
 ---
 import InputGroup, { type EntryProps } from '@components/ui/InputGroup.astro';
 import { type Theme, THEME, type ThemeId } from '@config/theme.ts';
-import { getLocaleStrings } from '@i18n/index.ts';
+import { getLocaleMessages } from '@i18n/index.ts';
 import { entriesOf } from '@utils/index.ts';
 import type { WithChildren } from '../../types.ts';
 
@@ -26,7 +26,7 @@ function buildThemeLabel(id: ThemeId, themeData: Theme) {
 	return `${name} ${suffix}`;
 }
 
-const msg = getLocaleStrings(Astro).themes;
+const msg = getLocaleMessages(Astro).themes;
 
 const entries: EntryProps[] = entriesOf(THEME.map).map(([themeId, theme]) => ({
 	label: {

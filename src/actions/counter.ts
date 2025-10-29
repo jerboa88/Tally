@@ -4,11 +4,11 @@ import {
 	$warnOnLargeInputText,
 	$outputCounts,
 } from '@stores/index.ts';
-import { getLocale, getLocaleStrings } from '@i18n/index.ts';
+import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import { Tally } from '@lib/tally-ts/src/index.ts';
 
 const currentLocaleId = getLocale();
-const msg = getLocaleStrings(currentLocaleId).input.largeInputWarning.message;
+const msg = getLocaleMessages(currentLocaleId).input.largeInputWarning.message;
 const tally = new Tally(currentLocaleId);
 
 /**
