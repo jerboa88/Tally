@@ -44,6 +44,7 @@ const canonicalUrl = Astro.url;
 	<title>{msg.title}</title>
 	<meta name="description" content={msg.longDescription} />
 	<meta name="author" content={SITE.author.name.full} />
+	<meta name="keywords" content={msg.keywords.join(',')} />
 
 	<!-- Open Graph tags -->
 	<meta property="og:title" content={msg.title} />
