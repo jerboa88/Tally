@@ -24,9 +24,6 @@ const DE: LocaleMessages = {
 			'online-tool',
 		],
 	},
-	loader: {
-		label: 'Wird geladen…',
-	},
 	alert: {
 		note: {
 			title: 'Hinweis',

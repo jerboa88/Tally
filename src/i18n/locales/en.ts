@@ -37,10 +37,6 @@ const EN: LocaleMessages = {
 			'online tool',
 		],
 	},
-	loader: {
-		// Label shown below the loader on the loading page
-		label: 'Loading...',
-	},
 	alert: {
 		note: {
 			// Title for alerts of type 'note'

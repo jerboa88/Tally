@@ -28,9 +28,6 @@ const FR: LocaleMessages = {
 			'outil en ligne',
 		],
 	},
-	loader: {
-		label: 'Chargement…',
-	},
 	alert: {
 		note: {
 			title: 'Remarque',

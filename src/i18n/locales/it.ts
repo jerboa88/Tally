@@ -28,9 +28,6 @@ const IT: LocaleMessages = {
 			'strumento online',
 		],
 	},
-	loader: {
-		label: 'Caricamento...',
-	},
 	alert: {
 		note: {
 			title: 'Nota',

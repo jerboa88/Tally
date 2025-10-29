@@ -28,9 +28,6 @@ const ES: LocaleMessages = {
 			'herramienta en línea',
 		],
 	},
-	loader: {
-		label: 'Cargando...',
-	},
 	alert: {
 		note: {
 			title: 'Nota',
