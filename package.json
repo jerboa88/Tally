@@ -54,6 +54,9 @@
 		"format:write": "prettier --write .",
 		"upgrade-interactive": "ncu -i --format group"
 	},
+	"trustedDependencies": [
+		"astro-snapshot"
+	],
 	"devDependencies": {
 		"@astrojs/check": "0.9.5",
 		"@types/bun": "latest",
@@ -74,7 +77,7 @@
 		"astro-better-image-service": "^2.1.9",
 		"astro-capo": "^0.0.1",
 		"astro-robots-txt": "^1.0.0",
-		"astro-snapshot": "./src/lib/astro-snapshot",
+		"astro-snapshot": "github:jerboa88/astro-snapshot",
 		"nanostores": "^1.0.1",
 		"radashi": "^12.7.0",
 		"sharp": "^0.34.4",
