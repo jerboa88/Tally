@@ -1,3 +1,8 @@
+/**
+ * Locale messages for de-DE (German)
+ * @module
+ */
+
 import { SITE } from '@config/site';
 import type { LocaleMessages } from '../types.ts';
 
@@ -5,7 +10,7 @@ const TAGLINE = 'Wortzähler' as const;
 const DESCRIPTION =
 	'Dein bevorzugter Wortzähler im Dunkelmodus — jetzt mit noch mehr Themes!' as const;
 
-const DE: LocaleMessages = {
+const messages: LocaleMessages = {
 	site: {
 		title: `${SITE.title} - ${TAGLINE}`,
 		description: DESCRIPTION,
@@ -159,4 +164,4 @@ const DE: LocaleMessages = {
 	},
 } as const satisfies LocaleMessages;
 
-export default DE;
+export default messages;
