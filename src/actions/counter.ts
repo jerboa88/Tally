@@ -5,7 +5,7 @@ import {
 	$outputCounts,
 } from '@stores/index.ts';
 import { getLocale, getLocaleMessages } from '@i18n/index.ts';
-import { Tally } from '@lib/tally-ts/src/index.ts';
+import { Tally } from 'tally-ts';
 
 const currentLocaleId = getLocale();
 const msg = getLocaleMessages(currentLocaleId).input.largeInputWarning.message;

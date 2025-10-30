@@ -55,6 +55,7 @@
 		"upgrade-interactive": "ncu -i --format group"
 	},
 	"trustedDependencies": [
+		"tally-ts",
 		"astro-snapshot",
 		"puppeteer"
 	],
@@ -82,6 +83,6 @@
 		"nanostores": "^1.0.1",
 		"radashi": "^12.7.0",
 		"sharp": "^0.34.4",
-		"tally-ts": "./src/lib/tally-ts"
+		"tally-ts": "github:jerboa88/tally-ts"
 	}
 }
