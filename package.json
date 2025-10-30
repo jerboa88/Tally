@@ -55,7 +55,8 @@
 		"upgrade-interactive": "ncu -i --format group"
 	},
 	"trustedDependencies": [
-		"astro-snapshot"
+		"astro-snapshot",
+		"puppeteer"
 	],
 	"devDependencies": {
 		"@astrojs/check": "0.9.5",
