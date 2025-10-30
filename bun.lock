@@ -15,10 +15,10 @@
         "astro-capo": "^0.0.1",
         "astro-robots-txt": "^1.0.0",
         "astro-snapshot": "github:jerboa88/astro-snapshot",
+        "tally-ts": "github:jerboa88/tally-ts",
         "nanostores": "^1.0.1",
         "radashi": "^12.7.0",
         "sharp": "^0.34.4",
-        "tally-ts": "./src/lib/tally-ts",
       },
       "devDependencies": {
         "@astrojs/check": "0.9.5",
@@ -32,6 +32,7 @@
     },
   },
   "trustedDependencies": [
+    "tally-ts",
     "astro-snapshot",
     "puppeteer",
   ],
@@ -1000,7 +1001,7 @@
 
     "svgo": ["svgo@3.3.2", "", { "dependencies": { "@trysound/sax": "0.2.0", "commander": "^7.2.0", "css-select": "^5.1.0", "css-tree": "^2.3.1", "css-what": "^6.1.0", "csso": "^5.0.5", "picocolors": "^1.0.0" }, "bin": "./bin/svgo" }, "sha512-OoohrmuUlBs8B8o6MB2Aevn+pRIH9zDALSR+6hhqVfa6fRwG/Qw9VUMSMW9VNg2CFc/MTIfabtdOVl9ODIJjpw=="],
 
-    "tally-ts": ["tally-ts@file:src/lib/tally-ts", { "devDependencies": { "@types/bun": "latest", "npm-check-updates": "^19.1.1", "prettier": "3.6.2", "typescript": "^5.9.3" } }],
+    "tally-ts": ["tally-ts@github:jerboa88/tally-ts#2dbdae6", {}, "jerboa88-tally-ts-2dbdae6"],
 
     "tar-fs": ["tar-fs@3.1.1", "", { "dependencies": { "pump": "^3.0.0", "tar-stream": "^3.1.5" }, "optionalDependencies": { "bare-fs": "^4.0.1", "bare-path": "^3.0.0" } }, "sha512-LZA0oaPOc2fVo82Txf3gw+AkEd38szODlptMYejQUhndHMLQ9M059uXR+AfS7DNo0NpINvSqDsvyaCrBVkptWg=="],
 
