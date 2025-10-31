@@ -14,14 +14,14 @@ import type { WithChildren } from '../../types.ts';
 type Props = WithChildren<false>;
 
 /**
- * Constructs a locale label with its flag emoji prefix, display name, and optional region.
+ * Constructs a locale label with flag emoji, language name, optional region, and WIP indicator.
  *
  * @param id - The locale ID
- * @param name - The locale display name
- * @returns A formatted string like "🇺🇸 English"
+ * @param locale - The locale configuration object
+ * @returns A formatted string like "🇺🇸 English", "🇪🇸 Spanish (Mexico)", or "🇫🇷 French 🚧"
  */
 function buildLocaleLabel(id: LocaleId, locale: Locale) {
-	const { flag, languageName, regionName } = getLocaleInfo(id);
+	const { flag, languageName, regionName } = getLocaleInfo(id, locale.regionId);
 
 	return [
 		flag,
