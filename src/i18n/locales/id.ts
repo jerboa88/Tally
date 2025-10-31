@@ -1,5 +1,5 @@
 /**
- * Locale messages for id (Indonesian)
+ * Locale messages for id-ID (Indonesian)
  * @module
  */
 
