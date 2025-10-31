@@ -1,5 +1,5 @@
 /**
- * Locale messages for it (Italian)
+ * Locale messages for it-IT (Italian)
  * @module
  */
 

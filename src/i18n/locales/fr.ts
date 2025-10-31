@@ -1,5 +1,5 @@
 /**
- * Locale messages for fr (French)
+ * Locale messages for fr-FR (French)
  * @module
  */
 

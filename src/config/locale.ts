@@ -51,6 +51,10 @@ const localeMap = {
 	id: {
 		wip: true,
 	},
+	zh: {
+		regionId: 'CN',
+		wip: true,
+	},
 } as const satisfies LocaleMap;
 
 /**
