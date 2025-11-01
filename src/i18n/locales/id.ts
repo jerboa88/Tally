@@ -37,6 +37,9 @@ const messages: LocaleMessages = {
 		note: {
 			title: 'Catatan',
 		},
+		error: {
+			title: 'Kesalahan',
+		},
 	},
 	header: {
 		label: `Beranda ${SITE.title}`,

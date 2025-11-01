@@ -1,25 +1,42 @@
 ---
 import { getLocaleMessages } from '@i18n/index.ts';
-import { Info } from '@lucide/astro';
+import { Info, OctagonX, type Icon as IconType } from '@lucide/astro';
 import type { HTMLAttributes } from 'astro/types';
 import type { WithChildren } from '../../types.ts';
 import Icon from './Icon.astro';
 import Strong from './Strong.astro';
 
 /**
- * Props for an alert/notification aside with configurable styling. Used by Markdoc.
+ * The alert type determining icon, color, and styling.
  */
-type Props = WithChildren<true, HTMLAttributes<'aside'>>;
+type Type = 'note' | 'error';
 
-const msg = getLocaleMessages(Astro).alert.note.title;
+/**
+ * Props for an alert/notification aside with configurable styling.
+ *
+ * Used by Markdoc for rendering alert blocks in markdown content.
+ *
+ * @property type - The alert type ('note' or 'error')
+ */
+interface Props extends WithChildren<true, HTMLAttributes<'aside'>> {
+	type?: Type;
+}
 
-const props = Astro.props;
+const iconMap = {
+	note: Info,
+	error: OctagonX,
+} as { [key in Type]: typeof IconType };
+
+const { type = 'note', ...restProps } = Astro.props;
+
+const title = getLocaleMessages(Astro).alert[type].title;
+const icon = iconMap[type];
 ---
 
-<aside role="note" {...props}>
+<aside role="note" data-type={type} {...restProps}>
 	<Strong>
-		<Icon icon={Info} />
-		{msg}
+		<Icon {icon} />
+		{title}
 	</Strong>
 	<slot />
 </aside>
@@ -33,7 +50,7 @@ const props = Astro.props;
 		border-radius: var(--r-md);
 		border: var(--b-md) solid var(--p);
 
-		strong {
+		> strong {
 			display: inline-flex;
 			flex-direction: row;
 			align-items: center;
@@ -42,8 +59,16 @@ const props = Astro.props;
 			font-family: var(--f-header);
 		}
 
-		p {
+		> p {
 			margin: 0;
+		}
+	}
+
+	[data-type='error'] {
+		border-color: var(--e);
+
+		> strong {
+			color: var(--e);
 		}
 	}
 </style>

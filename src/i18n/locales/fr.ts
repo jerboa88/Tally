@@ -37,6 +37,9 @@ const messages: LocaleMessages = {
 		note: {
 			title: 'Remarque',
 		},
+		error: {
+			title: 'Erreur',
+		},
 	},
 	header: {
 		label: `Page d'accueil de ${SITE.title}`,

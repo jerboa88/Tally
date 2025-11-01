@@ -4,16 +4,18 @@
    --bg-2 : Secondary background color (medium elevation)
    --fg   : Foreground (text/content) color
    --p    : Primary accent color
+	 --e    : Error accent color
    --s-mix: Shadow mix percentage for blending effects
 */
 
-/* Default light theme */
+/* Default light theme values */
 /* Colors from Tailwind CSS v4 (https://tailwindcss.com/docs/colors) */
 :root {
 	--l-bg-1: oklch(92.2% 0 0); /* Neutral 200  */
 	--l-bg-2: oklch(98.5% 0 0); /* Neutral 50 */
 	--l-fg: oklch(14.5% 0 0); /* Neutral 950 */
 	--l-p: oklch(45.7% 0.24 277.023); /* Indigo 700 */
+	--l-e: oklch(50.5% 0.213 27.518); /* Red 700 */
 	--l-s-mix: 30%;
 }
 
@@ -24,6 +26,7 @@
 	--bg-2: oklch(26.9% 0 0); /* Neutral 800 */
 	--fg: oklch(98.5% 0 0); /* Neutral 50 */
 	--p: oklch(70.7% 0.165 254.624); /* Blue 400 */
+	--e: oklch(70.4% 0.191 22.216); /* Red 400 */
 	--s-mix: 100%;
 }
 
@@ -35,6 +38,7 @@
 		--bg-2: var(--l-bg-2);
 		--fg: var(--l-fg);
 		--p: var(--l-p);
+		--e: var(--l-e);
 		--s-mix: var(--l-s-mix);
 	}
 }
@@ -45,6 +49,7 @@
 	--bg-2: var(--l-bg-2);
 	--fg: var(--l-fg);
 	--p: var(--l-p);
+	--e: var(--l-e);
 	--s-mix: var(--l-s-mix);
 }
 
@@ -53,6 +58,7 @@
 	--bg-2: oklch(22% 0.04 330);
 	--fg: oklch(90% 0.08 340);
 	--p: oklch(0.64 0.21 22.89);
+	--e: oklch(60% 0.24 30);
 	--s-mix: 100%;
 }
 
@@ -61,6 +67,7 @@
 	--bg-2: oklch(58% 0.07 185);
 	--fg: oklch(100% 0 0);
 	--p: oklch(85% 0.085 30);
+	--e: oklch(65% 0.19 25);
 	--s-mix: var(--l-s-mix);
 }
 
@@ -70,6 +77,7 @@
 	--bg-2: oklch(0 0 0);
 	--fg: oklch(92.2% 0 0); /* Neutral 200 */
 	--p: oklch(92.2% 0 0); /* Neutral 200 */
+	--e: oklch(70.4% 0.191 22.216);
 	--s-mix: 0%;
 
 	textarea {
@@ -83,6 +91,7 @@
 	--bg-2: oklch(32.1% 0.053 219.6); /* base02 */
 	--fg: oklch(71.8% 0.017 198); /* base0 */
 	--p: oklch(63.1% 0.166 50.4); /* orange */
+	--e: oklch(63.1% 0.221 21.6); /* red */
 	--s-mix: 100%;
 }
 
@@ -92,6 +101,7 @@
 	--bg-2: oklch(97.35% 0.026 90.1); /* base3 */
 	--fg: oklch(54.4% 0.017 219.6); /* base00 */
 	--p: oklch(63.1% 0.221 21.6); /* red */
+	--e: oklch(63.1% 0.221 21.6); /* red */
 	--s-mix: var(--l-s-mix);
 }
 
@@ -100,6 +110,8 @@
 	--bg-2: oklch(26% 0.01 45);
 	--fg: oklch(85% 0.08 90);
 	--p: oklch(62% 0.2 75);
+	/* TODO: Add custom error color */
+	--l-e: oklch(50.5% 0.213 27.518); /* Red 700 */
 	--s-mix: 100%;
 }
 
@@ -108,6 +120,8 @@
 	--bg-2: oklch(95% 0.06 90);
 	--fg: oklch(26% 0.01 45);
 	--p: oklch(62% 0.2 75);
+	/* TODO: Add custom error color */
+	--e: oklch(70.4% 0.191 22.216); /* Red 400 */
 	--s-mix: var(--l-s-mix);
 }
 
@@ -116,6 +130,8 @@
 	--bg-2: oklch(28% 0.03 270);
 	--fg: oklch(90% 0.06 270);
 	--p: oklch(75% 0.18 270);
+	/* TODO: Add custom error color */
+	--l-e: oklch(50.5% 0.213 27.518); /* Red 700 */
 	--s-mix: 100%;
 }
 
@@ -124,6 +140,8 @@
 	--bg-2: oklch(96% 0.01 250);
 	--fg: oklch(30% 0.02 260);
 	--p: oklch(68% 0.18 275);
+	/* TODO: Add custom error color */
+	--l-e: oklch(50.5% 0.213 27.518); /* Red 700 */
 	--s-mix: var(--l-s-mix);
 }
 
@@ -132,6 +150,8 @@
 	--bg-2: oklch(36% 0.03 270);
 	--fg: oklch(98% 0.01 100);
 	--p: oklch(70% 0.2 300);
+	/* TODO: Add custom error color */
+	--e: oklch(70.4% 0.191 22.216); /* Red 400 */
 	--s-mix: 100%;
 }
 
@@ -140,5 +160,7 @@
 	--bg-2: oklch(30% 0.03 250);
 	--fg: oklch(88% 0.03 250);
 	--p: oklch(65% 0.18 250);
+	/* TODO: Add custom error color */
+	--l-e: oklch(50.5% 0.213 27.518); /* Red 700 */
 	--s-mix: 100%;
 }

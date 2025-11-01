@@ -1,0 +1,27 @@
+---
+import { SITE } from '@config/site.ts';
+import { getLocaleMessages } from '@i18n/index.ts';
+import type { CollectionEntry, CollectionKey } from 'astro:content';
+import { render } from 'astro:content';
+import type { WithChildren } from '../../types.ts';
+
+/**
+ * Props for rendering Markdoc content from a content collection.
+ *
+ * @property entry - The content collection entry to render
+ */
+interface Props extends WithChildren<false> {
+	entry: CollectionEntry<CollectionKey>;
+}
+
+const config = {
+	site: SITE,
+} as const;
+const msg = getLocaleMessages(Astro);
+
+const { entry } = Astro.props;
+
+const { Content } = await render(entry);
+---
+
+<Content {config} {msg} />

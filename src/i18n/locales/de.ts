@@ -33,6 +33,9 @@ const messages: LocaleMessages = {
 		note: {
 			title: 'Hinweis',
 		},
+		error: {
+			title: 'Fehler',
+		},
 	},
 	header: {
 		label: `${SITE.title} Startseite`,

@@ -47,6 +47,10 @@ const messages: LocaleMessages = {
 			// Title for alerts of type 'note'
 			title: 'Note',
 		},
+		error: {
+			// Title for alerts of type 'error'
+			title: 'Error',
+		},
 	},
 	header: {
 		// Accessible label for the header/logo link
