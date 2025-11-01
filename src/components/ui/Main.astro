@@ -1,0 +1,29 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import type { WithChildren } from '../../types.ts';
+
+/**
+ * Props for the main content container element.
+ */
+type Props = WithChildren<true, HTMLAttributes<'main'>>;
+
+const props = Astro.props;
+---
+
+<!-- This must be on the same line to prevent whitespace from being inserted -->
+<main {...props}><slot /></main>
+
+<style>
+	main {
+		display: flex;
+		flex-direction: column;
+		gap: var(--p-md);
+		flex: 1;
+		width: 100%;
+		min-height: 100%;
+		max-width: var(--max-w);
+		padding: var(--p-md);
+		box-sizing: border-box;
+		view-transition-name: main;
+	}
+</style>
