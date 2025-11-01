@@ -1,30 +1,22 @@
 ---
-import { SITE } from '@config/site.ts';
-import { getLocaleMessages } from '@i18n/index.ts';
 import { wKey } from '@utils/index.ts';
+import type { HTMLAttributes } from 'astro/types';
 import type { CollectionEntry, CollectionKey } from 'astro:content';
-import { render } from 'astro:content';
 import type { WithChildren } from '../../types.ts';
+import MarkdocContent from './MarkdocContent.astro';
 
 /**
- * Props for rendering a Markdown article from the content collection.
+ * Props for rendering a Markdown article from a content collection.
  *
  * @property entry - The content collection entry to render
  */
-interface Props extends WithChildren<false> {
+interface Props extends WithChildren<false, HTMLAttributes<'article'>> {
 	entry: CollectionEntry<CollectionKey>;
 }
 
-const config = {
-	site: SITE,
-};
-const msg = getLocaleMessages(Astro);
-
 const { entry, ...restProps } = Astro.props;
-
-const { Content } = await render(entry);
 ---
 
 <article {...restProps} {...wKey('article', entry.slug)}>
-	<Content {config} {msg} />
+	<MarkdocContent {entry} />
 </article>
