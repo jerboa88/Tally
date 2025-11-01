@@ -32,6 +32,9 @@ const messages: LocaleMessages = {
 		note: {
 			title: '备注',
 		},
+		error: {
+			title: '错误',
+		},
 	},
 	header: {
 		label: `${SITE.title} 首页`,

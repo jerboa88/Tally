@@ -59,6 +59,9 @@ export type LocaleMessages = {
 		note: {
 			title: Capitalize<string>;
 		};
+		error: {
+			title: Capitalize<string>;
+		};
 	};
 	header: {
 		label: Capitalize<string>;
