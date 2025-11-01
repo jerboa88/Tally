@@ -59,7 +59,11 @@ const inputPreloadVars = {
 
 const aboutEntry = await getEntry(currentLocaleId, 'about');
 const relatedEntry = await getEntry(currentLocaleId, 'related');
-const alertEntry = await getEntryIf(
+const jsRequiredAlertEntry = await getEntry(
+	currentLocaleId,
+	'js-required-alert',
+);
+const experimentalLocaleAlertEntry = await getEntryIf(
 	'experimental-locale-alert',
 	LOCALE.map[currentLocaleId].wip,
 	"'alert' entry does not exist",
@@ -67,6 +71,7 @@ const alertEntry = await getEntryIf(
 
 assert(aboutEntry, "'about' entry does not exist");
 assert(relatedEntry, "'related' entry does not exist");
+assert(jsRequiredAlertEntry, "'js-required-alert' entry does not exist");
 
 /**
  * Generates static paths for all supported locales.
@@ -85,10 +90,15 @@ export function getStaticPaths() {
 			<CounterInput />
 			<CounterOutputs />
 			<Nav />
+			<noscript>
+				<Alert type="error">
+					<MarkdocContent entry={jsRequiredAlertEntry} />
+				</Alert>
+			</noscript>
 			{
-				alertEntry && (
-					<Alert>
-						<MarkdocContent entry={alertEntry} />
+				experimentalLocaleAlertEntry && (
+					<Alert type="error">
+						<MarkdocContent entry={experimentalLocaleAlertEntry} />
 					</Alert>
 				)
 			}

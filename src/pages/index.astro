@@ -1,34 +1,48 @@
 ---
 import Loader from '@components/app/Loader.astro';
+import Alert from '@components/ui/Alert.astro';
+import Main from '@components/ui/Main.astro';
+import MarkdocContent from '@components/ui/MarkdocContent.astro';
 import { SITE } from '@config/site.ts';
+import { getLocale } from '@i18n/index.ts';
 import PageLayout from '@layouts/PageLayout.astro';
+import { getEntry } from 'astro:content';
+import { assert } from 'radashi';
 
 // Hardcoded because these strings don't need to be translated (this page is outside of the localized routes)
 const msg = {
 	title: 'Loading',
 	description: `Choose your preferred language to continue to ${SITE.title}.`,
 } as const;
+
+const currentLocaleId = getLocale(Astro);
+
+const jsRequiredAlertEntry = await getEntry(
+	currentLocaleId,
+	'js-required-alert',
+);
+
+assert(jsRequiredAlertEntry, "'js-required-alert' entry does not exist");
 ---
 
 <PageLayout {...msg}>
 	<meta slot="head" name="robots" content="noindex" />
-	<main>
+	<Main>
 		<Loader>
 			<h1>{msg.title}...</h1>
 		</Loader>
-	</main>
+		<noscript>
+			<Alert type="error">
+				<MarkdocContent entry={jsRequiredAlertEntry} />
+			</Alert>
+		</noscript>
+	</Main>
 </PageLayout>
 
 <style>
 	main {
-		display: flex;
-		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		flex: 1;
-		width: 100%;
-		height: 100%;
-		view-transition-name: main;
 	}
 
 	h1 {
