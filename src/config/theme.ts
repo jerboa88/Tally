@@ -35,26 +35,21 @@ const freeTheme = {
 	sponsor: false,
 } as const satisfies Theme;
 
-const wipTheme = {
-	wip: true,
-	sponsor: false,
-} as const satisfies Theme;
-
 const themeMap = {
 	auto: freeTheme,
 	amoled: freeTheme,
 	light: freeTheme,
 	dark: freeTheme,
-	teal: wipTheme,
-	dusk: wipTheme,
-	solarizedLight: wipTheme,
-	solarizedDark: wipTheme,
-	gruvboxLight: wipTheme,
-	gruvboxDark: wipTheme,
-	catppuccinLatte: wipTheme,
-	catppuccinMocha: wipTheme,
-	nord: wipTheme,
-	dracula: wipTheme,
+	teal: freeTheme,
+	dusk: freeTheme,
+	solarizedLight: freeTheme,
+	solarizedDark: freeTheme,
+	gruvboxLight: freeTheme,
+	gruvboxDark: freeTheme,
+	catppuccinLatte: freeTheme,
+	catppuccinMocha: freeTheme,
+	nord: freeTheme,
+	dracula: freeTheme,
 } as const satisfies ThemeMap;
 
 /**

@@ -24,7 +24,7 @@ h6 {
 
 ::selection {
 	background-color: color-mix(
-		in oklch shorter hue,
+		in oklch,
 		var(--p),
 		transparent var(--mix-lg)
 	);;
