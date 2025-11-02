@@ -7,9 +7,9 @@
 	</h1>
 	<p class="projectBadges info">
 		<img src="https://johng.io/badges/category/App.svg" alt="Project category" title="Project category">
-		<img src="https://img.shields.io/github/languages/top/jerboa88/Tally.svg" alt="Language" title="Language">
-		<img src="https://img.shields.io/github/repo-size/jerboa88/Tally.svg" alt="Repository size" title="Repository size">
-		<a href="LICENSE"><img src="https://img.shields.io/github/license/jerboa88/Tally.svg" alt="Project license" title="Project license"/></a>
+		<img src="https://img.shields.io/github/languages/top/twocaretcat/Tally.svg" alt="Language" title="Language">
+		<img src="https://img.shields.io/github/repo-size/twocaretcat/Tally.svg" alt="Repository size" title="Repository size">
+		<a href="LICENSE"><img src="https://img.shields.io/github/license/twocaretcat/Tally.svg" alt="Project license" title="Project license"/></a>
 	</p>
 	<p class="projectBadges status">
 		<a href="https://tally.johng.io" title="Project URL"><img src="https://img.shields.io/website?url=https%3A%2F%2Ftally.johng.io&up_message=tally.johng.io%20%E2%86%97" alt="Project URL" title="Project URL"></a>
@@ -69,7 +69,7 @@ Typing or pasting type into the editor will update the counts in real-time. The 
 ### Languages
 
 > [!NOTE]
-> Some languages are marked as _**experimental**_. This means that the translations haven't been reviewed and/or counting accuracy has not been extensively tested for that language. If you encounter any issues with a language, please [open an issue](https://github.com/jerboa88/Tally/issues).
+> Some languages are marked as _**experimental**_. This means that the translations haven't been reviewed and/or counting accuracy has not been extensively tested for that language. If you encounter any issues with a language, please [open an issue](https://github.com/twocaretcat/Tally/issues).
 
 You can change the language with the language selector. Choosing a language changes the UI text to that language and adjusts the segmentation rules that determine how graphemes, words, and sentences are counted.
 
@@ -165,14 +165,14 @@ This project is licensed under the AGPL-3.0 License. See the [LICENSE](LICENSE) 
 
 ### Recommended
 
-- **👤 [Tally Chrome Extension](https://github.com/jerboa88/Tally-Extension)**: A Chrome extension to easily count the number of words, characters, and paragraphs on any site
+- **👤 [Tally Chrome Extension](https://github.com/twocaretcat/Tally-Extension)**: A Chrome extension to easily count the number of words, characters, and paragraphs on any site
 - **👤 [Mergist](https://mergist.johng.io)**: An online tool to combine multiple PDF files into one. Mergist has no ads, no file size limits, and your files never leave your device
-- **👤 [Shared File Finder for Google Drive](https://github.com/jerboa88/Shared-File-Finder-for-Google-Drive)**: An Apps Script that finds all files/folders on Google Drive that are shared with others and adds them to a Google Sheet
+- **👤 [Shared File Finder for Google Drive](https://github.com/twocaretcat/Shared-File-Finder-for-Google-Drive)**: An Apps Script that finds all files/folders on Google Drive that are shared with others and adds them to a Google Sheet
 
 ### Used Here
 
-- **👤 [tally-ts](https://github.com/jerboa88/tally-ts)**: A TypeScript word counting library. Used by **Tally** to compute counts
-- **👤 [astro-snapshot](https://github.com/jerboa88/astro-snapshot)**: An Astro integration for generating screenshots of your pages automatically at build time. Used by **Tally** to generate social preview images
+- **👤 [tally-ts](https://github.com/twocaretcat/tally-ts)**: A TypeScript word counting library. Used by **Tally** to compute counts
+- **👤 [astro-snapshot](https://github.com/twocaretcat/astro-snapshot)**: An Astro integration for generating screenshots of your pages automatically at build time. Used by **Tally** to generate social preview images
 
 ## 💕 Funding
 
@@ -189,4 +189,4 @@ If you can't donate but still want to contribute, don't worry. There are many ot
 I appreciate the support!
 
 [tally.johng.io]: https://tally.johng.io
-[tally-ts]: https://github.com/jerboa88/tally-ts
+[tally-ts]: https://github.com/twocaretcat/tally-ts

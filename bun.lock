@@ -14,8 +14,8 @@
         "astro-better-image-service": "^2.1.9",
         "astro-capo": "^0.0.1",
         "astro-robots-txt": "^1.0.0",
-        "astro-snapshot": "github:jerboa88/astro-snapshot",
-        "tally-ts": "github:jerboa88/tally-ts",
+        "astro-snapshot": "github:twocaretcat/astro-snapshot",
+        "tally-ts": "github:twocaretcat/tally-ts",
         "nanostores": "^1.0.1",
         "radashi": "^12.7.0",
         "sharp": "^0.34.4",
@@ -369,7 +369,7 @@
 
     "astro-robots-txt": ["astro-robots-txt@1.0.0", "", { "dependencies": { "valid-filename": "^4.0.0", "zod": "^3.22.2" } }, "sha512-6JQSLid4gMhoWjOm85UHLkgrw0+hHIjnJVIUqxjU2D6feKlVyYukMNYjH44ZDZBK1P8hNxd33PgWlHzCASvedA=="],
 
-    "astro-snapshot": ["astro-snapshot@github:jerboa88/astro-snapshot#8507f0f", { "dependencies": { "puppeteer": "^24.26.1" }, "peerDependencies": { "astro": "^5.0.0" } }, "jerboa88-astro-snapshot-8507f0f"],
+    "astro-snapshot": ["astro-snapshot@github:twocaretcat/astro-snapshot#8507f0f", { "dependencies": { "puppeteer": "^24.26.1" }, "peerDependencies": { "astro": "^5.0.0" } }, "twocaretcat-astro-snapshot-8507f0f"],
 
     "axobject-query": ["axobject-query@4.1.0", "", {}, "sha512-qIj0G9wZbMGNLjLmg1PT6v2mE9AH2zlnADJD/2tC6E00hgmhUOfEB6greHPAfLRSufHqROIUTkw6E+M3lH0PTQ=="],
 
@@ -1001,7 +1001,7 @@
 
     "svgo": ["svgo@3.3.2", "", { "dependencies": { "@trysound/sax": "0.2.0", "commander": "^7.2.0", "css-select": "^5.1.0", "css-tree": "^2.3.1", "css-what": "^6.1.0", "csso": "^5.0.5", "picocolors": "^1.0.0" }, "bin": "./bin/svgo" }, "sha512-OoohrmuUlBs8B8o6MB2Aevn+pRIH9zDALSR+6hhqVfa6fRwG/Qw9VUMSMW9VNg2CFc/MTIfabtdOVl9ODIJjpw=="],
 
-    "tally-ts": ["tally-ts@github:jerboa88/tally-ts#2dbdae6", {}, "jerboa88-tally-ts-2dbdae6"],
+    "tally-ts": ["tally-ts@github:twocaretcat/tally-ts#2dbdae6", {}, "twocaretcat-tally-ts-2dbdae6"],
 
     "tar-fs": ["tar-fs@3.1.1", "", { "dependencies": { "pump": "^3.0.0", "tar-stream": "^3.1.5" }, "optionalDependencies": { "bare-fs": "^4.0.1", "bare-path": "^3.0.0" } }, "sha512-LZA0oaPOc2fVo82Txf3gw+AkEd38szODlptMYejQUhndHMLQ9M059uXR+AfS7DNo0NpINvSqDsvyaCrBVkptWg=="],
 
