@@ -74,7 +74,7 @@ export const SITE = {
 			linkedin: 'https://www.linkedin.com/in/johngoodliff/',
 		},
 		username: {
-			x: '@jerboa88',
+			x: '@twocaretcat',
 		},
 	},
 } as const satisfies SiteConfig;
