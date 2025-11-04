@@ -46,6 +46,10 @@ const localeMap = {
 		wip: true,
 	},
 	de: {
+
+		wip: true,
+	},
+	ar: {
 		wip: true,
 	},
 	id: {
