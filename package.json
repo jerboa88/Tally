@@ -75,14 +75,14 @@
 		"@nanostores/logger": "^1.0.0",
 		"@nanostores/persistent": "^1.1.0",
 		"@playform/compress": "^0.2.0",
+		"@twocaretcat/astro-snapshot": "npm:@jsr/twocaretcat__astro-snapshot",
+		"@twocaretcat/tally-ts": "npm:@jsr/twocaretcat__tally-ts",
 		"astro": "5.15.1",
 		"astro-better-image-service": "^2.1.9",
 		"astro-capo": "^0.0.1",
 		"astro-robots-txt": "^1.0.0",
-		"astro-snapshot": "github:twocaretcat/astro-snapshot",
 		"nanostores": "^1.0.1",
 		"radashi": "^12.7.0",
-		"sharp": "^0.34.4",
-		"tally-ts": "github:twocaretcat/tally-ts"
+		"sharp": "^0.34.4"
 	}
 }
