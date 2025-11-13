@@ -77,7 +77,7 @@
 		"@playform/compress": "^0.2.0",
 		"@twocaretcat/astro-snapshot": "npm:@jsr/twocaretcat__astro-snapshot",
 		"@twocaretcat/tally-ts": "npm:@jsr/twocaretcat__tally-ts",
-		"astro": "5.15.1",
+		"astro": "5.15.6",
 		"astro-better-image-service": "^2.1.9",
 		"astro-capo": "^0.0.1",
 		"astro-robots-txt": "^1.0.0",
