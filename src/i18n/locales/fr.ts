@@ -1,3 +1,8 @@
+/**
+ * Locale messages for fr-FR (French)
+ * @module
+ */
+
 import { SITE } from '@config/site';
 import type { LocaleMessages } from '../types.ts';
 
@@ -5,7 +10,7 @@ const TAGLINE = 'Compteur de mots' as const;
 const DESCRIPTION =
 	'Votre compteur de mots préféré en mode sombre, désormais avec encore plus de thèmes !' as const;
 
-const FR: LocaleMessages = {
+const messages: LocaleMessages = {
 	site: {
 		title: `${SITE.title} - ${TAGLINE}`,
 		description: DESCRIPTION,
@@ -28,12 +33,12 @@ const FR: LocaleMessages = {
 			'outil en ligne',
 		],
 	},
-	loader: {
-		label: 'Chargement…',
-	},
 	alert: {
 		note: {
 			title: 'Remarque',
+		},
+		error: {
+			title: 'Erreur',
 		},
 	},
 	header: {
@@ -166,4 +171,4 @@ const FR: LocaleMessages = {
 	},
 } as const satisfies LocaleMessages;
 
-export default FR;
+export default messages;

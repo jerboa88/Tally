@@ -14,14 +14,14 @@ type Props = WithChildren<false>;
 <script>
 	import { CLASS } from '@config/class.ts';
 	import { OUTPUT, type OutputId } from '@config/output.ts';
-	import { getLocale, getLocaleStrings } from '@i18n/index.ts';
+	import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 	import { $outputCounts } from '@stores/index.ts';
 	import { entriesOf, getDefinedElementById } from '@utils/index.ts';
 
 	type OutputMap = { [key in OutputId]: HTMLOutputElement };
 
 	const currentLocaleId = getLocale();
-	const msg = getLocaleStrings(currentLocaleId).output.placeholder;
+	const msg = getLocaleMessages(currentLocaleId).output.placeholder;
 	const numberFormatter = new Intl.NumberFormat(currentLocaleId);
 
 	// Build a map of all output elements by their IDs

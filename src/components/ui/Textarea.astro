@@ -54,11 +54,7 @@ const props = Astro.props;
 		}
 
 		&::placeholder {
-			color: color-mix(
-				in oklch shorter hue,
-				var(--fg),
-				transparent var(--mix-lg)
-			);
+			color: color-mix(in oklch, var(--fg), transparent var(--mix-lg));
 		}
 	}
 </style>

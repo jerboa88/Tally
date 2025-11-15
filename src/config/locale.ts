@@ -1,9 +1,16 @@
 /**
+ * A two-letter uppercase region code (e.g., 'US', 'ES', 'MX').
+ */
+export type RegionId = `${Uppercase<string>}${Uppercase<string>}`;
+
+/**
  * Configuration for a single locale.
  *
+ * @property regionId - An optional region ID for the locale
  * @property wip - Whether the locale is still a work in progress
  */
 export type Locale = {
+	regionId?: RegionId;
 	wip: boolean;
 };
 
@@ -36,8 +43,8 @@ const localeMap = {
 		wip: true,
 	},
 	it: {
-    wip: true,
-  },
+		wip: true,
+	},
 	de: {
 		wip: true,
 	},
@@ -45,6 +52,13 @@ const localeMap = {
 		wip: true,
 	},
 	ru: {
+		wip: true,
+	},
+	zh: {
+		regionId: 'CN',
+		wip: true,
+	},
+	ar: {
 		wip: true,
 	},
 } as const satisfies LocaleMap;

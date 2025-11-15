@@ -1,3 +1,8 @@
+/**
+ * Locale messages for it-IT (Italian)
+ * @module
+ */
+
 import { SITE } from '@config/site';
 import type { LocaleMessages } from '../types.ts';
 
@@ -5,7 +10,7 @@ const TAGLINE = 'Contatore di parole' as const;
 const DESCRIPTION =
 	'Il tuo contatore di parole preferito in modalità scura, ora con ancora più temi!' as const;
 
-const IT: LocaleMessages = {
+const messages: LocaleMessages = {
 	site: {
 		title: `${SITE.title} - ${TAGLINE}`,
 		description: DESCRIPTION,
@@ -28,12 +33,12 @@ const IT: LocaleMessages = {
 			'strumento online',
 		],
 	},
-	loader: {
-		label: 'Caricamento...',
-	},
 	alert: {
 		note: {
 			title: 'Nota',
+		},
+		error: {
+			title: 'Errore',
 		},
 	},
 	header: {
@@ -166,4 +171,4 @@ const IT: LocaleMessages = {
 	},
 } as const satisfies LocaleMessages;
 
-export default IT;
+export default messages;

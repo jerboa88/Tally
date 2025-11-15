@@ -7,9 +7,9 @@
 	</h1>
 	<p class="projectBadges info">
 		<img src="https://johng.io/badges/category/App.svg" alt="Project category" title="Project category">
-		<img src="https://img.shields.io/github/languages/top/jerboa88/Tally.svg" alt="Language" title="Language">
-		<img src="https://img.shields.io/github/repo-size/jerboa88/Tally.svg" alt="Repository size" title="Repository size">
-		<a href="LICENSE"><img src="https://img.shields.io/github/license/jerboa88/Tally.svg" alt="Project license" title="Project license"/></a>
+		<img src="https://img.shields.io/github/languages/top/twocaretcat/Tally.svg" alt="Language" title="Language">
+		<img src="https://img.shields.io/github/repo-size/twocaretcat/Tally.svg" alt="Repository size" title="Repository size">
+		<a href="LICENSE"><img src="https://img.shields.io/github/license/twocaretcat/Tally.svg" alt="Project license" title="Project license"/></a>
 	</p>
 	<p class="projectBadges status">
 		<a href="https://tally.johng.io" title="Project URL"><img src="https://img.shields.io/website?url=https%3A%2F%2Ftally.johng.io&up_message=tally.johng.io%20%E2%86%97" alt="Project URL" title="Project URL"></a>
@@ -55,7 +55,7 @@
 
 ### How it Works
 
-Counting functionality is provided by the included **tally-ts** library. Refer to its [README](./src/lib/tally-ts/README.md) for more information on how the algorithm works.
+Counting functionality is provided by the related [tally-ts] library. Refer to its documentation for more information on how the counting algorithm works.
 
 ## 🕹️ Usage
 
@@ -69,7 +69,7 @@ Typing or pasting type into the editor will update the counts in real-time. The 
 ### Languages
 
 > [!NOTE]
-> Some languages are marked as _**experimental**_. This means that the translations haven't been reviewed and/or counting accuracy has not been extensively tested for that language. If you encounter any issues with a language, please [open an issue](https://github.com/jerboa88/Tally/issues).
+> Some languages are marked as _**experimental**_. This means that the translations haven't been reviewed and/or counting accuracy has not been extensively tested for that language. If you encounter any issues with a language, please [open an issue](https://github.com/twocaretcat/Tally/issues).
 
 You can change the language with the language selector. Choosing a language changes the UI text to that language and adjusts the segmentation rules that determine how graphemes, words, and sentences are counted.
 
@@ -93,17 +93,17 @@ You can change the site theme using the theme selector. If you select _**Auto**_
 | --------------------------------------------------------------------------- |
 | _Option selector - v4_                                                      |
 
-#### Remember input text
+#### Remember Input Text
 
 When you enable the _**Remember input text**_ option, any text you enter is stored in your browser and restored on reload. When it is disabled, the editor stops restoring text (and erases any previously stored input text). This is disabled by default.
 
-#### Warn on large input text
+#### Warn on Large Input Text
 
 When you enable the _**Warn on large input text**_ option, the app will show a warning when you try to paste or type a large amount or text (currently 1,000,000 characters). You can choose to either continue or cancel the operation.
 
 It can take a while to process extremely large inputs, so this option helps you avoid accidentally freezing your browser. This is enabled by default.
 
-#### Enable debug logging
+#### Enable Debug Logging
 
 > [!TIP]
 > If you submit a bug report, please include a screenshot of the console output when debug logging is enabled to help us diagnose the issue.
@@ -112,7 +112,7 @@ When you toggle _**Enable debug logging**_, the application emits extra diagnost
 
 ## 🤖 Advanced Usage
 
-### Using URL query parameters
+### Use URL Query Parameters
 
 > [!TIP]
 > You can pass your search parameters directly to [tally.johng.io], but if you already know what language you want to use, it is faster to use the language-specific URL (ex. [tally.johng.io/de](https://tally.johng.io/de)).
@@ -157,18 +157,22 @@ You can also set any of the supported options by passing query params. You can f
 
 ## 🧾 License
 
-Copyright © 2025 [John Goodliff](https://johng.io).
+Copyright © 2025 [John Goodliff](https://johng.io/r/tally).
 
-This project is licensed under the AGPL-3.0 License. See the [LICENSE](LICENSE) for details. The following included libraries have their own licenses:
-
-- **tally-ts**: MIT License
-- **astro-snapshot**: MIT License
+This project is licensed under the AGPL-3.0 License. See the [LICENSE](LICENSE) for details.
 
 ## 🖇️ Related
 
-- **👤 [Tally Chrome Extension](https://github.com/jerboa88/Tally-Extension)**: A Chrome extension to easily count the number of words, characters, and paragraphs on any site
-- **👤 [Mergist](https://mergist.johng.io)**: Mergist is an online tool to combine multiple PDF files into one. Mergist has no ads, no file size limits, and your files never leave your device
-- **👤 [Shared File Finder for Google Drive](https://github.com/jerboa88/Shared-File-Finder-for-Google-Drive)**: An Apps Script that finds all files/folders on Google Drive that are shared with others and adds them to a Google Sheet
+### Recommended
+
+- **👤 [Tally Chrome Extension](https://github.com/twocaretcat/Tally-Extension)**: A Chrome extension to easily count the number of words, characters, and paragraphs on any site
+- **👤 [Mergist](https://mergist.johng.io)**: An online tool to combine multiple PDF files into one. Mergist has no ads, no file size limits, and your files never leave your device
+- **👤 [Shared File Finder for Google Drive](https://github.com/twocaretcat/Shared-File-Finder-for-Google-Drive)**: An Apps Script that finds all files/folders on Google Drive that are shared with others and adds them to a Google Sheet
+
+### Used Here
+
+- **👤 [tally-ts](https://github.com/twocaretcat/tally-ts)**: A TypeScript word counting library. Used by **Tally** to compute counts
+- **👤 [astro-snapshot](https://github.com/twocaretcat/astro-snapshot)**: An Astro integration for generating screenshots of your pages automatically at build time. Used by **Tally** to generate social preview images
 
 ## 💕 Funding
 
@@ -185,3 +189,4 @@ If you can't donate but still want to contribute, don't worry. There are many ot
 I appreciate the support!
 
 [tally.johng.io]: https://tally.johng.io
+[tally-ts]: https://github.com/twocaretcat/tally-ts

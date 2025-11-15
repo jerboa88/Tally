@@ -3,6 +3,17 @@ import type { OutputId } from '@config/output.ts';
 import type { ThemeId } from '@config/theme.ts';
 
 /**
+ * Localized strings for a button link component.
+ *
+ * @property label - The visible button text
+ * @property tooltip - The tooltip text shown on hover
+ */
+type ButtonLink = {
+	label: Capitalize<string>;
+	tooltip: Capitalize<string>;
+};
+
+/**
  * A map of output IDs to their localized labels.
  */
 type OutputMap = {
@@ -44,11 +55,11 @@ export type LocaleMessages = {
 		requirements: Capitalize<string>;
 		keywords: string[];
 	};
-	loader: {
-		label: Capitalize<string>;
-	};
 	alert: {
 		note: {
+			title: Capitalize<string>;
+		};
+		error: {
 			title: Capitalize<string>;
 		};
 	};
@@ -67,22 +78,10 @@ export type LocaleMessages = {
 		map: OutputMap;
 	};
 	nav: {
-		viewSource: {
-			label: Capitalize<string>;
-			tooltip: Capitalize<string>;
-		};
-		reportIssue: {
-			label: Capitalize<string>;
-			tooltip: Capitalize<string>;
-		};
-		sponsor: {
-			label: Capitalize<string>;
-			tooltip: Capitalize<string>;
-		};
-		moreProjects: {
-			label: Capitalize<string>;
-			tooltip: Capitalize<string>;
-		};
+		viewSource: ButtonLink;
+		reportIssue: ButtonLink;
+		sponsor: ButtonLink;
+		moreProjects: ButtonLink;
 	};
 	locales: {
 		title: Capitalize<string>;

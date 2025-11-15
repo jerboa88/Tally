@@ -14,7 +14,7 @@
 		"online tool"
 	],
 	"homepage": "https://johng.io/p/tally",
-	"bugs": "https://github.com/jerboa88/Tally/issues",
+	"bugs": "https://github.com/twocaretcat/Tally/issues",
 	"license": "AGPL-3.0-only",
 	"author": {
 		"name": "John Goodliff",
@@ -27,11 +27,11 @@
 		},
 		{
 			"type": "GitHub Sponsors",
-			"url": "https://github.com/sponsors/jerboa88"
+			"url": "https://github.com/sponsors/twocaretcat"
 		},
 		{
 			"type": "Patreon",
-			"url": "https://patreon.com/jerboa88"
+			"url": "https://patreon.com/twocaretcat"
 		},
 		{
 			"type": "Brave Creators",
@@ -42,7 +42,7 @@
 	"type": "module",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/jerboa88/Tally.git"
+		"url": "git+https://github.com/twocaretcat/Tally.git"
 	},
 	"scripts": {
 		"dev": "astro dev",
@@ -54,6 +54,11 @@
 		"format:write": "prettier --write .",
 		"upgrade-interactive": "ncu -i --format group"
 	},
+	"trustedDependencies": [
+		"tally-ts",
+		"astro-snapshot",
+		"puppeteer"
+	],
 	"devDependencies": {
 		"@astrojs/check": "0.9.5",
 		"@types/bun": "latest",
@@ -70,14 +75,14 @@
 		"@nanostores/logger": "^1.0.0",
 		"@nanostores/persistent": "^1.1.0",
 		"@playform/compress": "^0.2.0",
-		"astro": "5.15.1",
+		"@twocaretcat/astro-snapshot": "npm:@jsr/twocaretcat__astro-snapshot",
+		"@twocaretcat/tally-ts": "npm:@jsr/twocaretcat__tally-ts",
+		"astro": "5.15.6",
 		"astro-better-image-service": "^2.1.9",
 		"astro-capo": "^0.0.1",
 		"astro-robots-txt": "^1.0.0",
-		"astro-snapshot": "./src/lib/astro-snapshot",
 		"nanostores": "^1.0.1",
 		"radashi": "^12.7.0",
-		"sharp": "^0.34.4",
-		"tally-ts": "./src/lib/tally-ts"
+		"sharp": "^0.34.4"
 	}
 }

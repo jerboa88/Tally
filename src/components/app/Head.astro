@@ -1,0 +1,163 @@
+---
+import { FONTS } from '@config/fonts.ts';
+import { SITE } from '@config/site';
+import { THEME } from '@config/theme.ts';
+import { getLocale, getLocaleMessages } from '@i18n/index.ts';
+import iconIco from '@images/favicon.ico';
+import iconPng from '@images/icon-solid.png';
+import iconSvg from '@images/icon.svg';
+import logoSvg from '@images/logo.svg';
+import { pathToAbsoluteUrl } from '@utils/index.ts';
+import { Head as CapoHead } from 'astro-capo';
+import { Font, getImage } from 'astro:assets';
+import JsonLd from './JsonLd.astro';
+import SocialImageMetadata from './SocialImageMetadata.astro';
+
+/**
+ * Props for the document head section.
+ *
+ * @property title - Optional title for the page (prepended to the site title)
+ * @property description - Description for the page
+ * @property children - Optional additional head elements (e.g., page-specific meta tags)
+ */
+type Props = {
+	title?: Capitalize<string>;
+	description: Capitalize<string>;
+	children?: astroHTML.JSX.Element;
+};
+
+const appleTouchIcon = await getImage({
+	src: iconPng,
+	format: 'png',
+	width: 180,
+	height: 180,
+	layout: 'none',
+});
+
+const currentLocaleId = getLocale(Astro);
+const msg = getLocaleMessages(currentLocaleId).site;
+
+const { title, description: pageDescription } = Astro.props;
+
+const pageTitle = title ? `${title} | ${msg.title}` : msg.title;
+const pageCanonicalUrl = new URL(
+	Astro.url.pathname,
+	SITE.url.base,
+).href.replace('.html', '');
+---
+
+<CapoHead>
+	<meta charset="utf-8" />
+	<meta
+		name="viewport"
+		content="width=device-width,initial-scale=1,user-scalable=yes"
+	/>
+	<title>{pageTitle}</title>
+	<meta name="description" content={pageDescription} />
+	<meta name="author" content={SITE.author.name.full} />
+	<meta name="keywords" content={msg.keywords.join(',')} />
+
+	<!-- Open Graph tags -->
+	<meta property="og:title" content={pageTitle} />
+	<meta property="og:description" content={pageDescription} />
+	<meta property="og:url" content={pageCanonicalUrl} />
+	<meta property="og:type" content="website" />
+	<meta property="og:locale" content={currentLocaleId} />
+	<!-- Unofficial tag -->
+	<meta property="og:logo" content={pathToAbsoluteUrl(logoSvg.src)} />
+
+	<!-- Twitter tags (some are omitted because X falls back to Open Graph tags) -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:creator" content={SITE.author.username.x} />
+
+	<SocialImageMetadata />
+
+	<meta name="msapplication-navbutton-color" content={THEME.default.color} />
+	<meta name="msapplication-TileColor" content={THEME.default.color} />
+	<meta name="theme-color" content={THEME.default.color} />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+	<!-- Icons -->
+	<link rel="icon" sizes="48x48 32x32 24x24 16x16" href={iconIco} />
+	<link
+		rel="apple-touch-icon"
+		sizes={`${appleTouchIcon.options.width}x${appleTouchIcon.options.height}`}
+		href={appleTouchIcon.src}
+	/>
+	<link rel="icon" sizes="any" type="image/svg+xml" href={iconSvg.src} />
+
+	<!-- Links -->
+	<link rel="canonical" href={pageCanonicalUrl} />
+	<link rel="sitemap" href={`/${SITE.sitemapPrefix}-index.xml`} />
+
+	<!-- Fonts -->
+	{FONTS.map(({ cssVariable }) => <Font {cssVariable} preload />)}
+
+	<!-- Structured data -->
+	<JsonLd
+		obj={[
+			{
+				'@context': 'https://schema.org',
+				'@type': 'WebApplication',
+				name: msg.title,
+				url: SITE.url.base,
+				description: msg.description,
+				applicationCategory: 'Utility',
+				operatingSystem: 'All',
+				browserRequirements: msg.requirements,
+				creator: {
+					'@type': 'Person',
+					name: SITE.author.name.full,
+					givenName: SITE.author.name.first,
+					familyName: SITE.author.name.last,
+					url: SITE.author.url.homepage,
+					sameAs: [SITE.author.url.github, SITE.author.url.linkedin],
+				},
+				offers: {
+					'@type': 'Offer',
+					price: '0',
+					priceCurrency: 'CAD',
+				},
+				featureList: msg.features,
+				keywords: msg.keywords,
+			},
+			{
+				'@context': 'https://schema.org',
+				'@type': 'WebPage',
+				name: pageTitle,
+				description: pageDescription,
+				url: pageCanonicalUrl,
+				inLanguage: currentLocaleId,
+			},
+		]}
+	/>
+	<slot />
+</CapoHead>
+
+<script>
+	import { $theme } from '@stores/index.ts';
+
+	// TODO: Move to constants
+	const META_TAG_SELECTOR_ATTRIBUTES = [
+		'meta[name=msapplication-navbutton-color]',
+		'meta[name=msapplication-TileColor]',
+		'meta[name=theme-color]',
+		'meta[name=apple-mobile-web-app-status-bar-style]',
+	] as const;
+	const BASE_COLOR_VARIABLE_NAME = '--bg-1' as const;
+
+	const metaTags = META_TAG_SELECTOR_ATTRIBUTES.map((metaTagSelector) =>
+		document.head.querySelector(metaTagSelector),
+	);
+
+	// Update the layout when the theme changes
+	$theme.subscribe(() => {
+		// Update colors in meta tags
+		const styleMap = window.getComputedStyle(document.body);
+		const baseColor = styleMap.getPropertyValue(BASE_COLOR_VARIABLE_NAME);
+
+		for (const metaTag of metaTags) {
+			metaTag?.setAttribute('content', baseColor);
+		}
+	});
+</script>

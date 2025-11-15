@@ -1,0 +1,47 @@
+---
+import ButtonLink from '@components/ui/ButtonLink.astro';
+import Card from '@components/ui/Card.astro';
+import H1 from '@components/ui/H1.astro';
+import Main from '@components/ui/Main.astro';
+import PageLayout from '@layouts/PageLayout.astro';
+import { House } from '@lucide/astro';
+
+// Hardcoded because these strings don't need to be translated (this page is outside of the localized routes)
+const msg = {
+	title: '404',
+	description: "Oops, looks like this page doesn't exist 😿.",
+	nav: {
+		home: {
+			label: 'Home',
+			tooltip: 'Return to the homepage',
+		},
+	},
+} as const;
+---
+
+<PageLayout title={msg.title} description={msg.description}>
+	<meta slot="head" name="robots" content="noindex" />
+	<Main>
+		<H1>{msg.title}</H1>
+		<p>{msg.description}</p>
+		<Card as="nav">
+			<ButtonLink
+				to="/"
+				label={msg.nav.home.label}
+				icon={House}
+				tooltip={msg.nav.home.tooltip}
+			/>
+		</Card>
+	</Main>
+</PageLayout>
+
+<style>
+	main {
+		justify-content: center;
+		align-items: center;
+	}
+
+	p {
+		margin: 0;
+	}
+</style>

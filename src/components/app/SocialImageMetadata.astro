@@ -1,0 +1,94 @@
+---
+import {
+	SOCIAL_PREVIEW,
+	type SocialPreviewId,
+} from '@config/social-preview.ts';
+import { getLocale } from '@i18n/index.ts';
+import { entriesOf, pathToAbsoluteUrl } from '@utils/index.ts';
+import { getImage } from 'astro:assets';
+import type { WithChildren } from '../../types.ts';
+
+/**
+ * Props for generating social media preview meta tags.
+ *
+ * Explicitly disallows children as meta tags cannot contain content.
+ */
+type Props = WithChildren<false>;
+
+/**
+ * Dynamically imports and optimizes the social preview image for the current locale.
+ *
+ * @returns An object containing the full URL and image metadata (dimensions, format), or undefined if we were unable to load the image
+ */
+async function loadSocialImage(type: SocialPreviewId) {
+	// This should match the template string below
+	const filename =
+		`../../images/${SOCIAL_PREVIEW.id}/${currentLocaleId}/${type}.png` as const;
+
+	try {
+		// The import path must be an inline string for use with @rollup/plugin-dynamic-import-vars
+		const module: Promise<{ default: ImageMetadata }> = import(
+			`../../images/${SOCIAL_PREVIEW.id}/${currentLocaleId}/${type}.png`
+		);
+		const image = await getImage({
+			src: module,
+			format: 'webp',
+			layout: 'none',
+		});
+
+		return {
+			url: pathToAbsoluteUrl(image.src),
+			...image,
+		};
+	} catch (error) {
+		// Handle social images not existing on the first build
+		console.warn(
+			`Social image not found at '${filename}'. Skipping addition of meta tags. Full error:`,
+			error,
+		);
+
+		return undefined;
+	}
+}
+
+const currentLocaleId = getLocale(Astro);
+const socialImages = await Promise.all(
+	entriesOf(SOCIAL_PREVIEW.map).map(async ([type, { includeInHead }]) => {
+		if (!includeInHead) {
+			return {
+				type,
+				matrix: [],
+			};
+		}
+
+		const image = await loadSocialImage(type);
+
+		if (!image) {
+			return {
+				type,
+				matrix: [],
+			};
+		}
+
+		const { url, options } = image;
+
+		return {
+			type,
+			matrix: [
+				['', url],
+				[':type', `image/${options.format}`],
+				[':width', options.width?.toString()],
+				[':height', options.height?.toString()],
+			],
+		};
+	}),
+);
+---
+
+{
+	socialImages.map(({ type, matrix }) =>
+		matrix.map(([propertySuffix, content]) => (
+			<meta property={`${type}:image${propertySuffix}`} {content} />
+		)),
+	)
+}

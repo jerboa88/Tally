@@ -1,17 +1,12 @@
 ---
-import { LOCALE } from '@config/locale.ts';
-import { getLocaleStrings } from '@i18n/index.ts';
 import type { WithChildren } from '../../types.ts';
 
 /**
  * Props for an animated typewriter loading indicator. Based on https://uiverse.io/Nawsome/kind-mole-87, which is licensed under MIT.
  *
- * Explicitly disallows children as the loader structure is predefined.
+ * Allows children for the figcaption text.
  */
-type Props = WithChildren<false>;
-
-// Use the default locale because, at this point, we don't know the user's preferences
-const msg = getLocaleStrings(LOCALE.default).loader.label;
+type Props = WithChildren<true>;
 ---
 
 <figure>
@@ -20,17 +15,14 @@ const msg = getLocaleStrings(LOCALE.default).loader.label;
 	</div>
 	<div class="paper"></div>
 	<div class="keyboard"></div>
-	<figcaption>
-		<h1>
-			{msg}
-		</h1>
-	</figcaption>
+	<!-- This must be on the same line to prevent whitespace from being inserted -->
+	<figcaption><slot /></figcaption>
 </figure>
 
 <style>
 	figure {
 		--blue: var(--p);
-		--blue-dark: color-mix(in oklch shorter hue, var(--p), #000 var(--mix-md));
+		--blue-dark: color-mix(in oklch, var(--p), #000 var(--mix-md));
 		--key: #fff;
 		--paper: #eef0fd;
 		--text: #00000049;
@@ -38,17 +30,13 @@ const msg = getLocaleStrings(LOCALE.default).loader.label;
 		--duration: 3s;
 
 		position: relative;
+		margin: 0;
 		filter: var(--s-drop-md);
 		animation: bounce var(--duration) linear infinite;
 	}
 
 	figcaption {
 		text-align: center;
-	}
-
-	h1 {
-		font-family: var(--f-header);
-		font-size: var(--f-md);
 	}
 
 	.slide {

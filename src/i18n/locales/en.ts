@@ -1,3 +1,8 @@
+/**
+ * Locale messages for en-US (American English)
+ * @module
+ */
+
 import { SITE } from '@config/site';
 import type { LocaleMessages } from '../types.ts';
 
@@ -12,7 +17,7 @@ const DESCRIPTION =
  *
  * Contains translations for site metadata, UI labels, messages, and all user-facing text.
  */
-const EN: LocaleMessages = {
+const messages: LocaleMessages = {
 	site: {
 		// Full site title shown in browser tabs
 		title: `${SITE.title} - ${TAGLINE}`,
@@ -37,14 +42,14 @@ const EN: LocaleMessages = {
 			'online tool',
 		],
 	},
-	loader: {
-		// Label shown below the loader on the loading page
-		label: 'Loading...',
-	},
 	alert: {
 		note: {
 			// Title for alerts of type 'note'
 			title: 'Note',
+		},
+		error: {
+			// Title for alerts of type 'error'
+			title: 'Error',
 		},
 	},
 	header: {
@@ -207,4 +212,4 @@ const EN: LocaleMessages = {
 	},
 } as const satisfies LocaleMessages;
 
-export default EN;
+export default messages;

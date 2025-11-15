@@ -4,10 +4,13 @@ import Header from '@components/app/Header.astro';
 import CounterInput from '@components/app/home/CounterInput.astro';
 import CounterOutputs from '@components/app/home/CounterOutputs.astro';
 import Nav from '@components/app/home/Nav.astro';
+import Alert from '@components/ui/Alert.astro';
 import Article from '@components/ui/Article.astro';
+import Main from '@components/ui/Main.astro';
+import MarkdocContent from '@components/ui/MarkdocContent.astro';
 import { INPUT } from '@config/input.ts';
 import { LOCALE } from '@config/locale.ts';
-import { getLocale } from '@i18n/index.ts';
+import { getLocale, getLocaleMessages } from '@i18n/index.ts';
 import PageLayout from '@layouts/PageLayout.astro';
 import { keysOf } from '@utils/index.ts';
 import { getEntry } from 'astro:content';
@@ -48,14 +51,19 @@ async function getEntryIf<TId extends string>(
 }
 
 const currentLocaleId = getLocale(Astro);
+const msg = getLocaleMessages(currentLocaleId).site;
 const inputPreloadVars = {
 	id: INPUT.id,
 	d: INPUT.default,
-};
+} as const;
 
 const aboutEntry = await getEntry(currentLocaleId, 'about');
 const relatedEntry = await getEntry(currentLocaleId, 'related');
-const alertEntry = await getEntryIf(
+const jsRequiredAlertEntry = await getEntry(
+	currentLocaleId,
+	'js-required-alert',
+);
+const experimentalLocaleAlertEntry = await getEntryIf(
 	'experimental-locale-alert',
 	LOCALE.map[currentLocaleId].wip,
 	"'alert' entry does not exist",
@@ -63,6 +71,7 @@ const alertEntry = await getEntryIf(
 
 assert(aboutEntry, "'about' entry does not exist");
 assert(relatedEntry, "'related' entry does not exist");
+assert(jsRequiredAlertEntry, "'js-required-alert' entry does not exist");
 
 /**
  * Generates static paths for all supported locales.
@@ -74,18 +83,29 @@ export function getStaticPaths() {
 }
 ---
 
-<PageLayout>
+<PageLayout description={msg.longDescription}>
 	<Header />
-	<main>
+	<Main>
 		<section>
 			<CounterInput />
 			<CounterOutputs />
 			<Nav />
-			{alertEntry && <Article entry={alertEntry} />}
+			<noscript>
+				<Alert type="error">
+					<MarkdocContent entry={jsRequiredAlertEntry} />
+				</Alert>
+			</noscript>
+			{
+				experimentalLocaleAlertEntry && (
+					<Alert>
+						<MarkdocContent entry={experimentalLocaleAlertEntry} />
+					</Alert>
+				)
+			}
 		</section>
 		<Article entry={aboutEntry} />
 		<Article entry={relatedEntry} />
-	</main>
+	</Main>
 	<Footer />
 	<!-- Preload the input text as soon as possible to prevent FOUC -->
 	<script is:inline async type="module" define:vars={inputPreloadVars}>
@@ -98,26 +118,18 @@ export function getStaticPaths() {
 
 <style>
 	main {
-		display: flex;
-		flex-direction: column;
 		gap: var(--p-lg);
-		flex: 1;
-		width: 100%;
-		max-width: var(--max-w);
-		padding: var(--p-md);
-		box-sizing: border-box;
-		view-transition-name: main;
+
+		> section {
+			display: flex;
+			flex-direction: column;
+			gap: var(--p-md);
+			view-transition-name: counter-section;
+		}
 
 		> article {
 			padding: 0 var(--p-md);
 		}
-	}
-
-	section {
-		display: flex;
-		flex-direction: column;
-		gap: var(--p-md);
-		view-transition-name: counter-section;
 	}
 </style>
 

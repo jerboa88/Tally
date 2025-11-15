@@ -1,5 +1,5 @@
 // This file is imported by astro.config.ts which doesn't support aliases, so we can't use them here either
-import { assert, identity, tryit, type Result } from 'radashi';
+import { assert, tryit, type Result } from 'radashi';
 import { SITE } from '../config/site.ts';
 import type { HttpsUrl } from '../types.ts';
 
@@ -48,7 +48,7 @@ export function getDefinedElementById<T extends HTMLElement = HTMLElement>(
  * @returns An object containing the style property with viewTransitionName
  */
 export function wKey(...keys: (string | undefined | null)[]) {
-	const key = keys.filter(identity).join('-');
+	const key = keys.filter(Boolean).join('-');
 
 	return {
 		style: {

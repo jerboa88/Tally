@@ -41,7 +41,7 @@ type SiteConfig = {
 const AUTHOR_FIRST_NAME = 'John' as const;
 const AUTHOR_LAST_NAME = 'Goodliff' as const;
 const AUTHOR_HOMEPAGE_URL: HttpsUrl = 'https://johng.io' as const;
-const AUTHOR_GITHUB_URL: HttpsUrl = 'https://github.com/jerboa88' as const;
+const AUTHOR_GITHUB_URL: HttpsUrl = 'https://github.com/twocaretcat' as const;
 const REPO_URL: HttpsUrl = `${AUTHOR_GITHUB_URL}/Tally`;
 
 /**
@@ -74,7 +74,7 @@ export const SITE = {
 			linkedin: 'https://www.linkedin.com/in/johngoodliff/',
 		},
 		username: {
-			x: '@jerboa88',
+			x: '@twocaretcat',
 		},
 	},
 } as const satisfies SiteConfig;

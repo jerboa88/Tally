@@ -20,6 +20,7 @@
 	--f-md: 1em;
 	--f-lg: calc(var(--f-md) * 1.5);
 	--f-xl: calc(var(--f-lg) * 1.25);
+	--f-2xl: calc(var(--f-xl) * 2);
 
 	/* Font weight */
 	--f-normal: 300;
@@ -40,14 +41,14 @@
 
 	/* Ternary background color (high elevation) */
 	--bg-3: color-mix(
-		in oklch shorter hue,
+		in oklch,
 		var(--bg-2),
 		var(--fg) var(--mix-sm)
 	);
 
 	/* Shadow color */
 	--s: color-mix(
-		in oklch shorter hue,
+		in oklch,
 		oklch(0 0 0 / 0.25) var(--s-mix),
 		transparent
 	);

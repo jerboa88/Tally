@@ -1,3 +1,8 @@
+/**
+ * Locale messages for id-ID (Indonesian)
+ * @module
+ */
+
 import { SITE } from '@config/site';
 import type { LocaleMessages } from '../types.ts';
 
@@ -5,7 +10,7 @@ const TAGLINE = 'Penghitung kata' as const;
 const DESCRIPTION =
 	'Penghitung kata favorit Anda dalam mode gelap — kini dengan lebih banyak tema!' as const;
 
-const ID: LocaleMessages = {
+const messages: LocaleMessages = {
 	site: {
 		title: `${SITE.title} - ${TAGLINE}`,
 		description: DESCRIPTION,
@@ -28,12 +33,12 @@ const ID: LocaleMessages = {
 			'alat daring',
 		],
 	},
-	loader: {
-		label: 'Memuat...',
-	},
 	alert: {
 		note: {
 			title: 'Catatan',
+		},
+		error: {
+			title: 'Kesalahan',
 		},
 	},
 	header: {
@@ -166,4 +171,4 @@ const ID: LocaleMessages = {
 	},
 } as const satisfies LocaleMessages;
 
-export default ID;
+export default messages;

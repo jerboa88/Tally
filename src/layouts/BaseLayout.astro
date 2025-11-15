@@ -1,26 +1,29 @@
 ---
+import Head from '@components/app/Head.astro';
 import { THEME } from '@config/theme.ts';
 import { getLocale } from '@i18n/index.ts';
+import type { ComponentProps } from 'astro/types';
 import '../styles/global.css';
 import '../styles/themes.css';
 import '../styles/tokens.css';
 import '../styles/utils.css';
 import type { WithChildren } from '../types.ts';
-import Head from './Head.astro';
 
 /**
  * Props for the base HTML layout wrapper.
  *
- * Allows children content for the main body and head slot.
+ * Allows children content for the main body and head slot. Accepts all Head component props.
  */
-type Props = WithChildren<true>;
+type Props = WithChildren<true, ComponentProps<typeof Head>>;
 
 const currentLocaleId = getLocale(Astro);
+
+const props = Astro.props;
 ---
 
 <!doctype html>
 <html lang={currentLocaleId} data-theme={THEME.default.id}>
-	<Head>
+	<Head {...props}>
 		<slot name="head" />
 	</Head>
 
