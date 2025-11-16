@@ -106,16 +106,15 @@ const messages: LocaleMessages = {
   },
   options: {
     title: 'Настройки',
-    // Option names
     map: {
       warnOnLargeInputText: {
-        label: 'Warn on large input input',
+        label: 'Предупреждать при вводе большого количества текста',
       },
       rememberInputText: {
-        label: 'Remember input text',
+        label: 'Запоминать введённый текст',
       },
       enableDebugLogging: {
-        label: 'Enable debug logging',
+        label: 'Включить ведение журнала отладки',
       },
     },
   },
