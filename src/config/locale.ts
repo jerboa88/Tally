@@ -52,7 +52,7 @@ const localeMap = {
 		wip: true,
 	},
 	ru: {
-		wip: true,
+		wip: false,
 	},
 	zh: {
 		regionId: 'CN',
