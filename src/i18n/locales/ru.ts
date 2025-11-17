@@ -23,9 +23,9 @@ const messages: LocaleMessages = {
       'счётчик предложений',
       'счётчик параграфов',
       'счётчик строк',
-      'text analysis',
-      'text analyzer',
-      'text statistics',
+      'анализ текста',
+      'анализатор текста',
+      'статистика текста',
       'онлайн инструмент',
     ],
   },
@@ -49,7 +49,7 @@ const messages: LocaleMessages = {
     },
   },
   output: {
-    placeholder: '0',
+    placeholder: '-',
     map: {
       characters: {
         label: 'Символы',
