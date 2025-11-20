@@ -60,29 +60,29 @@
 		"puppeteer"
 	],
 	"devDependencies": {
-		"@astrojs/check": "0.9.5",
+		"@astrojs/check": "^0.9.5",
 		"@types/bun": "latest",
-		"npm-check-updates": "^19.1.1",
+		"npm-check-updates": "^19.1.2",
 		"prettier-plugin-astro-organize-imports": "^0.4.11",
 		"prettier-plugin-astro": "^0.14.1",
 		"prettier": "^3.6.2",
 		"typescript": "^5.9.3"
 	},
 	"dependencies": {
-		"@astrojs/markdoc": "^0.15.8",
+		"@astrojs/markdoc": "^0.15.9",
 		"@astrojs/sitemap": "^3.6.0",
-		"@lucide/astro": "^0.546.0",
+		"@lucide/astro": "^0.554.0",
 		"@nanostores/logger": "^1.0.0",
-		"@nanostores/persistent": "^1.1.0",
+		"@nanostores/persistent": "^1.2.0",
 		"@playform/compress": "^0.2.0",
-		"@twocaretcat/astro-snapshot": "npm:@jsr/twocaretcat__astro-snapshot",
-		"@twocaretcat/tally-ts": "npm:@jsr/twocaretcat__tally-ts",
-		"astro": "5.15.9",
-		"astro-better-image-service": "^2.1.9",
+		"@twocaretcat/astro-snapshot": "npm:@jsr/twocaretcat__astro-snapshot@^2.0.0",
+		"@twocaretcat/tally-ts": "npm:@jsr/twocaretcat__tally-ts@^2.0.0",
+		"astro": "^5.15.9",
+		"astro-better-image-service": "^2.1.10",
 		"astro-capo": "^0.0.1",
 		"astro-robots-txt": "^1.0.0",
-		"nanostores": "^1.0.1",
-		"radashi": "^12.7.0",
-		"sharp": "^0.34.4"
+		"nanostores": "^1.1.0",
+		"radashi": "^12.7.1",
+		"sharp": "^0.34.5"
 	}
 }
