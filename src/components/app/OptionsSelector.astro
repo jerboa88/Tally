@@ -1,9 +1,10 @@
 ---
-import type { EntryProps } from '@components/ui/InputGroup.astro';
+import HiddenInput from '@components/ui/HiddenInput.astro';
 import InputGroup from '@components/ui/InputGroup.astro';
+import Label from '@components/ui/Label.astro';
 import { OPTION } from '@config/option.ts';
 import { getLocaleMessages } from '@i18n/index.ts';
-import { keysOf } from '@utils/index.ts';
+import { entriesOf } from '@utils/index.ts';
 import type { WithChildren } from '../../types.ts';
 
 /**
@@ -14,18 +15,23 @@ import type { WithChildren } from '../../types.ts';
 type Props = WithChildren<false>;
 
 const msg = getLocaleMessages(Astro).options;
-
-const entries: EntryProps[] = keysOf(OPTION.map).map((id) => ({
-	label: {
-		text: msg.map[id].label,
-	},
-	input: {
-		id,
-	},
-}));
 ---
 
-<InputGroup {entries} id={OPTION.id} title={msg.title} type="checkbox" />
+<InputGroup id={OPTION.id} title={msg.title}>
+	{
+		entriesOf(OPTION.map).map(([id, optionConfig]) => (
+			<Label>
+				<HiddenInput
+					type="checkbox"
+					name={OPTION.id}
+					checked={optionConfig.default}
+					{id}
+				/>
+				{msg.map[id].label}
+			</Label>
+		))
+	}
+</InputGroup>
 
 <script>
 	import { OPTION, type OptionId } from '@config/option.ts';

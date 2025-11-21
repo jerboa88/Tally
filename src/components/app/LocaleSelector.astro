@@ -1,7 +1,8 @@
 ---
-import type { EntryProps } from '@components/ui/InputGroup.astro';
+import HiddenInput from '@components/ui/HiddenInput.astro';
 import InputGroup from '@components/ui/InputGroup.astro';
-import { LOCALE, type Locale, type LocaleId } from '@config/locale.ts';
+import Label from '@components/ui/Label.astro';
+import { LOCALE } from '@config/locale.ts';
 import { getLocale, getLocaleInfo, getLocaleMessages } from '@i18n/index.ts';
 import { entriesOf } from '@utils/index.ts';
 import type { WithChildren } from '../../types.ts';
@@ -13,43 +14,32 @@ import type { WithChildren } from '../../types.ts';
  */
 type Props = WithChildren<false>;
 
-/**
- * Constructs a locale label with flag emoji, language name, optional region, and WIP indicator.
- *
- * @param id - The locale ID
- * @param locale - The locale configuration object
- * @returns A formatted string like "🇺🇸 English", "🇪🇸 Spanish (Mexico)", or "🇫🇷 French 🚧"
- */
-function buildLocaleLabel(id: LocaleId, locale: Locale) {
-	const { flag, languageName, regionName } = getLocaleInfo(id, locale.regionId);
-
-	return [
-		flag,
-		languageName,
-		regionName && `(${regionName})`,
-		locale.wip && '🚧',
-	]
-		.filter(Boolean)
-		.join(' ');
-}
-
 const currentLocaleId = getLocale(Astro);
 const msg = getLocaleMessages(currentLocaleId).locales;
-
-const entries: EntryProps[] = entriesOf(LOCALE.map).map(
-	([localeId, locale]) => ({
-		label: {
-			text: buildLocaleLabel(localeId, locale),
-		},
-		input: {
-			id: localeId,
-			checked: localeId === currentLocaleId,
-		},
-	}),
-);
 ---
 
-<InputGroup {entries} id={LOCALE.id} title={msg.title} type="radio" />
+<InputGroup id={LOCALE.id} title={msg.title}>
+	{
+		entriesOf(LOCALE.map).map(([id, { regionId, wip, rtl }]) => {
+			const { flag, languageName, regionName } = getLocaleInfo(id, regionId);
+
+			return (
+				<Label>
+					<HiddenInput
+						type="radio"
+						name={LOCALE.id}
+						checked={id === currentLocaleId}
+						{id}
+					/>
+					{flag}
+					{languageName}
+					{regionName && `(${regionName})`}
+					{wip && ' 🚧'}
+				</Label>
+			);
+		})
+	}
+</InputGroup>
 
 <script>
 	import { LOCALE } from '@config/locale.ts';

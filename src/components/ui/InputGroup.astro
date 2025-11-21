@@ -1,41 +1,18 @@
 ---
 import { wKey } from '@utils/index.ts';
-import type { ComponentProps, HTMLAttributes } from 'astro/types';
-import type { WithChildren } from '../../types.ts';
+import type { ComponentProps } from 'astro/types';
 import Form from './Form.astro';
-import HiddenInput from './HiddenInput.astro';
-import Label from './Label.astro';
-
-type InputAttributes = WithChildren<false, HTMLAttributes<'input'>>;
-type LabelAttributes = WithChildren<false, HTMLAttributes<'label'>>;
-
-/**
- * Props for a single input entry within the group.
- *
- * @property label - Label configuration including text and HTML attributes
- * @property input - Input element configuration and HTML attributes
- */
-export interface EntryProps {
-	label: LabelAttributes & {
-		text: string;
-	};
-	input: InputAttributes;
-}
 
 /**
  * Props for a grouped set of related inputs (ex. radio buttons or checkboxes).
  *
  * @property title - The heading text for the input group
- * @property type - The input type (ex. 'radio', 'checkbox')
- * @property entries - Array of input configurations to render
  */
-interface Props extends Omit<ComponentProps<typeof Form>, 'children'> {
+interface Props extends ComponentProps<typeof Form> {
 	title: Capitalize<string>;
-	type: InputAttributes['type'];
-	entries: EntryProps[];
 }
 
-const { id, name, title, type, entries, ...restProps } = Astro.props;
+const { id, name, title, ...restProps } = Astro.props;
 
 const computedId = id ?? name;
 ---
@@ -50,17 +27,6 @@ const computedId = id ?? name;
 		id={computedId}
 		name={computedId}
 	>
-		{
-			entries.map(({ label, input }) => {
-				const { text, ...restLabelProps } = label;
-
-				return (
-					<Label {...restLabelProps}>
-						<HiddenInput {...input} name={computedId} {type} />
-						{text}
-					</Label>
-				);
-			})
-		}
+		<slot />
 	</Form>
 </hgroup>
