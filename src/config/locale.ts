@@ -1,4 +1,18 @@
 /**
+ * Union type of all valid locale IDs.
+ */
+export type LocaleId =
+	| 'en'
+	| 'es'
+	| 'fr'
+	| 'it'
+	| 'de'
+	| 'id'
+	| 'ru'
+	| 'zh'
+	| 'ar';
+
+/**
  * A two-letter uppercase region code (e.g., 'US', 'ES', 'MX').
  */
 export type RegionId = `${Uppercase<string>}${Uppercase<string>}`;
@@ -19,7 +33,9 @@ export type Locale = {
 /**
  * A record mapping locale IDs to their display names.
  */
-type LocaleMap = Record<string, Locale>;
+type LocaleMap = {
+	[key in LocaleId]: Locale;
+};
 
 /**
  * The complete locale configuration structure.
@@ -34,7 +50,7 @@ type LocaleConfig = {
 	map: LocaleMap;
 };
 
-const localeMap = {
+const localeMap: LocaleMap = {
 	en: {
 		wip: false,
 		rtl: false,
@@ -72,7 +88,7 @@ const localeMap = {
 		wip: true,
 		rtl: true,
 	},
-} as const satisfies LocaleMap;
+};
 
 /**
  * Global locale configuration for the application.
@@ -82,8 +98,3 @@ export const LOCALE = {
 	default: 'en',
 	map: localeMap,
 } as const satisfies LocaleConfig;
-
-/**
- * Union type of all valid locale IDs.
- */
-export type LocaleId = keyof typeof localeMap;
