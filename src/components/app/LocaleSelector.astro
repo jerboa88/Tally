@@ -32,7 +32,7 @@ const msg = getLocaleMessages(currentLocaleId).locales;
 						{id}
 					/>
 					{flag}
-					{languageName}
+					<bdo dir={rtl ? 'rtl' : 'ltr'}>{languageName}</bdo>
 					{regionName && `(${regionName})`}
 					{wip && ' 🚧'}
 				</Label>
