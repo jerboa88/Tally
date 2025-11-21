@@ -8,10 +8,12 @@ export type RegionId = `${Uppercase<string>}${Uppercase<string>}`;
  *
  * @property regionId - An optional region ID for the locale
  * @property wip - Whether the locale is still a work in progress
+ * @property rtl - Whether the locale is right-to-left
  */
 export type Locale = {
 	regionId?: RegionId;
 	wip: boolean;
+	rtl: boolean;
 };
 
 /**
@@ -35,31 +37,40 @@ type LocaleConfig = {
 const localeMap = {
 	en: {
 		wip: false,
+		rtl: false,
 	},
 	es: {
 		wip: true,
+		rtl: false,
 	},
 	fr: {
 		wip: true,
+		rtl: false,
 	},
 	it: {
 		wip: true,
+		rtl: false,
 	},
 	de: {
 		wip: true,
+		rtl: false,
 	},
 	id: {
 		wip: true,
+		rtl: false,
 	},
 	ru: {
 		wip: false,
+		rtl: false,
 	},
 	zh: {
 		regionId: 'CN',
 		wip: true,
+		rtl: false,
 	},
 	ar: {
 		wip: true,
+		rtl: true,
 	},
 } as const satisfies LocaleMap;
 
