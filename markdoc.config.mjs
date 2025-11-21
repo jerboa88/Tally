@@ -24,4 +24,15 @@ export default defineMarkdocConfig({
 			render: component('@components/ui/Image.astro'),
 		},
 	},
+	tags: {
+		bdo: {
+			render: component('@components/ui/Bdo.astro'),
+			attributes: {
+				dir: {
+					type: String,
+					matches: ['ltr', 'rtl'],
+				},
+			},
+		},
+	},
 });
