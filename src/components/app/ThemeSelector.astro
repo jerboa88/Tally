@@ -1,6 +1,8 @@
 ---
-import InputGroup, { type EntryProps } from '@components/ui/InputGroup.astro';
-import { type Theme, THEME, type ThemeId } from '@config/theme.ts';
+import HiddenInput from '@components/ui/HiddenInput.astro';
+import InputGroup from '@components/ui/InputGroup.astro';
+import Label from '@components/ui/Label.astro';
+import { THEME } from '@config/theme.ts';
 import { getLocaleMessages } from '@i18n/index.ts';
 import { entriesOf } from '@utils/index.ts';
 import type { WithChildren } from '../../types.ts';
@@ -12,47 +14,35 @@ import type { WithChildren } from '../../types.ts';
  */
 type Props = WithChildren<false>;
 
-/**
- * Constructs a theme label with an optional work-in-progress indicator.
- *
- * @param id - The theme ID
- * @param themeData - The theme configuration data
- * @returns A formatted string like "Dark" or "Gruvbox Light 🚧"
- */
-function buildThemeLabel(id: ThemeId, themeData: Theme) {
-	const name = msg.map[id].label;
-	const suffix = themeData.wip ? '🚧' : '';
-
-	return `${name} ${suffix}`;
-}
-
 const msg = getLocaleMessages(Astro).themes;
-
-const entries: EntryProps[] = entriesOf(THEME.map).map(([themeId, theme]) => ({
-	label: {
-		text: buildThemeLabel(themeId, theme),
-		'data-theme': themeId,
-	},
-	input: {
-		id: themeId,
-		checked: themeId === THEME.default.id,
-	},
-}));
 ---
 
-<InputGroup {entries} id={THEME.id} title={msg.title} type="radio" />
+<InputGroup id={THEME.id} title={msg.title}>
+	{
+		entriesOf(THEME.map).map(([id, { wip }]) => (
+			<Label data-theme={id}>
+				<HiddenInput
+					type="radio"
+					name={THEME.id}
+					checked={id === THEME.default.id}
+					{id}
+				/>
+				{msg.map[id].label}
+				{wip && ' 🚧'}
+			</Label>
+		))
+	}
+</InputGroup>
 
 <style>
-	form {
-		label {
-			background: linear-gradient(
-				90deg,
-				var(--bg-1) 0%,
-				var(--bg-1) 49.9%,
-				var(--bg-2) 50.1%,
-				var(--bg-2) 100%
-			);
-		}
+	label {
+		background: linear-gradient(
+			90deg,
+			var(--bg-1) 0%,
+			var(--bg-1) 49.9%,
+			var(--bg-2) 50.1%,
+			var(--bg-2) 100%
+		);
 	}
 </style>
 

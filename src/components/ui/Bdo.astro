@@ -1,0 +1,18 @@
+---
+/**
+ * Renders a `<bdo>` element while forwarding all standard HTML attributes.
+ * Content passed between the component’s tags is injected via the default slot.
+ */
+import type { HTMLAttributes } from 'astro/types';
+import type { WithChildren } from '../../types.ts';
+
+/**
+ * Props for a `<bdo>` element. Requires children content. Accepts all standard HTML attributes for `<bdo>` elements. This is used by Markdoc.
+ */
+type Props = WithChildren<true, HTMLAttributes<'bdo'>>;
+
+const props = Astro.props;
+---
+
+<!-- This must be on the same line to prevent whitespace from being inserted -->
+<bdo {...props}><slot /></bdo>

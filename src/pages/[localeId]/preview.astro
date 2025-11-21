@@ -116,6 +116,10 @@ export function getStaticPaths() {
 		flex-direction: row;
 		justify-content: center;
 		align-items: end;
+		/* Transforms use physical units rather than logical units */
+		/* Since this section has no text content, we can simply force the content to be left-to-right */
+		/* This way, we don't need to add a bunch of extra styles to override them */
+		direction: ltr;
 	}
 
 	figure {
