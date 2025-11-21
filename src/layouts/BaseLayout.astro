@@ -1,5 +1,6 @@
 ---
 import Head from '@components/app/Head.astro';
+import { LOCALE } from '@config/locale.ts';
 import { THEME } from '@config/theme.ts';
 import { getLocale } from '@i18n/index.ts';
 import type { ComponentProps } from 'astro/types';
@@ -17,12 +18,13 @@ import type { WithChildren } from '../types.ts';
 type Props = WithChildren<true, ComponentProps<typeof Head>>;
 
 const currentLocaleId = getLocale(Astro);
+const dir = LOCALE.map[currentLocaleId].rtl ? 'rtl' : 'ltr';
 
 const props = Astro.props;
 ---
 
 <!doctype html>
-<html lang={currentLocaleId} data-theme={THEME.default.id}>
+<html lang={currentLocaleId} {dir} data-theme={THEME.default.id}>
 	<Head {...props}>
 		<slot name="head" />
 	</Head>
