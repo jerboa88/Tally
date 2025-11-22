@@ -20,24 +20,34 @@ const msg = getLocaleMessages(currentLocaleId).locales;
 
 <InputGroup id={LOCALE.id} title={msg.title}>
 	{
-		entriesOf(LOCALE.map).map(([id, { regionId, wip, rtl }]) => {
-			const { flag, languageName, regionName } = getLocaleInfo(id, regionId);
+		entriesOf(LOCALE.map)
+			.map(([id, config]) => ({
+				id,
+				config,
+				info: getLocaleInfo(id, config.regionId),
+			}))
+			.sort((a, b) =>
+				a.info.languageName.localeCompare(b.info.languageName, currentLocaleId)
+			)
+			.map(({ id, config, info }) => {
+				const { wip, rtl } = config;
+				const { flag, languageName, regionName } = info;
 
-			return (
-				<Label>
-					<HiddenInput
-						type="radio"
-						name={LOCALE.id}
-						checked={id === currentLocaleId}
-						{id}
-					/>
-					{flag}
-					<bdo dir={rtl ? 'rtl' : 'ltr'}>{languageName}</bdo>
-					{regionName && `(${regionName})`}
-					{wip && ' 🚧'}
-				</Label>
-			);
-		})
+				return (
+					<Label>
+						<HiddenInput
+							type="radio"
+							name={LOCALE.id}
+							checked={id === currentLocaleId}
+							{id}
+						/>
+						{flag}
+						<bdo dir={rtl ? 'rtl' : 'ltr'}>{languageName}</bdo>
+						{regionName && `(${regionName})`}
+						{wip && ' 🚧'}
+					</Label>
+				);
+			})
 	}
 </InputGroup>
 
@@ -57,7 +67,7 @@ const msg = getLocaleMessages(currentLocaleId).locales;
 		radio.addEventListener(
 			'change',
 			() =>
-				(window.location.href = `${getRelativeLocaleUrl(id)}${location.search}`),
+				(window.location.href = `${getRelativeLocaleUrl(id)}${location.search}`)
 		);
 	}
 </script>
